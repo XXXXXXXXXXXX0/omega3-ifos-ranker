@@ -55,6 +55,7 @@ def load_products(conn) -> list[Product]:
             basis_text=r["basis_text"], basis_kind=r["basis_kind"], basis_count=r["basis_count"],
             epa_mg_cap=r["epa_mg_cap"], dha_mg_cap=r["dha_mg_cap"], total_omega3_mg_cap=r["total_omega3_mg_cap"],
             epa_mg_g=r["epa_mg_g"], dha_mg_g=r["dha_mg_g"], total_omega3_mg_g=r["total_omega3_mg_g"],
+            epa_dha_mg_cap=r["epa_dha_mg_cap"], epa_dha_mg_g=r["epa_dha_mg_g"],
             pv=r["pv"], av=r["av"], totox=r["totox"], totox_source=r["totox_source"], acid_value=r["acid_value"],
             censored=censored, contaminants=contaminants.get(r["report_filename"], []),
             report_form=r["report_form"], report_form_evidence=r["report_form_evidence"],

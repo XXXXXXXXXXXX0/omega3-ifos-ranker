@@ -27,7 +27,7 @@ COMPLIANCE_RE = re.compile(r"^(yes|no|pass|passed|fail|failed|n/?a|-+)\.?$", re.
 # Result cells that are legitimately non-numeric.
 NON_NUMERIC_RE = re.compile(
     r"^(nd|n\.d\.|not\s+detected|none\s+detected|n/?a|not\s+applicable|not\s+tested|nt|blq|bdl|<\s*loq|<\s*lod|-+|—|tbd|pending)\.?$", re.I)
-BASIS_CELL_RE = re.compile(r"^(?:(?:mg|milligrams?)\s*(?:/|per\b).*|(?:area\s*)?%)$", re.I)
+BASIS_CELL_RE = re.compile(r"^(?:(?:mg|milligrams?)\s*(?:/|per\b).*|g\s*(?:/|per\b)\s*\d+\s*g|(?:area\s*)?%)$", re.I)
 LOT_RE = re.compile(r"Batch\s*/\s*Lot\s*#\s*:\s*(.+?)\s*$", re.I | re.M)
 EXPIRY_RE = re.compile(r"Expiry\s+Date\s*:\s*(.+?)\s*$", re.I | re.M)
 DIRECTION_RE = re.compile(r"Directions?\s*:\s*(.*)$", re.I)
@@ -54,6 +54,7 @@ class Row:
     result_value: float | None = None
     result_unit: str | None = None
     compliance: str | None = None
+    misprints: list[str] = field(default_factory=list)
 
 
 @dataclass
@@ -116,7 +117,14 @@ def _fill(row: Row, role: str, cell: str) -> str | None:
             return f"unreadable compliance cell {cell!r}"
         row.compliance = _compliance(cell)
         return None
-    quantities = find_quantities(cell)
+    try:
+        quantities = find_quantities(cell)
+    except ValueError as exc:
+        # A misprinted number is kept as text with no value. The row survives;
+        # whatever depends on the value treats it as not reported.
+        setattr(row, f"{role}_text", cell)
+        row.misprints.append(f"{role}: {exc}")
+        return None
     if len(quantities) == 1 and not NON_NUMERIC_RE.match(cell):
         q = quantities[0]
         if role == "spec":
@@ -187,6 +195,7 @@ def _parse_table(table: list[list], out: Parsed, errors: list[str]) -> None:
             errors.append(f"{label}: cannot assign {len(values)} cell(s) to columns: {[v for _, v in values]}")
             continue
         row_errors = [e for e in (_fill(row, role, cell) for role, cell in assigned) if e]
+        out.warnings.extend(f"{label}: {m}" for m in row.misprints)
         if row_errors:
             errors.append(f"{label}: " + "; ".join(row_errors))
         elif analyte in out.rows:
@@ -252,8 +261,13 @@ def parse_report(doc: PdfDoc) -> Parsed:
 
     if out.basis is None:
         errors.append("potency unit not found")
-    if not any(a in out.rows for a in ("epa", "dha", "total_omega3")):
-        errors.append("no potency rows found")
+    if not any(a in out.rows for a in ("epa", "dha", "epa_dha", "total_omega3")):
+        if out.unrecognized:
+            # The table was read, it just lists other fatty acids (an omega-7
+            # product, say). Not a parse failure; the ranker files it as incomplete.
+            out.warnings.append("no EPA or DHA row; potency table lists: " + "; ".join(u.split(" | ")[0] for u in out.unrecognized))
+        else:
+            errors.append("no potency rows found")
     if not any(a in out.rows for a in ("pv", "av", "totox", "acid_value")):
         errors.append("no stability rows found")
     if errors:

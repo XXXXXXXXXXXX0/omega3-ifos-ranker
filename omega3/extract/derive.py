@@ -49,7 +49,7 @@ def derive(parsed: Parsed, cfg, listing_lot: str | None = None, listing_expiry: 
 
     basis = parsed.basis
     out.update(basis_text=basis.text, basis_kind=basis.kind, basis_count=basis.count)
-    for name in ("epa", "dha", "total_omega3"):
+    for name in ("epa", "dha", "total_omega3", "epa_dha"):
         value, _ = _result(parsed, name)
         out[f"{name}_orig"] = value
         out[f"{name}_spec"] = _spec(parsed, name)
@@ -101,9 +101,15 @@ def derive(parsed: Parsed, cfg, listing_lot: str | None = None, listing_expiry: 
     for column, label in (("pv", "PV"), ("av", "AV"), ("totox", "TOTOX"), ("acid_value", "acid value")):
         if not _in_range(out[column], v[column]):
             problems.append(f"implausible {label} {out[column]:g}")
+    for unit, bounds in (("mg_cap", v["total_omega3_mg_per_capsule"]), ("mg_g", v["mg_per_g"])):
+        if out[f"epa_dha_{unit}"] is not None and not (bounds[0] <= out[f"epa_dha_{unit}"] <= bounds[1]):
+            problems.append(f"implausible EPA+DHA {out[f'epa_dha_{unit}']:g} ({unit.replace('_', ' per ')})")
     epa_dha = (out["epa_orig"] or 0) + (out["dha_orig"] or 0)
     if out["total_omega3_orig"] is not None and epa_dha > out["total_omega3_orig"] * 1.02 + 1:
         problems.append(f"EPA+DHA {epa_dha:g} exceeds total omega-3 {out['total_omega3_orig']:g}")
+    if out["epa_dha_orig"] is not None and out["epa_orig"] is not None and out["dha_orig"] is not None \
+            and abs(out["epa_dha_orig"] - epa_dha) > 0.02 * epa_dha + 1:
+        warnings.append(f"combined EPA+DHA row {out['epa_dha_orig']:g} differs from EPA + DHA = {epa_dha:g}")
 
     # --- cross-checks (warnings only) ------------------------------------------
     for row in parsed.rows.values():

@@ -34,7 +34,8 @@ class Contaminant:
     def passes(self) -> bool | None:
         """True/False against IFOS's stated limit; None when it cannot be judged."""
         numeric = None
-        if self.result_value is not None and self.limit_value is not None:
+        # A printed limit of zero is a misprint, not a limit: nothing could pass it.
+        if self.result_value is not None and self.limit_value is not None and self.limit_value > 0:
             numeric = self.result_value < self.limit_value if self.limit_op == "<" else self.result_value <= self.limit_value
         if self.compliance == "no" or numeric is False:
             return False
@@ -60,6 +61,8 @@ class Batch:
     epa_mg_g: float | None = None
     dha_mg_g: float | None = None
     total_omega3_mg_g: float | None = None
+    epa_dha_mg_cap: float | None = None    # combined row, for reports that print only EPA + DHA
+    epa_dha_mg_g: float | None = None
     pv: float | None = None
     av: float | None = None
     totox: float | None = None
@@ -194,7 +197,12 @@ def acid_failure(batch: Batch, cfg) -> str | None:
 
 
 def contaminant_failures(batch: Batch) -> list[str]:
-    return [f"{c.label} {c.result_text} against limit {c.limit_text}" for c in batch.contaminants if c.passes() is False]
+    out = []
+    for c in batch.contaminants:
+        if c.passes() is False:
+            note = " (IFOS marks it compliant; the printed number exceeds the printed limit)" if c.compliance == "yes" else ""
+            out.append(f"{c.label} {c.result_text} against limit {c.limit_text}{note}")
+    return out
 
 
 def cutoff_failures(batch: Batch, cfg) -> list[str]:
@@ -281,7 +289,8 @@ def resolve_concentration(product: Product, batch: Batch, cfg) -> dict:
     """
     present = [v for v in (batch.epa_mg_cap, batch.dha_mg_cap) if v is not None]
     present_g = [v for v in (batch.epa_mg_g, batch.dha_mg_g) if v is not None]
-    out = {"mg_cap": sum(present) if present else None, "mg_g": sum(present_g) if present_g else None,
+    # Separate EPA and DHA rows win; the combined row is used when it is all there is.
+    out = {"mg_cap": sum(present) if present else batch.epa_dha_mg_cap, "mg_g": sum(present_g) if present_g else batch.epa_dha_mg_g,
            "oil_mg": None, "oil_source": None, "flags": [], "problem": None}
     label_oil = product.label.oil_mg_per_capsule if product.label else None
     bounds = cfg["validation"]["oil_mg_per_capsule"]
@@ -299,7 +308,7 @@ def resolve_concentration(product: Product, batch: Batch, cfg) -> dict:
         candidates.append((label_oil, "label"))
     if "ifos_area_pct" in sources:
         pct = [batch.area_pct.get(k, {}).get("result_pct") for k, v in (("epa", batch.epa_mg_cap), ("dha", batch.dha_mg_cap)) if v is not None]
-        if pct and all(p for p in pct) and 0 < sum(pct) <= 100:
+        if present and pct and all(p for p in pct) and 0 < sum(pct) <= 100:
             candidates.append((round(out["mg_cap"] / (sum(pct) / 100), 1), "ifos_area_pct"))
     floor = (batch.total_omega3_mg_cap or out["mg_cap"]) * cfg["oil_weight"]["min_ratio_to_total_omega3"]
     for oil_mg, source in candidates:
@@ -318,6 +327,8 @@ def resolve_concentration(product: Product, batch: Batch, cfg) -> dict:
 def potency_label(batch: Batch) -> str:
     epa = batch.epa_mg_cap if batch.epa_mg_cap is not None else batch.epa_mg_g
     dha = batch.dha_mg_cap if batch.dha_mg_cap is not None else batch.dha_mg_g
+    if epa is None and dha is None:
+        return "EPA+DHA reported combined" if (batch.epa_dha_mg_cap or batch.epa_dha_mg_g) is not None else ""
     if epa is not None and dha is None:
         return "EPA only"
     if dha is not None and epa is None:
@@ -381,6 +392,9 @@ def place(product: Product, cfg, today: dt.date) -> Placement:
         absent = [a for a in CONTAMINANTS if a not in reported]
         if absent:
             p.flags.append("contaminants not reported: " + ", ".join(absent))
+        unchecked = [c.label for c in batch.contaminants if c.compliance == "yes" and (c.result_value is None or not (c.limit_value or 0) > 0)]
+        if unchecked:
+            p.flags.append("compliance taken from IFOS's verdict only (number or limit misprinted): " + ", ".join(unchecked))
         if batch.totox_source == "computed":
             p.flags.append("TOTOX computed as 2*PV+AV")
         if set(batch.censored) & {"pv", "av", "totox"}:

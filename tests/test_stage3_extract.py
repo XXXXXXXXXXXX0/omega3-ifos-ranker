@@ -443,3 +443,44 @@ def test_template_detection():
     assert detect_template("Category 1: Specification Batch Results\nPotency\nStability") == "T1-2024"
     assert detect_template("Specification Batch Results\nPotency IFOS Compliance\nStability") == "T1"
     assert detect_template("IFOS Consumer Report\n5 star rating") == "unknown"
+
+
+# --- cases first met in the live crawl -----------------------------------------------------------
+def test_combined_epa_dha_row(cfg):
+    for label in ("EPA + DHA", "EPA+DHA", "EPA +DHA", "EPA + DAH"):                  # last one is IFOS's own misspelling
+        parsed = parse_report(_doc([[label, "1100", "1200", "Yes"]], GOOD_STABILITY, "mg / cap"))
+        assert parsed.status == "ok" and parsed.unrecognized == [], label
+        d = derive(parsed, cfg)
+        assert (d["epa_dha_orig"], d["epa_dha_mg_cap"], d["epa_mg_cap"], d["dha_mg_cap"]) == (1200, 1200, None, None)
+    both = GOOD_POTENCY + [["EPA + DHA", "600", "700", "Yes"]]
+    d = derive(parse_report(_doc(both, GOOD_STABILITY)), cfg)
+    assert any("combined EPA+DHA row 700 differs from EPA + DHA = 630" in w for w in d["warnings"])
+
+
+def test_grams_per_100_grams_unit(cfg):
+    assert (parse_basis("g / 100 g").kind, parse_basis("g / 100 g").count) == ("gram", 0.1)
+    assert parse_basis("g / softgel") is None
+    d = derive(parse_report(_doc([["EPA", "46.7", "51.6", "Yes"], ["DHA", "23.3", "27.5", "Yes"]], GOOD_STABILITY, "g / 100 g")), cfg)
+    assert d["status"] == "ok" and (d["epa_mg_g"], d["dha_mg_g"]) == (516, 275)
+
+
+def test_misprinted_number_is_not_read_as_a_value(cfg):
+    with pytest.raises(ValueError, match="misprinted"):
+        find_quantities("<00016 ppm")                                                # 0.0016 with the point lost, not 16
+    assert find_quantities("0.0016 ppm")[0].value == 0.0016 and find_quantities("0 ppt")[0].value == 0
+    metals = [["Heavy Metals", "Specification", "Batch Results", "IFOS Compliance"], ["Cadmium", "<= 0.1 ppm", "<00016 ppm", "Yes"],
+              ["Lead", "<= 0.05 ppm", "<0.0066 ppm", "Yes"]]
+    doc = _doc(GOOD_POTENCY, GOOD_STABILITY)
+    doc.tables[1].append(metals)
+    parsed = parse_report(doc)
+    cadmium = parsed.rows["cadmium"]
+    assert parsed.status == "ok" and cadmium.result_value is None and cadmium.result_text == "<00016 ppm" and cadmium.compliance == "yes"
+    assert any("Cadmium" in w and "misprinted" in w for w in parsed.warnings) and parsed.rows["lead"].result_value == 0.0066
+
+
+def test_product_without_epa_or_dha_parses_but_has_no_potency(cfg):
+    parsed = parse_report(_doc([["Omega-7 Palmitoleic Acid", "500", "570", "Yes"]], GOOD_STABILITY, "mg / 2 capsules"))
+    assert parsed.status == "ok" and any("no EPA or DHA row" in w for w in parsed.warnings)
+    d = derive(parsed, cfg)
+    assert d["status"] == "ok" and d["epa_mg_cap"] is None and d["epa_dha_mg_cap"] is None and d["totox"] == 6.0
+    assert parse_report(_doc([], GOOD_STABILITY)).error == "no potency rows found"

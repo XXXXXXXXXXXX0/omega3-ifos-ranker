@@ -112,7 +112,7 @@ def parsed_from_payload(payload: dict) -> Parsed:
     _parse_comments(out)
     if payload.get("notes"):
         out.warnings.append(f"transcriber note: {payload['notes']}")
-    if not any(a in out.rows for a in ("epa", "dha", "total_omega3")):
+    if not any(a in out.rows for a in ("epa", "dha", "epa_dha", "total_omega3")):
         errors.append("no potency rows")
     if not any(a in out.rows for a in ("pv", "av", "totox", "acid_value")):
         errors.append("no stability rows")

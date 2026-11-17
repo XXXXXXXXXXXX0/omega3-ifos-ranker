@@ -78,10 +78,10 @@ CREATE TABLE IF NOT EXISTS extractions (
     basis_text      TEXT,                      -- e.g. "mg / 2 softgels"
     basis_kind      TEXT,                      -- capsule | gram | ml | other
     basis_count     REAL,                      -- 2 for "mg / 2 softgels"
-    epa_orig        REAL, dha_orig REAL, total_omega3_orig REAL,
-    epa_spec        REAL, dha_spec REAL, total_omega3_spec REAL,
-    epa_mg_cap      REAL, dha_mg_cap REAL, total_omega3_mg_cap REAL,
-    epa_mg_g        REAL, dha_mg_g REAL, total_omega3_mg_g REAL,
+    epa_orig        REAL, dha_orig REAL, total_omega3_orig REAL, epa_dha_orig REAL,
+    epa_spec        REAL, dha_spec REAL, total_omega3_spec REAL, epa_dha_spec REAL,
+    epa_mg_cap      REAL, dha_mg_cap REAL, total_omega3_mg_cap REAL, epa_dha_mg_cap REAL,
+    epa_mg_g        REAL, dha_mg_g REAL, total_omega3_mg_g REAL, epa_dha_mg_g REAL,
     conversion      TEXT,                      -- human-readable conversion applied
     pv REAL, pv_censored INTEGER,
     av REAL, av_censored INTEGER,

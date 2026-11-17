@@ -12,6 +12,9 @@ import re
 ANALYTES: dict[str, tuple[str, list[str]]] = {
     "epa": ("potency", ["EPA", "Eicosapentaenoic Acid", "C20:5", "C20:5 n-3", "C20:5n3", "20:5n3", "20:5 n-3"]),
     "dha": ("potency", ["DHA", "Docosahexaenoic Acid", "C22:6", "C22:6 n-3", "C22:6n3", "22:6n3", "22:6 n-3"]),
+    # Some reports give only the combined figure. Misspelling "DAH" is as printed by IFOS.
+    "epa_dha": ("potency", ["EPA + DHA", "EPA+DHA", "EPA +DHA", "EPA+ DHA", "EPA & DHA", "EPA and DHA", "DHA + EPA", "DHA+EPA",
+                            "EPA/DHA", "EPA + DAH", "Total EPA + DHA", "Total EPA+DHA"]),
     "total_omega3": ("potency", ["Total Omega 3", "Total Omega-3", "Total Omega3", "Total n-3", "Total Omega 3s",
                                  "Total Omega-3s", "Total Omega-3 Fatty Acids", "Total Omega 3 Fatty Acids"]),
     "pcbs": ("purity", ["PCBs", "PCB", "Total PCBs", "Total PCB"]),
@@ -24,7 +27,7 @@ ANALYTES: dict[str, tuple[str, list[str]]] = {
     "mercury": ("heavy_metals", ["Mercury", "Total Mercury"]),
     "lead": ("heavy_metals", ["Lead"]),
     "cadmium": ("heavy_metals", ["Cadmium"]),
-    "arsenic": ("heavy_metals", ["Arsenic", "Total Arsenic", "Inorganic Arsenic"]),
+    "arsenic": ("heavy_metals", ["Arsenic", "Total Arsenic", "Inorganic Arsenic", "Toal Arsenic"]),   # "Toal" as printed
 }
 CONTAMINANTS = ["pcbs", "dioxins_furans", "dioxin_like_pcbs", "mercury", "lead", "cadmium", "arsenic"]
 

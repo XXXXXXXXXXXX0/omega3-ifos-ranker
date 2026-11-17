@@ -28,6 +28,9 @@ def find_quantities(text: str) -> list[Quantity]:
     cleaned = re.sub(r"\([^()]*\)", " ", text)
     out = []
     for m in _QTY.finditer(cleaned):
+        if re.fullmatch(r"0\d+", m.group("num")):
+            # "00016" is a misprint (a lost decimal point), not sixteen. Refuse to read it.
+            raise ValueError(f"misprinted number '{m.group('num')}'")
         unit = re.sub(r"\s+", " ", m.group("unit")).strip(" ,;")
         out.append(Quantity(text=re.sub(r"\s+", " ", m.group(0)).strip(), op=OPS.get(m.group("op") or ""),
                             value=float(m.group("num").replace(",", "")), unit=unit))
@@ -37,7 +40,7 @@ def find_quantities(text: str) -> list[Quantity]:
 # --- potency basis ------------------------------------------------------------
 CAPSULE_WORDS = r"softgels?|soft\s*gels?|soft-gels?|capsules?|caps?|gelcaps?|gel\s*caps?|sgels?|softgel\s+capsules?|pearls?|minigels?|mini\s*softgels?|liquid\s+softgels?"
 _BASIS = re.compile(
-    r"^\s*(?:mg|milligrams?)\s*(?:/|per)\s*(?P<count>\d+(?:\.\d+)?)?\s*(?P<unit>.+?)\s*$", re.I)
+    r"^\s*(?P<mass>mg|milligrams?|g|grams?)\s*(?:/|per)\s*(?P<count>\d+(?:\.\d+)?)?\s*(?P<unit>.+?)\s*$", re.I)
 
 
 @dataclass
@@ -62,6 +65,11 @@ def parse_basis(text: str) -> Basis | None:
     unit = m.group("unit").strip().lower()
     if count <= 0:
         return None
+    if m.group("mass").lower().startswith("g"):
+        # "g / 100 g": values are grams, so one gram of oil holds value * 1000 / 100 mg.
+        if not re.fullmatch(r"g|grams?|gm", unit):
+            return None
+        return Basis(raw, "gram", count / 1000.0)
     if re.fullmatch(CAPSULE_WORDS, unit, re.I):
         return Basis(raw, "capsule", count)
     if re.fullmatch(r"g|grams?|gm", unit):

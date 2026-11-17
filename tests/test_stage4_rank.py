@@ -413,3 +413,31 @@ def test_load_from_sqlite_and_save_results(cfg, conn, fixtures):
     row = conn.execute("SELECT list_name, rank, score, lot FROM results").fetchone()
     assert tuple(row) == ("ranked", 1, p.score, "JFO202501")
     assert placement_row(p)["flags"] == p.flags
+
+
+# --- cases first met in the live crawl -----------------------------------------------------------
+def test_combined_epa_dha_is_enough_to_score(cfg):
+    combined = batch(epa_mg_cap=None, dha_mg_cap=None, epa_dha_mg_cap=600, total_omega3_mg_cap=None)
+    p = placed(cfg, batches=[combined])
+    assert p.list_name == RANKED and p.score == pytest.approx(10.0) and p.epa_dha_mg_cap == 600
+    assert p.potency_label == "EPA+DHA reported combined" and p.epa_dha_ratio is None
+    separate_wins = placed(cfg, batches=[batch(epa_dha_mg_cap=999)])
+    assert separate_wins.epa_dha_mg_cap == 600
+
+
+def test_misprinted_limit_or_number_falls_back_to_ifos_verdict(cfg):
+    zero_limit = Contaminant("dioxins_furans", "Dioxins and Furans", "0.1 ppt", 0.1, "<= 0 ppt", 0.0, "<=", "yes")
+    assert zero_limit.passes() is True                                    # a limit of 0 is a misprint, IFOS says compliant
+    unreadable = Contaminant("cadmium", "Cadmium", "<00016 ppm", None, "<= 0.1 ppm", 0.1, "<=", "yes")
+    assert unreadable.passes() is True
+    p = placed(cfg, batches=[batch(contaminants=[zero_limit, unreadable])])
+    assert p.list_name == RANKED
+    assert any(f.startswith("compliance taken from IFOS's verdict only") and "Cadmium" in f and "Dioxins" in f for f in p.flags)
+    assert Contaminant("lead", "Lead", "0.2 ppm", 0.2, "<= 0 ppm", 0.0, "<=", "no").passes() is False
+    over = placed(cfg, batches=[batch(contaminants=[Contaminant("dioxin_like_pcbs", "Dioxin-Like PCBs", "2 ppt", 2.0, "<= 1.5 ppt", 1.5, "<=", "yes")])])
+    assert over.list_name == EXCLUDED and "IFOS marks it compliant" in over.reason
+
+
+def test_product_with_no_epa_or_dha_is_incomplete(cfg):
+    p = placed(cfg, batches=[batch(epa_mg_cap=None, dha_mg_cap=None, total_omega3_mg_cap=None)])
+    assert (p.list_name, p.reason) == (INCOMPLETE, "no EPA or DHA result")
