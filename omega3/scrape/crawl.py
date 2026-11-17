@@ -84,12 +84,15 @@ def crawl_listing(cfg, conn, session, log=print) -> dict:
         }, keys=("product_num",))
 
         listed_lots = set()
+        # The site sometimes lists one lot more than once: the same report with
+        # two expiry dates, or an RTCP radiation certificate filed under the
+        # IFOS dropdown. Keep one entry per lot, preferring an IFOS report.
+        by_lot: dict[str, list] = {}
         for lot in page.lots:
-            if lot.lot in listed_lots:
-                # The site sometimes lists one lot twice (seen with two expiry
-                # dates for the same report). Keep the first, count the rest.
-                stats["lots_duplicate_on_page"] += 1
-                continue
+            by_lot.setdefault(lot.lot, []).append(lot)
+        for entries in by_lot.values():
+            stats["lots_duplicate_on_page"] += len(entries) - 1
+            lot = next((e for e in entries if not e.report_filename.lower().startswith("rtcp")), entries[0])
             listed_lots.add(lot.lot)
             db.upsert(conn, "batches", {
                 "product_num": num, "lot": lot.lot,

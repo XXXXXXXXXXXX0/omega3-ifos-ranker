@@ -48,6 +48,11 @@ formats:                      # LOCKED: capsules only
 filters:
   exclude_pet_products: true  # DECISIONS D-1
   pet_words: [pet, pets, cat, cats, dog, dogs, canine, feline, puppy, kitten, veterinary]
+  flavor_words: [lemon, orange, citrus, lime, strawberry, berry, berries, mint, peppermint, spearmint, vanilla, mango,
+                 grapefruit, cherry, apple, banana, peach, tropical, "tutti frutti", bubblegum, chocolate, fruit, fruity,
+                 flavor, flavour, flavored, flavoured, flavors, flavours]
+  unflavored_words: [unflavored, unflavoured, "flavor free", "flavour free", flavorless, flavourless, "no flavor", "no flavour",
+                     "non flavored", "non flavoured", "natural taste", unscented]
   oxidation:                  # LOCKED
     totox_max_exclusive: 10   # TOTOX < 10
     pv_max: 3                 # PV <= 3
@@ -58,6 +63,11 @@ filters:
 
 batches:
   recency_key: report_date    # report_date | expiry_date   (see DECISIONS P-1)
+
+oil_weight:
+  # Where grams of oil per capsule may come from, best first (DECISIONS P-2, D-14).
+  sources: [label, ifos_area_pct]
+  min_ratio_to_total_omega3: 0.98   # oil weight below total omega-3 per capsule is impossible
 
 scoring:                      # LOCKED
   target_epa_dha_mg: 1000     # oxidation load = TOTOX x g oil to deliver this

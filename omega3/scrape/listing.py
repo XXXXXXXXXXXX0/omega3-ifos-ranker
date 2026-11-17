@@ -64,36 +64,40 @@ def _clean(text: str) -> str:
     return re.sub(r"\s+", " ", text or "").strip()
 
 
+FIELD_RE = re.compile(r"<p>\s*<strong>\s*(Product Type|Recommended Daily Allowance|Website)\s*:\s*</strong>(.*?)</p>", re.S | re.I)
+PANEL_RE = re.compile(r"<h2[^>]*>(?P<name>.*?)</h2>\s*<h3[^>]*>\s*Product Summary\s*</h3>(?P<body>.*?)</div>", re.S | re.I)
+
+
+def _text(fragment: str) -> str:
+    return _clean(BeautifulSoup(fragment, "html.parser").get_text(" "))
+
+
 def parse_product_page(product_num: str, html: str | bytes) -> ProductPage:
     raw = html if isinstance(html, bytes) else html.encode("utf-8")
+    source = raw.decode("utf-8", "replace")
     soup = BeautifulSoup(raw, "html.parser")
     page = ProductPage(product_num=product_num, name="")
 
-    heading = next((h for h in soup.find_all("h3") if _clean(h.get_text()) == "Product Summary"), None)
-    panel = heading.parent if heading else None
+    # The summary is brand-supplied HTML and is sometimes malformed (unclosed
+    # <p>), which makes a tree parser swallow the fields that follow it. The
+    # labelled fields are therefore cut out of the raw markup by pattern.
+    panel = PANEL_RE.search(source)
     if panel:
-        h2 = panel.find("h2")
-        page.name = _clean(h2.get_text()) if h2 else ""
-        summary_parts = []
-        for p in panel.find_all("p"):
-            strong = p.find("strong")
-            if strong:
-                key = _clean(strong.get_text()).rstrip(":")
-                strong.extract()
-                value = _clean(p.get_text())
-                if key == "Product Type":
-                    page.product_type = value or None
-                elif key == "Recommended Daily Allowance":
-                    page.rda = value or None
-                elif key == "Website":
-                    page.website = value or None
-            else:
-                text = _clean(p.get_text())
-                if text:
-                    summary_parts.append(text)
-        page.summary = " ".join(summary_parts)
+        page.name = _text(panel.group("name"))
+        body = panel.group("body")
+        first_field = FIELD_RE.search(body)
+        page.summary = _text(body[: first_field.start()] if first_field else body)
+        for key, value in FIELD_RE.findall(body):
+            value = _text(value) or None
+            key = key.lower()
+            if key == "product type":
+                page.product_type = value
+            elif key == "recommended daily allowance":
+                page.rda = value
+            elif key == "website":
+                page.website = value
 
-    match = BRAND_LINK_RE.search(raw.decode("utf-8", "replace"))
+    match = BRAND_LINK_RE.search(source)
     page.brand_id = match.group(1) if match else None
 
     select = soup.find("select", id="ReportIfos")

@@ -1,0 +1,2218 @@
+[
+{
+"BrandId": "3LEG",
+"CompanyLogo": "3LEG_Logo.jpg",
+"HasIfos": true,
+"Name": "GeZhi Biomedical Ltd."
+},
+{
+"BrandId": "ABDI",
+"CompanyLogo": "ABDI_Logo.jpg",
+"HasIfos": true,
+"Name": "Abdi Ibrahim Ilac San. ve Tic. A.S"
+},
+{
+"BrandId": "ACAO",
+"CompanyLogo": "ACAO_Logo.jpg",
+"HasIfos": true,
+"Name": "Ação Magistral"
+},
+{
+"BrandId": "ADAN",
+"CompanyLogo": "ADAN_Logo.jpg",
+"HasIfos": true,
+"Name": "ADA Industria de Alimentos Ltda (ADA Nutraceuticals)"
+},
+{
+"BrandId": "AGOI",
+"CompanyLogo": "AGOI_Logo.jpg",
+"HasIfos": true,
+"Name": "AG1 EU Enterprise Limited"
+},
+{
+"BrandId": "ALFM",
+"CompanyLogo": "ALFM_Logo.jpg",
+"HasIfos": true,
+"Name": "Alma Farmacie"
+},
+{
+"BrandId": "ALSK",
+"CompanyLogo": "ALSK_Logo.jpg",
+"HasIfos": true,
+"Name": "AlaskOmega"
+},
+{
+"BrandId": "ALTA",
+"CompanyLogo": "ALTA_Logo.jpg",
+"HasIfos": true,
+"Name": "Altra Health Inc."
+},
+{
+"BrandId": "AMBW",
+"CompanyLogo": "AMBW_Logo.jpg",
+"HasIfos": true,
+"Name": "A M B Well Inc."
+},
+{
+"BrandId": "AMPP",
+"CompanyLogo": "AMPP_Logo.jpg",
+"HasIfos": true,
+"Name": "Amplecare Pharmaceutical Pty Ltd"
+},
+{
+"BrandId": "ANEW",
+"CompanyLogo": "ANEW_Logo.jpg",
+"HasIfos": true,
+"Name": "Anew"
+},
+{
+"BrandId": "ANHO",
+"CompanyLogo": "ANHO_Logo.jpg",
+"HasIfos": true,
+"HasRTCP": true,
+"Name": "anhoa"
+},
+{
+"BrandId": "ARBE",
+"CompanyLogo": "ARBE_Logo.jpg",
+"HasIfos": true,
+"Name": "Arbee Biomarine Extracts Pvt Ltd."
+},
+{
+"BrandId": "ARKT",
+"CompanyLogo": "ARKT_Logo.png",
+"HasIfos": true,
+"Name": "Arktiqa Naturals"
+},
+{
+"BrandId": "ARSP",
+"CompanyLogo": "ARSP_Logo.jpg",
+"HasIfos": true,
+"Name": "Ars Pharmae"
+},
+{
+"BrandId": "ATPL",
+"CompanyLogo": "ATPL_Logo.jpg",
+"HasIfos": true,
+"Name": "Athletic Therapeutic Pharma (ATP Lab)"
+},
+{
+"BrandId": "AUSP",
+"CompanyLogo": "AUSP_Logo.png",
+"HasIfos": true,
+"Name": "AUSupreme"
+},
+{
+"BrandId": "AVAN",
+"CompanyLogo": "AVAN_Logo.jpg",
+"HasIfos": true,
+"Name": "Avance"
+},
+{
+"BrandId": "AWBC",
+"CompanyLogo": "AWBC_Logo.jpg",
+"HasIfos": true,
+"Name": "All Wealth Beauty Concept Co., Ltd"
+},
+{
+"BrandId": "BARE",
+"CompanyLogo": "BARE_Logo.jpg",
+"HasIfos": true,
+"Name": "Bare Biology Ltd."
+},
+{
+"BrandId": "BARL",
+"CompanyLogo": "BARL_Logo.jpg",
+"HasIfos": true,
+"HasIgen": true,
+"Name": "Barlean's"
+},
+{
+"BrandId": "BASE",
+"CompanyLogo": "BASE_Logo.jpg",
+"HasIfos": true,
+"Name": "BASE"
+},
+{
+"BrandId": "BAYR",
+"CompanyLogo": "BAYR_Logo.jpg",
+"HasIfos": true,
+"Name": "Bayer Healthcare Limited"
+},
+{
+"BrandId": "BBHC",
+"HasIfos": true,
+"Name": "Bill Beauty & Health Products Ltd & CanPrev Natural Health Products Ltd"
+},
+{
+"BrandId": "BEBI",
+"CompanyLogo": "BEBI_Logo.jpg",
+"HasIfos": true,
+"Name": "Better Bioscience"
+},
+{
+"BrandId": "BELV",
+"CompanyLogo": "BELV_Logo.png",
+"HasIfos": true,
+"Name": "Believe Supplements"
+},
+{
+"BrandId": "BFIT",
+"CompanyLogo": "BFIT_Logo.jpg",
+"HasIfos": true,
+"Name": "B-Fit"
+},
+{
+"BrandId": "BHNY",
+"CompanyLogo": "BHNY_Logo.jpg",
+"HasIfos": true,
+"Name": "BioHarmony"
+},
+{
+"BrandId": "BIGE",
+"CompanyLogo": "BIGE_Logo.jpg",
+"HasIfos": true,
+"Name": "Bigens"
+},
+{
+"BrandId": "BIOH",
+"CompanyLogo": "BIOH_Logo.jpg",
+"HasIfos": true,
+"HasIkos": true,
+"HasRTCP": true,
+"Name": "BIO-H"
+},
+{
+"BrandId": "BITN",
+"CompanyLogo": "BITN_Logo.jpg",
+"HasIfos": true,
+"HasIkos": true,
+"Name": "BioTRUST Nutrition"
+},
+{
+"BrandId": "BLKC",
+"CompanyLogo": "BLKC_Logo.jpg",
+"HasIfos": true,
+"Name": "Blackmores China Co., Ltd."
+},
+{
+"BrandId": "BOWL",
+"CompanyLogo": "BOWL_Logo.jpg",
+"HasIfos": true,
+"HasIkos": true,
+"HasRTCP": true,
+"Name": "Biowell"
+},
+{
+"BrandId": "BPFN",
+"CompanyLogo": "BPFN_Logo.jpg",
+"HasIfos": true,
+"Name": "Bare Performance Nutrition"
+},
+{
+"BrandId": "BRIE",
+"CompanyLogo": "BRIE_Logo.jpg",
+"HasIfos": true,
+"Name": "brieye®"
+},
+{
+"BrandId": "BRRW",
+"CompanyLogo": "BRRW_Logo.jpg",
+"HasIfos": true,
+"HasRTCP": true,
+"Name": "Branraw Co., Ltd"
+},
+{
+"BrandId": "BSTR",
+"CompanyLogo": "BSTR_Logo.jpg",
+"HasIfos": true,
+"Name": "Blue Star Nutraceuticals"
+},
+{
+"BrandId": "BVRE",
+"CompanyLogo": "BVRE_Logo.png",
+"HasIfos": true,
+"Name": "BVREMIERE"
+},
+{
+"BrandId": "BWEL",
+"CompanyLogo": "BWEL_Logo.png",
+"HasIfos": true,
+"Name": "Bwell"
+},
+{
+"BrandId": "BYHE",
+"CompanyLogo": "BYHE_Logo.jpg",
+"HasIfos": true,
+"HasRTCP": true,
+"Name": "BYHEALTH"
+},
+{
+"BrandId": "BYHH",
+"CompanyLogo": "BYHH_Logo.png",
+"HasIfos": true,
+"Name": "BYHEALTH"
+},
+{
+"BrandId": "BYVT",
+"CompanyLogo": "BYVT_Logo.png",
+"HasIfos": true,
+"Name": "Beyond Vitamins"
+},
+{
+"BrandId": "CAOC",
+"CompanyLogo": "CAOC_Logo.jpg",
+"HasIfos": true,
+"HasRTCP": true,
+"Name": "BNM"
+},
+{
+"BrandId": "CCOM",
+"CompanyLogo": "CCOM_Logo.png",
+"HasIfos": true,
+"Name": "Cambridge Commodities"
+},
+{
+"BrandId": "CENI",
+"CompanyLogo": "CENI_Logo.jpg",
+"HasIfos": true,
+"Name": "Central Nutrition Industria, Comercio, Importacao E Exportacao LTDA"
+},
+{
+"BrandId": "CERN",
+"CompanyLogo": "CERN_Logo.jpg",
+"HasIfos": true,
+"Name": "Certified Naturals"
+},
+{
+"BrandId": "CHKA",
+"CompanyLogo": "CHKA_Logo.jpg",
+"HasIfos": true,
+"Name": "Cho and Kang"
+},
+{
+"BrandId": "CHST",
+"CompanyLogo": "CHST_Logo.jpg",
+"HasIAOS": true,
+"HasIfos": true,
+"HasIgen": true,
+"Name": "Child Story Nutrition Inc."
+},
+{
+"BrandId": "CINM",
+"CompanyLogo": "CINM_Logo.jpg",
+"HasIAOS": true,
+"HasIfos": true,
+"Name": "C.I. Naturmega S.A."
+},
+{
+"BrandId": "CLVR",
+"CompanyLogo": "CLVR_Logo.jpg",
+"HasIfos": true,
+"Name": "HC Clover Productos y Servicios S.L."
+},
+{
+"BrandId": "CMRC",
+"CompanyLogo": "CMRC_Logo.png",
+"HasIfos": true,
+"Name": "Coco March"
+},
+{
+"BrandId": "COBI",
+"CompanyLogo": "COBI_Logo.jpg",
+"HasIfos": true,
+"Name": "Comgle Biomedical Co., Ltd."
+},
+{
+"BrandId": "CPKI",
+"CompanyLogo": "CPKI_Logo.jpg",
+"HasIfos": true,
+"HasRTCP": true,
+"Name": "CPTKING"
+},
+{
+"BrandId": "CPRV",
+"CompanyLogo": "CPRV_Logo.jpg",
+"HasIfos": true,
+"Name": "CanPrev Natural Health Products Ltd."
+},
+{
+"BrandId": "CREN",
+"CompanyLogo": "CREN_Logo.jpg",
+"HasIfos": true,
+"HasRTCP": true,
+"Name": "CreNeuroS"
+},
+{
+"BrandId": "CRLL",
+"CompanyLogo": "CRLL_Logo.jpg",
+"HasIAOS": true,
+"HasIfos": true,
+"HasIgen": true,
+"Name": "Carlson Nutritional Supplements"
+},
+{
+"BrandId": "CTLO",
+"CompanyLogo": "CTLO_Logo.jpg",
+"HasIAOS": true,
+"HasIfos": true,
+"Name": "Catalo Natural Health Science Inc."
+},
+{
+"BrandId": "CTTL",
+"CompanyLogo": "CTTL_Logo.png",
+"HasIfos": true,
+"HasRTCP": true,
+"Name": "Coretrition Technology Limited"
+},
+{
+"BrandId": "CYTO",
+"CompanyLogo": "CYTO_Logo.jpg",
+"HasIfos": true,
+"Name": "Cyto-Matrix"
+},
+{
+"BrandId": "DABI",
+"CompanyLogo": "DABI_Logo.jpg",
+"HasIAOS": true,
+"HasIfos": true,
+"HasIpro": true,
+"Name": "Daiken Biomedical Co., Ltd."
+},
+{
+"BrandId": "DCHK",
+"CompanyLogo": "DCHK_Logo.jpg",
+"HasIfos": true,
+"Name": "Doctor Check"
+},
+{
+"BrandId": "DFIT",
+"CompanyLogo": "DFIT_Logo.jpg",
+"HasIfos": true,
+"Name": "Doctor's Formulas In Touch Health N.A. Fikioris Co."
+},
+{
+"BrandId": "DFNG",
+"CompanyLogo": "DFNG_Logo.jpg",
+"HasIAOS": true,
+"HasIfos": true,
+"HasIkos": true,
+"Name": "Dong Fang You Xuan (Beijing) Technology Co., Ltd."
+},
+{
+"BrandId": "DINA",
+"CompanyLogo": "DINA_Logo.jpg",
+"HasIfos": true,
+"Name": "Dinamis"
+},
+{
+"BrandId": "DLSP",
+"CompanyLogo": "DLSP_Logo.png",
+"HasIfos": true,
+"Name": "Dark Lab Suplementos"
+},
+{
+"BrandId": "DOTE",
+"CompanyLogo": "DOTE_Logo.png",
+"HasIfos": true,
+"Name": "doTERRA do Brasil Ltda"
+},
+{
+"BrandId": "DRAR",
+"CompanyLogo": "DRAR_Logo.png",
+"HasIfos": true,
+"Name": "Mio"
+},
+{
+"BrandId": "DRCH",
+"CompanyLogo": "DRCH_Logo.png",
+"HasIfos": true,
+"Name": "Doctor's Choice"
+},
+{
+"BrandId": "DRID",
+"CompanyLogo": "DRID_Logo.jpg",
+"HasIfos": true,
+"Name": "DR IND. E COM. IMP. EXP. DE ALIM. LTDA"
+},
+{
+"BrandId": "DRNM",
+"CompanyLogo": "DRNM_Logo.jpg",
+"HasIfos": true,
+"HasIkos": true,
+"HasRTCP": true,
+"Name": "Dr+ Nom"
+},
+{
+"BrandId": "DRSP",
+"CompanyLogo": "DRSP_Logo.png",
+"HasIfos": true,
+"HasIkos": true,
+"Name": "Doctor Spanholtz GmbH"
+},
+{
+"BrandId": "DSAU",
+"HasIfos": true,
+"Name": "Dermofarm S.A.U"
+},
+{
+"BrandId": "DUAL",
+"CompanyLogo": "DUAL_Logo.png",
+"HasIfos": true,
+"Name": "Dua + Labs"
+},
+{
+"BrandId": "DUTO",
+"CompanyLogo": "DUTO_Logo.png",
+"HasIfos": true,
+"Name": "Pure Research"
+},
+{
+"BrandId": "DVLT",
+"CompanyLogo": "DVLT_Logo.png",
+"HasIfos": true,
+"Name": "DaVinci Laboratories"
+},
+{
+"BrandId": "DYBT",
+"CompanyLogo": "DYBT_Logo.jpg",
+"HasIfos": true,
+"Name": "Dynes Biotechnology Co,. Ltd"
+},
+{
+"BrandId": "ECOV",
+"CompanyLogo": "ECOV_Logo.jpg",
+"HasIfos": true,
+"Name": "Ecovik ApS"
+},
+{
+"BrandId": "EGLO",
+"CompanyLogo": "EGLO_Logo.png",
+"HasIfos": true,
+"Name": "Epigenetic Labs, LLC DBA Organixx"
+},
+{
+"BrandId": "ENHP",
+"CompanyLogo": "ENHP_Logo.png",
+"HasIfos": true,
+"Name": "Everydae"
+},
+{
+"BrandId": "ENRV",
+"CompanyLogo": "ENRV_Logo.jpg",
+"HasIfos": true,
+"Name": "Enervit S.p.A."
+},
+{
+"BrandId": "EPAX",
+"CompanyLogo": "EPAX_Logo.jpg",
+"HasIfos": true,
+"Name": "EPAX Norway AS"
+},
+{
+"BrandId": "EPSM",
+"CompanyLogo": "EPSM_Logo.jpg",
+"HasIfos": true,
+"Name": "Epsilon Health"
+},
+{
+"BrandId": "EQUA",
+"CompanyLogo": "EQUA_Logo.jpg",
+"HasIfos": true,
+"Name": "Equaliv Pharma Indústria, Comércio e Distribuição"
+},
+{
+"BrandId": "ERBA",
+"CompanyLogo": "ERBA_Logo.jpg",
+"HasIfos": true,
+"Name": "Erba Vita Group S.p.A."
+},
+{
+"BrandId": "ESIS",
+"CompanyLogo": "ESIS_Logo.jpg",
+"HasIfos": true,
+"Name": "ESI srl"
+},
+{
+"BrandId": "ESSN",
+"CompanyLogo": "ESSN_Logo.jpg",
+"HasIfos": true,
+"Name": "Essential Nutrition"
+},
+{
+"BrandId": "ETLS",
+"CompanyLogo": "ETLS_Logo.jpeg",
+"HasIfos": true,
+"Name": "Ethos Labs SRL"
+},
+{
+"BrandId": "ETSP",
+"CompanyLogo": "ETSP_Logo.png",
+"HasIfos": true,
+"Name": "Ethic Sport"
+},
+{
+"BrandId": "EVBS",
+"CompanyLogo": "EVBS_Logo.jpg",
+"HasIfos": true,
+"Name": "Evidence Based Supplements"
+},
+{
+"BrandId": "EVPH",
+"CompanyLogo": "EVPH_Logo.jpg",
+"HasIAOS": true,
+"HasIfos": true,
+"Name": "EasyVit Pharmaceuticals BV"
+},
+{
+"BrandId": "FAVR",
+"CompanyLogo": "FAVR_Logo.jpg",
+"HasIfos": true,
+"Name": "Favron Ilac Kimya San.Ve Tic.A.S"
+},
+{
+"BrandId": "FEMM",
+"CompanyLogo": "FEMM_Logo.jpg",
+"HasIfos": true,
+"Name": "FEMME 40+"
+},
+{
+"BrandId": "FENB",
+"CompanyLogo": "FENB_Logo.jpg",
+"HasIfos": true,
+"Name": "Fengjie Biomedical Co., Ltd."
+},
+{
+"BrandId": "FGSS",
+"CompanyLogo": "FGSS_Logo.png",
+"HasIAOS": true,
+"HasIfos": true,
+"HasIkos": true,
+"Name": "FullGas Sport, S.L."
+},
+{
+"BrandId": "FJLL",
+"CompanyLogo": "FJLL_Logo.jpg",
+"HasIfos": true,
+"Name": "Fjord Labs Limited"
+},
+{
+"BrandId": "FJOD",
+"CompanyLogo": "FJOD_Logo.jpg",
+"HasIfos": true,
+"Name": "Fjorda AS"
+},
+{
+"BrandId": "FMWC",
+"CompanyLogo": "FMWC_Logo.jpg",
+"HasIAOS": true,
+"HasIfos": true,
+"Name": "FMW Corp."
+},
+{
+"BrandId": "FNCT",
+"CompanyLogo": "FNCT_Logo.jpg",
+"HasIfos": true,
+"Name": "funcare of taiwan co., ltd."
+},
+{
+"BrandId": "FOAU",
+"CompanyLogo": "FOAU_Logo.jpg",
+"HasIfos": true,
+"Name": "fruit of ayu"
+},
+{
+"BrandId": "FOYE",
+"CompanyLogo": "FOYE_Logo.jpg",
+"HasIfos": true,
+"Name": "FoYes"
+},
+{
+"BrandId": "FPIT",
+"CompanyLogo": "FPIT_Logo.jpg",
+"HasIfos": true,
+"Name": "Fitopreparatori Italiani"
+},
+{
+"BrandId": "FRMA",
+"CompanyLogo": "FRMA_Logo.jpg",
+"HasIfos": true,
+"Name": "Farmavita Ilac A.S."
+},
+{
+"BrandId": "FSCS",
+"CompanyLogo": "FSCS_Logo.jpg",
+"HasIfos": true,
+"Name": "Food Studio Complements, S.L."
+},
+{
+"BrandId": "GBLS",
+"CompanyLogo": "GBLS_Logo.jpg",
+"HasIfos": true,
+"Name": "Global Suplementos"
+},
+{
+"BrandId": "GCRO",
+"CompanyLogo": "GCRO_Logo.jpg",
+"HasIfos": true,
+"Name": "GC Rieber VivoMega AS"
+},
+{
+"BrandId": "GDLK",
+"CompanyLogo": "GDLK_Logo.png",
+"HasIfos": true,
+"Name": "Goldlake"
+},
+{
+"BrandId": "GELO",
+"CompanyLogo": "GELO_Logo.jpg",
+"HasIfos": true,
+"Name": "Gelovery"
+},
+{
+"BrandId": "GEMA",
+"CompanyLogo": "GEMA_Logo.png",
+"HasIfos": true,
+"Name": "Gema Herrerias S.L.U"
+},
+{
+"BrandId": "GEON",
+"CompanyLogo": "GEON_Logo.png",
+"HasIfos": true,
+"Name": "Geonat"
+},
+{
+"BrandId": "GFTO",
+"CompanyLogo": "GFTO_Logo.png",
+"HasIfos": true,
+"HasRTCP": true,
+"Name": "Gfto ® Gift From The Ocean"
+},
+{
+"BrandId": "GHPL",
+"CompanyLogo": "GHPL_Logo.jpg",
+"HasIfos": true,
+"Name": "Good Health Products Ltd"
+},
+{
+"BrandId": "GJAV",
+"CompanyLogo": "GJAV_Logo.jpg",
+"HasIfos": true,
+"Name": "GJAV"
+},
+{
+"BrandId": "GLDO",
+"CompanyLogo": "GLDO_Logo.jpg",
+"HasIfos": true,
+"Name": "Golden Omega S.A."
+},
+{
+"BrandId": "GNCC",
+"CompanyLogo": "GNCC_Logo.jpg",
+"HasIAOS": true,
+"HasIfos": true,
+"HasRTCP": true,
+"Name": "GNC Hong Kong Limited"
+},
+{
+"BrandId": "GNCG",
+"CompanyLogo": "GNCG_Logo.png",
+"HasIfos": true,
+"Name": "GNC Global"
+},
+{
+"BrandId": "GRTA",
+"CompanyLogo": "GRTA_Logo.png",
+"HasIfos": true,
+"Name": "GRUPO TAPAJOS"
+},
+{
+"BrandId": "H1ST",
+"CompanyLogo": "H1ST_Logo.jpg",
+"HasIfos": true,
+"Name": "Health First"
+},
+{
+"BrandId": "HAOP",
+"CompanyLogo": "HAOP_Logo.jpg",
+"HasIfos": true,
+"Name": "HAO PET"
+},
+{
+"BrandId": "HAVE",
+"CompanyLogo": "HAVE_Logo.jpg",
+"HasIfos": true,
+"Name": "Haver Farma Ilac AS"
+},
+{
+"BrandId": "HAVL",
+"CompanyLogo": "HAVL_Logo.jpg",
+"HasIfos": true,
+"HasRTCP": true,
+"Name": "havliv"
+},
+{
+"BrandId": "HEFO",
+"CompanyLogo": "HEFO_Logo.jpg",
+"HasIfos": true,
+"Name": "Health Formula"
+},
+{
+"BrandId": "HHHH",
+"CompanyLogo": "HHHH_Logo.jpg",
+"HasIfos": true,
+"Name": "Hong Kong Healthcare & HeartBioTech Co., Limited"
+},
+{
+"BrandId": "HHRH",
+"CompanyLogo": "HHRH_Logo.png",
+"HasIfos": true,
+"Name": "Hunan Hot Rule Health Technology Co., Ltd."
+},
+{
+"BrandId": "HLBC",
+"CompanyLogo": "HLBC_Logo.jpg",
+"HasIfos": true,
+"Name": "Health Leader Biomedical Co., Ltd"
+},
+{
+"BrandId": "HPCP",
+"CompanyLogo": "HPCP_Logo.jpg",
+"HasIfos": true,
+"Name": "Humanwell PuraCap Pharmaceuticals (Wuhan) Co., Ltd."
+},
+{
+"BrandId": "HRCL",
+"CompanyLogo": "HRCL_Logo.jpg",
+"HasIfos": true,
+"HasRTCP": true,
+"Name": "Heracles"
+},
+{
+"BrandId": "HSNS",
+"CompanyLogo": "HSNS_Logo.jpg",
+"HasIfos": true,
+"Name": "HSN - Harrison Sport Nutrition S.L."
+},
+{
+"BrandId": "HUPH",
+"CompanyLogo": "HUPH_Logo.jpg",
+"HasIfos": true,
+"Name": "Huatai Pharma Inc."
+},
+{
+"BrandId": "HURR",
+"CompanyLogo": "HURR_Logo.png",
+"HasIfos": true,
+"Name": "Hurra"
+},
+{
+"BrandId": "IDNN",
+"CompanyLogo": "IDNN_Logo.jpg",
+"HasIfos": true,
+"Name": "IDN"
+},
+{
+"BrandId": "IGLT",
+"CompanyLogo": "IGLT_Logo.jpg",
+"HasIAOS": true,
+"HasIfos": true,
+"Name": "Igennus Healthcare Nutrition"
+},
+{
+"BrandId": "IICA",
+"CompanyLogo": "IICA_Logo.jpg",
+"HasIfos": true,
+"Name": "Indcaps Industria e Comercio de Produtos Alimenticios Ltda"
+},
+{
+"BrandId": "INNP",
+"CompanyLogo": "INNP_Logo.jpg",
+"HasIfos": true,
+"Name": "Innopharm"
+},
+{
+"BrandId": "INVX",
+"CompanyLogo": "INVX_Logo.jpg",
+"HasIfos": true,
+"HasRTCP": true,
+"Name": "InnovixLabs"
+},
+{
+"BrandId": "INWE",
+"CompanyLogo": "INWE_Logo.jpg",
+"HasIfos": true,
+"Name": "Inessa Wellness"
+},
+{
+"BrandId": "IOGE",
+"CompanyLogo": "IOGE_Logo.jpg",
+"HasIfos": true,
+"Name": "iO.GENIX NUTRITION"
+},
+{
+"BrandId": "IVAP",
+"CompanyLogo": "IVAP_Logo.jpg",
+"HasIAOS": true,
+"HasIfos": true,
+"Name": "InnovaPharma SRL"
+},
+{
+"BrandId": "JAMN",
+"CompanyLogo": "JAMN_Logo.jpg",
+"HasIfos": true,
+"Name": "Jamieson"
+},
+{
+"BrandId": "JHAI",
+"CompanyLogo": "JHAI_Logo.jpg",
+"HasIfos": true,
+"Name": "Jiangsu Hainekon Biotechnology Co. Ltd."
+},
+{
+"BrandId": "JHBI",
+"CompanyLogo": "JHBI_Logo.jpg",
+"HasIfos": true,
+"Name": "J&H Bio Co. Ltd."
+},
+{
+"BrandId": "JINF",
+"CompanyLogo": "JINF_Logo.jpg",
+"HasIAOS": true,
+"HasIfos": true,
+"Name": "Jinan Falanxiu Biological Engineering Co., Ltd"
+},
+{
+"BrandId": "JZAO",
+"CompanyLogo": "JZAO_Logo.jpg",
+"HasIfos": true,
+"HasRTCP": true,
+"Name": "J.zao"
+},
+{
+"BrandId": "KDPH",
+"CompanyLogo": "KDPH_Logo.jpg",
+"HasIAOS": true,
+"HasIfos": true,
+"Name": "KD Pharma Group™ S.A."
+},
+{
+"BrandId": "KEFM",
+"CompanyLogo": "KEFM_Logo.jpg",
+"HasIfos": true,
+"Name": "Keforma"
+},
+{
+"BrandId": "KERN",
+"CompanyLogo": "KERN_Logo.png",
+"HasIfos": true,
+"Name": "Kern Pharma"
+},
+{
+"BrandId": "KINO",
+"CompanyLogo": "KINO_Logo.jpg",
+"HasIfos": true,
+"Name": "KinOmega Biopharm Inc."
+},
+{
+"BrandId": "KNHC",
+"CompanyLogo": "KNHC_Logo.jpg",
+"HasIfos": true,
+"HasRTCP": true,
+"Name": "KN.Healthcare Biosciences Co., Limited"
+},
+{
+"BrandId": "KNRC",
+"CompanyLogo": "KNRC_Logo.jpg",
+"HasIfos": true,
+"Name": "Korea Nutrition Research Center (KNRC)"
+},
+{
+"BrandId": "KOBH",
+"CompanyLogo": "KOBH_Logo.jpg",
+"HasIfos": true,
+"Name": "Kobho Labs"
+},
+{
+"BrandId": "KRES",
+"CompanyLogo": "KRES_Logo.jpg",
+"HasIfos": true,
+"Name": "Kress Farmaceutica S.A."
+},
+{
+"BrandId": "KUCL",
+"CompanyLogo": "KUCL_Logo.png",
+"HasIfos": true,
+"Name": "KUKA & CHIC S.L."
+},
+{
+"BrandId": "KZUF",
+"CompanyLogo": "KZUF_Logo.jpg",
+"HasIfos": true,
+"Name": "Kzufy"
+},
+{
+"BrandId": "LABO",
+"CompanyLogo": "LABO_Logo.jpg",
+"HasIfos": true,
+"Name": "LABO Nutrition"
+},
+{
+"BrandId": "LBCT",
+"CompanyLogo": "LBCT_Logo.jpg",
+"HasIfos": true,
+"Name": "Laboratorio Catarinense LTDA"
+},
+{
+"BrandId": "LDCN",
+"CompanyLogo": "LDCN_Logo.jpg",
+"HasIfos": true,
+"Name": "Laboratorio de Complementos Nutricionales, S.L."
+},
+{
+"BrandId": "LEXT",
+"CompanyLogo": "LEXT_Logo.jpg",
+"HasIfos": true,
+"Name": "Life Extension"
+},
+{
+"BrandId": "LFPR",
+"CompanyLogo": "LFPR_Logo.jpg",
+"HasIfos": true,
+"Name": "LIFE PRO NUTRITION"
+},
+{
+"BrandId": "LIFO",
+"CompanyLogo": "LIFO_Logo.jpg",
+"HasIfos": true,
+"Name": "Life & Food Inc"
+},
+{
+"BrandId": "LIPH",
+"CompanyLogo": "LIPH_Logo.jpg",
+"HasIfos": true,
+"Name": "Lifeline Pharma AS"
+},
+{
+"BrandId": "LOGF",
+"CompanyLogo": "LOGF_Logo.jpg",
+"HasIfos": true,
+"Name": "Longify"
+},
+{
+"BrandId": "LOSO",
+"CompanyLogo": "LOSO_Logo.png",
+"HasIfos": true,
+"Name": "LOSOKI®"
+},
+{
+"BrandId": "LRKY",
+"CompanyLogo": "LRKY_Logo.jpg",
+"HasIfos": true,
+"Name": "Lurky"
+},
+{
+"BrandId": "LTUM",
+"CompanyLogo": "LTUM_Logo.png",
+"HasIfos": true,
+"Name": "Little Umbrella Limited"
+},
+{
+"BrandId": "MAGP",
+"CompanyLogo": "MAGP_Logo.jpg",
+"HasIfos": true,
+"Name": "MAG"
+},
+{
+"BrandId": "MAIV",
+"CompanyLogo": "MAIV_Logo.png",
+"HasIfos": true,
+"Name": "Maiova"
+},
+{
+"BrandId": "MASM",
+"CompanyLogo": "MASM_Logo.png",
+"HasIfos": true,
+"Name": "Masmusculo"
+},
+{
+"BrandId": "MAXN",
+"CompanyLogo": "MAXN_Logo.jpg",
+"HasIfos": true,
+"Name": "Maxinutri Laboratório Nutraceutico"
+},
+{
+"BrandId": "MDPH",
+"CompanyLogo": "MDPH_Logo.jpg",
+"HasIfos": true,
+"Name": "Medipharm Corp"
+},
+{
+"BrandId": "MEGD",
+"CompanyLogo": "MEGD_Logo.jpg",
+"HasIfos": true,
+"Name": "MegaGold"
+},
+{
+"BrandId": "MEIN",
+"CompanyLogo": "MEIN_Logo.jpg",
+"HasIfos": true,
+"Name": "Mederi Integrative Nutrition"
+},
+{
+"BrandId": "MITO",
+"CompanyLogo": "MITO_Logo.jpg",
+"HasIfos": true,
+"HasRTCP": true,
+"Name": "MitoQ Limited"
+},
+{
+"BrandId": "MNCR",
+"CompanyLogo": "MNCR_Logo.jpg",
+"HasIfos": true,
+"Name": "Menacor"
+},
+{
+"BrandId": "MNSA",
+"CompanyLogo": "MNSA_Logo.jpg",
+"HasIfos": true,
+"Name": "MARTÍNEZ NIETO, S.A."
+},
+{
+"BrandId": "MOMT",
+"CompanyLogo": "MOMT_Logo.jpg",
+"HasIfos": true,
+"Name": "Momentous"
+},
+{
+"BrandId": "MRTT",
+"CompanyLogo": "MRTT_Logo.jpg",
+"HasIfos": true,
+"HasRTCP": true,
+"Name": "MarathonTime"
+},
+{
+"BrandId": "MSNT",
+"CompanyLogo": "MSNT_Logo.png",
+"HasIfos": true,
+"Name": "Misung Nutrition Co., Ltd."
+},
+{
+"BrandId": "MTBG",
+"CompanyLogo": "MTBG_Logo.jpg",
+"HasIfos": true,
+"Name": "Metagenics Belgium BV"
+},
+{
+"BrandId": "MUTD",
+"CompanyLogo": "MUTD_Logo.png",
+"HasIfos": true,
+"Name": "Muted"
+},
+{
+"BrandId": "MVZF",
+"CompanyLogo": "MVZF_Logo.jpg",
+"HasIfos": true,
+"Name": "Marco Viti Farmaceutici SPA-Zeta Farmaceutici Group"
+},
+{
+"BrandId": "MYRM",
+"CompanyLogo": "MYRM_Logo.jpg",
+"HasIfos": true,
+"Name": "MyRemedium"
+},
+{
+"BrandId": "NAEN",
+"CompanyLogo": "NAEN_Logo.jpg",
+"HasIfos": true,
+"Name": "Natalben"
+},
+{
+"BrandId": "NAGN",
+"CompanyLogo": "NAGN_Logo.jpg",
+"HasIfos": true,
+"Name": "Naturagen Ilac Kozmetik Gida San. Ve Tic.A.S"
+},
+{
+"BrandId": "NANU",
+"CompanyLogo": "NANU_Logo.jpg",
+"HasIfos": true,
+"Name": "Natural Nutrition"
+},
+{
+"BrandId": "NATG",
+"HasIfos": true,
+"Name": "Naturlifes Group Inc"
+},
+{
+"BrandId": "NATI",
+"CompanyLogo": "NATI_Logo.jpg",
+"HasIfos": true,
+"Name": "Naturalis Inc"
+},
+{
+"BrandId": "NATU",
+"CompanyLogo": "NATU_Logo.png",
+"HasIfos": true,
+"Name": "Naturell"
+},
+{
+"BrandId": "NBTA",
+"CompanyLogo": "NBTA_Logo.jpg",
+"HasIfos": true,
+"Name": "Nutribiotica SL"
+},
+{
+"BrandId": "NEEX",
+"CompanyLogo": "NEEX_Logo.jpg",
+"HasIfos": true,
+"Name": "Neuralex"
+},
+{
+"BrandId": "NEWL",
+"CompanyLogo": "NEWL_Logo.jpg",
+"HasIfos": true,
+"Name": "New Life EFA"
+},
+{
+"BrandId": "NFCT",
+"CompanyLogo": "NFCT_Logo.jpg",
+"HasIfos": true,
+"Name": "Natural Factors"
+},
+{
+"BrandId": "NHTG",
+"CompanyLogo": "NHTG_Logo.png",
+"HasIfos": true,
+"Name": "NHT Global, Inc."
+},
+{
+"BrandId": "NISN",
+"CompanyLogo": "NISN_Logo.jpg",
+"HasIfos": true,
+"Name": "Natusvita Indústria de Suplementos Nutricionais"
+},
+{
+"BrandId": "NJHB",
+"CompanyLogo": "NJHB_Logo.jpg",
+"HasIfos": true,
+"Name": "Niang Jia Healthcare Biotech"
+},
+{
+"BrandId": "NLYA",
+"CompanyLogo": "NLYA_Logo.jpg",
+"HasIfos": true,
+"Name": "Nutrileya Inc."
+},
+{
+"BrandId": "NOBL",
+"CompanyLogo": "NOBL_Logo.jpg",
+"HasIfos": true,
+"Name": "Nobel Ilac"
+},
+{
+"BrandId": "NOME",
+"CompanyLogo": "NOME_Logo.jpg",
+"HasIfos": true,
+"Name": "Noromega"
+},
+{
+"BrandId": "NOWC",
+"CompanyLogo": "NOWC_Logo.jpg",
+"HasIfos": true,
+"Name": "NOW"
+},
+{
+"BrandId": "NPUR",
+"CompanyLogo": "NPUR_Logo.jpg",
+"HasIfos": true,
+"Name": "Nutripur Inc."
+},
+{
+"BrandId": "NSPA",
+"CompanyLogo": "NSPA_Logo.jpg",
+"HasIfos": true,
+"Name": "Named S.r.l."
+},
+{
+"BrandId": "NSPE",
+"CompanyLogo": "NSPE_Logo.png",
+"HasIfos": true,
+"Name": "Nu Skin Products Europe BV"
+},
+{
+"BrandId": "NSPO",
+"CompanyLogo": "NSPO_Logo.jpg",
+"HasIfos": true,
+"Name": "Namedsport srl"
+},
+{
+"BrandId": "NTBT",
+"CompanyLogo": "NTBT_Logo.png",
+"HasIfos": true,
+"Name": "Nutrabetter®"
+},
+{
+"BrandId": "NTCS",
+"CompanyLogo": "NTCS_Logo.jpg",
+"HasIfos": true,
+"Name": "Nutricionate SL"
+},
+{
+"BrandId": "NTGP",
+"CompanyLogo": "NTGP_Logo.png",
+"HasIfos": true,
+"Name": "NUTRAGROUP"
+},
+{
+"BrandId": "NTRC",
+"CompanyLogo": "NTRC_Logo.png",
+"HasIfos": true,
+"Name": "NUTRICA LTD"
+},
+{
+"BrandId": "NTRD",
+"CompanyLogo": "NTRD_Logo.jpg",
+"HasIfos": true,
+"Name": "Nutridom"
+},
+{
+"BrandId": "NTSD",
+"CompanyLogo": "NTSD_Logo.jpg",
+"HasIfos": true,
+"Name": "NUTRITION STANDARD"
+},
+{
+"BrandId": "NUAB",
+"CompanyLogo": "NUAB_Logo.jpg",
+"HasIfos": true,
+"Name": "Nua Biological Innovations, S.L."
+},
+{
+"BrandId": "NUBA",
+"CompanyLogo": "NUBA_Logo.jpg",
+"HasIfos": true,
+"HasRTCP": true,
+"Name": "Nutrition Balance"
+},
+{
+"BrandId": "NUFM",
+"CompanyLogo": "NUFM_Logo.jpg",
+"HasIfos": true,
+"Name": "Nutrifarma"
+},
+{
+"BrandId": "NUHA",
+"CompanyLogo": "NUHA_Logo.jpg",
+"HasIfos": true,
+"Name": "NUHAIM"
+},
+{
+"BrandId": "NULA",
+"CompanyLogo": "NULA_Logo.jpg",
+"HasIfos": true,
+"Name": "Nuotelande"
+},
+{
+"BrandId": "NUMA",
+"CompanyLogo": "NUMA_Logo.jpg",
+"HasIfos": true,
+"Name": "NuMedica"
+},
+{
+"BrandId": "NUTA",
+"CompanyLogo": "NUTA_Logo.jpg",
+"HasIfos": true,
+"Name": "NUTRATA"
+},
+{
+"BrandId": "NUTE",
+"CompanyLogo": "NUTE_Logo.jpg",
+"HasIfos": true,
+"Name": "Nutralie"
+},
+{
+"BrandId": "NUTY",
+"CompanyLogo": "NUTY_Logo.jpg",
+"HasIfos": true,
+"Name": "Nutrify"
+},
+{
+"BrandId": "NVCN",
+"CompanyLogo": "NVCN_Logo.jpg",
+"HasIfos": true,
+"HasRTCP": true,
+"Name": "Novacon Life Biotechnology Co., Ltd."
+},
+{
+"BrandId": "NVPN",
+"CompanyLogo": "NVPN_Logo.jpg",
+"HasIfos": true,
+"Name": "NovasPure Nutrition Inc."
+},
+{
+"BrandId": "NVSA",
+"CompanyLogo": "NVSA_Logo.jpg",
+"HasIfos": true,
+"Name": "NovoSana (Taicang) Co., Ltd."
+},
+{
+"BrandId": "NWCL",
+"CompanyLogo": "NWCL_Logo.png",
+"HasIAOS": true,
+"HasIfos": true,
+"HasIpro": true,
+"Name": "Newscience Chile"
+},
+{
+"BrandId": "NWLL",
+"CompanyLogo": "NWLL_Logo.png",
+"HasIfos": true,
+"Name": "Newscience USA"
+},
+{
+"BrandId": "NWPR",
+"CompanyLogo": "NWPR_Logo.jpg",
+"HasIfos": true,
+"Name": "Newscience Peru"
+},
+{
+"BrandId": "NYO3",
+"CompanyLogo": "NYO3_Logo.jpg",
+"HasIAOS": true,
+"HasIfos": true,
+"HasIkos": true,
+"Name": "NYO3 INTERNATIONAL AS"
+},
+{
+"BrandId": "NYTL",
+"CompanyLogo": "NYTL_Logo.png",
+"HasIfos": true,
+"Name": "Nyuvitas Technology Limited"
+},
+{
+"BrandId": "NZOR",
+"CompanyLogo": "NZOR_Logo.jpg",
+"HasIfos": true,
+"HasIgen": true,
+"Name": "NZ Origin"
+},
+{
+"BrandId": "OMAP",
+"CompanyLogo": "OMAP_Logo.jpg",
+"HasIfos": true,
+"Name": "Omapure"
+},
+{
+"BrandId": "ONEM",
+"CompanyLogo": "ONEM_Logo.png",
+"HasIfos": true,
+"Name": "One' s Member"
+},
+{
+"BrandId": "OREN",
+"CompanyLogo": "OREN_Logo.png",
+"HasIfos": true,
+"Name": "Or1gen"
+},
+{
+"BrandId": "ORNR",
+"CompanyLogo": "ORNR_Logo.jpg",
+"HasIfos": true,
+"Name": "Our Nutri"
+},
+{
+"BrandId": "ORZK",
+"CompanyLogo": "ORZK_Logo.jpg",
+"HasIfos": true,
+"HasIkos": true,
+"Name": "Orzaks Ilac ve Kimya Sanayi Tic. A.S."
+},
+{
+"BrandId": "OSTV",
+"CompanyLogo": "OSTV_Logo.png",
+"HasIfos": true,
+"Name": "OstroVit sp. z o.o."
+},
+{
+"BrandId": "OVIA",
+"CompanyLogo": "OVIA_Logo.jpg",
+"HasIAOS": true,
+"HasIfos": true,
+"HasRTCP": true,
+"Name": "OmegaVia"
+},
+{
+"BrandId": "PAHS",
+"CompanyLogo": "PAHS_Logo.jpg",
+"HasIfos": true,
+"Name": "Dr. Brian"
+},
+{
+"BrandId": "PANV",
+"CompanyLogo": "PANV_Logo.png",
+"HasIfos": true,
+"Name": "Panvel Farmacias"
+},
+{
+"BrandId": "PERM",
+"CompanyLogo": "PERM_Logo.png",
+"HasIfos": true,
+"Name": "PERMANENTE FARMACIAS"
+},
+{
+"BrandId": "PESN",
+"CompanyLogo": "PESN_Logo.jpg",
+"HasIfos": true,
+"Name": "Farmacia Personale Ltda"
+},
+{
+"BrandId": "PHTC",
+"CompanyLogo": "PHTC_Logo.jpg",
+"HasIfos": true,
+"Name": "Pharmatech AS"
+},
+{
+"BrandId": "PHWI",
+"CompanyLogo": "PHWI_Logo.jpg",
+"HasIfos": true,
+"Name": "PharmaWin S.r.l."
+},
+{
+"BrandId": "PIFT",
+"CompanyLogo": "PIFT_Logo.jpg",
+"HasIfos": true,
+"Name": "PINK FIT"
+},
+{
+"BrandId": "PLEO",
+"CompanyLogo": "PLEO_Logo.jpg",
+"HasIfos": true,
+"Name": "Aquaomega"
+},
+{
+"BrandId": "PLLF",
+"CompanyLogo": "PLLF_Logo.jpg",
+"HasIfos": true,
+"Name": "+LIFE"
+},
+{
+"BrandId": "PLOP",
+"CompanyLogo": "PLOP_Logo.png",
+"HasIfos": true,
+"Name": "PharmaSuisse"
+},
+{
+"BrandId": "PLRS",
+"CompanyLogo": "PLRS_Logo.jpg",
+"HasIAOS": true,
+"HasIfos": true,
+"Name": "Polaris"
+},
+{
+"BrandId": "PNZL",
+"CompanyLogo": "PNZL_Logo.jpg",
+"HasIfos": true,
+"Name": "Pharma New Zealand PNZ Limited（Phatma®️）"
+},
+{
+"BrandId": "PRED",
+"CompanyLogo": "PRED_Logo.jpg",
+"HasIfos": true,
+"Name": "Pure Science Ecuador"
+},
+{
+"BrandId": "PRLG",
+"CompanyLogo": "PRLG_Logo.jpg",
+"HasIfos": true,
+"Name": "Primalg"
+},
+{
+"BrandId": "PRMA",
+"CompanyLogo": "PRMA_Logo.png",
+"HasIfos": true,
+"Name": "Primia"
+},
+{
+"BrandId": "PRMO",
+"CompanyLogo": "PRMO_Logo.jpg",
+"HasIfos": true,
+"Name": "PromoPharma SPA"
+},
+{
+"BrandId": "PROA",
+"CompanyLogo": "PROA_Logo.jpg",
+"HasIfos": true,
+"Name": "Proaction Srl"
+},
+{
+"BrandId": "PRON",
+"CompanyLogo": "PRON_Logo.jpg",
+"HasIfos": true,
+"Name": "pro nutrition"
+},
+{
+"BrandId": "PROT",
+"CompanyLogo": "PROT_Logo.jpg",
+"HasIfos": true,
+"HasRTCP": true,
+"Name": "Protherapix Sdn Bhd"
+},
+{
+"BrandId": "PRSC",
+"CompanyLogo": "PRSC_Logo.jpg",
+"HasIAOS": true,
+"HasIfos": true,
+"HasIpro": true,
+"Name": "Pure Science"
+},
+{
+"BrandId": "PUOR",
+"CompanyLogo": "PUOR_Logo.jpg",
+"HasIfos": true,
+"Name": "Puori, Inc"
+},
+{
+"BrandId": "PURB",
+"CompanyLogo": "PURB_Logo.jpg",
+"HasIfos": true,
+"Name": "Purevitality Botanicals Inc."
+},
+{
+"BrandId": "PURO",
+"CompanyLogo": "PURO_Logo.jpg",
+"HasIfos": true,
+"Name": "Puro Omega"
+},
+{
+"BrandId": "PURP",
+"CompanyLogo": "PURP_Logo.jpg",
+"HasIfos": true,
+"Name": "Pure Pharma S.R.L."
+},
+{
+"BrandId": "PZEN",
+"CompanyLogo": "PZEN_Logo.jpg",
+"HasIfos": true,
+"HasIpro": true,
+"HasRTCP": true,
+"Name": "PUREZEN"
+},
+{
+"BrandId": "RADL",
+"CompanyLogo": "RADL_Logo.jpg",
+"HasIfos": true,
+"Name": "RAIA DROGASIL S.A."
+},
+{
+"BrandId": "RANU",
+"CompanyLogo": "RANU_Logo.jpg",
+"HasIfos": true,
+"Name": "Rational Nutrition LLC"
+},
+{
+"BrandId": "REDG",
+"CompanyLogo": "REDG_Logo.jpg",
+"HasIfos": true,
+"Name": "RedDog"
+},
+{
+"BrandId": "RNWL",
+"CompanyLogo": "RNWL_Logo.jpg",
+"HasIfos": true,
+"Name": "Renew Life Formulas, LLC"
+},
+{
+"BrandId": "RTUA",
+"CompanyLogo": "RTUA_Logo.png",
+"HasIfos": true,
+"Name": "Rituária"
+},
+{
+"BrandId": "SAID",
+"CompanyLogo": "SAID_Logo.jpg",
+"HasIfos": true,
+"Name": "Shanghai Aiyisheng Industrial Development Co. Ltd"
+},
+{
+"BrandId": "SANO",
+"CompanyLogo": "SANO_Logo.jpg",
+"HasIfos": true,
+"Name": "Norsan GmbH"
+},
+{
+"BrandId": "SAOM",
+"CompanyLogo": "SAOM_Logo.png",
+"HasIfos": true,
+"Name": "SanOmega E&E AS"
+},
+{
+"BrandId": "SCIG",
+"CompanyLogo": "SCIG_Logo.png",
+"HasIfos": true,
+"Name": "SCIGOWELL"
+},
+{
+"BrandId": "SEAC",
+"CompanyLogo": "SEAC_Logo.jpg",
+"HasIfos": true,
+"Name": "Seacome Limited"
+},
+{
+"BrandId": "SFHM",
+"CompanyLogo": "SFHM_Logo.jpg",
+"HasIfos": true,
+"Name": "SFH Marine Ingredient"
+},
+{
+"BrandId": "SFNR",
+"CompanyLogo": "SFNR_Logo.jpg",
+"HasIfos": true,
+"Name": "Sifar Nutra S.r.l."
+},
+{
+"BrandId": "SHHO",
+"CompanyLogo": "SHHO_Logo.jpg",
+"HasIfos": true,
+"Name": "Shan Ho Co., Ltd."
+},
+{
+"BrandId": "SHTY",
+"CompanyLogo": "SHTY_Logo.png",
+"HasIfos": true,
+"Name": "SHITEYANG"
+},
+{
+"BrandId": "SHVM",
+"CompanyLogo": "SHVM_Logo.jpg",
+"HasIfos": true,
+"Name": "SENHORA VITAMINA"
+},
+{
+"BrandId": "SHYP",
+"CompanyLogo": "SHYP_Logo.jpg",
+"HasIfos": true,
+"Name": "Shandong Yuwang Pharmaceutical Co., Ltd."
+},
+{
+"BrandId": "SKNY",
+"CompanyLogo": "SKNY_Logo.jpg",
+"HasIAOS": true,
+"HasIfos": true,
+"Name": "Skuny Bioscience Co., Ltd."
+},
+{
+"BrandId": "SMTC",
+"CompanyLogo": "SMTC_Logo.jpg",
+"HasIfos": true,
+"Name": "Nlize Co. Ltd."
+},
+{
+"BrandId": "SNOB",
+"CompanyLogo": "SNOB_Logo.jpg",
+"HasIfos": true,
+"Name": "Zhoushan Sinomega Biotech Engineering Co., Ltd."
+},
+{
+"BrandId": "SOCD",
+"CompanyLogo": "SOCD_Logo.jpg",
+"HasIfos": true,
+"Name": "Sociedad Comercializadora NLS Nutraline Suplement Limitada"
+},
+{
+"BrandId": "SOCP",
+"CompanyLogo": "SOCP_Logo.jpg",
+"HasIfos": true,
+"Name": "Sorocaps Industria Farmaceutica Ltda"
+},
+{
+"BrandId": "SOLU",
+"CompanyLogo": "SOLU_Logo.jpg",
+"HasIAOS": true,
+"HasIfos": true,
+"Name": "Solutex GC"
+},
+{
+"BrandId": "SOTE",
+"CompanyLogo": "SOTE_Logo.jpg",
+"HasIfos": true,
+"Name": "Soome Tervisetooted OÜ"
+},
+{
+"BrandId": "SOVA",
+"CompanyLogo": "SOVA_Logo.jpg",
+"HasIfos": true,
+"Name": "Sorvagen"
+},
+{
+"BrandId": "SPFL",
+"CompanyLogo": "SPFL_Logo.jpg",
+"HasIfos": true,
+"Name": "Spoonful Corp."
+},
+{
+"BrandId": "SPRI",
+"CompanyLogo": "SPRI_Logo.png",
+"HasIfos": true,
+"Name": "SpringLeaf"
+},
+{
+"BrandId": "SPRT",
+"CompanyLogo": "SPRT_Logo.jpg",
+"HasIAOS": true,
+"HasIfos": true,
+"HasIgen": true,
+"HasIkos": true,
+"Name": "Sports Research"
+},
+{
+"BrandId": "STAR",
+"CompanyLogo": "STAR_Logo.jpg",
+"HasIfos": true,
+"HasRTCP": true,
+"Name": "Saintstar"
+},
+{
+"BrandId": "SUMB",
+"CompanyLogo": "SUMB_Logo.jpg",
+"HasIfos": true,
+"Name": "SummitBio Corporation"
+},
+{
+"BrandId": "SUMR",
+"CompanyLogo": "SUMR_Logo.jpg",
+"HasIfos": true,
+"Name": "Surmerrykids"
+},
+{
+"BrandId": "SUOM",
+"CompanyLogo": "SUOM_Logo.jpg",
+"HasIfos": true,
+"HasIgen": true,
+"Name": "STR Global Group Oy"
+},
+{
+"BrandId": "SWIT",
+"CompanyLogo": "SWIT_Logo.jpg",
+"HasIfos": true,
+"Name": "Swisse Italia (Health and Happiness Italy S.r.l.)"
+},
+{
+"BrandId": "SWPL",
+"CompanyLogo": "SWPL_Logo.jpg",
+"HasIfos": true,
+"Name": "Swisse Wellness Pty Ltd"
+},
+{
+"BrandId": "TBIS",
+"CompanyLogo": "TBIS_Logo.jpg",
+"HasIfos": true,
+"Name": "TAB Ilac Sanayi A.S."
+},
+{
+"BrandId": "THPT",
+"CompanyLogo": "THPT_Logo.jpg",
+"HasIfos": true,
+"Name": "Think Pets"
+},
+{
+"BrandId": "THRA",
+"CompanyLogo": "THRA_Logo.jpg",
+"HasIfos": true,
+"Name": "Theralogix, LLC"
+},
+{
+"BrandId": "THVS",
+"CompanyLogo": "THVS_Logo.jpg",
+"HasIfos": true,
+"Name": "THE VITAMIN SHOPPE"
+},
+{
+"BrandId": "TLIT",
+"CompanyLogo": "TLIT_Logo.jpg",
+"HasIAOS": true,
+"HasIfos": true,
+"HasIpro": true,
+"HasRTCP": true,
+"Name": "The littles"
+},
+{
+"BrandId": "TRSO",
+"CompanyLogo": "TRSO_Logo.jpg",
+"HasIfos": true,
+"Name": "TRUESOURCE"
+},
+{
+"BrandId": "TSGH",
+"CompanyLogo": "TSGH_Logo.jpg",
+"HasIfos": true,
+"HasRTCP": true,
+"Name": "Tasly Great Health"
+},
+{
+"BrandId": "TSNU",
+"CompanyLogo": "TSNU_Logo.jpg",
+"HasIfos": true,
+"Name": "Tsunami Nutrition SRL"
+},
+{
+"BrandId": "TTOS",
+"CompanyLogo": "TTOS_Logo.jpg",
+"HasIfos": true,
+"Name": "Triton Omegas"
+},
+{
+"BrandId": "TWPT",
+"CompanyLogo": "TWPT_Logo.jpg",
+"HasIfos": true,
+"Name": "The Wellness Project"
+},
+{
+"BrandId": "UBNG",
+"CompanyLogo": "UBNG_Logo.jpg",
+"HasIfos": true,
+"Name": "Unicorn Brands Ltd (Nutrition Geeks)"
+},
+{
+"BrandId": "UGAN",
+"CompanyLogo": "UGAN_Logo.jpg",
+"HasIAOS": true,
+"HasIfos": true,
+"HasIkos": true,
+"Name": "U.G.A. Nutraceuticals Srl"
+},
+{
+"BrandId": "UGNI",
+"CompanyLogo": "UGNI_Logo.jpg",
+"HasIfos": true,
+"Name": "UGN International Functional Nutrition Co. , Limited"
+},
+{
+"BrandId": "ULBR",
+"CompanyLogo": "ULBR_Logo.jpg",
+"HasIfos": true,
+"Name": "Ultra Bandz LLC."
+},
+{
+"BrandId": "ULNA",
+"CompanyLogo": "ULNA_Logo.jpg",
+"HasIfos": true,
+"Name": "Uloter Natural Health Inc."
+},
+{
+"BrandId": "UNAG",
+"CompanyLogo": "UNAG_Logo.png",
+"HasIfos": true,
+"HasRTCP": true,
+"Name": "UndoAge"
+},
+{
+"BrandId": "UNIF",
+"CompanyLogo": "UNIF_Logo.png",
+"HasIfos": true,
+"Name": "UNIFABRA"
+},
+{
+"BrandId": "UNIL",
+"CompanyLogo": "UNIL_Logo.jpg",
+"HasIfos": true,
+"Name": "Unilife Vitamins"
+},
+{
+"BrandId": "UOPY",
+"CompanyLogo": "UOPY_Logo.png",
+"HasIfos": true,
+"HasRTCP": true,
+"Name": "UOPYI"
+},
+{
+"BrandId": "USPN",
+"CompanyLogo": "USPN_Logo.jpg",
+"HasIfos": true,
+"Name": "US Pharmatech NV Inc."
+},
+{
+"BrandId": "VENA",
+"CompanyLogo": "VENA_Logo.jpg",
+"HasIfos": true,
+"Name": "VENATURA SAGLIK ÜRÜNLERI TICARET VE SANAYI ANONIM SIRKETI"
+},
+{
+"BrandId": "VESY",
+"CompanyLogo": "VESY_Logo.jpg",
+"HasIfos": true,
+"Name": "VitaEsynce"
+},
+{
+"BrandId": "VETW",
+"CompanyLogo": "VETW_Logo.jpg",
+"HasIfos": true,
+"Name": "Vetwish"
+},
+{
+"BrandId": "VFNX",
+"CompanyLogo": "VFNX_Logo.jpg",
+"HasIfos": true,
+"Name": "Vitafenix Ilaç Gida Takviyeleri A.S."
+},
+{
+"BrandId": "VHVI",
+"CompanyLogo": "VHVI_Logo.jpg",
+"HasIfos": true,
+"Name": "Vhita"
+},
+{
+"BrandId": "VIIC",
+"CompanyLogo": "VIIC_Logo.jpg",
+"HasIfos": true,
+"HasIkos": true,
+"Name": "Vinsic"
+},
+{
+"BrandId": "VILI",
+"CompanyLogo": "VILI_Logo.jpg",
+"HasIfos": true,
+"Name": "VitaminLife®"
+},
+{
+"BrandId": "VINU",
+"CompanyLogo": "VINU_Logo.jpg",
+"HasIfos": true,
+"Name": "VIBE Nutraceuticals, SL"
+},
+{
+"BrandId": "VIPA",
+"CompanyLogo": "VIPA_Logo.jpg",
+"HasIfos": true,
+"Name": "VITAPAW"
+},
+{
+"BrandId": "VIPH",
+"CompanyLogo": "VIPH_Logo.jpg",
+"HasIfos": true,
+"Name": "Vitas Pharma International SRL"
+},
+{
+"BrandId": "VITK",
+"CompanyLogo": "VITK_Logo.jpg",
+"HasIfos": true,
+"Name": "VitaKids"
+},
+{
+"BrandId": "VITS",
+"CompanyLogo": "VITS_Logo.jpg",
+"HasIfos": true,
+"Name": "Vits"
+},
+{
+"BrandId": "VITW",
+"CompanyLogo": "VITW_Logo.jpg",
+"HasIfos": true,
+"Name": "Vitamin Way Nutrition"
+},
+{
+"BrandId": "VIVN",
+"CompanyLogo": "VIVN_Logo.jpg",
+"HasIfos": true,
+"HasIgen": true,
+"HasIkos": true,
+"HasRTCP": true,
+"Name": "Viva Naturals Inc."
+},
+{
+"BrandId": "VNBS",
+"CompanyLogo": "VNBS_Logo.png",
+"HasIfos": true,
+"Name": "Vinabas Formulations SL (IVB Wellness)"
+},
+{
+"BrandId": "VOCU",
+"CompanyLogo": "VOCU_Logo.png",
+"HasIfos": true,
+"Name": "VOCUR®"
+},
+{
+"BrandId": "VTA4",
+"CompanyLogo": "VTA4_Logo.jpg",
+"HasIAOS": true,
+"HasIfos": true,
+"HasIkos": true,
+"Name": "Vitafor"
+},
+{
+"BrandId": "VTBS",
+"CompanyLogo": "VTBS_Logo.jpg",
+"HasIfos": true,
+"Name": "Vitalbliss"
+},
+{
+"BrandId": "VTBX",
+"CompanyLogo": "VTBX_Logo.jpg",
+"HasIfos": true,
+"Name": "Devotion International Co., Ltd. (VITABOX®)"
+},
+{
+"BrandId": "VTPL",
+"CompanyLogo": "VTPL_Logo.jpg",
+"HasIfos": true,
+"Name": "Vital Planet, LLC"
+},
+{
+"BrandId": "VTPR",
+"CompanyLogo": "VTPR_Logo.jpg",
+"HasIfos": true,
+"Name": "VitaminPure"
+},
+{
+"BrandId": "VTRB",
+"CompanyLogo": "VTRB_Logo.jpg",
+"HasIfos": true,
+"Name": "Vitoria Biosciences"
+},
+{
+"BrandId": "VTRM",
+"CompanyLogo": "VTRM_Logo.jpg",
+"HasIfos": true,
+"Name": "VitalRemedyMD Inc"
+},
+{
+"BrandId": "VVAP",
+"CompanyLogo": "VVAP_Logo.jpg",
+"HasIfos": true,
+"Name": "Viva Pharmaceutical Inc."
+},
+{
+"BrandId": "VVPS",
+"CompanyLogo": "VVPS_Logo.jpg",
+"HasIfos": true,
+"Name": "Velavit Vitamin Pazarlama Sanayi ve Ticaret Anonim Şirketi"
+},
+{
+"BrandId": "WEBB",
+"CompanyLogo": "WEBB_Logo.jpg",
+"HasIfos": true,
+"Name": "Webber Naturals"
+},
+{
+"BrandId": "WEBO",
+"CompanyLogo": "WEBO_Logo.jpg",
+"HasIfos": true,
+"Name": "WEBOTANIX"
+},
+{
+"BrandId": "WEBT",
+"CompanyLogo": "WEBT_Logo.png",
+"HasIfos": true,
+"HasIpro": true,
+"Name": "Wellbest"
+},
+{
+"BrandId": "WEIN",
+"CompanyLogo": "WEIN_Logo.jpg",
+"HasIfos": true,
+"Name": "Weider Nutrition"
+},
+{
+"BrandId": "WELC",
+"CompanyLogo": "WELC_Logo.jpg",
+"HasIfos": true,
+"Name": "Wellcare-Ilko Ilac San. ve Tic. A.S."
+},
+{
+"BrandId": "WEPL",
+"CompanyLogo": "WEPL_Logo.jpg",
+"HasIfos": true,
+"Name": "WELLPLUS"
+},
+{
+"BrandId": "WESA",
+"CompanyLogo": "WESA_Logo.jpg",
+"HasIfos": true,
+"Name": "WE Salus srl"
+},
+{
+"BrandId": "WETM",
+"CompanyLogo": "WETM_Logo.jpg",
+"HasIfos": true,
+"Name": "Weetamin"
+},
+{
+"BrandId": "WHCC",
+"CompanyLogo": "WHCC_Logo.jpg",
+"HasIfos": true,
+"Name": "WHC Labs BV"
+},
+{
+"BrandId": "WLNX",
+"CompanyLogo": "WLNX_Logo.png",
+"HasIfos": true,
+"Name": "Wellnex Solutions"
+},
+{
+"BrandId": "WLPL",
+"CompanyLogo": "WLPL_Logo.jpg",
+"HasIfos": true,
+"HasIkos": true,
+"Name": "Wright Life Pharmaceutical Limited"
+},
+{
+"BrandId": "XSPB",
+"CompanyLogo": "XSPB_Logo.png",
+"HasIfos": true,
+"Name": "Xiamen SeaPulse Biotech Co.,Ltd."
+},
+{
+"BrandId": "XYMO",
+"CompanyLogo": "XYMO_Logo.jpg",
+"HasIfos": true,
+"Name": "Xymogen"
+},
+{
+"BrandId": "YAMA",
+"CompanyLogo": "YAMA_Logo.jpg",
+"HasIfos": true,
+"Name": "Yamamoto S.P.A."
+},
+{
+"BrandId": "YNGV",
+"CompanyLogo": "YNGV_Logo.jpg",
+"HasIfos": true,
+"Name": "Youngevity"
+},
+{
+"BrandId": "ZENE",
+"CompanyLogo": "ZENE_Logo.jpg",
+"HasIfos": true,
+"Name": "Zenement"
+},
+{
+"BrandId": "ZENT",
+"CompanyLogo": "ZENT_Logo.jpg",
+"HasIfos": true,
+"Name": "Zentrum"
+},
+{
+"BrandId": "ZHPR",
+"CompanyLogo": "ZHPR_Logo.jpg",
+"HasIfos": true,
+"Name": "zanhuo pro+"
+},
+{
+"BrandId": "ZJKB",
+"CompanyLogo": "ZJKB_Logo.jpg",
+"HasIfos": true,
+"Name": "Zhejiang Keming Biopharmaceuticals Co., Ltd"
+},
+{
+"BrandId": "ZJNB",
+"CompanyLogo": "ZJNB_Logo.png",
+"HasIfos": true,
+"Name": "ZHEJIANG NORBIDAR BIOMEDICINE CO., LTD."
+},
+{
+"BrandId": "ZZEN",
+"CompanyLogo": "ZZEN_Logo.png",
+"HasIfos": true,
+"Name": "ZZEN LABS, S.L."
+}
+]

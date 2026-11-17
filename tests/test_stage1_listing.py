@@ -201,3 +201,35 @@ def test_pending_chewable_resolved_by_report_unit(cfg):
     assert decide_format("Chewables", "Kids Chewable DHA", "", cfg, report_unit="mg / softgel")[0] == "include"
     assert decide_format("Chewables", "Kids Chewable DHA", "", cfg, report_unit="mg / chewy")[0] == "exclude"
     assert decide_format("Chewables", "Kids Chewable DHA", "", cfg, report_unit="mg / 5 mL")[0] == "exclude"
+
+
+MALFORMED = b"""<div><h2>Omega Plus</h2><h3>Product Summary</h3>
+<p>High concentration.<br/><p><b>Product instructions:</b>Take 3 capsules daily.</p>
+<p><strong>Product Type:</strong> Capsules</p>
+<p><strong>Recommended Daily Allowance:</strong> Take one serving (3 capsules) daily.</p>
+<p><strong>Website:</strong> <a href="https://x.example/">https://x.example/</a></p></div>
+<a href="/certified-products/brand?id=DLSP">b</a>
+<select id="ReportIfos"><option value="">--Select--</option>
+<option value="RTCP certificate_ Lot A1.pdf">Lot #: A1 (Jul 31, 2028)</option>
+<option value="Brand A1 4662025 Report.pdf">Lot #: A1 (Jul 31, 2028)</option>
+<option value="RTCP certificate_ Lot B2.pdf">Lot #: B2 (Jul 31, 2028)</option></select>"""
+
+
+def test_malformed_brand_summary_does_not_swallow_the_fields():
+    page = parse_product_page("DLSP0002", MALFORMED)
+    assert (page.name, page.product_type, page.website) == ("Omega Plus", "Capsules", "https://x.example/")
+    assert page.rda == "Take one serving (3 capsules) daily."
+    assert page.summary == "High concentration. Product instructions: Take 3 capsules daily."
+
+
+def test_duplicate_lot_prefers_the_ifos_report_over_an_rtcp_certificate(cfg, conn, fake_session_cls, fake_response_cls):
+    def handler(url, params):
+        if "GetFilteredProducts" in url:
+            return fake_response_cls(json_data={"totalCount": 1, "list": [{"ProductNum": "DLSP0002", "ProductName": "x"}]})
+        if "GetFilteredBrands" in url:
+            return fake_response_cls(json_data={"totalCount": 0, "list": []})
+        return fake_response_cls(content=MALFORMED)
+    stats = crawl_listing(cfg, conn, fake_session_cls(handler), log=lambda *_: None)
+    assert stats["lots_listed"] == 2 and stats["lots_duplicate_on_page"] == 1
+    files = dict(conn.execute("SELECT lot, report_filename FROM batches").fetchall())
+    assert files == {"A1": "Brand A1 4662025 Report.pdf", "B2": "RTCP certificate_ Lot B2.pdf"}
