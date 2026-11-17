@@ -1,0 +1,32 @@
+# Changelog for run {{ run_id }}
+
+As of {{ as_of }}.{% if changelog.first_run %} First run: this is the baseline, there is nothing to compare against.{% else %} Compared with run `{{ changelog.previous_run }}`.{% endif %}
+
+Totals: {{ counts.ranked }} ranked, {{ counts.flavored }} flavored, {{ counts.form_unverified }} form unverified, {{ counts.oil_weight_unavailable }} oil weight unavailable, {{ counts.monoglyceride }} monoglyceride, {{ counts.incomplete_data }} incomplete data, {{ counts.pet }} pet, {{ counts.excluded }} excluded.
+
+{% if not changelog.first_run %}
+## New batches ({{ changelog.new_batches | length }})
+
+{% for b in changelog.new_batches %}
+- {{ b.product }} ({{ b.product_num }}), lot {{ b.lot }}, expires {{ b.expiry_date or "n/a" }}
+{% else %}
+None.
+{% endfor %}
+
+## Expired or withdrawn batches ({{ changelog.gone_batches | length }})
+
+{% for b in changelog.gone_batches %}
+- {{ b.product }} ({{ b.product_num }}), lot {{ b.lot }}, expiry {{ b.expiry_date or "n/a" }}: {{ b.why }}
+{% else %}
+None.
+{% endfor %}
+
+## Ranking changes ({{ changelog.ranking_changes | length }})
+
+{% for c in changelog.ranking_changes %}
+- {{ "**" if c.top }}{{ c.product }}{{ "**" if c.top }} ({{ c.product_num }}): {{ c.before }} -> {{ c.after }}{% if c.lot_before != c.lot_after %} (lot {{ c.lot_before or "none" }} -> {{ c.lot_after or "none" }}){% endif %}
+
+{% else %}
+None.
+{% endfor %}
+{% endif %}

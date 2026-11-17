@@ -24,7 +24,9 @@ def report_url(cfg, filename: str) -> str:
 def pending_reports(cfg, conn) -> list[str]:
     """Report files that still need fetching: listed, unexpired lots of products
     that passed (or have not yet failed) the capsule filter, not yet in the
-    manifest with status ok."""
+    manifest with status ok (failed downloads are retried after the refresh window)."""
+    # A report that failed to download is retried, but not within the refresh window.
+    retry_before = (dt.datetime.now(dt.timezone.utc) - dt.timedelta(hours=cfg["scrape"]["page_refresh_hours"])).replace(microsecond=0).isoformat()
     rows = conn.execute(
         """
         SELECT DISTINCT b.report_filename
@@ -35,10 +37,10 @@ def pending_reports(cfg, conn) -> list[str]:
           AND p.format_decision IN ('include', 'pending')
           AND b.report_filename IS NOT NULL AND b.report_filename <> ''
           AND (b.expiry_date IS NULL OR b.expiry_date >= ?)
-          AND (r.filename IS NULL OR r.status <> 'ok')
+          AND (r.filename IS NULL OR (r.status <> 'ok' AND r.last_checked < ?))
         ORDER BY b.report_filename
         """,
-        (cfg.today.isoformat(),),
+        (cfg.today.isoformat(), retry_before),
     ).fetchall()
     return [r[0] for r in rows]
 
@@ -104,8 +106,9 @@ def fetch_reports(cfg, conn, session, limit: int | None = None, log=print) -> di
         stats["bytes_downloaded"] += row.get("bytes") or 0
         if row["status"] != "ok":
             log(f"  report error: {filename}: {row['error']}")
-        if i % 50 == 0:
-            conn.commit()
+        if i % 10 == 0:
+            conn.commit()                      # small transactions: an interrupted crawl loses almost nothing
+        if i % 100 == 0:
             log(f"  {i}/{len(todo)} reports")
     conn.commit()
     return dict(stats)

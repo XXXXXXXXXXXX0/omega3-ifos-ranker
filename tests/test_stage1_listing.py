@@ -133,11 +133,16 @@ def test_crawl_populates_db_and_second_run_fetches_no_pages(cfg, conn, fixtures,
     listing = json.loads((cfg.data_dir / "raw" / "listing" / "products.json").read_text())
     assert [p["ProductNum"] for p in listing] == sorted(nums)
 
-    # Immediate re-run: pages are inside the refresh window -> no page requests.
+    # Immediate re-run: the crawl is inside the refresh window -> no requests at all.
     session2 = fake_session_cls(_site(fixtures, fake_response_cls, nums))
     stats2 = crawl_listing(cfg, conn, session2, log=lambda *_: None)
-    assert stats2.get("pages_fetched", 0) == 0 and stats2["pages_from_cache"] == 4
-    assert all("certified-products/product" not in url for url, _ in session2.calls)
+    assert stats2 == {"crawl_skipped_fresh": 1, "products_listed": 4} and session2.calls == []
+    # Listing is re-read once the crawl stamp is old, but pages checked recently still come from the cache.
+    db.set_meta(conn, "crawled_at", "2020-01-01T00:00:00+00:00")
+    session3 = fake_session_cls(_site(fixtures, fake_response_cls, nums))
+    stats3 = crawl_listing(cfg, conn, session3, log=lambda *_: None)
+    assert stats3.get("pages_fetched", 0) == 0 and stats3["pages_from_cache"] == 4
+    assert all("certified-products/product" not in url for url, _ in session3.calls)
     assert conn.execute("SELECT COUNT(*) FROM products").fetchone()[0] == 4
     assert conn.execute("SELECT COUNT(*) FROM batches").fetchone()[0] == 91  # idempotent
 

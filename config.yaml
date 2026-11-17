@@ -85,8 +85,19 @@ validation:                   # plausible ranges; outside = extraction rejected
   oil_mg_per_capsule: [100, 3000]
 
 agent:
-  max_tool_calls: 8           # LOCKED hard limit per product
-  max_tokens_per_product: 60000        # API path
-  max_tool_output_chars: 60000         # in-session stand-in for the token cap
-  fetch_max_chars: 6000       # per page, keyword-windowed
-  search_results: 6
+  max_tool_calls: 8           # LOCKED hard limit per product (searches + fetches + lookups)
+  max_tokens_per_product: 60000        # API path: input + output tokens across the loop
+  max_tool_output_chars: 60000         # in-session stand-in for the token cap (D-12)
+  fetch_max_chars: 5000       # text returned per page, keyword-windowed
+  fetch_max_bytes: 3000000
+  fetch_window_chars: 220     # context kept on each side of a keyword hit
+  max_links: 12
+  respect_robots_txt: true
+  recheck_days: 60            # cached results are re-checked against their pages no more often than this
+  sql_max_rows: 50
+  # Words that mark the parts of a product page worth reading.
+  keywords: [triglyceride, triglycerides, triacylglycerol, rTG, "re-esterified", reesterified, "ethyl ester", "ethyl esters",
+             phospholipid, krill, monoglyceride, "TG form", "EE form", "supplement facts", "nutrition facts", "serving size",
+             "servings per", "per softgel", "per capsule", "fish oil concentrate", "fish oil", "omega-3", "mg", tocopherol,
+             tocopherols, "vitamin E", rosemary, astaxanthin, antioxidant, flavor, flavour, lemon, blister, nitrogen,
+             amber, opaque, "other ingredients", ingredients]

@@ -56,8 +56,94 @@ def cmd_llm_record(cfg, conn, args) -> dict:
     return {"saved": saved}
 
 
-COMMANDS = {"crawl": cmd_crawl, "fetch": cmd_fetch, "extract": cmd_extract,
-            "llm-queue": cmd_llm_queue, "llm-record": cmd_llm_record}
+def _agent_http(cfg):
+    session = PoliteSession(cfg)
+    return session
+
+
+def cmd_agent_queue(cfg, conn, args) -> dict:
+    """List products waiting for label verification, best possible score first."""
+    from .agent.runner import candidates, needs_verification
+    queue, threshold = candidates(cfg, conn)
+    todo = [p for p in queue if needs_verification(cfg, p.product.product_num)]
+    in_reach = [p for p in todo if threshold is None or p.optimistic_score <= threshold]
+    for p in (todo[: args.limit] if args.limit else todo):
+        mark = " " if threshold is None or p.optimistic_score <= threshold else "x"
+        need = "form+oil" if p.form is None and p.oil_mg_per_capsule is None and p.epa_dha_mg_g is None else "form" if p.form is None else "oil"
+        print(f"{mark} {p.product.product_num} best={p.optimistic_score:7.3f} need={need:8s} {p.product.brand} | {p.product.name} | {p.product.website}")
+    return {"queue": len(queue), "to_verify": len(todo), "threshold": threshold, "can_still_reach_top_n": len(in_reach)}
+
+
+def cmd_agent_start(cfg, conn, args) -> dict:
+    """In-session: open a trace for a product and print its briefing."""
+    from .agent.session import Session
+    session = Session(cfg, conn, args.product, model="in-session", mode="in-session", http=_agent_http(cfg))
+    print(session.trace["briefing"])
+    return {"product": args.product, "calls_left": session.calls_left}
+
+
+def cmd_agent_tool(cfg, conn, args) -> dict:
+    """In-session: run one tool for a product under the same budget as the API agent."""
+    import json as _json
+    from .agent import tools
+    from .agent.session import Session
+    session = Session(cfg, conn, args.product, model="in-session", mode="in-session", http=_agent_http(cfg), resume=True)
+    payload = _json.loads(args.args or "{}")
+    try:
+        if args.tool == "web_search":
+            print(session.log_search(payload["query"], payload.get("results", [])))
+        else:
+            print(session.call(args.tool, payload))
+    except tools.ToolError as exc:
+        print(str(exc))
+    return {"product": args.product, "calls_used": session.calls_used, "calls_left": session.calls_left}
+
+
+def cmd_agent_record(cfg, conn, args) -> dict:
+    """In-session: validate and store decisions (a JSON object keyed by product number)."""
+    import json as _json
+    from .agent.session import Session
+    out = {}
+    for product, decision in _json.loads(open(args.file, encoding="utf-8").read()).items():
+        session = Session(cfg, conn, product, model="in-session", mode="in-session", resume=True)
+        outcome = session.finish(decision, "decision recorded")
+        out[product] = {"status": outcome["facts"]["status"], "form": outcome["facts"]["form"],
+                        "oil_mg": outcome["facts"]["oil_mg_per_capsule"], "notes": outcome["notes"]}
+    return out
+
+
+def cmd_agent_run(cfg, conn, args) -> dict:
+    """API path: work the verification queue with the Claude API (needs llm.api_enabled)."""
+    from .agent.runner import run_api_queue
+    return run_api_queue(cfg, conn, _agent_http(cfg), limit=args.limit)
+
+
+def cmd_rank(cfg, conn, args) -> dict:
+    """Rank what is already in the database and write the report (no network)."""
+    from .pipeline import rank_and_report
+    return rank_and_report(cfg, conn)
+
+
+def cmd_run(cfg, conn, args) -> dict:
+    """Everything, incrementally: crawl, fetch, extract, verify (API only), rank, report."""
+    from .pipeline import run_all
+    return run_all(cfg, conn, PoliteSession(cfg), offline=args.offline)
+
+
+def cmd_top(cfg, conn, args) -> dict:
+    """Print the current top N as a text table."""
+    from .load import load_products
+    from .rank import rank_products
+    from .report import build_context, text_table
+    result = rank_products(load_products(conn), cfg)
+    print(text_table(build_context(cfg, conn, result, "preview", {})))
+    return result.counts()
+
+
+COMMANDS = {"crawl": cmd_crawl, "fetch": cmd_fetch, "extract": cmd_extract, "rank": cmd_rank, "run": cmd_run, "top": cmd_top,
+            "llm-queue": cmd_llm_queue, "llm-record": cmd_llm_record,
+            "agent-queue": cmd_agent_queue, "agent-start": cmd_agent_start, "agent-tool": cmd_agent_tool,
+            "agent-record": cmd_agent_record, "agent-run": cmd_agent_run}
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -66,6 +152,10 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--config", default=None, help="path to config.yaml")
     parser.add_argument("--limit", type=int, default=None, help="process at most N items (debugging)")
     parser.add_argument("--file", default=None, help="input file for commands that take one")
+    parser.add_argument("--offline", action="store_true", help="run: skip every network stage")
+    parser.add_argument("--product", default=None, help="product number (agent commands)")
+    parser.add_argument("--tool", default=None, help="tool name for agent-tool")
+    parser.add_argument("--args", default=None, help="JSON arguments for agent-tool")
     args = parser.parse_args(argv)
     cfg = load_config(args.config)
     conn = db.connect(cfg.db_path)

@@ -139,6 +139,20 @@ CREATE TABLE IF NOT EXISTS label_facts (
     verified_at     TEXT NOT NULL
 );
 
+CREATE TABLE IF NOT EXISTS meta (
+    key             TEXT PRIMARY KEY,
+    value           TEXT
+);
+
+-- Batch list as it stood at each run: lets the changelog name new and expired lots.
+CREATE TABLE IF NOT EXISTS run_batches (
+    run_id          TEXT NOT NULL,
+    product_num     TEXT NOT NULL,
+    lot             TEXT NOT NULL,
+    expiry_date     TEXT,
+    PRIMARY KEY (run_id, product_num, lot)
+);
+
 CREATE TABLE IF NOT EXISTS runs (
     run_id          TEXT PRIMARY KEY,          -- ISO timestamp
     as_of_date      TEXT NOT NULL,
@@ -164,7 +178,7 @@ CREATE INDEX IF NOT EXISTS idx_results_list ON results(run_id, list_name);
 def connect(path: Path | str) -> sqlite3.Connection:
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
-    conn = sqlite3.connect(path)
+    conn = sqlite3.connect(path, timeout=60)
     conn.row_factory = sqlite3.Row
     conn.execute("PRAGMA foreign_keys = ON")
     conn.executescript(SCHEMA)
@@ -199,3 +213,12 @@ def upsert(conn: sqlite3.Connection, table: str, row: dict, keys: tuple[str, ...
         f"ON CONFLICT({', '.join(keys)}) DO UPDATE SET " + ", ".join(f"{c}=excluded.{c}" for c in updates)
     )
     conn.execute(sql, [json.dumps(v) if isinstance(v, (list, dict)) else v for v in row.values()])
+
+
+def get_meta(conn: sqlite3.Connection, key: str) -> str | None:
+    row = conn.execute("SELECT value FROM meta WHERE key = ?", (key,)).fetchone()
+    return row[0] if row else None
+
+
+def set_meta(conn: sqlite3.Connection, key: str, value: str) -> None:
+    conn.execute("INSERT INTO meta (key, value) VALUES (?, ?) ON CONFLICT(key) DO UPDATE SET value = excluded.value", (key, value))

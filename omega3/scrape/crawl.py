@@ -29,6 +29,9 @@ def crawl_listing(cfg, conn, session, log=print) -> dict:
     listing requests.
     """
     sc = cfg["scrape"]
+    if _fresh(db.get_meta(conn, "crawled_at"), sc["page_refresh_hours"]):
+        # The whole listing was crawled inside the refresh window: nothing to ask the site.
+        return {"crawl_skipped_fresh": 1, "products_listed": conn.execute("SELECT COUNT(*) FROM products WHERE listed=1").fetchone()[0]}
     raw_dir = cfg.data_dir / "raw"
     pages_dir = raw_dir / "pages"
     pages_dir.mkdir(parents=True, exist_ok=True)
@@ -114,5 +117,7 @@ def crawl_listing(cfg, conn, session, log=print) -> dict:
         conn.execute("UPDATE products SET listed=0 WHERE product_num=?", (num,))
         conn.execute("UPDATE batches SET listed=0 WHERE product_num=?", (num,))
         stats["products_delisted"] += 1
+    if not stats["page_errors"]:
+        db.set_meta(conn, "crawled_at", now)
     conn.commit()
     return dict(stats)

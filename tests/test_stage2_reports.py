@@ -95,11 +95,15 @@ def test_fetch_downloads_once_then_nothing(cfg, conn, fixtures, fake_session_cls
     assert stats["reports_ok"] == 1 and stats["reports_error"] == 1 and stats["bytes_downloaded"] == len(pdf)
     assert conn.execute("SELECT status FROM reports WHERE filename='missing.pdf'").fetchone()[0] == "error"
 
-    # Second run: the good file is never requested again; only the failed one is retried.
+    # Second run, same day: nothing is requested. The good file is cached and the
+    # failed one is not retried inside the refresh window.
     second = fake_session_cls(handler)
-    stats2 = fetch_reports(cfg, conn, second, log=lambda *_: None)
-    assert [url.rsplit("/", 1)[1] for url, _ in second.calls] == ["missing.pdf"]
-    assert stats2.get("reports_ok", 0) == 0
+    assert fetch_reports(cfg, conn, second, log=lambda *_: None) == {"reports_pending": 0} and second.calls == []
+    # Once the failure is older than the window, only that file is retried.
+    conn.execute("UPDATE reports SET last_checked='2020-01-01T00:00:00+00:00' WHERE filename='missing.pdf'")
+    third = fake_session_cls(handler)
+    stats3 = fetch_reports(cfg, conn, third, log=lambda *_: None)
+    assert [url.rsplit("/", 1)[1] for url, _ in third.calls] == ["missing.pdf"] and stats3.get("reports_ok", 0) == 0
 
 
 def test_revised_report_is_a_new_filename_and_gets_fetched(cfg, conn, fixtures, fake_session_cls, fake_response_cls):
