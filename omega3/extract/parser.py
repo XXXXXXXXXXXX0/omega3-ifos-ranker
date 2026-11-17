@@ -1,4 +1,9 @@
-"""Deterministic parser for IFOS report text layers.
+"""Deterministic parser for IFOS reports.
+
+Input is a PdfDoc: page text plus the table cells pdfplumber recovered from
+the PDF's ruled tables. Rows are read cell by cell, so wrapped cells (a result
+that breaks over two lines) cannot be mis-assigned the way they can when
+parsing flat text.
 
 Templates (DECISIONS F-5):
   T1       category table, 2025 onward
@@ -6,32 +11,33 @@ Templates (DECISIONS F-5):
   RM       Raw Materials Certificate: no batch results
   unknown  anything else -> LLM fallback
 
-The parser works on the plain text of the PDF. It never evaluates or follows
-anything it reads; unknown content is logged, not interpreted.
+Nothing read from a report is ever evaluated or followed as an instruction;
+unknown content is logged, not interpreted.
 """
 from __future__ import annotations
 
 import re
 from dataclasses import asdict, dataclass, field
 
+from .pdftext import PdfDoc
 from .terms import ANALYTES, classify_form, match_label
 from .units import Basis, find_quantities, parse_basis
 
-COMPLIANCE_RE = re.compile(r"\s*\b(yes|no|pass|passed|fail|failed|n/?a)\s*$", re.I)
+COMPLIANCE_RE = re.compile(r"^(yes|no|pass|passed|fail|failed|n/?a|-+)\.?$", re.I)
 # Result cells that are legitimately non-numeric.
-NON_NUMERIC_RE = re.compile(r"^(nd|n\.d\.|not\s+detected|n/?a|not\s+applicable|not\s+tested|nt|blq|bdl|<\s*loq|<\s*lod|-+|—|tbd|pending)$", re.I)
-HEADER_WORDS_RE = re.compile(
-    r"^(?:(?:category\s*\d\s*:?)|specification|batch\s+results?|ifos|compliance|potency|purity,?|safety|&|and|cleanliness|"
-    r"stability|heavy\s+metals|comments?|\s)+$", re.I)
-BASIS_LINE_RE = re.compile(r"((?:mg|milligrams?)\s*(?:/|per)\s*.+?)\s+((?:mg|milligrams?)\s*(?:/|per)\s*.+?)(?:\s+compliance)?\s*$", re.I)
-FOOTER_RE = re.compile(r"IFOS\S*\s+Program is provided|Research Lane|^\s*/\s*$|certifications\.nutrasource\.ca|omega3-certification@|^\s*\d{3}-\d{3}-\d{4}", re.I)
+NON_NUMERIC_RE = re.compile(
+    r"^(nd|n\.d\.|not\s+detected|none\s+detected|n/?a|not\s+applicable|not\s+tested|nt|blq|bdl|<\s*loq|<\s*lod|-+|—|tbd|pending)\.?$", re.I)
+BASIS_CELL_RE = re.compile(r"^(?:(?:mg|milligrams?)\s*(?:/|per\b).*|(?:area\s*)?%)$", re.I)
 LOT_RE = re.compile(r"Batch\s*/\s*Lot\s*#\s*:\s*(.+?)\s*$", re.I | re.M)
 EXPIRY_RE = re.compile(r"Expiry\s+Date\s*:\s*(.+?)\s*$", re.I | re.M)
 DIRECTION_RE = re.compile(r"Directions?\s*:\s*(.*)$", re.I)
+DIRECTION_STOP_RE = re.compile(
+    r"certifications@|Certifications By|^Nutrasource$|consistent with label|^Passes\b|Batch\s*/\s*Lot|Expiry\s+Date", re.I)
 AREA_PCT_RE = re.compile(
-    r"(?P<analyte>EPA|DHA|Total\s+Omega[\s-]?3)\s*(?:area\s*%\s*)?specification\s*:\s*(?:(?P<smg>[\d.,]+)\s*mg\s*/\s*(?P<sbasis>[^()]+?)\s*\(\s*)?(?P<spct>[\d.]+)\s*%\)?"
-    r"\s*[.,;]?\s*Result\s*:\s*(?:(?P<rmg>[\d.,]+)\s*mg\s*/\s*(?P<rbasis>[^()]+?)\s*\(\s*)?(?P<rpct>[\d.]+)\s*%\)?", re.I)
-FORM_COMMENT_RE = re.compile(r"\b(?:EFA|EPA|DHA|omega[\s-]?3s?|fatty acids?)\b[^.\n]*?\btested as\b([^.\n]*)", re.I)
+    r"(?P<analyte>EPA|DHA|Total\s+Omega[\s-]?3)\s*(?:area\s*%\s*)?specification\s*:\s*"
+    r"(?:(?P<smg>[\d.,]+)\s*mg\s*/\s*(?P<sbasis>[^()]+?)\s*\(\s*)?(?P<spct>\d+(?:\.\d+)?)\s*%\)?"
+    r"\s*[.,;]?\s*Result\s*:\s*(?:(?P<rmg>[\d.,]+)\s*mg\s*/\s*(?P<rbasis>[^()]+?)\s*\(\s*)?(?P<rpct>\d+(?:\.\d+)?)\s*%\)?", re.I)
+FORM_COMMENT_RE = re.compile(r"\b(?:EFAs?|EPA|DHA|omega[\s-]?3s?|fatty acids?)\b[^.\n]*?\btested as\b([^.\n]*)", re.I)
 
 
 @dataclass
@@ -63,7 +69,7 @@ class Parsed:
     comments: list[str] = field(default_factory=list)
     unrecognized: list[str] = field(default_factory=list)
     warnings: list[str] = field(default_factory=list)
-    report_form: str | None = None         # oil form stated in the report's comments
+    report_form: str | None = None           # oil form stated in the report's comments
     report_form_evidence: str | None = None
     area_pct: dict[str, dict] = field(default_factory=dict)
 
@@ -71,6 +77,16 @@ class Parsed:
         data = asdict(self)
         data["basis"] = asdict(self.basis) if self.basis else None
         return data
+
+    @classmethod
+    def from_json(cls, data: dict) -> "Parsed":
+        data = dict(data)
+        basis = data.pop("basis", None)
+        rows = data.pop("rows", {}) or {}
+        out = cls(**data)
+        out.basis = Basis(**basis) if basis else None
+        out.rows = {k: Row(**v) for k, v in rows.items()}
+        return out
 
 
 def detect_template(text: str) -> str:
@@ -84,108 +100,138 @@ def detect_template(text: str) -> str:
     return "unknown"
 
 
+def _clean(cell) -> str:
+    return re.sub(r"\s+", " ", cell or "").strip()
+
+
 def _compliance(token: str | None) -> str | None:
-    if not token:
+    return {"yes": "yes", "pass": "yes", "passed": "yes", "no": "no", "fail": "no", "failed": "no"}.get(
+        (token or "").lower().rstrip("."))
+
+
+def _fill(row: Row, role: str, cell: str) -> str | None:
+    """Put one cell into the row. Returns an error string if it cannot be read."""
+    if role == "compliance":
+        if not COMPLIANCE_RE.match(cell):
+            return f"unreadable compliance cell {cell!r}"
+        row.compliance = _compliance(cell)
         return None
-    token = token.lower().replace("/", "")
-    return {"yes": "yes", "pass": "yes", "passed": "yes", "no": "no", "fail": "no", "failed": "no"}.get(token)
-
-
-def parse_row(analyte: str, label: str, rest: str, potency: bool) -> tuple[Row | None, str | None]:
-    """Parse the cells after a row label. Returns (row, error)."""
-    category = ANALYTES[analyte][0]
-    row = Row(category=category, analyte=analyte, label_raw=label)
-    m = COMPLIANCE_RE.search(rest)
-    if m:
-        row.compliance = _compliance(m.group(1))
-        rest = rest[: m.start()]
-    rest = rest.strip()
-    if not rest:
-        return None, "no values on row"
-    quantities = find_quantities(rest)
-
-    def set_spec(q):
-        row.spec_text, row.spec_op, row.spec_value, row.spec_unit = q.text, q.op, q.value, q.unit or None
-
-    def set_result(q):
-        row.result_text, row.result_op, row.result_value, row.result_unit = q.text, q.op, q.value, q.unit or None
-
-    if len(quantities) == 2:
-        set_spec(quantities[0]); set_result(quantities[1])
-    elif len(quantities) == 1:
+    quantities = find_quantities(cell)
+    if len(quantities) == 1 and not NON_NUMERIC_RE.match(cell):
         q = quantities[0]
-        leftover = rest.replace(q.text, "", 1) if q.text in rest else ""
-        before, _, after = rest.partition(re.search(r"\d", rest).group(0))  # position of the number
-        tail = re.sub(r"\([^()]*\)", " ", rest)[len(before):]
-        trailing_words = re.sub(r"^[\d.,\s]*" + re.escape(q.unit) if q.unit else r"^[\d.,\s]*", "", tail).strip()
-        if before.strip() and not re.fullmatch(r"(<=|=<|>=|≤|≥|<|>)\s*", before.strip() + " "):
-            # words then a number: "N/A 12.3" -> spec is non-numeric, number is the result
-            row.spec_text = before.strip()
-            set_result(q)
-        elif NON_NUMERIC_RE.match(trailing_words or ""):
-            # a number then words: "<= 5 meq/kg ND" -> number is the spec
-            set_spec(q)
-            row.result_text = trailing_words
-        elif potency or q.op in (None, "<"):
-            set_result(q)          # a lone plain value is the batch result
+        if role == "spec":
+            row.spec_text, row.spec_op, row.spec_value, row.spec_unit = cell, q.op, q.value, q.unit or None
         else:
-            set_spec(q)            # a lone "<= x" is a limit with no result
-            row.result_text = None
-    elif not quantities:
-        if NON_NUMERIC_RE.match(rest):
-            row.result_text = rest
+            row.result_text, row.result_op, row.result_value, row.result_unit = cell, q.op, q.value, q.unit or None
+        return None
+    if not quantities or NON_NUMERIC_RE.match(cell):
+        # Words instead of a number ("ND", "N/A"): keep the text, no value.
+        if NON_NUMERIC_RE.match(cell) or role == "spec":
+            setattr(row, f"{role}_text", cell)
+            return None
+        return f"unreadable {role} cell {cell!r}"
+    return f"{role} cell has {len(quantities)} numbers: {cell!r}"
+
+
+def _parse_table(table: list[list], out: Parsed, errors: list[str]) -> None:
+    rows = [[_clean(c) for c in row] for row in table]
+    flat = [c for row in rows for c in row if c]
+    if not flat:
+        return
+    if any(re.fullmatch(r"comments?:?", c, re.I) for c in rows[0] if c):
+        for row in table:
+            for cell in row:
+                for line in (cell or "").split("\n"):
+                    line = line.strip()
+                    if line and not re.fullmatch(r"comments?:?", line, re.I):
+                        out.comments.append(line)
+        return
+
+    data_rows: list[tuple[str, str, list[tuple[int, str]]]] = []
+    for row in rows:
+        cells = [(i, c) for i, c in enumerate(row) if c]
+        if not cells:
+            continue
+        hit = match_label(cells[0][1])
+        # The label cell must be the label alone (a trailing footnote mark is fine).
+        if hit and re.fullmatch(r"[\s*†‡:()0-9a-z]{0,4}", hit[2], re.I):
+            data_rows.append((hit[0], hit[1], cells[1:]))
+            continue
+        basis_cells = [c for _, c in cells if BASIS_CELL_RE.match(c)]
+        if basis_cells and out.basis is None:
+            parsed = [parse_basis(c) for c in basis_cells]
+            if parsed[-1] is None:
+                errors.append(f"unreadable potency unit {basis_cells[-1]!r}")
+            else:
+                out.basis = parsed[-1]          # the Batch Results column's unit
+                if len(parsed) > 1 and (parsed[0] is None or (parsed[0].kind, parsed[0].count) != (parsed[-1].kind, parsed[-1].count)):
+                    out.warnings.append(f"specification and result units differ: {basis_cells}")
+            continue
+        # Anything else is a header row, unless it looks like data: then the
+        # label is one we do not know, and it is logged rather than dropped.
+        if len(cells) >= 3 and COMPLIANCE_RE.match(cells[-1][1]) and any(re.search(r"\d", c) for _, c in cells[1:]):
+            out.unrecognized.append(" | ".join(c for _, c in cells))
+
+    # Column roles come from fully populated rows of this same table.
+    roles: dict[int, str] = {}
+    for _, _, values in data_rows:
+        if len(values) == 3:
+            roles.update({values[0][0]: "spec", values[1][0]: "result", values[2][0]: "compliance"})
+    for analyte, label, values in data_rows:
+        row = Row(category=ANALYTES[analyte][0], analyte=analyte, label_raw=label)
+        if len(values) == 3:
+            assigned = list(zip(("spec", "result", "compliance"), (v for _, v in values)))
+        elif values and all(i in roles for i, _ in values):
+            assigned = [(roles[i], v) for i, v in values]        # partial row, columns known
         else:
-            return None, f"unreadable cells: {rest!r}"
-    else:
-        return None, f"expected 2 values, found {len(quantities)}: {rest!r}"
-    return row, None
+            errors.append(f"{label}: cannot assign {len(values)} cell(s) to columns: {[v for _, v in values]}")
+            continue
+        row_errors = [e for e in (_fill(row, role, cell) for role, cell in assigned) if e]
+        if row_errors:
+            errors.append(f"{label}: " + "; ".join(row_errors))
+        elif analyte in out.rows:
+            out.warnings.append(f"duplicate row for {label}")
+        else:
+            out.rows[analyte] = row
 
 
-def _page_split(text: str) -> tuple[str, str]:
-    """(header text, table text). The tables start at the first 'Specification' heading."""
-    m = re.search(r"^.*Specification\s+Batch\s+Results.*$", text, re.I | re.M)
-    if not m:
-        return text, ""
-    return text[: m.start()], text[m.start():]
-
-
-def _parse_header(header: str, out: Parsed) -> None:
-    m = LOT_RE.search(header)
+def _parse_header(text: str, out: Parsed) -> None:
+    m = LOT_RE.search(text)
     out.lot = m.group(1).strip() if m else None
-    m = EXPIRY_RE.search(header)
+    m = EXPIRY_RE.search(text)
     out.expiry_text = m.group(1).strip() if m else None
-    lines = header.replace("\f", "\n").split("\n")
+    lines = text.split("\n")
     for i, line in enumerate(lines):
         m = DIRECTION_RE.search(line)
         if m:
             parts = [m.group(1).strip()]
             for nxt in lines[i + 1:]:
-                if re.search(r"certifications@|Certifications By|^Nutrasource$|consistent with label|^Passes\b|Batch\s*/\s*Lot|Expiry\s+Date", nxt, re.I):
+                if DIRECTION_STOP_RE.search(nxt):
                     break
                 parts.append(nxt.strip())
             out.directions = re.sub(r"\s+", " ", " ".join(p for p in parts if p)).strip() or None
             break
 
 
-def _parse_comments(lines: list[str], out: Parsed) -> None:
-    out.comments = [l for l in lines if l.strip()]
+def _parse_comments(out: Parsed) -> None:
     blob = " ".join(out.comments)
     for m in AREA_PCT_RE.finditer(blob):
-        key = re.sub(r"\s+", " ", m.group("analyte")).lower().replace("total omega 3", "total_omega3").replace("total omega-3", "total_omega3").replace("total omega3", "total_omega3")
-        num = lambda v: float(v.replace(",", "")) if v else None
+        key = "total_omega3" if m.group("analyte").lower().startswith("total") else m.group("analyte").lower()
+        num = lambda v: float(v.replace(",", "")) if v else None  # noqa: E731
         out.area_pct[key] = {"spec_mg": num(m.group("smg")), "spec_pct": num(m.group("spct")),
                              "result_mg": num(m.group("rmg")), "result_pct": num(m.group("rpct")),
-                             "basis": (m.group("rbasis") or m.group("sbasis") or "").strip() or None}
+                             "basis": _clean(m.group("rbasis") or m.group("sbasis")) or None}
     m = FORM_COMMENT_RE.search(blob)
     if m:
         form, evidence = classify_form(m.group(1))
         if form:
-            out.report_form, out.report_form_evidence = form, re.sub(r"\s+", " ", m.group(0)).strip()
+            out.report_form, out.report_form_evidence = form, _clean(m.group(0))
         else:
-            out.warnings.append(f"form comment not classified: {m.group(0).strip()!r} ({evidence})")
+            out.warnings.append(f"form comment not classified: {_clean(m.group(0))!r} ({evidence})")
 
 
-def parse_report(text: str) -> Parsed:
+def parse_report(doc: PdfDoc) -> Parsed:
+    text = doc.text
     template = detect_template(text)
     out = Parsed(template=template)
     if template == "RM":
@@ -197,62 +243,19 @@ def parse_report(text: str) -> Parsed:
         out.status, out.error = "failed", "unrecognized report layout"
         return out
 
-    header, tables = _page_split(text)
-    _parse_header(header, out)
+    _parse_header(doc.pages[0] if doc.pages else "", out)
     errors: list[str] = []
-    in_comments = False
-    comment_lines: list[str] = []
-    for raw_line in tables.replace("\f", "\n").split("\n"):
-        line = raw_line.strip()
-        if not line or FOOTER_RE.search(line):
-            continue
-        if in_comments:
-            comment_lines.append(line)
-            continue
-        # Unit line: "mg / 2 softgels mg / 2 softgels [Compliance]", possibly prefixed by "Potency".
-        stripped = re.sub(r"^\s*Potency\s+", "", line, flags=re.I)
-        bm = BASIS_LINE_RE.fullmatch(stripped)
-        if bm and out.basis is None and "epa" not in out.rows:
-            spec_basis, result_basis = parse_basis(bm.group(1)), parse_basis(bm.group(2))
-            if result_basis is None:
-                errors.append(f"unreadable potency unit: {line!r}")
-            else:
-                out.basis = result_basis
-                if spec_basis is None or (spec_basis.kind, spec_basis.count) != (result_basis.kind, result_basis.count):
-                    out.warnings.append(f"specification and result units differ: {line!r}")
-            continue
-        if re.fullmatch(r"comments?\s*:?", line, re.I):
-            in_comments = True
-            continue
-        if HEADER_WORDS_RE.fullmatch(line):
-            continue
-        hit = match_label(line)
-        if hit:
-            analyte, label, rest = hit
-            row, err = parse_row(analyte, label, rest, potency=ANALYTES[analyte][0] == "potency")
-            if err:
-                errors.append(f"{label}: {err}")
-            elif analyte in out.rows:
-                out.warnings.append(f"duplicate row for {analyte}: {line!r}")
-            else:
-                out.rows[analyte] = row
-            continue
-        # Not a header, not a known label. If it looks like a data row, log it.
-        out.unrecognized.append(line)
-    _parse_comments(comment_lines, out)
+    for page_tables in doc.tables:
+        for table in page_tables:
+            _parse_table(table, out, errors)
+    _parse_comments(out)
 
-    potency_rows = [a for a in ("epa", "dha", "total_omega3") if a in out.rows]
-    stability_rows = [a for a in ("pv", "av", "totox", "acid_value") if a in out.rows]
     if out.basis is None:
-        errors.append("potency unit line not found")
-    if not potency_rows:
+        errors.append("potency unit not found")
+    if not any(a in out.rows for a in ("epa", "dha", "total_omega3")):
         errors.append("no potency rows found")
-    if not stability_rows:
+    if not any(a in out.rows for a in ("pv", "av", "totox", "acid_value")):
         errors.append("no stability rows found")
-    # A line that ends in Yes/No but has an unknown label is a table row we failed to read.
-    lost_rows = [l for l in out.unrecognized if COMPLIANCE_RE.search(l) and re.search(r"\d", l)]
-    if lost_rows:
-        out.warnings.append(f"{len(lost_rows)} table row(s) with unrecognized labels")
     if errors:
         out.status, out.error = "failed", "; ".join(errors)
     return out

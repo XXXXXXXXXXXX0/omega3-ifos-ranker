@@ -69,8 +69,8 @@ def _term_re(term: str) -> re.Pattern:
 _FORM_RES = {form: [(t, _term_re(t)) for t in sorted(terms, key=len, reverse=True)] for form, terms in FORM_TERMS.items()}
 # Phrases where "triglyceride(s)" is about blood lipids, not the oil form.
 _NOT_FORM = re.compile(
-    r"(serum|blood|plasma|lower(?:s|ing)?|reduc\w*|healthy|normal|elevated|high|maintain\w*)\s+(?:\w+\s+){0,2}"
-    r"(triglycerides?|triacylglycerols?)(?:\s*/\s*(?:triglycerides?|triacylglycerols?))?"
+    r"(serum|blood|plasma|lower(?:s|ing)?|reduc\w*|healthy|normal|elevated)\s+(?:\w+\s+)?"
+    r"(triglycerides?|triacylglycerols?)(?:\s*/\s*(?:triglycerides?|triacylglycerols?))?(?!\s+form)"
     r"|(triglycerides?|triacylglycerols?)\s+levels?",
     re.I,
 )

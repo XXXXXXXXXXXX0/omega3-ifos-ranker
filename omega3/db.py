@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import datetime as dt
 import json
+import re
 import sqlite3
 from pathlib import Path
 
@@ -87,6 +88,10 @@ CREATE TABLE IF NOT EXISTS extractions (
     totox REAL, totox_censored INTEGER,
     totox_source    TEXT,                      -- reported | computed
     acid_value REAL, acid_value_censored INTEGER,
+    comments        TEXT,                      -- JSON list: the report's Comments block
+    report_form     TEXT,                      -- oil form stated in the comments, if any
+    report_form_evidence TEXT,
+    area_pct        TEXT,                      -- JSON: area-% figures from the comments
     warnings        TEXT,                      -- JSON list
     extracted_at    TEXT NOT NULL
 );
@@ -163,7 +168,22 @@ def connect(path: Path | str) -> sqlite3.Connection:
     conn.row_factory = sqlite3.Row
     conn.execute("PRAGMA foreign_keys = ON")
     conn.executescript(SCHEMA)
+    _add_missing_columns(conn)
     return conn
+
+
+def _add_missing_columns(conn: sqlite3.Connection) -> None:
+    """Bring an older database up to the current schema (additive changes only)."""
+    for table, body in re.findall(r"CREATE TABLE IF NOT EXISTS (\w+) \((.*?)\n\);", SCHEMA, re.S):
+        have = {r[1] for r in conn.execute(f"PRAGMA table_info({table})")}
+        for line in body.split("\n"):
+            line = line.split("--")[0].strip().rstrip(",")
+            if not line or line.upper().startswith(("PRIMARY KEY", "UNIQUE", "FOREIGN KEY", "CHECK")):
+                continue
+            for part in line.split(","):          # "epa REAL, dha REAL" style lines
+                tokens = part.split()
+                if len(tokens) >= 2 and tokens[0] not in have and tokens[0].isidentifier():
+                    conn.execute(f"ALTER TABLE {table} ADD COLUMN {tokens[0]} {' '.join(t for t in tokens[1:] if t.upper() not in ('NOT', 'NULL', 'PRIMARY', 'KEY'))}")
 
 
 def now_iso() -> str:

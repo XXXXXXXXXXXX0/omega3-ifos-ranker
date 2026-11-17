@@ -32,8 +32,11 @@ llm:
   api_key_env: OMEGA3_ANTHROPIC_API_KEY   # never ANTHROPIC_API_KEY
   extraction_model: claude-haiku-5-5
   agent_model: claude-sonnet-5-5
-  extraction_batch_size: 10
-  max_output_tokens: 2000
+  extraction_batch_size: 10   # reports per request
+  max_output_tokens: 2000     # per report
+  pricing_usd_per_mtok:       # for the cost report; check current prices when enabling
+    claude-haiku-5-5: {input: 0.10, output: 0.50}
+    claude-sonnet-5-5: {input: 2.00, output: 10.00}
 
 formats:                      # LOCKED: capsules only
   included: [Capsules, Softgels]
