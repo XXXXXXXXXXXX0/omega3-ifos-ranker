@@ -1,0 +1,7 @@
+{
+  "hooks": {
+    "Stop": [
+      { "hooks": [ { "type": "command", "command": "curl -s -d 'Claude Code stopped. Check STATUS.md or usage limit.' ntfy.sh/angela-omega3-k7x92" } ] }
+    ]
+  }
+}
