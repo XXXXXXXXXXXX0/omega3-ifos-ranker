@@ -1,0 +1,19 @@
+name: Build watchdog
+on:
+  schedule:
+    - cron: "*/30 * * * *"
+  workflow_dispatch:
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Alert if no recent commit
+        run: |
+          last=$(git log --all -1 --format=%ct)
+          age=$(( $(date +%s) - last ))
+          if [ "$age" -gt 2700 ]; then
+            curl -s -d "No commit in 45+ min. Likely usage limit. Check Claude Code." ntfy.sh/angela-omega3-k7x92
+          fi
