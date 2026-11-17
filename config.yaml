@@ -1,0 +1,79 @@
+# Every threshold, weight, margin and switch lives here. Nothing is hard-coded
+# in the ranking code. Locked criteria (do not change without Angela) are
+# marked LOCKED.
+
+as_of_date: null            # null = today (UTC). Set YYYY-MM-DD to reproduce a run.
+
+paths:
+  data_dir: data
+  reports_dir: reports
+
+http:
+  user_agent: "omega3-ifos-ranker/0.1 (personal research; polite crawler)"
+  min_interval_seconds: 1.0   # per host
+  timeout_seconds: 60
+  max_retries: 4
+  backoff_seconds: 5
+
+scrape:
+  certification: IFOS
+  listing_url: "https://certifications.nutrasource.ca/umbraco/surface/NutrasourceContent/GetFilteredProducts"
+  brands_url: "https://certifications.nutrasource.ca/umbraco/surface/NutrasourceContent/GetFilteredBrands"
+  product_url: "https://certifications.nutrasource.ca/certified-products/product"
+  files_url: "https://andi.nutrasource.ca/files/"
+  page_size: 100              # 1000 makes the server return HTTP 500
+  page_refresh_hours: 24      # product pages younger than this are not re-fetched
+
+storage:
+  commit_raw_pdfs: ranked     # ranked | all | none   (see DECISIONS D-5)
+
+llm:
+  api_enabled: false          # session override O-1: LLM work is done in-session
+  api_key_env: OMEGA3_ANTHROPIC_API_KEY   # never ANTHROPIC_API_KEY
+  extraction_model: claude-haiku-5-5
+  agent_model: claude-sonnet-5-5
+  extraction_batch_size: 10
+  max_output_tokens: 2000
+
+formats:                      # LOCKED: capsules only
+  included: [Capsules, Softgels]
+  excluded: [Liquids, Gummies, Food]
+  conditional: [Chewables]    # kept + flagged only if text says softgel/capsule
+  softgel_words: [softgel, softgels, "soft gel", "soft gels", capsule, capsules, gelcap, gelcaps, cap, caps]
+  gummy_words: [gummy, gummies, chew, chews, chewy, jelly, jellies]
+
+filters:
+  exclude_pet_products: true  # DECISIONS D-1
+  pet_words: [pet, pets, cat, cats, dog, dogs, canine, feline, puppy, kitten, veterinary]
+  oxidation:                  # LOCKED
+    totox_max_exclusive: 10   # TOTOX < 10
+    pv_max: 3                 # PV <= 3
+    av_max: 8                 # AV <= 8
+    totox_preferred_max: 8    # TOTOX <= 8 is the preferred tier
+  acid_value_max: 3           # LOCKED: <= 3 mg KOH/g
+  totox_crosscheck_tolerance: 0.15   # |reported - (2*PV+AV)| above this is flagged
+
+batches:
+  recency_key: report_date    # report_date | expiry_date   (see DECISIONS P-1)
+
+scoring:                      # LOCKED
+  target_epa_dha_mg: 1000     # oxidation load = TOTOX x g oil to deliver this
+  tie_margin: 0.10            # scores within 10% of the group anchor are ties
+  top_n: 10
+
+validation:                   # plausible ranges; outside = extraction rejected
+  epa_dha_mg_per_capsule: [0, 2000]
+  total_omega3_mg_per_capsule: [1, 2500]
+  mg_per_g: [0, 1000]
+  pv: [0, 50]
+  av: [0, 100]
+  totox: [0, 150]
+  acid_value: [0, 30]
+  oil_mg_per_capsule: [100, 3000]
+
+agent:
+  max_tool_calls: 8           # LOCKED hard limit per product
+  max_tokens_per_product: 60000        # API path
+  max_tool_output_chars: 60000         # in-session stand-in for the token cap
+  fetch_max_chars: 6000       # per page, keyword-windowed
+  search_results: 6
