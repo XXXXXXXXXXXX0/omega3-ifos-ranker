@@ -1,7 +1,9 @@
 name: Build watchdog
+# Schedule turned off on 2026-11-25 at the owner's request: the build is done.
+# To turn it back on, restore these two lines under "on:":
+#   schedule:
+#     - cron: "*/30 * * * *"
 on:
-  schedule:
-    - cron: "*/30 * * * *"
   workflow_dispatch:
 jobs:
   check:
