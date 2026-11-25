@@ -22,7 +22,7 @@ from dataclasses import asdict, dataclass, field
 from .pdftext import PdfDoc
 
 # Bump when parsing or derivation changes, so stored extractions are redone on the next run.
-PARSER_VERSION = 5
+PARSER_VERSION = 6
 from .terms import ANALYTES, classify_form, match_label
 from .units import Basis, find_quantities, parse_basis
 
@@ -43,7 +43,7 @@ AREA_PCT_RE = re.compile(
     r"(?P<analyte>EPA|DHA|Total\s+Omega[\s-]?3)\s*(?:area\s*%\s*)?specification\s*:\s*"
     r"(?:(?P<smg>[\d.,]+)\s*mg\s*/\s*(?P<sbasis>[^()]+?)\s*\(\s*)?(?P<spct>\d+(?:\.\d+)?)\s*%\)?"
     r"\s*[.,;]?\s*Result\s*:\s*(?:(?P<rmg>[\d.,]+)\s*mg\s*/\s*(?P<rbasis>[^()]+?)\s*\(\s*)?(?P<rpct>\d+(?:\.\d+)?)\s*%\)?", re.I)
-FORM_COMMENT_RE = re.compile(r"\b(?:EFAs?|EPA|DHA|omega[\s-]?3s?|fatty acids?)\b[^.\n]*?\btested as\b([^.\n]*)", re.I)
+FORM_COMMENT_RE = re.compile(r"\b(?:EFAs?|EPA|DHA|omega[\s-]?3s?|fatty acids?)\b[^.\n]*?\b(?:tested|expressed) as\b([^.\n]*)", re.I)
 
 
 @dataclass

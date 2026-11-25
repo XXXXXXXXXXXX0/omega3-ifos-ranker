@@ -92,6 +92,7 @@ def placement_row(p: Placement) -> dict:
         "epa_dha_mg_cap": p.epa_dha_mg_cap, "epa_dha_mg_serving": p.epa_dha_mg_serving, "epa_dha_mg_g": p.epa_dha_mg_g,
         "serving_capsules": p.serving_capsules, "epa_dha_ratio": p.epa_dha_ratio, "potency_label": p.potency_label,
         "oil_mg_per_capsule": p.oil_mg_per_capsule, "oil_source": p.oil_source, "oil_g_per_target": p.oil_g_per_target,
+        "capsules_per_target": p.capsules_per_target,
         "form": p.form, "form_source": p.form_source, "form_evidence": p.form_evidence,
         "preferred": p.preferred, "flavored": p.flavored, "inconsistent": p.inconsistent,
         "totox_range": list(p.totox_range) if p.totox_range else None,

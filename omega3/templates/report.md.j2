@@ -17,14 +17,16 @@
 
 Run `{{ run_id }}`. {{ total_products }} IFOS-listed products considered; {{ counts.ranked }} ranked, {{ counts.flavored }} ranked separately as flavored.
 
-**Read this first.** Oxidation load is a proxy, not a health outcome. IFOS tests batches the brand pays to submit, at production, not off the shelf. "Report date" is the date IFOS issued the report; IFOS does not publish a test date. ★ marks TOTOX at or below {{ cfg.filters.oxidation.totox_preferred_max }} (preferred tier).
+**Read this first.** {% if per_capsule %}Oxidation load = TOTOX x the number of capsules needed for {{ cfg.scoring.target_epa_dha_mg }} mg EPA+DHA (IFOS-measured mg per capsule); lower is better. {% endif %}Oxidation load is a proxy, not a health outcome. IFOS tests batches the brand pays to submit, at production, not off the shelf. "Report date" is the date IFOS issued the report; IFOS does not publish a test date. ★ marks TOTOX at or below {{ cfg.filters.oxidation.totox_preferred_max }} (preferred tier).
 
 {% if coverage.top_complete %}
 **Top {{ top_n }} status: complete.** No product still waiting for label verification can reach the top {{ top_n }}, even in its best case.
 {% elif coverage.ranked < top_n %}
 **Top {{ top_n }} status: incomplete.** Only {{ coverage.ranked }} product(s) have every fact needed for a score. {{ coverage.queue }} more pass the oxidation, acid-value and contaminant cutoffs but still need their oil form or capsule oil weight verified from the label.
 {% else %}
-**Top {{ top_n }} status: provisional.** {{ coverage.in_reach }} product(s) that pass every other check could still enter the top {{ top_n }} in their best case (best-possible score at or below {{ coverage.threshold | num("{:.2f}") }}): {{ coverage.in_reach_unchecked }} not yet checked, and {{ coverage.in_reach_checked }} checked without the label giving both the oil form and the oil weight.
+**Top {{ top_n }} status: provisional.** {% if per_capsule %}{{ coverage.in_reach }} product(s) score well enough for the top {{ top_n }} (oxidation load at or below {{ coverage.threshold | num("{:.2f}") }}) but their oil form is not yet confirmed as TG or rTG: {{ coverage.in_reach_unchecked }} not yet checked, and {{ coverage.in_reach_checked }} checked without the label stating the form.
+{% else %}{{ coverage.in_reach }} product(s) that pass every other check could still enter the top {{ top_n }} in their best case (best-possible score at or below {{ coverage.threshold | num("{:.2f}") }}): {{ coverage.in_reach_unchecked }} not yet checked, and {{ coverage.in_reach_checked }} checked without the label giving both the oil form and the oil weight.
+{% endif %}
 {% endif %}
 
 ## Top {{ top_n }}
@@ -48,12 +50,14 @@ No product has every fact needed for a score yet.
 {% if coverage.in_reach_rows %}
 ## Not yet verified, could still enter the top {{ top_n }}
 
-These pass every check that can be made without the label, and their best-possible oxidation load (assuming the capsule is nothing but omega-3) is at or below {{ coverage.threshold | num("{:.2f}") if coverage.threshold else "the threshold" }}. Showing the first {{ coverage.in_reach_rows | length }} of {{ coverage.in_reach }}, best case first. "Checked" means the label was looked for and did not state what is missing.
+{% if per_capsule %}These pass every check except the oil form, and their oxidation load is at or below {{ coverage.threshold | num("{:.2f}") if coverage.threshold else "the threshold" }}. Each needs a source stating TG or rTG. Showing the first {{ coverage.in_reach_rows | length }} of {{ coverage.in_reach }}, best first. "Checked" means the label was looked for and did not state the form.
+{% else %}These pass every check that can be made without the label, and their best-possible oxidation load (assuming the capsule is nothing but omega-3) is at or below {{ coverage.threshold | num("{:.2f}") if coverage.threshold else "the threshold" }}. Showing the first {{ coverage.in_reach_rows | length }} of {{ coverage.in_reach }}, best case first. "Checked" means the label was looked for and did not state what is missing.
+{% endif %}
 
-| Brand | Product | Lot | TOTOX | PV | AV | Best possible load | Needs | Checked |
+| Brand | Product | Lot | TOTOX | PV | AV | {{ "Oxidation load" if per_capsule else "Best possible load" }} | Needs | Checked |
 |---|---|---|---|---|---|---|---|---|
 {% for r in coverage.in_reach_rows %}
-| {{ r.brand }} | {{ r.product }} | {{ r.lot }} | {{ r.totox | num }} | {{ r.pv | num }} | {{ r.av | num }} | {{ r.optimistic_score | num("{:.2f}") }} | {{ "form and oil weight" if not r.form and not r.oil_mg_per_capsule else ("form" if not r.form else "oil weight") }} | {{ "yes" if r.label_checked else "no" }} |
+| {{ r.brand }} | {{ r.product }} | {{ r.lot }} | {{ r.totox | num }} | {{ r.pv | num }} | {{ r.av | num }} | {{ r.optimistic_score | num("{:.2f}") }} | {{ "form" if per_capsule else ("form and oil weight" if not r.form and not r.oil_mg_per_capsule else ("form" if not r.form else "oil weight")) }} | {{ "yes" if r.label_checked else "no" }} |
 {% endfor %}
 
 {% endif %}
@@ -90,7 +94,7 @@ None.
 {% endif %}
 ## Oil weight unavailable
 
-Form is known, but no capsule oil weight was found, so the oxidation load cannot be computed. Not guessed.
+{% if per_capsule %}Form is known, but IFOS reports potency per gram of oil and no capsule oil weight was found, so EPA+DHA per capsule cannot be computed. Not guessed.{% else %}Form is known, but no capsule oil weight was found, so the oxidation load cannot be computed. Not guessed.{% endif %}
 
 {% if rows.oil_weight_unavailable %}
 {{ simple(rows.oil_weight_unavailable) }}

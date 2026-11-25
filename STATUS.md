@@ -4,9 +4,10 @@ Last updated: 2026-11-25. Branch: `claude/keen-ptolemy-j47bf2`.
 
 ## Resume here
 
-All stages are done. The draft pull request to `main` is open. The top 10
-is provisional: 248 candidates still in reach have not been verified
-(D-30, D-32). The one open question that touches a ranked product is D-33.
+All stages are done; the draft pull request to `main` is open. After review
+the score changed to per capsule (D-35): 83 ranked, 10 flavored. The top 10 is
+provisional only because 21 contenders have no online source for their oil
+form (D-36). D-33 is resolved.
 
 To continue label verification later: `python -m omega3 agent-queue` lists
 what is waiting; with an API key, `llm.api_enabled: true` and
@@ -25,7 +26,16 @@ what is waiting; with an API key, `llm.api_enabled: true` and
 | 6 Reports, changelog, re-runs | done | pass |
 | 7 README, final run, PR | done | pass |
 
-`python -m pytest -q` -> `305 passed` (2026-11-25).
+`python -m pytest -q` -> `312 passed` (2026-11-25).
+
+## Post-PR changes (2026-11-25)
+
+Per-capsule score (D-35) and both form-note wordings (D-33, parser v6). The
+extract re-ran on all reports, then `python -m omega3 rank`: 83 ranked, 10
+flavored, 0 oil weight unavailable. Changelog
+`reports/changelogs/2026-11-25T042027.224Z.md` has 93 list or rank changes. I
+checked all ten new top-10 batches against their PDF text: lot, PV, AV, TOTOX,
+EPA and DHA all match. 5 more label checks were done in-session (D-36).
 
 ## Stage 7 evidence
 

@@ -581,3 +581,13 @@ def test_listing_oil_weight(text, mg):
 ])
 def test_listing_oil_weight_refuses_ambiguous_text(text):
     assert listing_oil_weight(text) is None
+
+
+def test_report_form_note_accepts_both_template_wordings():
+    # IFOS changed the wording in May 2026; both name the product's own form (D-33).
+    from omega3.extract.parser import FORM_COMMENT_RE
+    for text, form in (("EFA tested as triglyceride (TG) form.", "triglyceride"),
+                       ("EFA expressed as triglyceride (TG) form.", "triglyceride"),
+                       ("EFA expressed as ethyl ester (EE).", "ethyl ester")):
+        m = FORM_COMMENT_RE.search(text)
+        assert m and form in m.group(1)

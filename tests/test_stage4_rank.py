@@ -202,6 +202,7 @@ def test_report_problems(cfg):
 
 # --- scoring (LOCKED) -------------------------------------------------------------------
 def test_oxidation_load_formula(cfg):
+    cfg["scoring"]["basis"] = "oil_weight"           # the original oil-weight score (D-35)
     p = placed(cfg)                       # TOTOX 6, 600 mg EPA+DHA in a 1000 mg capsule
     assert p.epa_dha_mg_g == 600 and p.oil_g_per_target == pytest.approx(1.6667, abs=1e-4)
     assert p.score == pytest.approx(6.0 * 1000 / 600, abs=1e-3) == pytest.approx(10.0)
@@ -212,6 +213,7 @@ def test_oxidation_load_formula(cfg):
 
 
 def test_per_gram_report_needs_no_capsule_weight(cfg):
+    cfg["scoring"]["basis"] = "oil_weight"           # the original oil-weight score (D-35)
     per_gram = batch(basis_text="mg per g", basis_kind="gram", epa_mg_cap=None, dha_mg_cap=None, total_omega3_mg_cap=None,
                      epa_mg_g=500, dha_mg_g=250, total_omega3_mg_g=800)
     p = placed(cfg, batches=[per_gram], label=None)
@@ -221,6 +223,7 @@ def test_per_gram_report_needs_no_capsule_weight(cfg):
 
 
 def test_missing_oil_weight_is_excluded_not_guessed(cfg):
+    cfg["scoring"]["basis"] = "oil_weight"           # the original oil-weight score (D-35)
     p = placed(cfg, label=None)
     assert p.list_name == OIL_UNAVAILABLE and p.score is None and "not found on the label" in p.reason
     assert p.optimistic_score == pytest.approx(6.0 * 700 / 600)                 # bound: capsule is all omega-3
@@ -231,6 +234,7 @@ def test_missing_oil_weight_is_excluded_not_guessed(cfg):
 
 
 def test_oil_weight_from_area_percent_is_off_by_default(cfg):
+    cfg["scoring"]["basis"] = "oil_weight"           # the original oil-weight score (D-35)
     area = {"epa": {"result_pct": 40.0}, "dha": {"result_pct": 20.0}}
     assert "ifos_area_pct" not in cfg["oil_weight"]["sources"]                   # estimate is opt-in
     assert placed(cfg, label=None, batches=[batch(area_pct=area)]).list_name == OIL_UNAVAILABLE
@@ -292,6 +296,7 @@ def test_tie_groups_break_on_av_then_epa_dha(cfg):
 
 
 def test_tie_break_falls_to_epa_dha_when_av_is_equal(cfg):
+    cfg["scoring"]["basis"] = "oil_weight"           # the original oil-weight score (D-35)
     # same AV; "RICH" has more EPA+DHA per capsule and a slightly worse score, still inside the tie
     lean = product(num="LEAN", batches=[batch(totox=6.0, av=3.0, epa_mg_cap=400, dha_mg_cap=200)],
                    label=LabelFacts(status="verified", oil_mg_per_capsule=1000))
@@ -359,6 +364,7 @@ def test_exclusion_counts_by_reason(cfg):
 
 # --- agent queue -----------------------------------------------------------------------------
 def test_agent_queue_is_ordered_by_best_possible_score_with_a_stopping_threshold(cfg):
+    cfg["scoring"]["basis"] = "oil_weight"           # the original oil-weight score (D-35)
     cfg["scoring"]["top_n"] = 2
     ranked = [_scored(cfg, "R1", 3.0, 2.0), _scored(cfg, "R2", 6.0, 2.0)]                    # scores 5.0 and 10.0
     near = product(num="NEAR", name="Fish Oil", label=None, batches=[batch(totox=4.0)])     # bound 4*700/600 = 4.67
@@ -399,6 +405,7 @@ def test_locked_defaults_in_config_yaml(cfg):
 
 # --- SQLite round trip ---------------------------------------------------------------------------
 def test_load_from_sqlite_and_save_results(cfg, conn, fixtures):
+    cfg["scoring"]["basis"] = "oil_weight"           # the original oil-weight score (D-35)
     from omega3.extract.run import extract_all
     from omega3.scrape.reports import store_report
     now = db.now_iso()
@@ -485,6 +492,7 @@ def test_algal_and_combination_products_are_flagged_not_excluded(cfg):
 
 
 def test_oil_weight_from_ifos_listing_text(cfg):
+    cfg["scoring"]["basis"] = "oil_weight"           # the original oil-weight score (D-35)
     p = placed(cfg, label=None, summary="Each softgel capsule contains 1000 mg fish oil, 700 mg omega 3.")
     assert p.list_name == RANKED and p.oil_source == "ifos_listing" and p.score == pytest.approx(10.0)
     assert any(f.startswith("oil weight from IFOS listing text") for f in p.flags)
@@ -501,3 +509,42 @@ def test_comparison_copy_in_listing_does_not_override_a_verified_label(cfg):
     assert placed(cfg, name="Omega MonoPure", summary="rTG fish oil, unlike ethyl ester", label=None).list_name == FORM_UNVERIFIED
     single = LabelFacts(status="verified", form="TG", oil_mg_per_capsule=1000)
     assert placed(cfg, name="Omega EE Ethyl Ester 1000", label=single).list_name == FORM_UNVERIFIED     # a real disagreement still blocks
+
+
+# --- per-capsule score (D-35, the default) -------------------------------------------
+def test_default_score_is_per_capsule(cfg):
+    assert cfg["scoring"]["basis"] == "per_capsule"
+    p = placed(cfg)                       # TOTOX 6, 600 mg EPA+DHA per capsule
+    assert p.capsules_per_target == pytest.approx(1000 / 600, abs=1e-4)
+    assert p.score == pytest.approx(6.0 * 1000 / 600, abs=1e-3)
+    assert p.optimistic_score == p.score  # the score does not depend on the label
+
+
+def test_per_capsule_needs_no_oil_weight(cfg):
+    p = placed(cfg, label=None)
+    assert p.list_name != OIL_UNAVAILABLE and p.score == pytest.approx(10.0)
+    assert p.list_name == FORM_UNVERIFIED or p.form is not None
+
+
+def test_per_capsule_ignores_capsule_size(cfg):
+    small = placed(cfg, label=LabelFacts(status="verified", oil_mg_per_capsule=700))
+    large = placed(cfg, label=LabelFacts(status="verified", oil_mg_per_capsule=2000))
+    assert small.score == large.score == pytest.approx(10.0)
+    assert small.epa_dha_mg_g != large.epa_dha_mg_g          # mg per g still shown for reference
+
+
+def test_per_gram_report_needs_an_oil_weight_for_mg_per_capsule(cfg):
+    per_gram = batch(basis_text="mg per g", basis_kind="gram", epa_mg_cap=None, dha_mg_cap=None, total_omega3_mg_cap=None,
+                     epa_mg_g=500, dha_mg_g=250, total_omega3_mg_g=800)
+    p = placed(cfg, batches=[per_gram], label=None)
+    assert p.list_name == OIL_UNAVAILABLE and p.score is None and "per gram" in p.reason
+    with_label = placed(cfg, batches=[per_gram], label=LabelFacts(status="verified", oil_mg_per_capsule=1000))
+    assert with_label.epa_dha_mg_cap == 750 and with_label.score == pytest.approx(6.0 * 1000 / 750, abs=1e-3)
+
+
+def test_score_basis_switch_changes_the_outcome(cfg):
+    label = LabelFacts(status="verified", oil_mg_per_capsule=1200)
+    per_capsule = placed(cfg, label=label).score
+    cfg["scoring"]["basis"] = "oil_weight"
+    oil = placed(cfg, label=label).score
+    assert per_capsule == pytest.approx(10.0) and oil == pytest.approx(6.0 * 1.2 * 1000 / 600)

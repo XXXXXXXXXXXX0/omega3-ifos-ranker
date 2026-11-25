@@ -48,14 +48,16 @@ ol.why li { margin:0 0 12px; max-width:90ch; } .counts td:first-child, .counts t
 <h1>Omega-3 IFOS ranking</h1>
 <p class="dim">As of {{ as_of }} · run <code>{{ run_id }}</code> · {{ total_products }} IFOS-listed products considered · {{ counts.ranked }} ranked · {{ counts.flavored }} flavored, ranked separately</p>
 
-<div class="note"><strong>Read this first.</strong> Oxidation load is a proxy, not a health outcome. IFOS tests batches the brand pays to submit, at production, not off the shelf. "Report date" is the date IFOS issued the report; IFOS does not publish a test date. ★ marks TOTOX at or below {{ cfg.filters.oxidation.totox_preferred_max }} (preferred tier).</div>
+<div class="note"><strong>Read this first.</strong> {% if per_capsule %}Oxidation load = TOTOX x the number of capsules needed for {{ cfg.scoring.target_epa_dha_mg }} mg EPA+DHA (IFOS-measured mg per capsule); lower is better. {% endif %}Oxidation load is a proxy, not a health outcome. IFOS tests batches the brand pays to submit, at production, not off the shelf. "Report date" is the date IFOS issued the report; IFOS does not publish a test date. ★ marks TOTOX at or below {{ cfg.filters.oxidation.totox_preferred_max }} (preferred tier).</div>
 
 {% if coverage.top_complete %}
 <div class="note"><strong>Top {{ top_n }} status: complete.</strong> No product still waiting for label verification can reach the top {{ top_n }}, even in its best case.</div>
 {% elif coverage.ranked < top_n %}
 <div class="note warn"><strong>Top {{ top_n }} status: incomplete.</strong> Only {{ coverage.ranked }} product(s) have every fact needed for a score. {{ coverage.queue }} more pass the oxidation, acid-value and contaminant cutoffs but still need their oil form or capsule oil weight verified from the label.</div>
 {% else %}
-<div class="note warn"><strong>Top {{ top_n }} status: provisional.</strong> {{ coverage.in_reach }} product(s) that pass every other check could still enter the top {{ top_n }} in their best case (best-possible score at or below {{ coverage.threshold | num("{:.2f}") }}): {{ coverage.in_reach_unchecked }} not yet checked, and {{ coverage.in_reach_checked }} checked without the label giving both the oil form and the oil weight.</div>
+<div class="note warn"><strong>Top {{ top_n }} status: provisional.</strong> {% if per_capsule %}{{ coverage.in_reach }} product(s) score well enough for the top {{ top_n }} (oxidation load at or below {{ coverage.threshold | num("{:.2f}") }}) but their oil form is not yet confirmed as TG or rTG: {{ coverage.in_reach_unchecked }} not yet checked, and {{ coverage.in_reach_checked }} checked without the label stating the form.</div>
+{% else %}{{ coverage.in_reach }} product(s) that pass every other check could still enter the top {{ top_n }} in their best case (best-possible score at or below {{ coverage.threshold | num("{:.2f}") }}): {{ coverage.in_reach_unchecked }} not yet checked, and {{ coverage.in_reach_checked }} checked without the label giving both the oil form and the oil weight.</div>
+{% endif %}
 {% endif %}
 
 <h2>Top {{ top_n }}</h2>
@@ -75,11 +77,11 @@ ol.why li { margin:0 0 12px; max-width:90ch; } .counts td:first-child, .counts t
 
 {% if coverage.in_reach_rows %}
 <h2>Not yet verified, could still enter the top {{ top_n }}</h2>
-<p class="dim">These pass every check that can be made without the label, and their best-possible oxidation load (assuming the capsule is nothing but omega-3) is at or below {{ coverage.threshold | num("{:.2f}") if coverage.threshold else "the threshold" }}. Showing the first {{ coverage.in_reach_rows | length }} of {{ coverage.in_reach }}, best case first. "Checked" means the label was looked for and did not state what is missing.</p>
-<div class="scroll"><table><thead><tr><th class="l">Brand / product</th><th>Lot</th><th>TOTOX</th><th>PV</th><th>AV</th><th>Best possible load</th><th class="l">Needs</th><th>Checked</th></tr></thead><tbody>
+{% if per_capsule %}<p class="dim">These pass every check except the oil form, and their oxidation load is at or below {{ coverage.threshold | num("{:.2f}") if coverage.threshold else "the threshold" }}. Each needs a source stating TG or rTG.</p>{% else %}<p class="dim">These pass every check that can be made without the label, and their best-possible oxidation load (assuming the capsule is nothing but omega-3) is at or below {{ coverage.threshold | num("{:.2f}") if coverage.threshold else "the threshold" }}. Showing the first {{ coverage.in_reach_rows | length }} of {{ coverage.in_reach }}, best case first. "Checked" means the label was looked for and did not state what is missing.</p>{% endif %}
+<div class="scroll"><table><thead><tr><th class="l">Brand / product</th><th>Lot</th><th>TOTOX</th><th>PV</th><th>AV</th><th>{{ "Oxidation load" if per_capsule else "Best possible load" }}</th><th class="l">Needs</th><th>Checked</th></tr></thead><tbody>
 {% for r in coverage.in_reach_rows %}
 <tr><td class="l"><strong>{{ r.brand }}</strong> {{ r.product }}</td><td>{{ r.lot }}</td><td>{{ r.totox | num }}</td><td>{{ r.pv | num }}</td><td>{{ r.av | num }}</td><td>{{ r.optimistic_score | num("{:.2f}") }}</td>
-<td class="l">{{ "form and oil weight" if not r.form and not r.oil_mg_per_capsule else ("form" if not r.form else "oil weight") }}</td><td>{{ "yes" if r.label_checked else "no" }}</td></tr>
+<td class="l">{{ "form" if per_capsule else ("form and oil weight" if not r.form and not r.oil_mg_per_capsule else ("form" if not r.form else "oil weight")) }}</td><td>{{ "yes" if r.label_checked else "no" }}</td></tr>
 {% endfor %}
 </tbody></table></div>
 {% endif %}
@@ -104,7 +106,7 @@ ol.why li { margin:0 0 12px; max-width:90ch; } .counts td:first-child, .counts t
 {{ simple(rows.form_unverified) }}
 
 <h2>Oil weight unavailable</h2>
-<p class="dim">Form is known, but no capsule oil weight was found, so the oxidation load cannot be computed. Not guessed.</p>
+<p class="dim">{% if per_capsule %}Form is known, but IFOS reports potency per gram of oil and no capsule oil weight was found, so EPA+DHA per capsule cannot be computed. Not guessed.{% else %}Form is known, but no capsule oil weight was found, so the oxidation load cannot be computed. Not guessed.{% endif %}</p>
 {{ simple(rows.oil_weight_unavailable) }}
 
 <h2>Monoglyceride</h2>

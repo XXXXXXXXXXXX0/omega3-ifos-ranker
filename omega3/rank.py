@@ -149,6 +149,7 @@ class Placement:
     rank: int | None = None
     tie_group: int | None = None
     score: float | None = None
+    capsules_per_target: float | None = None
     optimistic_score: float | None = None    # best possible score if oil weight were minimal
     flags: list[str] = field(default_factory=list)
     all_reasons: list[str] = field(default_factory=list)
@@ -502,24 +503,42 @@ def place(product: Product, cfg, today: dt.date) -> Placement:
         if p.serving_capsules and p.epa_dha_mg_cap is not None:
             p.epa_dha_mg_serving = round(p.epa_dha_mg_cap * p.serving_capsules, 1)
         target = cfg["scoring"]["target_epa_dha_mg"]
-        if conc["mg_cap"] is None and conc["mg_g"] is None:
-            if conc["problem"]:
+        basis = cfg["scoring"].get("basis", "oil_weight")
+        if p.epa_dha_mg_g:
+            p.oil_g_per_target = round(target / p.epa_dha_mg_g, 4)
+        if basis == "per_capsule":
+            # D-35: TOTOX x capsules needed for the target dose. Uses IFOS-measured
+            # EPA+DHA per capsule; no capsule oil weight is needed.
+            if conc["mg_cap"]:
+                p.capsules_per_target = round(target / conc["mg_cap"], 4)
+                if batch.totox is not None:
+                    p.score = round(batch.totox * p.capsules_per_target, 3)
+            elif conc["mg_g"] is not None:
+                reasons.append((OIL_UNAVAILABLE, "oil weight unavailable: potency reported per gram of oil, and the capsule's "
+                                                 "oil weight is needed to get mg per capsule"))
+            elif conc["problem"]:
                 reasons.append((OIL_UNAVAILABLE, f"oil weight unavailable: {conc['problem']}"))
             elif batch.basis_kind in ("capsule", "gram", "percent"):
                 reasons.append((INCOMPLETE, "no EPA or DHA result"))
-        elif not p.epa_dha_mg_g:
-            detail = conc["problem"] or "capsule oil weight not found on the label"
-            reasons.append((OIL_UNAVAILABLE, f"oil weight unavailable: {detail}"))
-        else:
-            p.oil_g_per_target = round(target / p.epa_dha_mg_g, 4)
-            if batch.totox is not None:
-                p.score = round(batch.totox * p.oil_g_per_target, 3)
-        # Best case for the agent queue: capsule is nothing but its omega-3.
-        if batch.totox is not None and conc["mg_cap"]:
-            floor_oil = batch.total_omega3_mg_cap or conc["mg_cap"]
-            p.optimistic_score = round(batch.totox * floor_oil / conc["mg_cap"] * target / 1000, 3)
-        elif p.score is not None:
+            # The score does not depend on the label, so the best case is the score itself.
             p.optimistic_score = p.score
+        else:
+            if conc["mg_cap"] is None and conc["mg_g"] is None:
+                if conc["problem"]:
+                    reasons.append((OIL_UNAVAILABLE, f"oil weight unavailable: {conc['problem']}"))
+                elif batch.basis_kind in ("capsule", "gram", "percent"):
+                    reasons.append((INCOMPLETE, "no EPA or DHA result"))
+            elif not p.epa_dha_mg_g:
+                detail = conc["problem"] or "capsule oil weight not found on the label"
+                reasons.append((OIL_UNAVAILABLE, f"oil weight unavailable: {detail}"))
+            elif batch.totox is not None:
+                p.score = round(batch.totox * p.oil_g_per_target, 3)
+            # Best case for the agent queue: capsule is nothing but its omega-3.
+            if batch.totox is not None and conc["mg_cap"]:
+                floor_oil = batch.total_omega3_mg_cap or conc["mg_cap"]
+                p.optimistic_score = round(batch.totox * floor_oil / conc["mg_cap"] * target / 1000, 3)
+            elif p.score is not None:
+                p.optimistic_score = p.score
 
     listing_text = f"{product.name} {product.summary}"
     algal = _word(listing_text, cfg["filters"]["algal_words"])

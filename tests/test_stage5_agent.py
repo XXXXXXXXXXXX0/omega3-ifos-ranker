@@ -371,6 +371,7 @@ def test_api_agent_is_off_by_default(cfg, conn, seeded, site):
 
 
 def test_queue_runs_in_bound_order_and_skips_cached(cfg, conn, seeded, site):
+    cfg["scoring"]["basis"] = "oil_weight"           # bound order only exists for the oil-weight score (D-35)
     cfg["llm"]["api_enabled"] = True
     queue, threshold = runner.candidates(cfg, conn)
     assert [p.product.product_num for p in queue] == ["BEBI0001"] and threshold is None      # needs oil weight; nothing ranked yet

@@ -1,80 +1,143 @@
 # Omega-3 IFOS ranking, as of 2026-11-25
 
-Run `2026-11-25T02:47:40.178+00:00`. 838 IFOS-listed products considered; 11 ranked, 3 ranked separately as flavored.
+Run `2026-11-25T04:27:19.783+00:00`. 838 IFOS-listed products considered; 83 ranked, 10 ranked separately as flavored.
 
-**Read this first.** Oxidation load is a proxy, not a health outcome. IFOS tests batches the brand pays to submit, at production, not off the shelf. "Report date" is the date IFOS issued the report; IFOS does not publish a test date. ★ marks TOTOX at or below 8 (preferred tier).
+**Read this first.** Oxidation load = TOTOX x the number of capsules needed for 1000 mg EPA+DHA (IFOS-measured mg per capsule); lower is better. Oxidation load is a proxy, not a health outcome. IFOS tests batches the brand pays to submit, at production, not off the shelf. "Report date" is the date IFOS issued the report; IFOS does not publish a test date. ★ marks TOTOX at or below 8 (preferred tier).
 
-**Top 10 status: provisional.** 248 product(s) that pass every other check could still enter the top 10 in their best case (best-possible score at or below 9.66): 187 not yet checked, and 61 checked without the label giving both the oil form and the oil weight.
+**Top 10 status: provisional.** 21 product(s) score well enough for the top 10 (oxidation load at or below 5.12) but their oil form is not yet confirmed as TG or rTG: 0 not yet checked, and 21 checked without the label stating the form.
 
 ## Top 10
 
 | Rank | Brand | Product | Lot | Oxidation load | TOTOX | PV | AV | Acid value | EPA+DHA mg/capsule | mg/serving | mg/g oil | EPA:DHA | Form | Report date | Expiry | Flags |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 1 | Pharma New Zealand PNZ Limited（Phatma®️） | Pharma NEW ZEALAND OMEGA 3 1440mg | T0426020 | 3.37 | 3.1 ★ | 0.21 | 2.68 | 0.21 | 1381 | 1381 | 921 | 1.25 | rTG | 2026-05-28 | 2029-04-15 | flavor not stated; packaging: blister packs |
-| 2 | Coco March | Marine Omega 3 | 2G22E001 | 4.32 | 3.77 ★ | 0.27 | 3.23 | 0.11 | 872 | 1745 | 872 | 1.29 | rTG | 2026-08-25 | 2029-02-05 | flavor not stated |
-| 3 | VIBE Nutraceuticals, SL | OMEGA 3 PRO | 21225.1 | 5.97 | 5.18 ★ | 0.5 | 4.18 | 0.19 | 867 | 867 | 867 | 1.48 | TG | 2026-08-07 | 2029-07-31 | inconsistent batches: 3 of 8 other unexpired batch(es) fail a cutoff; TOTOX range 4.66 to 13.8; oil weight from IFOS listing text: "per 1000 mg softgel"; flavor not stated |
-| 4 | Mederi Integrative Nutrition | DHA Pure NPD1 1000 | 1925.1 | 6.06 | 4.74 ★ | 0.14 | 4.46 | 0.09 | 1029 | 1029 | 782 | n/a | TG | 2026-03-05 | 2029-01-31 | DHA only; flavor not stated |
-| 5 | Amplecare Pharmaceutical Pty Ltd | Amplecare EPA 1000 rTG Fish Oil | 121117 | 5.58 | 5.2 ★ | 0.11 | 4.98 | 0.07 | 1097 | 1097 | 932 | n/a | rTG | 2026-06-15 | 2029-01-31 | EPA only; flavor not stated |
-| 6 | OmegaVia | OmegaVia Prenatal Omega-3 DHA | OV250191 | 8.12 | 6.31 ★ | 2.2 | 1.91 | 0.05 | 666 | 666 | 777 | n/a | TG | 2025-10-22 | 2028-04-18 | DHA only; algal oil, not fish oil ('algae' in IFOS listing); multi-ingredient product ('prenatal' in IFOS listing); flavor not stated |
-| 7 | U.G.A. Nutraceuticals Srl | Omegor Vitality 1000 | 2608202 | 7.84 | 6.55 ★ | 2.07 | 2.41 | 0.06 | 835 | 3340 | 835 | 1.94 | TG | 2026-11-20 | 2029-10-31 | inconsistent batches: 3 of 21 other unexpired batch(es) fail a cutoff; TOTOX range 4.99 to 9.92; oil weight from IFOS listing text: "Each 1000mg capsule"; flavor not stated |
-| 8 | Nutribiotica SL | Kiroot Omega 3 DHA | 1325.7 | 8.12 | 6.97 ★ | 0.89 | 5.19 | 0.28 | 1130 | 2259 | 858 | 0.06 | TG | 2025-10-02 | 2028-06-30 | inconsistent batches: 2 of 2 other unexpired batch(es) fail a cutoff; TOTOX range 6.97 to 14.56; flavor not stated |
-| 9 | Amplecare Pharmaceutical Pty Ltd | Amplecare ULTRA rTG Fish Oil | 121118 | 7.52 | 7.01 ★ | 0.23 | 6.55 | 0.11 | 1002 | 1002 | 932 | 1.48 | rTG | 2026-06-15 | 2029-01-31 | flavor not stated |
-| 10 | Sports Research | Omega-3 Fish Oil Triple Strength 1250mg | S26E206 | 8.78 | 7.32 ★ | 2.24 | 2.84 | 0.03 | 1042 | 1042 | 834 | 2.15 | TG | 2026-11-18 | 2029-09-30 | inconsistent batches: 53 of 157 other unexpired batch(es) fail a cutoff; TOTOX range 3.6 to 18.93; flavor not stated |
+| 1 | BIO-H | BIO-H rTG 97% Fish Oil Extract | U601350 | 1.83 | 2.5 ★ | 0.2 | 2.1 | 0.13 | 1369 | 2738 | n/a | 1.54 | rTG | 2026-04-15 | 2029-01-19 | inconsistent batches: 2 of 3 other unexpired batch(es) fail a cutoff; TOTOX range 2.5 to 12; flavor not stated |
+| 2 | Hong Kong Healthcare & HeartBioTech Co., Limited | ULTRA PURE FISH OIL | 325Y0912 | 2.13 | 1.1 ★ | 0.08 | 1.1 | 0.08 | 517 | 1034 | n/a | n/a | TG | 2025-10-21 | 2027-09-27 | oxidation value reported as '<x'; evaluated at x; EPA only; flavor not stated |
+| 3 | Pharma New Zealand PNZ Limited（Phatma®️） | Pharma NEW ZEALAND OMEGA 3 1440mg | T0426020 | 2.25 | 3.1 ★ | 0.21 | 2.68 | 0.21 | 1381 | 1381 | 921 | 1.25 | rTG | 2026-05-28 | 2029-04-15 | flavor not stated; packaging: blister packs |
+| 4 | BIO-H | BIO-H rTG 98% (EPA 1230) Fish Oil Extract | U512107 | 2.18 | 3.1 ★ | 0.16 | 2.8 | 0.17 | 1422 | 2844 | n/a | 6.81 | rTG | 2026-02-24 | 2028-11-26 | flavor not stated |
+| 5 | Sports Research | Omega-3 Fish Oil AlaskOmega 1250 mg MSC-C-55162 | S26G026 | 2.79 | 2.94 ★ | 1.39 | 0.16 | 0.01 | 1052 | 1052 | n/a | 2.47 | TG | 2026-11-18 | 2029-10-31 | inconsistent batches: 2 of 90 other unexpired batch(es) fail a cutoff; TOTOX range 1.96 to 11.08; flavor not stated |
+| 6 | The littles | rTG Booster Ultimate Omega 3 | 26004 | 3.56 | 4.06 ★ | 1.23 | 1.6 | 0.37 | 1142 | 1142 | n/a | n/a | rTG | 2026-09-16 | 2029-07-01 | inconsistent batches: 4 of 14 other unexpired batch(es) fail a cutoff; TOTOX range 4.06 to 18.98; EPA+DHA reported combined; flavor not stated |
+| 7 | NUTRAGROUP | Soft Fish Oil Capsule 500/250 TG | VS260652-3 | 3.46 | 2.66 ★ | 0.08 | 2.5 | 0.13 | 768 | 1536 | n/a | 1.91 | TG | 2026-08-18 | 2029-06-28 | oxidation value reported as '<x'; evaluated at x; flavor not stated |
+| 8 | Bare Performance Nutrition | Strong Omega | B012902 | 3.52 | 3.94 ★ | 1.45 | 3.7 | 0.12 | 1120 | 2240 | n/a | 1.96 | TG | 2026-07-13 | 2028-06-30 | inconsistent batches: 1 of 5 other unexpired batch(es) fail a cutoff; TOTOX range 3.94 to 14.02; flavor not stated |
+| 9 | Our Nutri | rTG CARE OMEGA3 MAX 1100 | 263814 | 3.90 | 4.34 ★ | 1.72 | 0.9 | 0.25 | 1113 | 1113 | n/a | n/a | rTG | 2026-11-17 | 2029-08-30 | inconsistent batches: 2 of 20 other unexpired batch(es) fail a cutoff; TOTOX range 3.74 to 9.93; EPA+DHA reported combined; flavor not stated |
+| 10 | U.G.A. Nutraceuticals Srl | VitaDHA 1000 | 2613308 | 4.65 | 2.54 ★ | 0.1 | 2.34 | 0.26 | 546 | 3276 | n/a | 0.09 | TG | 2026-11-20 | 2029-09-30 | inconsistent batches: 6 of 12 other unexpired batch(es) fail a cutoff; TOTOX range 2.54 to 12.36; flavor not stated |
 
 ### Why each product is here
 
-1. **Pharma New Zealand PNZ Limited（Phatma®️）: Pharma NEW ZEALAND OMEGA 3 1440mg.** Oxidation load 3.37 = TOTOX 3.1 x 1.09 g of oil needed for 1000 mg EPA+DHA (921 mg per g of oil). Lot T0426020: PV 0.21, AV 2.68, acid value 0.21; all reported contaminants within IFOS limits. TOTOX is in the preferred tier (at or below 8). Form rTG per label: "Our high-purity rTG Omega-3 fish oil offers an exceptional purity level [https://pharmanewzealand.co.nz/rtg-fish-oil-brain/]". Oil weight 1500 mg per capsule from the label. Flags: flavor not stated; packaging: blister packs.
-2. **Coco March: Marine Omega 3.** Oxidation load 4.32 = TOTOX 3.77 x 1.15 g of oil needed for 1000 mg EPA+DHA (872 mg per g of oil). Lot 2G22E001: PV 0.27, AV 3.23, acid value 0.11; all reported contaminants within IFOS limits. TOTOX is in the preferred tier (at or below 8). Form rTG per label: "Fish Oil Concentrate (rTG Form) 2,000 MG [https://tienda.dracocomarch.com/en-us/products/marine-omega-3]". Oil weight 1000 mg per capsule from the label. Flags: flavor not stated.
-3. **VIBE Nutraceuticals, SL: OMEGA 3 PRO.** Oxidation load 5.97 = TOTOX 5.18 x 1.15 g of oil needed for 1000 mg EPA+DHA (867 mg per g of oil). Lot 21225.1: PV 0.5, AV 4.18, acid value 0.19; all reported contaminants within IFOS limits. TOTOX is in the preferred tier (at or below 8). Form TG per IFOS listing: "OMEGA 3 PRO. A food supplement based on Omega 3 in the form of natural triglyceride with a minimum 85% total omega-3, of which 80% EPA+DHA (480 mg EPA +...". Oil weight 1000 mg per capsule as stated in the brand's IFOS listing text. Scores within 10% are treated as ties: tied with #4, #5, ordered by lower AV, then higher EPA+DHA per capsule. Caution: another unexpired batch fails a cutoff (TOTOX across unexpired batches 4.66 to 13.8). Flags: inconsistent batches: 3 of 8 other unexpired batch(es) fail a cutoff; TOTOX range 4.66 to 13.8; oil weight from IFOS listing text: "per 1000 mg softgel"; flavor not stated.
-4. **Mederi Integrative Nutrition: DHA Pure NPD1 1000.** Oxidation load 6.06 = TOTOX 4.74 x 1.28 g of oil needed for 1000 mg EPA+DHA (782 mg per g of oil). Lot 1925.1: PV 0.14, AV 4.46, acid value 0.09; all reported contaminants within IFOS limits. TOTOX is in the preferred tier (at or below 8). Form TG per label: "Omega 3 (min 80% TG) [https://mederinutricion.com/producto/dha-pure-npd1-1000/]". Oil weight 1316 mg per capsule from the label. Scores within 10% are treated as ties: tied with #3, #5, ordered by lower AV, then higher EPA+DHA per capsule. Flags: DHA only; flavor not stated.
-5. **Amplecare Pharmaceutical Pty Ltd: Amplecare EPA 1000 rTG Fish Oil.** Oxidation load 5.58 = TOTOX 5.2 x 1.07 g of oil needed for 1000 mg EPA+DHA (932 mg per g of oil). Lot 121117: PV 0.11, AV 4.98, acid value 0.07; all reported contaminants within IFOS limits. TOTOX is in the preferred tier (at or below 8). Form rTG per label: "Amplecare EPA 1000 rTG Fish Oil Softgels [https://amplecare.com/products/amplecare-epa-1000-rtg-fish-oil-softgels-60-softgel-capsules]". Oil weight 1176.5 mg per capsule from the label. Scores within 10% are treated as ties: tied with #3, #4, ordered by lower AV, then higher EPA+DHA per capsule. Flags: EPA only; flavor not stated.
-6. **OmegaVia: OmegaVia Prenatal Omega-3 DHA.** Oxidation load 8.12 = TOTOX 6.31 x 1.29 g of oil needed for 1000 mg EPA+DHA (777 mg per g of oil). Lot OV250191: PV 2.2, AV 1.91, acid value 0.05; all reported contaminants within IFOS limits. TOTOX is in the preferred tier (at or below 8). Form TG per IFOS listing: "...al Omega-3 DHA provides 600 mg of ultra-pure algae oil DHA Omega-3 in triglyceride form for exceptional purity and potency. Our softgels are 100% fish-free a". Oil weight 857 mg per capsule from the label. Scores within 10% are treated as ties: tied with #7, #8, #9, ordered by lower AV, then higher EPA+DHA per capsule. Flags: DHA only; algal oil, not fish oil ('algae' in IFOS listing); multi-ingredient product ('prenatal' in IFOS listing); flavor not stated.
-7. **U.G.A. Nutraceuticals Srl: Omegor Vitality 1000.** Oxidation load 7.84 = TOTOX 6.55 x 1.20 g of oil needed for 1000 mg EPA+DHA (835 mg per g of oil). Lot 2608202: PV 2.07, AV 2.41, acid value 0.06; all reported contaminants within IFOS limits. TOTOX is in the preferred tier (at or below 8). Form TG per IFOS report: "EFA tested as triglyceride (TG) form [lot 258907]". Oil weight 1000 mg per capsule as stated in the brand's IFOS listing text. Scores within 10% are treated as ties: tied with #6, #8, #9, ordered by lower AV, then higher EPA+DHA per capsule. Caution: another unexpired batch fails a cutoff (TOTOX across unexpired batches 4.99 to 9.92). Flags: inconsistent batches: 3 of 21 other unexpired batch(es) fail a cutoff; TOTOX range 4.99 to 9.92; oil weight from IFOS listing text: "Each 1000mg capsule"; flavor not stated.
-8. **Nutribiotica SL: Kiroot Omega 3 DHA.** Oxidation load 8.12 = TOTOX 6.97 x 1.17 g of oil needed for 1000 mg EPA+DHA (858 mg per g of oil). Lot 1325.7: PV 0.89, AV 5.19, acid value 0.28; all reported contaminants within IFOS limits. TOTOX is in the preferred tier (at or below 8). Form TG per IFOS listing: "...is a dietary supplement based on fish oil rich in DHA in the form of triglycerides. Kiroot Omega 3 DHA contributes to maintaining normal vision and norm...". Oil weight 1316 mg per capsule from the label. Scores within 10% are treated as ties: tied with #6, #7, #9, ordered by lower AV, then higher EPA+DHA per capsule. Caution: another unexpired batch fails a cutoff (TOTOX across unexpired batches 6.97 to 14.56). Flags: inconsistent batches: 2 of 2 other unexpired batch(es) fail a cutoff; TOTOX range 6.97 to 14.56; flavor not stated.
-9. **Amplecare Pharmaceutical Pty Ltd: Amplecare ULTRA rTG Fish Oil.** Oxidation load 7.52 = TOTOX 7.01 x 1.07 g of oil needed for 1000 mg EPA+DHA (932 mg per g of oil). Lot 121118: PV 0.23, AV 6.55, acid value 0.11; all reported contaminants within IFOS limits. TOTOX is in the preferred tier (at or below 8). Form rTG per label: "Amplecare ULTRA rTG Fish Oil Softgels [https://amplecare.com/products/amplecare-ultra-rtg-fish-oil-softgels-30-softgel-capsules]". Oil weight 1075 mg per capsule from the label. Scores within 10% are treated as ties: tied with #6, #7, #8, ordered by lower AV, then higher EPA+DHA per capsule. Flags: flavor not stated.
-10. **Sports Research: Omega-3 Fish Oil Triple Strength 1250mg.** Oxidation load 8.78 = TOTOX 7.32 x 1.20 g of oil needed for 1000 mg EPA+DHA (834 mg per g of oil). Lot S26E206: PV 2.24, AV 2.84, acid value 0.03; all reported contaminants within IFOS limits. TOTOX is in the preferred tier (at or below 8). Form TG per IFOS listing: "...s Research Triple Strength Omega-3 is a clean and highly concentrated TG omega-3 fish oil product. Each capsule contains a minimum 1055mg tota...". Oil weight 1250 mg per capsule from the label. Caution: another unexpired batch fails a cutoff (TOTOX across unexpired batches 3.6 to 18.93). Flags: inconsistent batches: 53 of 157 other unexpired batch(es) fail a cutoff; TOTOX range 3.6 to 18.93; flavor not stated.
+1. **BIO-H: BIO-H rTG 97% Fish Oil Extract.** Oxidation load 1.83 = TOTOX 2.5 x 0.73 capsules needed for 1000 mg EPA+DHA (1369 mg per capsule, measured by IFOS). Lot U601350: PV 0.2, AV 2.1, acid value 0.13; all reported contaminants within IFOS limits. TOTOX is in the preferred tier (at or below 8). Form rTG per IFOS listing: "BIO-H rTG 97% Fish Oil Extract. BIO-H rTG 97% Fish Oil Extract is a purified an...". Caution: another unexpired batch fails a cutoff (TOTOX across unexpired batches 2.5 to 12). Flags: inconsistent batches: 2 of 3 other unexpired batch(es) fail a cutoff; TOTOX range 2.5 to 12; flavor not stated.
+2. **Hong Kong Healthcare & HeartBioTech Co., Limited: ULTRA PURE FISH OIL.** Oxidation load 2.13 = TOTOX 1.1 x 1.93 capsules needed for 1000 mg EPA+DHA (517 mg per capsule, measured by IFOS). Lot 325Y0912: PV 0.08, AV 1.1, acid value 0.08; all reported contaminants within IFOS limits. TOTOX is in the preferred tier (at or below 8). Form TG per IFOS listing: "...d cerebrovascular systems, helping stabilize blood lipids, regulating triglycerides, promoting smooth blood vessels, improving vascular indices, and rest...". Scores within 10% are treated as ties: tied with #3, #4, ordered by lower AV, then higher EPA+DHA per capsule. Flags: oxidation value reported as '<x'; evaluated at x; EPA only; flavor not stated.
+3. **Pharma New Zealand PNZ Limited（Phatma®️）: Pharma NEW ZEALAND OMEGA 3 1440mg.** Oxidation load 2.25 = TOTOX 3.1 x 0.72 capsules needed for 1000 mg EPA+DHA (1381 mg per capsule, measured by IFOS). Lot T0426020: PV 0.21, AV 2.68, acid value 0.21; all reported contaminants within IFOS limits. TOTOX is in the preferred tier (at or below 8). Form rTG per label: "Our high-purity rTG Omega-3 fish oil offers an exceptional purity level [https://pharmanewzealand.co.nz/rtg-fish-oil-brain/]". Oil weight 1500 mg per capsule from the label (shown for reference; not used in the score). Scores within 10% are treated as ties: tied with #2, #4, ordered by lower AV, then higher EPA+DHA per capsule. Flags: flavor not stated; packaging: blister packs.
+4. **BIO-H: BIO-H rTG 98% (EPA 1230) Fish Oil Extract.** Oxidation load 2.18 = TOTOX 3.1 x 0.70 capsules needed for 1000 mg EPA+DHA (1422 mg per capsule, measured by IFOS). Lot U512107: PV 0.16, AV 2.8, acid value 0.17; all reported contaminants within IFOS limits. TOTOX is in the preferred tier (at or below 8). Form rTG per IFOS listing: "BIO-H rTG 98% (EPA 1230) Fish Oil Extract. BIO-H rTG 97% (EPA 1200) Fish Oil Ex...". Scores within 10% are treated as ties: tied with #2, #3, ordered by lower AV, then higher EPA+DHA per capsule. Flags: flavor not stated.
+5. **Sports Research: Omega-3 Fish Oil AlaskOmega 1250 mg MSC-C-55162.** Oxidation load 2.79 = TOTOX 2.94 x 0.95 capsules needed for 1000 mg EPA+DHA (1052 mg per capsule, measured by IFOS). Lot S26G026: PV 1.39, AV 0.16, acid value 0.01; all reported contaminants within IFOS limits. TOTOX is in the preferred tier (at or below 8). Form TG per IFOS listing: "...s Research Triple Strength Omega-3 is a clean and highly concentrated TG omega-3 fish oil product. Each capsule contains a minimum 1040mg tota...". Caution: another unexpired batch fails a cutoff (TOTOX across unexpired batches 1.96 to 11.08). Flags: inconsistent batches: 2 of 90 other unexpired batch(es) fail a cutoff; TOTOX range 1.96 to 11.08; flavor not stated.
+6. **The littles: rTG Booster Ultimate Omega 3.** Oxidation load 3.56 = TOTOX 4.06 x 0.88 capsules needed for 1000 mg EPA+DHA (1142 mg per capsule, measured by IFOS). Lot 26004: PV 1.23, AV 1.6, acid value 0.37; all reported contaminants within IFOS limits. TOTOX is in the preferred tier (at or below 8). Form rTG per IFOS listing: "rTG Booster Ultimate Omega 3.". Scores within 10% are treated as ties: tied with #7, #8, ordered by lower AV, then higher EPA+DHA per capsule. Caution: another unexpired batch fails a cutoff (TOTOX across unexpired batches 4.06 to 18.98). Flags: inconsistent batches: 4 of 14 other unexpired batch(es) fail a cutoff; TOTOX range 4.06 to 18.98; EPA+DHA reported combined; flavor not stated.
+7. **NUTRAGROUP: Soft Fish Oil Capsule 500/250 TG.** Oxidation load 3.46 = TOTOX 2.66 x 1.30 capsules needed for 1000 mg EPA+DHA (768 mg per capsule, measured by IFOS). Lot VS260652-3: PV 0.08, AV 2.5, acid value 0.13; all reported contaminants within IFOS limits. TOTOX is in the preferred tier (at or below 8). Form TG per IFOS listing: "Soft Fish Oil Capsule 500/250 TG. Composition: Fish oil, gelatin, glycerin, purified water Packing: Bu...". Scores within 10% are treated as ties: tied with #6, #8, ordered by lower AV, then higher EPA+DHA per capsule. Flags: oxidation value reported as '<x'; evaluated at x; flavor not stated.
+8. **Bare Performance Nutrition: Strong Omega.** Oxidation load 3.52 = TOTOX 3.94 x 0.89 capsules needed for 1000 mg EPA+DHA (1120 mg per capsule, measured by IFOS). Lot B012902: PV 1.45, AV 3.7, acid value 0.12; all reported contaminants within IFOS limits. TOTOX is in the preferred tier (at or below 8). Form TG per IFOS listing: "...acid supplement, produced from 100% wild caught fish, in the superior triglyceride form and sustainably sourced.". Scores within 10% are treated as ties: tied with #6, #7, ordered by lower AV, then higher EPA+DHA per capsule. Caution: another unexpired batch fails a cutoff (TOTOX across unexpired batches 3.94 to 14.02). Flags: inconsistent batches: 1 of 5 other unexpired batch(es) fail a cutoff; TOTOX range 3.94 to 14.02; flavor not stated.
+9. **Our Nutri: rTG CARE OMEGA3 MAX 1100.** Oxidation load 3.90 = TOTOX 4.34 x 0.90 capsules needed for 1000 mg EPA+DHA (1113 mg per capsule, measured by IFOS). Lot 263814: PV 1.72, AV 0.9, acid value 0.25; all reported contaminants within IFOS limits. TOTOX is in the preferred tier (at or below 8). Form rTG per IFOS listing: "rTG CARE OMEGA3 MAX 1100. rTG CARE OMEGA3 MAX 1100 is a well-refined, hig...". Caution: another unexpired batch fails a cutoff (TOTOX across unexpired batches 3.74 to 9.93). Flags: inconsistent batches: 2 of 20 other unexpired batch(es) fail a cutoff; TOTOX range 3.74 to 9.93; EPA+DHA reported combined; flavor not stated.
+10. **U.G.A. Nutraceuticals Srl: VitaDHA 1000.** Oxidation load 4.65 = TOTOX 2.54 x 1.83 capsules needed for 1000 mg EPA+DHA (546 mg per capsule, measured by IFOS). Lot 2613308: PV 0.1, AV 2.34, acid value 0.26; all reported contaminants within IFOS limits. TOTOX is in the preferred tier (at or below 8). Form TG per IFOS report: "EFA tested as triglyceride (TG) form [lot 2613308]". Scores within 10% are treated as ties: tied with #11, #12, #13, #14, #15, #16, ordered by lower AV, then higher EPA+DHA per capsule. Caution: another unexpired batch fails a cutoff (TOTOX across unexpired batches 2.54 to 12.36). Flags: inconsistent batches: 6 of 12 other unexpired batch(es) fail a cutoff; TOTOX range 2.54 to 12.36; flavor not stated.
 ## Rest of the ranked list
 
 | Rank | Brand | Product | Lot | Oxidation load | TOTOX | PV | AV | Acid value | EPA+DHA mg/capsule | mg/serving | mg/g oil | EPA:DHA | Form | Report date | Expiry | Flags |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 11 | Longify | Longify Omega-3 + D3K2 | 26050291 | 10.17 | 7.21 ★ | 1.45 | 4.31 | 0.14 | 851 | 1702 | 709 | 1.36 | TG | 2026-07-28 | 2029-05-31 | oil weight from IFOS listing text: "Each softgel delivers 1,200 mg of fish oil"; flavor not stated |
+| 11 | Coco March | Marine Omega 3 | 2G22E001 | 4.32 | 3.77 ★ | 0.27 | 3.23 | 0.11 | 872 | 1745 | 872 | 1.29 | rTG | 2026-08-25 | 2029-02-05 | flavor not stated |
+| 12 | Doctor Check | One-per-Day Max Supercritical rTG Omega3 | H709-6002 | 4.71 | 5.6 ★ | 0.7 | 4.2 | 0.03 | 1188 | 1188 | n/a | n/a | rTG | 2026-05-08 | 2029-02-11 | inconsistent batches: 1 of 1 other unexpired batch(es) fail a cutoff; TOTOX range 5.6 to 14.49; EPA+DHA reported combined; flavor not stated |
+| 13 | Nutrition Balance | Nutrition Balance 98% Omega-3 Fish Oil Extract(rTG） | U603149 | 4.36 | 6 ★ | 0.87 | 4.3 | 0.27 | 1375 | n/a | n/a | 1.50 | rTG | 2026-05-20 | 2029-03-05 | inconsistent batches: 1 of 1 other unexpired batch(es) fail a cutoff; TOTOX range 6 to 11.6; flavor not stated |
+| 14 | Mederi Integrative Nutrition | DHA Pure NPD1 1000 | 1925.1 | 4.61 | 4.74 ★ | 0.14 | 4.46 | 0.09 | 1029 | 1029 | 782 | n/a | TG | 2026-03-05 | 2029-01-31 | DHA only; flavor not stated |
+| 15 | FMW Corp. | Supercritical rTG Omega Essence 1000 | BGQ | 4.64 | 4.98 ★ | 0.24 | 4.5 | 0.16 | 1072 | 1072 | n/a | n/a | rTG | 2026-11-17 | 2029-08-09 | inconsistent batches: 78 of 88 other unexpired batch(es) fail a cutoff; TOTOX range 2.32 to 18.3; EPA+DHA reported combined; flavor not stated |
+| 16 | Amplecare Pharmaceutical Pty Ltd | Amplecare EPA 1000 rTG Fish Oil | 121117 | 4.74 | 5.2 ★ | 0.11 | 4.98 | 0.07 | 1097 | 1097 | 932 | n/a | rTG | 2026-06-15 | 2029-01-31 | EPA only; flavor not stated |
+| 17 | Pharma New Zealand PNZ Limited（Phatma®️） | Pharma New Zealand Absolute EPA rTG Fish Oil | T0526012 | 4.89 | 2.6 ★ | 0.65 | 1.3 | 1.01 | 532 | 1063 | n/a | n/a | rTG | 2026-06-15 | 2029-04-29 | EPA only; flavor not stated |
+| 18 | Heracles | Heracles Expert Omega 3 | 26008 | 5.24 | 5.86 ★ | 2.23 | 1.4 | 0.2 | 1119 | 1119 | n/a | n/a | rTG | 2026-09-30 | 2029-06-28 | compliance taken from IFOS's verdict only (number, unit or detection limit cannot decide): Dioxin-Like PCBs; inconsistent batches: 5 of 7 other unexpired batch(es) fail a cutoff; TOTOX range 3.1 to 18.96; EPA+DHA reported combined; flavor not stated |
+| 19 | Vital Planet, LLC | Vital Omega Ultra Daily | 22603146 | 4.86 | 3.4 ★ | 0.2 | 3 | 0.05 | 699 | 1398 | n/a | 2.05 | rTG | 2026-06-26 | 2029-03-31 | inconsistent batches: 1 of 1 other unexpired batch(es) fail a cutoff; TOTOX range 3.4 to 16.36; multi-ingredient product ('vitamin d3' in IFOS listing); flavor not stated |
+| 20 | Viva Naturals Inc. | Triple Strength Omega-3 Fish Oil | SG26083104 | 4.92 | 5.65 ★ | 0.84 | 3.97 | 0.01 | 1148 | 2297 | n/a | 2.53 | rTG | 2026-11-12 | 2028-09-30 | flavor not stated |
+| 21 | Rational Nutrition LLC | Rational Nutrition Ultra-Pure Omega-3 Fish Oil | SB018331 | 5.78 | 3.31 ★ | 1.43 | 0.45 | 0.11 | 573 | 1146 | n/a | 1.28 | rTG | 2026-01-27 | 2027-09-14 | flavor not stated |
+| 22 | Muted | MUTED Alaska Large Softgel rTG Omega-3 1100 | 2605 | 5.46 | 6.32 ★ | 2.56 | 1.2 | 0.22 | 1157 | 1157 | n/a | n/a | rTG | 2026-10-28 | 2029-09-09 | EPA+DHA reported combined; flavor not stated |
+| 23 | Aquaomega | AquaOmega Balanced softgels | 26051SZ1097 | 5.84 | 4.7 ★ | 0.3 | 4.1 | 0.14 | 805 | 3220 | n/a | 1.00 | TG | 2026-07-29 | 2029-05-31 | flavor not stated; antioxidants: Rosemary Leaf Extract, Green Tea Extract, Mixed Tocopherol Concentrate |
+| 24 | VIBE Nutraceuticals, SL | OMEGA 3 PRO | 21225.1 | 5.97 | 5.18 ★ | 0.5 | 4.18 | 0.19 | 867 | 867 | 867 | 1.48 | TG | 2026-08-07 | 2029-07-31 | inconsistent batches: 3 of 8 other unexpired batch(es) fail a cutoff; TOTOX range 4.66 to 13.8; oil weight from IFOS listing text: "per 1000 mg softgel"; flavor not stated |
+| 25 | Weetamin | Weetamin rTG Omega 3 | D | 5.89 | 6.38 ★ | 0.19 | 6 | 0.48 | 1083 | 1083 | n/a | n/a | rTG | 2026-06-25 | 2029-03-18 | EPA+DHA reported combined; flavor not stated |
+| 26 | OmegaVia | OmegaVia Ultra Concentrated Omega-3 | OV260297 | 6.37 | 7.4 ★ | 1.76 | 3.88 | 0.04 | 1161 | 3483 | n/a | 2.70 | TG | 2026-10-09 | 2028-06-08 | inconsistent batches: 3 of 8 other unexpired batch(es) fail a cutoff; TOTOX range 7.4 to 14.84; flavor not stated |
+| 27 | Wellcare-Ilko Ilac San. ve Tic. A.S. | Wellcare Omega 3 | 26020092A | 6.18 | 7.08 ★ | 1.44 | 4 | 0.33 | 1145 | 1145 | n/a | 1.33 | TG | 2026-07-09 | 2028-02-29 | flavor not stated |
+| 28 | Nutribiotica SL | Kiroot Omega 3 DHA | 1325.7 | 6.17 | 6.97 ★ | 0.89 | 5.19 | 0.28 | 1130 | 2259 | 858 | 0.06 | TG | 2025-10-02 | 2028-06-30 | inconsistent batches: 2 of 2 other unexpired batch(es) fail a cutoff; TOTOX range 6.97 to 14.56; flavor not stated |
+| 29 | Sports Research | Omega-3 Fish Oil Triple Strength 1250mg | S26E206 | 7.03 | 7.32 ★ | 2.24 | 2.84 | 0.03 | 1042 | 1042 | 834 | 2.15 | TG | 2026-11-18 | 2029-09-30 | inconsistent batches: 53 of 157 other unexpired batch(es) fail a cutoff; TOTOX range 3.6 to 18.93; flavor not stated |
+| 30 | Amplecare Pharmaceutical Pty Ltd | Amplecare ULTRA rTG Fish Oil | 121118 | 7.00 | 7.01 ★ | 0.23 | 6.55 | 0.11 | 1002 | 1002 | 932 | 1.48 | rTG | 2026-06-15 | 2029-01-31 | flavor not stated |
+| 31 | Kzufy | Kzufy Liver Care Fish Oil | U606218 | 6.92 | 7.8 ★ | 0.4 | 7 | 1.1 | 1128 | 1128 | n/a | 1.25 | rTG | 2026-08-21 | 2029-06-10 | flavor not stated |
+| 32 | Maiova | SUPER OMEGA-3 FISH OIL | MO10926 | 7.49 | 7.4 ★ | 0.2 | 7 | 1.5 | 988 | 2964 | n/a | 1.25 | TG | 2026-11-16 | 2029-10-31 | multi-ingredient product ('astaxanthin' in IFOS listing); flavor not stated |
+| 33 | Health First | Omega Supreme One Daily | 26065SZ135 | 7.24 | 7.71 ★ | 0.12 | 7.47 | 0.11 | 1065 | 1065 | n/a | 2.26 | TG | 2026-09-23 | 2029-07-31 | flavor not stated |
+| 34 | Vitafor | Omegafor Vision | E26 | 8.23 | 1.81 ★ | 0.26 | 1.29 | 0.1 | 220 | 440 | n/a | 1.50 | TG | 2026-08-07 | 2027-08-31 | multi-ingredient product ('lutein' in IFOS listing); flavor not stated |
+| 35 | U.G.A. Nutraceuticals Srl | Omegor Vitality 1000 | 2608202 | 7.84 | 6.55 ★ | 2.07 | 2.41 | 0.06 | 835 | 3340 | 835 | 1.94 | TG | 2026-11-20 | 2029-10-31 | inconsistent batches: 3 of 21 other unexpired batch(es) fail a cutoff; TOTOX range 4.99 to 9.92; oil weight from IFOS listing text: "Each 1000mg capsule"; flavor not stated |
+| 36 | NUTRITION STANDARD | Alaska rTG Omega Chewable 950 | E | 8.29 | 8.22 | 2.66 | 2.9 | 0.02 | 992 | 992 | n/a | n/a | rTG | 2026-06-03 | 2028-03-10 | chewable softgel; EPA+DHA reported combined; flavor not stated |
+| 37 | Vital Planet, LLC | Vital Omega Easy Swallow | 22603147 | 8.15 | 3.4 ★ | 0.2 | 3 | 0.05 | 417 | 834 | n/a | 2.07 | rTG | 2026-06-26 | 2029-04-01 | inconsistent batches: 1 of 1 other unexpired batch(es) fail a cutoff; TOTOX range 3.4 to 16.48; multi-ingredient product ('vitamin d3' in IFOS listing); flavor not stated |
+| 38 | Longify | Longify Omega-3 + D3K2 | 26050291 | 8.47 | 7.21 ★ | 1.45 | 4.31 | 0.14 | 851 | 1702 | 709 | 1.36 | TG | 2026-07-28 | 2029-05-31 | oil weight from IFOS listing text: "Each softgel delivers 1,200 mg of fish oil"; flavor not stated |
+| 39 | Medipharm Corp | Dual Premium Supercritical rTG Omega 3 | PU26003 | 7.76 | 8.46 | 1.39 | 5.68 | 0.18 | 1090 | 1090 | n/a | n/a | rTG | 2026-02-23 | 2029-01-04 | inconsistent batches: 1 of 1 other unexpired batch(es) fail a cutoff; TOTOX range 8.46 to 12.32; EPA+DHA reported combined; flavor not stated |
+| 40 | Wellcare-Ilko Ilac San. ve Tic. A.S. | Wellcare Omega 3 UniQ DHA 750 Omega 3 | 26020093A | 8.05 | 8.22 | 1.01 | 6.2 | 0.45 | 1021 | 1021 | n/a | 0.29 | TG | 2026-07-07 | 2028-02-29 | inconsistent batches: 2 of 5 other unexpired batch(es) fail a cutoff; TOTOX range 6.9 to 14.1; flavor not stated |
+| 41 | OmegaVia | OmegaVia Prenatal Omega-3 DHA | OV250191 | 9.47 | 6.31 ★ | 2.2 | 1.91 | 0.05 | 666 | 666 | 777 | n/a | TG | 2025-10-22 | 2028-04-18 | DHA only; algal oil, not fish oil ('algae' in IFOS listing); multi-ingredient product ('prenatal' in IFOS listing); flavor not stated |
+| 42 | Viva Pharmaceutical Inc. | Viva RTG OMEGA 3 | 22606501 | 9.37 | 6.66 ★ | 1.37 | 3.92 | 0.23 | 711 | 711 | n/a | n/a | rTG | 2026-10-26 | 2029-08-11 | inconsistent batches: 1 of 1 other unexpired batch(es) fail a cutoff; TOTOX range 6.66 to 9.8; EPA+DHA reported combined; flavor not stated |
+| 43 | Wellcare-Ilko Ilac San. ve Tic. A.S. | Wellcare Day 90 Omega 3 Fish Oil Capsule | 26020091A | 9.58 | 7.08 ★ | 1.54 | 4 | 0.2 | 739 | 739 | n/a | 1.33 | TG | 2026-07-09 | 2028-02-29 | flavor not stated |
+| 44 | SENHORA VITAMINA | Ômega 3 Premium Ultra Concentrado TG | P2500730MB-10 | 10.19 | 6.52 ★ | 1.12 | 4.28 | 0.68 | 640 | 1280 | n/a | 1.43 | TG | 2025-08-07 | 2027-04-03 | flavor not stated |
+| 45 | NYO3 INTERNATIONAL AS | NYO3 Fish Oil 97% EPA | 2601 | 9.67 | 5.61 ★ | 0.15 | 5.31 | 0.68 | 580 | 580 | n/a | n/a | rTG | 2026-03-16 | 2028-01-31 | inconsistent batches: 1 of 5 other unexpired batch(es) fail a cutoff; TOTOX range 5.61 to 9.47; EPA only; flavor not stated |
+| 46 | Coretrition Technology Limited | CoreTrition rTG FISH OIL 95% OMEGA-3 | 326Y0317 | 9.81 | 6.1 ★ | 0.2 | 5.7 | 0.1 | 622 | 1244 | n/a | 1.26 | rTG | 2026-04-22 | 2028-03-08 | flavor not stated |
+| 47 | Goldlake | Goldlake 97% rTG Deep Sea Fish Oil | 326Y0319 | 9.46 | 6.9 ★ | 0.2 | 6.5 | 0.09 | 730 | 1459 | n/a | 1.28 | rTG | 2026-05-08 | 2029-03-11 | flavor not stated |
+| 48 | FMW Corp. | Supercritical rTG Omega 600 | 6AAA | 10.67 | 6.72 ★ | 2.86 | 1 | 1.11 | 630 | 630 | n/a | n/a | rTG | 2026-06-23 | 2029-04-28 | EPA+DHA reported combined; flavor not stated |
+| 49 | Heracles | Heracles Omega 3 Easy | 26001 | 10.36 | 4.8 ★ | 1.7 | 1.4 | 0.13 | 464 | 927 | n/a | n/a | rTG | 2026-07-16 | 2029-02-19 | compliance taken from IFOS's verdict only (number, unit or detection limit cannot decide): Dioxin-Like PCBs; values transcribed by LLM fallback; inconsistent batches: 1 of 1 other unexpired batch(es) fail a cutoff; TOTOX range 4.8 to 14.38; EPA+DHA reported combined; flavor not stated |
+| 50 | SENHORA VITAMINA | Ômega 3 Premium Ultra Concentrado TG - Mini | P250171OMB-05 | 10.63 | 3.39 ★ | 0.68 | 2.03 | 0.24 | 319 | 1275 | n/a | 1.48 | TG | 2025-10-29 | 2027-09-30 | flavor not stated |
+| 51 | Vhita | Ômega 3 Super DHA | 4129 | 10.93 | 7.9 ★ | 2.03 | 3.84 | 0.36 | 723 | 1446 | n/a | 0.35 | TG | 2025-03-31 | 2026-12-31 | flavor not stated |
+| 52 | All Wealth Beauty Concept Co., Ltd | All Wealthh LiangXin Fish Oil | PE600002 | 10.56 | 5.7 ★ | 0 | 5.7 | 0.56 | 540 | 1080 | n/a | 1.50 | rTG | 2026-01-07 | 2027-09-23 | flavor not stated |
+| 53 | NUTRATA | OMEGA ultra TG | 44469252 | 11.33 | 7.05 ★ | 0.52 | 6.01 | 0.6 | 622 | 1867 | n/a | 1.47 | TG | 2025-07-28 | 2027-03-31 | flavor not stated |
+| 54 | NUHAIM | EESY Omega-3 Fish Oil | 26PG0003 | 10.67 | 9.68 | 0.9 | 7.88 | 0.13 | 907 | 907 | n/a | 2.03 | TG | 2026-03-19 | 2027-12-31 | flavor not stated |
+| 55 | +LIFE | +Life Omega 3 Olio di pesce 1000mg in forma di trigliceride | F2602/0393 | 10.40 | 8.9 | 0.5 | 7.9 | 0.09 | 856 | 3424 | n/a | 2.08 | TG | 2026-07-15 | 2028-03-22 | flavor not stated |
+| 56 | Vhita | Omega 3 TG 1000mg | 4470 | 12.63 | 8.32 | 2.97 | 2.38 | 1.05 | 658 | 1317 | n/a | 1.42 | TG | 2025-10-21 | 2027-07-31 | flavor not stated |
+| 57 | Xymogen | OmegaPure 600 EC™ | UC260284 | 12.48 | 8.34 | 2.85 | 2.64 | 0.35 | 668 | 1336 | n/a | 1.43 | TG | 2026-09-25 | 2028-08-18 | flavor not stated |
+| 58 | Essential Nutrition | Super Omega-3 TG 1g Comfort | 7000004185 | 12.79 | 7.97 ★ | 2.55 | 2.87 | 0.71 | 623 | 1869 | n/a | 1.48 | TG | 2026-03-30 | 2027-08-31 | inconsistent batches: 1 of 1 other unexpired batch(es) fail a cutoff; TOTOX range 7.97 to 12.02; flavor not stated |
+| 59 | Nutribiotica SL | Kiroot Kicardio | 1625 6 | 11.66 | 9.96 | 1.5 | 6.96 | 1.2 | 854 | 1709 | n/a | 2.81 | TG | 2026-06-04 | 2029-03-31 | inconsistent batches: 1 of 2 other unexpired batch(es) fail a cutoff; TOTOX range 7.88 to 16.94; flavor not stated |
+| 60 | OmegaVia | OmegaVia DHA 600 | OV260140 | 13.06 | 8.53 | 2.52 | 3.49 | 0.01 | 653 | 1306 | n/a | n/a | TG | 2026-10-09 | 2028-03-06 | inconsistent batches: 1 of 4 other unexpired batch(es) fail a cutoff; TOTOX range 6.73 to 11.8; DHA only; flavor not stated |
+| 61 | VIBE Nutraceuticals, SL | Omega 3 Pro Mini | 1326 4 | 13.74 | 6.03 ★ | 0.84 | 4.35 | 0.26 | 439 | 878 | n/a | 1.50 | TG | 2026-05-01 | 2029-04-30 | flavor not stated |
+| 62 | Essential Nutrition | Super Omega 3 TG | 1000030018 | 13.52 | 8.76 | 2.15 | 4.46 | 0.47 | 648 | 2592 | n/a | 1.48 | TG | 2026-05-11 | 2028-02-29 | inconsistent batches: 2 of 4 other unexpired batch(es) fail a cutoff; TOTOX range 6.92 to 12.95; flavor not stated |
+| 63 | Beyond Vitamins | Beyond Vitamins Omega 3 Ultra Puro | 213042603 | 14.23 | 8.68 | 1.88 | 4.92 | 0.2 | 610 | 610 | n/a | 1.44 | TG | 2026-09-24 | 2029-04-13 | inconsistent batches: 1 of 2 other unexpired batch(es) fail a cutoff; TOTOX range 8.68 to 15.05; flavor not stated |
+| 64 | UGN International Functional Nutrition Co. , Limited | ULTRA OMEGA 850 | U503002 | 13.24 | 5.8 ★ | 0.24 | 5.3 | 0.24 | 438 | 876 | n/a | 1.42 | rTG | 2025-05-12 | 2028-02-27 | flavor not stated |
+| 65 | J.zao | J.ZAO High Purity TGN Fish Oil | 126Y0302 | 13.00 | 7.9 ★ | 0.2 | 7.5 | 0.08 | 608 | 1215 | n/a | 1.50 | TG | 2026-05-07 | 2029-03-31 | flavor not stated |
+| 66 | OmegaVia | OmegaVia EPA 500 | OV260141 | 14.94 | 8.68 | 2.64 | 3.4 | 0.01 | 581 | 1162 | n/a | 63.56 | TG | 2026-10-09 | 2028-04-07 | inconsistent batches: 5 of 5 other unexpired batch(es) fail a cutoff; TOTOX range 8.68 to 18.38; flavor not stated |
+| 67 | Aquaomega | High DHA OMEGA-3 Softgels Grape | 25101SY238 | 14.99 | 9.16 | 1.83 | 5.5 | 0.31 | 611 | 2444 | n/a | 0.21 | TG | 2026-01-22 | 2028-11-30 | flavor not stated |
+| 68 | Tsunami Nutrition SRL | OMEGA Plus | 266117 | 14.99 | 8.74 | 0.4 | 7.94 | 0.42 | 583 | 1166 | n/a | 1.39 | TG | 2026-08-24 | 2029-07-31 | inconsistent batches: 1 of 2 other unexpired batch(es) fail a cutoff; TOTOX range 6.87 to 10.01; flavor not stated |
+| 69 | Better Bioscience | Joy Fish Oil Concentrate 85% omega-3 rTG with 720 mg EPA and 240 mg DHA | JFO202501 | 17.23 | 8.6 | 2.8 | 3 | 0.17 | 499 | 998 | n/a | 2.90 | rTG | 2025-09-08 | 2027-05-05 | flavor not stated |
+| 70 | MitoQ Limited | MitoQ High EPA Omega-3 30's | J5002GH | 17.49 | 7.4 ★ | 1.8 | 3.8 | 0.12 | 423 | 846 | n/a | n/a | rTG | 2025-06-16 | 2027-12-30 | EPA only; flavor not stated |
+| 71 | MitoQ Limited | MitoQ + Liver & High EPA Omega-3 Combo Pack | M5181GH | 17.49 | 7.4 ★ | 1.8 | 3.8 | 0.12 | 423 | 846 | n/a | n/a | rTG | 2025-06-17 | 2027-12-30 | EPA only; flavor not stated |
+| 72 | zanhuo pro+ | HIGH PURITY FISH OIL | U610127 | 17.22 | 9.4 | 1.4 | 6.6 | 0.22 | 546 | 1092 | n/a | 1.53 | rTG | 2026-11-04 | 2029-09-23 | flavor not stated |
+| 73 | MitoQ Limited | MitoQ MitoMega Omega-3 | Q6186G | 20.00 | 8 ★ | 3 | 2 | 0.05 | 400 | 800 | n/a | n/a | rTG | 2026-11-13 | 2029-07-31 | inconsistent batches: 2 of 20 other unexpired batch(es) fail a cutoff; TOTOX range 3.7 to 10.28; EPA only; flavor not stated |
+| 74 | Devotion International Co., Ltd. (VITABOX®) | 85% Omega-3 rTG Fish Oil | 260629C01 | 20.21 | 8.62 | 2.27 | 4.08 | 0.03 | 426 | 853 | n/a | 2.00 | rTG | 2026-11-11 | 2028-09-17 | flavor not stated |
+| 75 | Tasly Great Health | Complex Fish Oil (nTG Form) | 268806 | 19.03 | 8.6 | 1.6 | 5.4 | 0.23 | 452 | 1808 | n/a | n/a | TG | 2026-11-10 | 2028-04-30 | inconsistent batches: 1 of 2 other unexpired batch(es) fail a cutoff; TOTOX range 8.6 to 12.3; EPA+DHA reported combined; flavor not stated |
+| 76 | Epigenetic Labs, LLC DBA Organixx | Omega-3 TG Fish Oil | 2047096 | 21.93 | 7.86 ★ | 2.57 | 2.72 | 0.03 | 358 | 717 | n/a | 1.57 | TG | 2026-06-04 | 2028-03-31 | flavor not stated |
+| 77 | Unilife Vitamins | Óleo de Peixe - Ômega 3 TG 1000 mg | 123778 | 21.84 | 7.14 ★ | 1.9 | 3.34 | 0.44 | 327 | 654 | n/a | 1.52 | TG | 2026-02-13 | 2027-10-31 | flavor not stated |
+| 78 | Essential Nutrition | CoQ10 + Omega-3 TG | 1000029546 | 20.97 | 5.2 ★ | 0.9 | 3.4 | 1.45 | 248 | 496 | n/a | 1.48 | TG | 2026-06-03 | 2027-11-30 | inconsistent batches: 2 of 3 other unexpired batch(es) fail a cutoff; TOTOX range 3.15 to 16.72; multi-ingredient product ('coq10' in IFOS listing); flavor not stated |
+| 79 | MitoQ Limited | MitoQ 92% EPA Omega-3 | Q5242GH | 22.30 | 9 | 1.88 | 5.24 | 0.1 | 404 | 807 | n/a | n/a | rTG | 2025-10-31 | 2028-08-31 | inconsistent batches: 1 of 6 other unexpired batch(es) fail a cutoff; TOTOX range 6.3 to 15.4; EPA only; flavor not stated |
+| 80 | Essential Nutrition | Super Omega 3 TG 500mg | 1000030395 T46A14I251 | 26.23 | 8.76 | 2.74 | 3.28 | 0.17 | 334 | 1336 | n/a | 1.47 | TG | 2026-09-02 | 2028-04-30 | inconsistent batches: 1 of 5 other unexpired batch(es) fail a cutoff; TOTOX range 5.73 to 14.4; flavor not stated |
+| 81 | Health Formula | Health Formula Premium r-TG Fish Oil | 20280814 | 32.99 | 9.7 | 3 | 3.7 | 0.08 | 294 | 588 | n/a | n/a | rTG | 2026-11-02 | 2028-08-14 | values transcribed by LLM fallback; EPA only; flavor not stated |
+| 82 | U.G.A. Nutraceuticals Srl | OMEGOR MIND | 2611004 | 34.18 | 5.81 ★ | 0.41 | 4.99 | 0.1 | 170 | 340 | n/a | 0.26 | TG | 2026-09-30 | 2029-07-31 | inconsistent batches: 15 of 43 other unexpired batch(es) fail a cutoff; TOTOX range 1.4 to 18.2; flavor not stated |
+| 83 | VITAPAW | SO!HEALTHY 10mm rTG Omega-3 | 707003 | 84.45 | 9.29 | 2.1 | 5.09 | 0.07 | 110 | 110 | n/a | n/a | rTG | 2025-10-08 | 2028-01-08 | inconsistent batches: 1 of 1 other unexpired batch(es) fail a cutoff; TOTOX range 9.29 to 18.21; EPA+DHA reported combined; flavor not stated |
 
 ## Not yet verified, could still enter the top 10
 
-These pass every check that can be made without the label, and their best-possible oxidation load (assuming the capsule is nothing but omega-3) is at or below 9.66. Showing the first 30 of 248, best case first. "Checked" means the label was looked for and did not state what is missing.
+These pass every check except the oil form, and their oxidation load is at or below 5.12. Each needs a source stating TG or rTG. Showing the first 21 of 21, best first. "Checked" means the label was looked for and did not state the form.
 
-| Brand | Product | Lot | TOTOX | PV | AV | Best possible load | Needs | Checked |
+| Brand | Product | Lot | TOTOX | PV | AV | Oxidation load | Needs | Checked |
 |---|---|---|---|---|---|---|---|---|
-| Theralogix, LLC | TheraNatal ONE | B032402 | 0.78 | 0.29 | 0.2 | 0.78 | form and oil weight | yes |
-| Hong Kong Healthcare & HeartBioTech Co., Limited | ULTRA PURE FISH OIL | 325Y0912 | 1.1 | 0.08 | 1.1 | 1.11 | oil weight | no |
-| MARTÍNEZ NIETO, S.A. | MARNYS® Omegamar 1500 | M2962 | 2.12 | 0.06 | 2 | 2.12 | form | no |
-| Natalben | NATALBEN Supra | D200V | 2.15 | 1.04 | 0.07 | 2.15 | form and oil weight | yes |
-| Vitafor | Omegafor Vision | E26 | 1.81 | 0.26 | 1.29 | 2.26 | oil weight | yes |
-| Hurra | Omega-3 Geleputer 45stk | 44005774 | 2.01 | 0.09 | 1.83 | 2.34 | form and oil weight | no |
-| U.G.A. Nutraceuticals Srl | VitaDHA 1000 | 2613308 | 2.54 | 0.1 | 2.34 | 2.62 | oil weight | no |
-| Vits | Omega 3 | VS260623 | 2.66 | 0.08 | 2.5 | 2.66 | form and oil weight | yes |
-| Vits | Omega 3 Ultra | VS260652-3 | 2.66 | 0.08 | 2.5 | 2.66 | form and oil weight | yes |
-| Pharma New Zealand PNZ Limited（Phatma®️） | Pharma New Zealand Absolute EPA rTG Fish Oil | T0526012 | 2.6 | 0.65 | 1.3 | 2.67 | oil weight | yes |
-| BIO-H | BIO-H rTG 97% Fish Oil Extract | U601350 | 2.5 | 0.2 | 2.1 | 2.68 | oil weight | yes |
-| NuMedica | OmegaOne 3x | 260713079 | 2.4 | 0.2 | 2 | 2.73 | form and oil weight | yes |
-| brieye® | brieye® Lutein and Fish Oil for Adults | 35226 | 2.5 | 0.1 | 2.3 | 2.74 | form and oil weight | yes |
-| NYO3 INTERNATIONAL AS | High Absorption Complex Omega-3 | 2502 | 2.42 | 0.13 | 2.16 | 2.79 | form and oil weight | yes |
-| Orzaks Ilac ve Kimya Sanayi Tic. A.S. | Ocean Ultimate 1700mg Fish Oil Capsules | 0426960 | 2.48 | 0.09 | 2.3 | 2.88 | form | yes |
-| Daiken Biomedical Co., Ltd. | Fish Oil Concentrate | 202603S | 2.66 | 0.21 | 2.24 | 2.92 | form and oil weight | yes |
-| Pharma New Zealand PNZ Limited（Phatma®️） | Pharma NEW ZEALAND OMEGA 3 1400mg | PN11250106/3 | 2.77 | 0.19 | 2.39 | 3.02 | form and oil weight | yes |
-| BASE | Omega-3 standard | 242860-1 | 2.6 | 0.3 | 2 | 3.04 | form and oil weight | yes |
-| Dua + Labs | Omega 3 PREMIUM 1000 EPA / 500 DHA cápsula blanda | VS260652-2 | 2.66 | 0.08 | 2.5 | 3.06 | form and oil weight | yes |
-| NUTRAGROUP | Soft Fish Oil Capsule 500/250 TG | VS260652-3 | 2.66 | 0.08 | 2.5 | 3.06 | oil weight | yes |
-| GNC Global | GNC Omega Triple Strength Fish Oil Ultra Mini | 26JAF0200 | 3.1 | 0.85 | 1.4 | 3.10 | form and oil weight | yes |
-| Orzaks Ilac ve Kimya Sanayi Tic. A.S. | Ocean Mummy | 0924935 | 2.63 | 0.22 | 2.19 | 3.13 | form and oil weight | no |
-| Sports Research | Omega-3 Fish Oil AlaskOmega 1250 mg MSC-C-55162 | S26G026 | 2.94 | 1.39 | 0.16 | 3.16 | oil weight | no |
-| BIO-H | BIO-H rTG 98% (EPA 1230) Fish Oil Extract | U512107 | 3.1 | 0.16 | 2.8 | 3.21 | oil weight | yes |
-| GNC Hong Kong Limited | 97% High Purity EPA 1200+ | 1063JG2601 | 3.22 | 0.18 | 2.86 | 3.22 | form and oil weight | no |
-| Igennus Healthcare Nutrition | Pharmepa RESTORE | 2092 | 3.28 | 0.49 | 2.3 | 3.28 | oil weight | yes |
-| Igennus Healthcare Nutrition | Pure & Essential ULTRA EPA | 2092 | 3.28 | 0.49 | 2.3 | 3.28 | form and oil weight | yes |
-| Natalben | Natalben Lactancia | D059V | 3.37 | 0.28 | 3.93 | 3.37 | form and oil weight | no |
-| SENHORA VITAMINA | Ômega 3 Premium Ultra Concentrado TG - Mini | P250171OMB-05 | 3.39 | 0.68 | 2.03 | 3.39 | oil weight | no |
-| Primalg | Primalg Hjerne Omega-3 90 pcs | L040526 | 3.56 | 0.08 | 3.4 | 3.56 | form and oil weight | yes |
+| Theralogix, LLC | TheraNatal ONE | B032402 | 0.78 | 0.29 | 0.2 | 1.74 | form | yes |
+| Orzaks Ilac ve Kimya Sanayi Tic. A.S. | Ocean Ultimate 1700mg Fish Oil Capsules | 0426960 | 2.48 | 0.09 | 2.3 | 1.96 | form | yes |
+| Pharma New Zealand PNZ Limited（Phatma®️） | Pharma NEW ZEALAND OMEGA 3 1400mg | PN11250106/3 | 2.77 | 0.19 | 2.39 | 2.09 | form | yes |
+| MARTÍNEZ NIETO, S.A. | MARNYS® Omegamar 1500 | M2962 | 2.12 | 0.06 | 2 | 2.26 | form | yes |
+| Pharma New Zealand PNZ Limited（Phatma®️） | Pharma New Zealand Omega 3 1425mg | PN01260107/1 | 3.29 | 0.37 | 2.55 | 2.46 | form | yes |
+| NuMedica | OmegaOne 3x | 260713079 | 2.4 | 0.2 | 2 | 2.54 | form | yes |
+| TAB Ilac Sanayi A.S. | OmePa 2000 | 25120658 | 3.92 | 0.46 | 3 | 2.63 | form | yes |
+| Vital Planet, LLC | Vital Omega Critical Care | 22603145 | 3.4 | 0.2 | 3 | 2.79 | form | yes |
+| NYO3 INTERNATIONAL AS | High Absorption Complex Omega-3 | 2502 | 2.42 | 0.13 | 2.16 | 3.15 | form | yes |
+| BASE | Omega-3 standard | 242860-1 | 2.6 | 0.3 | 2 | 3.17 | form | yes |
+| Dua + Labs | Omega 3 PREMIUM 1000 EPA / 500 DHA cápsula blanda | VS260652-2 | 2.66 | 0.08 | 2.5 | 3.46 | form | yes |
+| Vits | Omega 3 Ultra | VS260652-3 | 2.66 | 0.08 | 2.5 | 3.46 | form | yes |
+| Swisse Italia (Health and Happiness Italy S.r.l.) | OMEGA 3 CONCENTRATO | 6021SOCH01 | 4.49 | 0.11 | 4.27 | 3.79 | form | yes |
+| Renew Life Formulas, LLC | Norwegian Gold Super Critical Omega | 22411136B | 3.6 | 0.3 | 3 | 3.85 | form | yes |
+| Blackmores China Co., Ltd. | Blackmores Omega Ultra | 328116 | 5.4 | 0.2 | 5 | 3.98 | form | yes |
+| Vitas Pharma International SRL | Prime Omega 3 Triple Strength | 1526.1 | 4.67 | 0.11 | 4.45 | 4.38 | form | yes |
+| Hurra | Omega-3 Geleputer 45stk | 44005774 | 2.01 | 0.09 | 1.83 | 4.42 | form | yes |
+| GNC Hong Kong Limited | 97% High Purity EPA 1200+ | 1063JG2601 | 3.22 | 0.18 | 2.86 | 4.72 | form | yes |
+| WHC Labs BV | UnoCardio 1000 | 30027370-1 | 5.94 | 0.97 | 4 | 5.01 | form | yes |
+| NYO3 INTERNATIONAL AS | 80% Ultra Omega-3 | ZH00000021 | 4.09 | 1.87 | 0.35 | 5.03 | form | yes |
+| NUHAIM | EPA 1000 OMEGA - 3 | 782413 | 5.08 | 0.76 | 3.56 | 5.08 | form | yes |
 
 ## Flavored (ranked separately)
 
@@ -82,9 +145,16 @@ Flavorings can raise the anisidine reading, so these are not compared with unfla
 
 | Rank | Brand | Product | Lot | Oxidation load | TOTOX | PV | AV | Acid value | EPA+DHA mg/capsule | mg/serving | mg/g oil | EPA:DHA | Form | Report date | Expiry | Flags |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 1 | Little Umbrella Limited | Little Umbrella DHA+ for Students Soft Capsules | 121360 | 3.06 | 2.66 ★ | 0.08 | 2.5 | 0.2 | 348 | 696 | 870 | n/a | TG | 2026-07-21 | 2029-05-10 | oxidation value reported as '<x'; evaluated at x; DHA only; flavored (Lemon Oil Distilled): anisidine test may read high |
-| 2 | Everydae | Essential DHA | 2251VV001 (US) | 8.56 | 5.6 ★ | 0.3 | 5 | 0.12 | 327 | 654 | 654 | 0.30 | TG | 2026-09-17 | 2028-11-13 | compliance taken from IFOS's verdict only (number, unit or detection limit cannot decide): Dioxins and Furans; flavored (natural organic orange oil): anisidine test may read high |
-| 3 | GJAV | OMEGREEN! | 26026 (240s) 26026A (120s) | 9.82 | 7.5 ★ | 0.2 | 7.1 | 0.39 | 764 | 2292 | 764 | 1.30 | TG | 2026-08-20 | 2029-02-28 | oil weight from IFOS listing text: "Each 1000 mg capsule"; multi-ingredient product ('vitamin d3' in IFOS listing); flavored ('lemon' in IFOS listing): anisidine test may read high |
+| 1 | Igennus Healthcare Nutrition | Pharmepa RESTORE | 2092 | 6.12 | 3.28 ★ | 0.49 | 2.3 | 0.12 | 536 | 1072 | n/a | n/a | rTG | 2026-05-14 | 2029-03-31 | inconsistent batches: 3 of 5 other unexpired batch(es) fail a cutoff; TOTOX range 3.28 to 15.48; EPA only; multi-ingredient product ('krill' in IFOS listing); flavored (High Absorption rTG Omega-3, Lemon Flavour): anisidine test may read high |
+| 2 | Little Umbrella Limited | Little Umbrella DHA+ for Students Soft Capsules | 121360 | 7.64 | 2.66 ★ | 0.08 | 2.5 | 0.2 | 348 | 696 | 870 | n/a | TG | 2026-07-21 | 2029-05-10 | oxidation value reported as '<x'; evaluated at x; DHA only; flavored (Lemon Oil Distilled): anisidine test may read high |
+| 3 | Aquaomega | High EPA 120 Softgels Orange Flavour | 25103SY237 | 8.44 | 5.74 ★ | 0.12 | 5.5 | 0.13 | 680 | 2720 | n/a | 3.59 | TG | 2026-01-07 | 2028-11-30 | flavored ('orange' in IFOS listing): anisidine test may read high |
+| 4 | Aquaomega | High EPA Omega-3 Chewables Lemon | 25104SY236 | 9.20 | 6.12 ★ | 0.31 | 5.5 | 0.17 | 665 | 2660 | n/a | 3.62 | TG | 2026-01-07 | 2028-11-30 | chewable softgel; flavored ('lemon' in IFOS listing): anisidine test may read high |
+| 5 | GJAV | OMEGREEN! | 26026 (240s) 26026A (120s) | 9.82 | 7.5 ★ | 0.2 | 7.1 | 0.39 | 764 | 2292 | 764 | 1.30 | TG | 2026-08-20 | 2029-02-28 | oil weight from IFOS listing text: "Each 1000 mg capsule"; multi-ingredient product ('vitamin d3' in IFOS listing); flavored ('lemon' in IFOS listing): anisidine test may read high |
+| 6 | Aquaomega | High DHA OMEGA-3 Softgels Lemon | 25102SY239 | 11.85 | 7.36 ★ | 0.93 | 5.5 | 0.17 | 621 | 2484 | n/a | 0.22 | TG | 2026-01-07 | 2028-11-30 | flavored ('lemon' in IFOS listing): anisidine test may read high |
+| 7 | BNM | Gunginam Alaska rTG Omega3 Chewable Mini | C | 13.76 | 8.96 | 2.68 | 3.6 | 0.07 | 651 | 651 | n/a | 2.44 | rTG | 2026-07-28 | 2028-06-14 | flavored ('lemon' in IFOS listing): anisidine test may read high |
+| 8 | LABO Nutrition | OmaxPure Omega-3 Fish Oil | 375229 | 13.72 | 7.5 ★ | 0.08 | 7.34 | 0.1 | 546 | 1093 | n/a | 1.43 | rTG | 2026-09-04 | 2029-05-30 | flavored ('flavor' in IFOS listing): anisidine test may read high |
+| 9 | Everydae | Essential DHA | 2251VV001 (US) | 17.12 | 5.6 ★ | 0.3 | 5 | 0.12 | 327 | 654 | 654 | 0.30 | TG | 2026-09-17 | 2028-11-13 | compliance taken from IFOS's verdict only (number, unit or detection limit cannot decide): Dioxins and Furans; flavored (natural organic orange oil): anisidine test may read high |
+| 10 | Pharma New Zealand PNZ Limited（Phatma®️） | Pharma New Zealand rTG Omega 3 Kids Fish Oil | T0726008 | 21.11 | 7.4 ★ | 2.6 | 2.2 | 1.27 | 350 | 701 | n/a | 0.17 | rTG | 2026-10-13 | 2029-07-01 | inconsistent batches: 3 of 8 other unexpired batch(es) fail a cutoff; TOTOX range 3.7 to 13.12; flavored ('citrus' in IFOS listing): anisidine test may read high |
 
 ## Inconsistent batches
 
@@ -259,6 +329,8 @@ Ranked on their newest batch, but another unexpired batch fails a cutoff.
 | U.G.A. Nutraceuticals Srl | meaQuor mini | Excluded | 2607201 | 4.28 to 16.86 | inconsistent batches: 33 of 47 other unexpired batch(es) fail a cutoff; TOTOX range 4.28 to 16.86 |
 | U.G.A. Nutraceuticals Srl | meaQuor mini rTG | Excluded | 2602701 | 4.14 to 11.56 | inconsistent batches: 7 of 15 other unexpired batch(es) fail a cutoff; TOTOX range 4.14 to 11.56 |
 | Our Nutri | rTG CARE OMEGA3 EASY | Excluded | C | 11.16 to 15.28 | inconsistent batches: 1 of 1 other unexpired batch(es) fail a cutoff; TOTOX range 11.16 to 15.28 |
+| Igennus Healthcare Nutrition | Pharmepa RESTORE | Flavored (ranked separately) #1 | 2092 | 3.28 to 15.48 | inconsistent batches: 3 of 5 other unexpired batch(es) fail a cutoff; TOTOX range 3.28 to 15.48 |
+| Pharma New Zealand PNZ Limited（Phatma®️） | Pharma New Zealand rTG Omega 3 Kids Fish Oil | Flavored (ranked separately) #10 | T0726008 | 3.7 to 13.12 | inconsistent batches: 3 of 8 other unexpired batch(es) fail a cutoff; TOTOX range 3.7 to 13.12 |
 | +LIFE | +Life Omega 3 Complete | Form unverified | F2602/0392 | 7.2 to 13.63 | inconsistent batches: 2 of 2 other unexpired batch(es) fail a cutoff; TOTOX range 7.2 to 13.63 |
 | Epsilon Health | Arichol Omega-3 max | Form unverified | D026V | 8.2 to 10.13 | inconsistent batches: 1 of 1 other unexpired batch(es) fail a cutoff; TOTOX range 8.2 to 10.13 |
 | Biowell | Biowell BEAUTYL FISH OIL | Form unverified | 1291900302 | 7.1 to 15.5 | inconsistent batches: 1 of 2 other unexpired batch(es) fail a cutoff; TOTOX range 7.1 to 15.5 |
@@ -330,40 +402,6 @@ Ranked on their newest batch, but another unexpired batch fails a cutoff.
 | THE VITAMIN SHOPPE | Vthrive DHA 1000mg | Form unverified | A120192 | 8.14 to 10.46 | inconsistent batches: 1 of 1 other unexpired batch(es) fail a cutoff; TOTOX range 8.14 to 10.46 |
 | Nutrileya Inc. | omega 3 | Form unverified | D242V 80 softgels | 5.82 to 11.96 | inconsistent batches: 4 of 8 other unexpired batch(es) fail a cutoff; TOTOX range 5.82 to 11.96 |
 | Evidence Based Supplements | MAG-O3 MAG-EPA Concentrate, Canada | Incomplete data | 22512134C | 3.2 to 4.4 | inconsistent batches: 2 of 4 other unexpired batch(es) fail a cutoff; TOTOX range 3.2 to 4.4 |
-| BIO-H | BIO-H rTG 97% Fish Oil Extract | Oil weight unavailable | U601350 | 2.5 to 12 | inconsistent batches: 2 of 3 other unexpired batch(es) fail a cutoff; TOTOX range 2.5 to 12 |
-| Beyond Vitamins | Beyond Vitamins Omega 3 Ultra Puro | Oil weight unavailable | 213042603 | 8.68 to 15.05 | inconsistent batches: 1 of 2 other unexpired batch(es) fail a cutoff; TOTOX range 8.68 to 15.05 |
-| Essential Nutrition | CoQ10 + Omega-3 TG | Oil weight unavailable | 1000029546 | 3.15 to 16.72 | inconsistent batches: 2 of 3 other unexpired batch(es) fail a cutoff; TOTOX range 3.15 to 16.72 |
-| Tasly Great Health | Complex Fish Oil (nTG Form) | Oil weight unavailable | 268806 | 8.6 to 12.3 | inconsistent batches: 1 of 2 other unexpired batch(es) fail a cutoff; TOTOX range 8.6 to 12.3 |
-| Medipharm Corp | Dual Premium Supercritical rTG Omega 3 | Oil weight unavailable | PU26003 | 8.46 to 12.32 | inconsistent batches: 1 of 1 other unexpired batch(es) fail a cutoff; TOTOX range 8.46 to 12.32 |
-| Heracles | Heracles Expert Omega 3 | Oil weight unavailable | 26008 | 3.1 to 18.96 | inconsistent batches: 5 of 7 other unexpired batch(es) fail a cutoff; TOTOX range 3.1 to 18.96 |
-| Heracles | Heracles Omega 3 Easy | Oil weight unavailable | 26001 | 4.8 to 14.38 | inconsistent batches: 1 of 1 other unexpired batch(es) fail a cutoff; TOTOX range 4.8 to 14.38 |
-| Nutribiotica SL | Kiroot Kicardio | Oil weight unavailable | 1625 6 | 7.88 to 16.94 | inconsistent batches: 1 of 2 other unexpired batch(es) fail a cutoff; TOTOX range 7.88 to 16.94 |
-| MitoQ Limited | MitoQ 92% EPA Omega-3 | Oil weight unavailable | Q5242GH | 6.3 to 15.4 | inconsistent batches: 1 of 6 other unexpired batch(es) fail a cutoff; TOTOX range 6.3 to 15.4 |
-| MitoQ Limited | MitoQ MitoMega Omega-3 | Oil weight unavailable | Q6186G | 3.7 to 10.28 | inconsistent batches: 2 of 20 other unexpired batch(es) fail a cutoff; TOTOX range 3.7 to 10.28 |
-| NYO3 INTERNATIONAL AS | NYO3 Fish Oil 97% EPA | Oil weight unavailable | 2601 | 5.61 to 9.47 | inconsistent batches: 1 of 5 other unexpired batch(es) fail a cutoff; TOTOX range 5.61 to 9.47 |
-| Nutrition Balance | Nutrition Balance 98% Omega-3 Fish Oil Extract(rTG） | Oil weight unavailable | U603149 | 6 to 11.6 | inconsistent batches: 1 of 1 other unexpired batch(es) fail a cutoff; TOTOX range 6 to 11.6 |
-| Tsunami Nutrition SRL | OMEGA Plus | Oil weight unavailable | 266117 | 6.87 to 10.01 | inconsistent batches: 1 of 2 other unexpired batch(es) fail a cutoff; TOTOX range 6.87 to 10.01 |
-| U.G.A. Nutraceuticals Srl | OMEGOR MIND | Oil weight unavailable | 2611004 | 1.4 to 18.2 | inconsistent batches: 15 of 43 other unexpired batch(es) fail a cutoff; TOTOX range 1.4 to 18.2 |
-| Sports Research | Omega-3 Fish Oil AlaskOmega 1250 mg MSC-C-55162 | Oil weight unavailable | S26G026 | 1.96 to 11.08 | inconsistent batches: 2 of 90 other unexpired batch(es) fail a cutoff; TOTOX range 1.96 to 11.08 |
-| OmegaVia | OmegaVia DHA 600 | Oil weight unavailable | OV260140 | 6.73 to 11.8 | inconsistent batches: 1 of 4 other unexpired batch(es) fail a cutoff; TOTOX range 6.73 to 11.8 |
-| OmegaVia | OmegaVia EPA 500 | Oil weight unavailable | OV260141 | 8.68 to 18.38 | inconsistent batches: 5 of 5 other unexpired batch(es) fail a cutoff; TOTOX range 8.68 to 18.38 |
-| OmegaVia | OmegaVia Ultra Concentrated Omega-3 | Oil weight unavailable | OV260297 | 7.4 to 14.84 | inconsistent batches: 3 of 8 other unexpired batch(es) fail a cutoff; TOTOX range 7.4 to 14.84 |
-| Doctor Check | One-per-Day Max Supercritical rTG Omega3 | Oil weight unavailable | H709-6002 | 5.6 to 14.49 | inconsistent batches: 1 of 1 other unexpired batch(es) fail a cutoff; TOTOX range 5.6 to 14.49 |
-| Pharma New Zealand PNZ Limited（Phatma®️） | Pharma New Zealand rTG Omega 3 Kids Fish Oil | Oil weight unavailable | T0726008 | 3.7 to 13.12 | inconsistent batches: 3 of 8 other unexpired batch(es) fail a cutoff; TOTOX range 3.7 to 13.12 |
-| Igennus Healthcare Nutrition | Pharmepa RESTORE | Oil weight unavailable | 2092 | 3.28 to 15.48 | inconsistent batches: 3 of 5 other unexpired batch(es) fail a cutoff; TOTOX range 3.28 to 15.48 |
-| VITAPAW | SO!HEALTHY 10mm rTG Omega-3 | Oil weight unavailable | 707003 | 9.29 to 18.21 | inconsistent batches: 1 of 1 other unexpired batch(es) fail a cutoff; TOTOX range 9.29 to 18.21 |
-| Bare Performance Nutrition | Strong Omega | Oil weight unavailable | B012902 | 3.94 to 14.02 | inconsistent batches: 1 of 5 other unexpired batch(es) fail a cutoff; TOTOX range 3.94 to 14.02 |
-| Essential Nutrition | Super Omega 3 TG | Oil weight unavailable | 1000030018 | 6.92 to 12.95 | inconsistent batches: 2 of 4 other unexpired batch(es) fail a cutoff; TOTOX range 6.92 to 12.95 |
-| Essential Nutrition | Super Omega 3 TG 500mg | Oil weight unavailable | 1000030395 T46A14I251 | 5.73 to 14.4 | inconsistent batches: 1 of 5 other unexpired batch(es) fail a cutoff; TOTOX range 5.73 to 14.4 |
-| Essential Nutrition | Super Omega-3 TG 1g Comfort | Oil weight unavailable | 7000004185 | 7.97 to 12.02 | inconsistent batches: 1 of 1 other unexpired batch(es) fail a cutoff; TOTOX range 7.97 to 12.02 |
-| FMW Corp. | Supercritical rTG Omega Essence 1000 | Oil weight unavailable | BGQ | 2.32 to 18.3 | inconsistent batches: 78 of 88 other unexpired batch(es) fail a cutoff; TOTOX range 2.32 to 18.3 |
-| U.G.A. Nutraceuticals Srl | VitaDHA 1000 | Oil weight unavailable | 2613308 | 2.54 to 12.36 | inconsistent batches: 6 of 12 other unexpired batch(es) fail a cutoff; TOTOX range 2.54 to 12.36 |
-| Vital Planet, LLC | Vital Omega Easy Swallow | Oil weight unavailable | 22603147 | 3.4 to 16.48 | inconsistent batches: 1 of 1 other unexpired batch(es) fail a cutoff; TOTOX range 3.4 to 16.48 |
-| Vital Planet, LLC | Vital Omega Ultra Daily | Oil weight unavailable | 22603146 | 3.4 to 16.36 | inconsistent batches: 1 of 1 other unexpired batch(es) fail a cutoff; TOTOX range 3.4 to 16.36 |
-| Viva Pharmaceutical Inc. | Viva RTG OMEGA 3 | Oil weight unavailable | 22606501 | 6.66 to 9.8 | inconsistent batches: 1 of 1 other unexpired batch(es) fail a cutoff; TOTOX range 6.66 to 9.8 |
-| Wellcare-Ilko Ilac San. ve Tic. A.S. | Wellcare Omega 3 UniQ DHA 750 Omega 3 | Oil weight unavailable | 26020093A | 6.9 to 14.1 | inconsistent batches: 2 of 5 other unexpired batch(es) fail a cutoff; TOTOX range 6.9 to 14.1 |
-| The littles | rTG Booster Ultimate Omega 3 | Oil weight unavailable | 26004 | 4.06 to 18.98 | inconsistent batches: 4 of 14 other unexpired batch(es) fail a cutoff; TOTOX range 4.06 to 18.98 |
-| Our Nutri | rTG CARE OMEGA3 MAX 1100 | Oil weight unavailable | 263814 | 3.74 to 9.93 | inconsistent batches: 2 of 20 other unexpired batch(es) fail a cutoff; TOTOX range 3.74 to 9.93 |
 | RedDog | CONCENTRATED DEEP-SEA FISH OIL FOR CATS | Pet products | 262001903 | 15.4 to 18.4 | inconsistent batches: 1 of 1 other unexpired batch(es) fail a cutoff; TOTOX range 15.4 to 18.4 |
 | RedDog | CONCENTRATED DEEP-SEA FISH OIL FOR DOGS | Pet products | 262001904 | 14.8 to 16.1 | inconsistent batches: 1 of 1 other unexpired batch(es) fail a cutoff; TOTOX range 14.8 to 16.1 |
 | Cho and Kang | Chogong rTG Red Omega-3 mini | Pet products | 22605141B | 3.57 to 16.49 | inconsistent batches: 4 of 6 other unexpired batch(es) fail a cutoff; TOTOX range 3.57 to 16.49 |
@@ -375,10 +413,42 @@ Ranked on their newest batch, but another unexpired batch fails a cutoff.
 | Vetwish | vetwish anchovy pet fish oil for dog | Pet products | 20250519 | 9.6 to 17.6 | inconsistent batches: 2 of 2 other unexpired batch(es) fail a cutoff; TOTOX range 9.6 to 17.6 |
 | Vetwish | vetwish's high-end MAX+ series of cat anchovy oil | Pet products | 20260813 | 4.3 to 14.81 | inconsistent batches: 6 of 10 other unexpired batch(es) fail a cutoff; TOTOX range 4.3 to 14.81 |
 | Vetwish | vetwish's high-end MAX+ series of dog anchovy oil | Pet products | 20260814 | 4.3 to 14.6 | inconsistent batches: 9 of 14 other unexpired batch(es) fail a cutoff; TOTOX range 4.3 to 14.6 |
-| VIBE Nutraceuticals, SL | OMEGA 3 PRO | Ranked #3 | 21225.1 | 4.66 to 13.8 | inconsistent batches: 3 of 8 other unexpired batch(es) fail a cutoff; TOTOX range 4.66 to 13.8 |
-| U.G.A. Nutraceuticals Srl | Omegor Vitality 1000 | Ranked #7 | 2608202 | 4.99 to 9.92 | inconsistent batches: 3 of 21 other unexpired batch(es) fail a cutoff; TOTOX range 4.99 to 9.92 |
-| Nutribiotica SL | Kiroot Omega 3 DHA | Ranked #8 | 1325.7 | 6.97 to 14.56 | inconsistent batches: 2 of 2 other unexpired batch(es) fail a cutoff; TOTOX range 6.97 to 14.56 |
-| Sports Research | Omega-3 Fish Oil Triple Strength 1250mg | Ranked #10 | S26E206 | 3.6 to 18.93 | inconsistent batches: 53 of 157 other unexpired batch(es) fail a cutoff; TOTOX range 3.6 to 18.93 |
+| BIO-H | BIO-H rTG 97% Fish Oil Extract | Ranked #1 | U601350 | 2.5 to 12 | inconsistent batches: 2 of 3 other unexpired batch(es) fail a cutoff; TOTOX range 2.5 to 12 |
+| Sports Research | Omega-3 Fish Oil AlaskOmega 1250 mg MSC-C-55162 | Ranked #5 | S26G026 | 1.96 to 11.08 | inconsistent batches: 2 of 90 other unexpired batch(es) fail a cutoff; TOTOX range 1.96 to 11.08 |
+| The littles | rTG Booster Ultimate Omega 3 | Ranked #6 | 26004 | 4.06 to 18.98 | inconsistent batches: 4 of 14 other unexpired batch(es) fail a cutoff; TOTOX range 4.06 to 18.98 |
+| Bare Performance Nutrition | Strong Omega | Ranked #8 | B012902 | 3.94 to 14.02 | inconsistent batches: 1 of 5 other unexpired batch(es) fail a cutoff; TOTOX range 3.94 to 14.02 |
+| Our Nutri | rTG CARE OMEGA3 MAX 1100 | Ranked #9 | 263814 | 3.74 to 9.93 | inconsistent batches: 2 of 20 other unexpired batch(es) fail a cutoff; TOTOX range 3.74 to 9.93 |
+| U.G.A. Nutraceuticals Srl | VitaDHA 1000 | Ranked #10 | 2613308 | 2.54 to 12.36 | inconsistent batches: 6 of 12 other unexpired batch(es) fail a cutoff; TOTOX range 2.54 to 12.36 |
+| Doctor Check | One-per-Day Max Supercritical rTG Omega3 | Ranked #12 | H709-6002 | 5.6 to 14.49 | inconsistent batches: 1 of 1 other unexpired batch(es) fail a cutoff; TOTOX range 5.6 to 14.49 |
+| Nutrition Balance | Nutrition Balance 98% Omega-3 Fish Oil Extract(rTG） | Ranked #13 | U603149 | 6 to 11.6 | inconsistent batches: 1 of 1 other unexpired batch(es) fail a cutoff; TOTOX range 6 to 11.6 |
+| FMW Corp. | Supercritical rTG Omega Essence 1000 | Ranked #15 | BGQ | 2.32 to 18.3 | inconsistent batches: 78 of 88 other unexpired batch(es) fail a cutoff; TOTOX range 2.32 to 18.3 |
+| Heracles | Heracles Expert Omega 3 | Ranked #18 | 26008 | 3.1 to 18.96 | inconsistent batches: 5 of 7 other unexpired batch(es) fail a cutoff; TOTOX range 3.1 to 18.96 |
+| Vital Planet, LLC | Vital Omega Ultra Daily | Ranked #19 | 22603146 | 3.4 to 16.36 | inconsistent batches: 1 of 1 other unexpired batch(es) fail a cutoff; TOTOX range 3.4 to 16.36 |
+| VIBE Nutraceuticals, SL | OMEGA 3 PRO | Ranked #24 | 21225.1 | 4.66 to 13.8 | inconsistent batches: 3 of 8 other unexpired batch(es) fail a cutoff; TOTOX range 4.66 to 13.8 |
+| OmegaVia | OmegaVia Ultra Concentrated Omega-3 | Ranked #26 | OV260297 | 7.4 to 14.84 | inconsistent batches: 3 of 8 other unexpired batch(es) fail a cutoff; TOTOX range 7.4 to 14.84 |
+| Nutribiotica SL | Kiroot Omega 3 DHA | Ranked #28 | 1325.7 | 6.97 to 14.56 | inconsistent batches: 2 of 2 other unexpired batch(es) fail a cutoff; TOTOX range 6.97 to 14.56 |
+| Sports Research | Omega-3 Fish Oil Triple Strength 1250mg | Ranked #29 | S26E206 | 3.6 to 18.93 | inconsistent batches: 53 of 157 other unexpired batch(es) fail a cutoff; TOTOX range 3.6 to 18.93 |
+| U.G.A. Nutraceuticals Srl | Omegor Vitality 1000 | Ranked #35 | 2608202 | 4.99 to 9.92 | inconsistent batches: 3 of 21 other unexpired batch(es) fail a cutoff; TOTOX range 4.99 to 9.92 |
+| Vital Planet, LLC | Vital Omega Easy Swallow | Ranked #37 | 22603147 | 3.4 to 16.48 | inconsistent batches: 1 of 1 other unexpired batch(es) fail a cutoff; TOTOX range 3.4 to 16.48 |
+| Medipharm Corp | Dual Premium Supercritical rTG Omega 3 | Ranked #39 | PU26003 | 8.46 to 12.32 | inconsistent batches: 1 of 1 other unexpired batch(es) fail a cutoff; TOTOX range 8.46 to 12.32 |
+| Wellcare-Ilko Ilac San. ve Tic. A.S. | Wellcare Omega 3 UniQ DHA 750 Omega 3 | Ranked #40 | 26020093A | 6.9 to 14.1 | inconsistent batches: 2 of 5 other unexpired batch(es) fail a cutoff; TOTOX range 6.9 to 14.1 |
+| Viva Pharmaceutical Inc. | Viva RTG OMEGA 3 | Ranked #42 | 22606501 | 6.66 to 9.8 | inconsistent batches: 1 of 1 other unexpired batch(es) fail a cutoff; TOTOX range 6.66 to 9.8 |
+| NYO3 INTERNATIONAL AS | NYO3 Fish Oil 97% EPA | Ranked #45 | 2601 | 5.61 to 9.47 | inconsistent batches: 1 of 5 other unexpired batch(es) fail a cutoff; TOTOX range 5.61 to 9.47 |
+| Heracles | Heracles Omega 3 Easy | Ranked #49 | 26001 | 4.8 to 14.38 | inconsistent batches: 1 of 1 other unexpired batch(es) fail a cutoff; TOTOX range 4.8 to 14.38 |
+| Essential Nutrition | Super Omega-3 TG 1g Comfort | Ranked #58 | 7000004185 | 7.97 to 12.02 | inconsistent batches: 1 of 1 other unexpired batch(es) fail a cutoff; TOTOX range 7.97 to 12.02 |
+| Nutribiotica SL | Kiroot Kicardio | Ranked #59 | 1625 6 | 7.88 to 16.94 | inconsistent batches: 1 of 2 other unexpired batch(es) fail a cutoff; TOTOX range 7.88 to 16.94 |
+| OmegaVia | OmegaVia DHA 600 | Ranked #60 | OV260140 | 6.73 to 11.8 | inconsistent batches: 1 of 4 other unexpired batch(es) fail a cutoff; TOTOX range 6.73 to 11.8 |
+| Essential Nutrition | Super Omega 3 TG | Ranked #62 | 1000030018 | 6.92 to 12.95 | inconsistent batches: 2 of 4 other unexpired batch(es) fail a cutoff; TOTOX range 6.92 to 12.95 |
+| Beyond Vitamins | Beyond Vitamins Omega 3 Ultra Puro | Ranked #63 | 213042603 | 8.68 to 15.05 | inconsistent batches: 1 of 2 other unexpired batch(es) fail a cutoff; TOTOX range 8.68 to 15.05 |
+| OmegaVia | OmegaVia EPA 500 | Ranked #66 | OV260141 | 8.68 to 18.38 | inconsistent batches: 5 of 5 other unexpired batch(es) fail a cutoff; TOTOX range 8.68 to 18.38 |
+| Tsunami Nutrition SRL | OMEGA Plus | Ranked #68 | 266117 | 6.87 to 10.01 | inconsistent batches: 1 of 2 other unexpired batch(es) fail a cutoff; TOTOX range 6.87 to 10.01 |
+| MitoQ Limited | MitoQ MitoMega Omega-3 | Ranked #73 | Q6186G | 3.7 to 10.28 | inconsistent batches: 2 of 20 other unexpired batch(es) fail a cutoff; TOTOX range 3.7 to 10.28 |
+| Tasly Great Health | Complex Fish Oil (nTG Form) | Ranked #75 | 268806 | 8.6 to 12.3 | inconsistent batches: 1 of 2 other unexpired batch(es) fail a cutoff; TOTOX range 8.6 to 12.3 |
+| Essential Nutrition | CoQ10 + Omega-3 TG | Ranked #78 | 1000029546 | 3.15 to 16.72 | inconsistent batches: 2 of 3 other unexpired batch(es) fail a cutoff; TOTOX range 3.15 to 16.72 |
+| MitoQ Limited | MitoQ 92% EPA Omega-3 | Ranked #79 | Q5242GH | 6.3 to 15.4 | inconsistent batches: 1 of 6 other unexpired batch(es) fail a cutoff; TOTOX range 6.3 to 15.4 |
+| Essential Nutrition | Super Omega 3 TG 500mg | Ranked #80 | 1000030395 T46A14I251 | 5.73 to 14.4 | inconsistent batches: 1 of 5 other unexpired batch(es) fail a cutoff; TOTOX range 5.73 to 14.4 |
+| U.G.A. Nutraceuticals Srl | OMEGOR MIND | Ranked #82 | 2611004 | 1.4 to 18.2 | inconsistent batches: 15 of 43 other unexpired batch(es) fail a cutoff; TOTOX range 1.4 to 18.2 |
+| VITAPAW | SO!HEALTHY 10mm rTG Omega-3 | Ranked #83 | 707003 | 9.29 to 18.21 | inconsistent batches: 1 of 1 other unexpired batch(es) fail a cutoff; TOTOX range 9.29 to 18.21 |
 ## Form unverified
 
 Passed every other check that could be made, but the oil form is not stated by IFOS and has not been confirmed from the label. Never assumed to be triglyceride.
@@ -430,7 +500,6 @@ Passed every other check that could be made, but the oil form is not stated by I
 | Farmavita Ilac A.S. | Möller's Omega-3 | 566285 | 8.8 | 1.86 | 5.08 | form unverified, not attempted: no form stated |
 | Fitopreparatori Italiani | Omega 3 Active plus | 2026070176 | 5.5 | 1.31 | 2.88 | form unverified, not attempted: no form stated |
 | Fjorda AS | Fjorda Brain Omega-3 | 27748 | 7.68 | 2.24 | 3.2 | form unverified, not attempted: no form stated |
-| GNC Hong Kong Limited | 97% High Purity EPA 1200+ | 1063JG2601 | 3.22 | 0.18 | 2.86 | form unverified, not attempted: no form stated |
 | GNC Hong Kong Limited | Fish Oil Mini | 1061BI2611 | 9.04 | 1.34 | 6.36 | form unverified, not attempted: no form stated |
 | GNC Hong Kong Limited | GNC Cellular Resilience Anti-Aging Complex | FEP2600014 | 6.72 | 0.16 | 6.4 | form unverified, not attempted: no form stated |
 | GNC Hong Kong Limited | GNC Fish Oil XTRA®️ Vision & Mind | FEP2500054 | 7.9 | 1.1 | 5.7 | form unverified, not attempted: no form stated |
@@ -438,7 +507,6 @@ Passed every other check that could be made, but the oil form is not stated by I
 | GNC Hong Kong Limited | Triple Strength Fish Oil Mini | 1034FA2607 | 6.65 | 0.22 | 6.21 | form unverified, not attempted: no form stated |
 | Gema Herrerias S.L.U | Omega 1500 EPA/DHA | B3029 | 8.58 | 0.94 | 6.7 | form unverified, not attempted: no form stated |
 | Geonat | Omeganat- Aceite de Pescad 1000/500 | 0004 | 7.9 | 2.4 | 3.1 | form unverified, not attempted: no form stated |
-| Hurra | Omega-3 Geleputer 45stk | 44005774 | 2.01 | 0.09 | 1.83 | form unverified, not attempted: no form stated |
 | IDN | IDN® SUPER OMEGA-3 | U606214 | 5.76 | 0.08 | 5.6 | form unverified, not attempted: no form stated |
 | Igennus Healthcare Nutrition | Pharmepa COMPLETE | 7092 | 9.52 | 2.42 | 4.68 | form unverified, not attempted: no form stated |
 | Innopharm | INNOPHARM Heart Health | L290925 | 7.7 | 0.1 | 7.5 | form unverified, not attempted: no form stated |
@@ -454,7 +522,6 @@ Passed every other check that could be made, but the oil form is not stated by I
 | Life & Food Inc | OMEGA-3 Supreme Fish Oil | C2600087 | 6.29 | 2.13 | 2.03 | form unverified, not attempted: no form stated |
 | Life Extension | Super Omega-3 EPA/DHA | 260519 | 6.76 | 1.98 | 2.8 | form unverified, not attempted: no form stated |
 | MARTÍNEZ NIETO, S.A. | DHA 1000 | L9151 | 8.09 | 2.24 | 3.61 | form unverified, not attempted: no form stated |
-| MARTÍNEZ NIETO, S.A. | MARNYS® Omegamar 1500 | M2962 | 2.12 | 0.06 | 2 | form unverified, not attempted: no form stated |
 | MarathonTime | FISH OIL | 2G22A019 | 8.6 | 1.4 | 5.8 | form unverified, not attempted: no form stated |
 | Marco Viti Farmaceutici SPA-Zeta Farmaceutici Group | Omega 3 VITI MULTI Azione | 5031 | 6.23 | 1.88 | 2.47 | form unverified, not attempted: no form stated |
 | MegaGold | DHA1000 | 24C001 | 6.82 | 2.06 | 2.7 | form unverified, not attempted: no form stated |
@@ -523,7 +590,6 @@ Passed every other check that could be made, but the oil form is not stated by I
 | Sorocaps Industria Farmaceutica Ltda | Peixe concentrado 1000mg | P26000799 | 6.26 | 0.71 | 4.84 | form unverified, not attempted: no form stated |
 | Sports Research | DHA 700 Omega-3 | UC260384 | 7.84 | 2.01 | 3.82 | form unverified, not attempted: no form stated |
 | Sports Research | Omega-3 Fish Oil AlaskOmega Mini Gels 625mg MSC-C-55162 | UC260414 | 8.65 | 2.65 | 3.35 | form unverified, not attempted: no form stated |
-| Swisse Italia (Health and Happiness Italy S.r.l.) | OMEGA 3 CONCENTRATO | 6021SOCH01 | 4.49 | 0.11 | 4.27 | form unverified, not attempted: no form stated |
 | Swisse Wellness Pty Ltd | SWISSE ULTIBOOST HIGH POTENCY WILD FISH OIL + COQ10 | 40448A | 9.74 | 1.63 | 6.48 | form unverified, not attempted: no form stated |
 | TAB Ilac Sanayi A.S. | OmePa DHA Omega-3 & Astaksantin | 26030199 | 9.6 | 2.55 | 4.5 | form unverified, not attempted: no form stated |
 | THE VITAMIN SHOPPE | Premium OMEGA-3 Fish Oil | B021832 | 9.38 | 1.07 | 7.24 | form unverified, not attempted: no form stated |
@@ -543,7 +609,6 @@ Passed every other check that could be made, but the oil form is not stated by I
 | WE Salus srl | WESALYS OMEGA 3 | 01251097 | 9.26 | 1.9 | 5.46 | form unverified, not attempted: no form stated |
 | WHC Labs BV | UNOCARDIO 1000 | 24C002 | 6.34 | 0.67 | 5 | form unverified, not attempted: no form stated |
 | WHC Labs BV | UNOCARDIO X2 | 30027143 | 6.12 | 0.06 | 6 | form unverified, not attempted: no form stated |
-| WHC Labs BV | UnoCardio 1000 | 30027370-1 | 5.94 | 0.97 | 4 | form unverified, not attempted: no form stated |
 | WHC Labs BV | UnoCardio 1000 MINI | 30027410 | 8.22 | 1.11 | 6 | form unverified, not attempted: no form stated |
 | WHC Labs BV | WHC Promega Fish Oil Softgels | GD00045938 | 6.7 | 0.79 | 5.1 | form unverified, not attempted: no form stated |
 | Weetamin | Weetamin Alaska Omega 3 | D | 5.38 | 2.19 | 1 | form unverified, not attempted: no form stated |
@@ -580,6 +645,7 @@ Passed every other check that could be made, but the oil form is not stated by I
 | Carlson Nutritional Supplements | Teen's Max Catch Minis | 2403059 | 4.32 | 0.91 | 2.5 | form unverified: Brand site followed to a collection page; the Teen's Max Catch Minis label was not reached. |
 | Catalo Natural Health Science Inc. | Children's DHA IQ Fish Formula | 22606126 | 3.4 | 0.2 | 3 | form unverified: Brand site followed to a different product (Children's DHA Formula chewables); no label for Children's DHA IQ Fish Formula with form or oil weight. |
 | Vitas Pharma International SRL | Prime Omega 3 Triple Strength | 1526.1 | 4.67 | 0.11 | 4.45 | form unverified: Brand site visit did not reach a label for Prime Omega 3 Triple Strength. |
+| WHC Labs BV | UnoCardio 1000 | 30027370-1 | 5.94 | 0.97 | 4 | form unverified: Brand sites (unocardio.eu, whclabs.eu) return a shell page with no product text. A third-party review site (totalshape.com) says 'r-triglyceride form' and 'a pleasant orange flavor', but it is not the label or the brand, so neither is recorded. If confirmed, this product would be ranked as flavored, not in the unflavored top 10. |
 | Carlson Nutritional Supplements | Maximum Omega 2000 | 2606034 41451 | 5.44 | 0.72 | 4 | form unverified: Brand supplement facts: 'Norwegian fish oil concentrate 2.6 g' per 2-softgel serving (1,300 mg per softgel), but no statement of the oil form anywhere on the page. |
 | Bayer Healthcare Limited | One A Day High EPA Fish Oil | 05072026G | 5 | 1 | 3 | form unverified: Brand website in the IFOS listing (bayer-oneaday.com) does not resolve. |
 | Igennus Healthcare Nutrition | Pure & Essential ULTRA EPA | 2092 | 3.28 | 0.49 | 2.3 | form unverified: IFOS listing: conflicting form terms (rTG: re-esterified triglyceride, re-esterified, rTG; PL: krill oil, krill) |
@@ -591,95 +657,17 @@ Passed every other check that could be made, but the oil form is not stated by I
 | Xymogen | OmegaPure 820™ | UC250629 | 5.41 | 1.99 | 1.43 | form unverified: NIH label record (Arctic Oils OmegaPure 820; 'Arctic Oils is a registered trademark of XYMOGEN, Inc.') lists Fish Oil Concentrate 2.5 g and 1.875 g omega-3 per serving of 1 softgel, which does not fit the IFOS lot (1,066 mg omega-3 per softgel); the serving size on the record looks wrong, so the oil weight is not used. No oil form is stated. |
 | GNC Global | GNC Omega Triple Strength Fish Oil Ultra Mini | 26JAF0200 | 3.1 | 0.85 | 1.4 | form unverified: NIH label record (GNC Triple Strength Fish Oil Mini, 2025): 1000 mg EPA+DHA per 2 mini softgels, ingredient 'Fish Oil'; no oil form and no fish-oil weight (Total Fat 1.5 g is rounded). |
 | Youngevity | Ultimate EFA | 22605132 | 5.04 | 1.69 | 1.66 | form unverified: NIH label record (Youngevity Ultimate EFA): a blend of borage, flax seed and fish oils; no oil form or fish-oil weight is stated. |
+| Hurra | Omega-3 Geleputer 45stk | 44005774 | 2.01 | 0.09 | 1.83 | form unverified: No brand website in the IFOS listing and the web search found no page for this product. Form left unverified. |
+| Swisse Italia (Health and Happiness Italy S.r.l.) | OMEGA 3 CONCENTRATO | 6021SOCH01 | 4.49 | 0.11 | 4.27 | form unverified: No brand website in the IFOS listing; drmax.it refuses access (403). The 1000farmacie.it page mentions 'trigliceridi' only as blood triglyceride levels (a health claim), not the oil form. Form left unverified. |
+| MARTÍNEZ NIETO, S.A. | MARNYS® Omegamar 1500 | M2962 | 2.12 | 0.06 | 2 | form unverified: No brand website in the IFOS listing; marnys.com and the binsina.ae retailer refuse automated access (403). The PromoFarma product page states no oil form. Form left unverified. |
 | Dua + Labs | Omega 3 PREMIUM 1000 EPA / 500 DHA cápsula blanda | VS260652-2 | 2.66 | 0.08 | 2.5 | form unverified: Retail site (buildershop.com) home page has no label for this product. |
 | Pharma New Zealand PNZ Limited（Phatma®️） | Pharma New Zealand Omega 3 1425mg | PN01260107/1 | 3.29 | 0.37 | 2.55 | form unverified: Same as PNZL0001: this product (min 1055 EPA / 210 DHA) matches the brand's ethyl ester (EE) product most closely, but the names differ (1425 mg vs 1440 mg), so the form is left unverified rather than assumed. |
+| GNC Hong Kong Limited | 97% High Purity EPA 1200+ | 1063JG2601 | 3.22 | 0.18 | 2.86 | form unverified: gnc.com.cn resets the connection and the gnc.com product page denies access. Search results show GNC's Triple Strength line is ethyl ester, so the form cannot be assumed. Form left unverified. |
 
 ## Oil weight unavailable
 
-Form is known, but no capsule oil weight was found, so the oxidation load cannot be computed. Not guessed.
-
-| Brand | Product | Lot | TOTOX | PV | AV | Reason |
-|---|---|---|---|---|---|---|
-| +LIFE | +Life Omega 3 Olio di pesce 1000mg in forma di trigliceride | F2602/0393 | 8.9 | 0.5 | 7.9 | oil weight unavailable: capsule oil weight not found on the label |
-| All Wealth Beauty Concept Co., Ltd | All Wealthh LiangXin Fish Oil | PE600002 | 5.7 | 0 | 5.7 | oil weight unavailable: capsule oil weight not found on the label |
-| Aquaomega | AquaOmega Balanced softgels | 26051SZ1097 | 4.7 | 0.3 | 4.1 | oil weight unavailable: capsule oil weight not found on the label |
-| Aquaomega | High DHA OMEGA-3 Softgels Grape | 25101SY238 | 9.16 | 1.83 | 5.5 | oil weight unavailable: capsule oil weight not found on the label |
-| Aquaomega | High DHA OMEGA-3 Softgels Lemon | 25102SY239 | 7.36 | 0.93 | 5.5 | oil weight unavailable: capsule oil weight not found on the label |
-| Aquaomega | High EPA 120 Softgels Orange Flavour | 25103SY237 | 5.74 | 0.12 | 5.5 | oil weight unavailable: capsule oil weight not found on the label |
-| Aquaomega | High EPA Omega-3 Chewables Lemon | 25104SY236 | 6.12 | 0.31 | 5.5 | oil weight unavailable: capsule oil weight not found on the label |
-| BIO-H | BIO-H rTG 97% Fish Oil Extract | U601350 | 2.5 | 0.2 | 2.1 | oil weight unavailable: capsule oil weight not found on the label |
-| BIO-H | BIO-H rTG 98% (EPA 1230) Fish Oil Extract | U512107 | 3.1 | 0.16 | 2.8 | oil weight unavailable: capsule oil weight not found on the label |
-| BNM | Gunginam Alaska rTG Omega3 Chewable Mini | C | 8.96 | 2.68 | 3.6 | oil weight unavailable: capsule oil weight not found on the label |
-| Bare Performance Nutrition | Strong Omega | B012902 | 3.94 | 1.45 | 3.7 | oil weight unavailable: capsule oil weight not found on the label |
-| Better Bioscience | Joy Fish Oil Concentrate 85% omega-3 rTG with 720 mg EPA and 240 mg DHA | JFO202501 | 8.6 | 2.8 | 3 | oil weight unavailable: capsule oil weight not found on the label |
-| Beyond Vitamins | Beyond Vitamins Omega 3 Ultra Puro | 213042603 | 8.68 | 1.88 | 4.92 | oil weight unavailable: capsule oil weight not found on the label |
-| Coretrition Technology Limited | CoreTrition rTG FISH OIL 95% OMEGA-3 | 326Y0317 | 6.1 | 0.2 | 5.7 | oil weight unavailable: capsule oil weight not found on the label |
-| Devotion International Co., Ltd. (VITABOX®) | 85% Omega-3 rTG Fish Oil | 260629C01 | 8.62 | 2.27 | 4.08 | oil weight unavailable: capsule oil weight not found on the label |
-| Doctor Check | One-per-Day Max Supercritical rTG Omega3 | H709-6002 | 5.6 | 0.7 | 4.2 | oil weight unavailable: capsule oil weight not found on the label |
-| Epigenetic Labs, LLC DBA Organixx | Omega-3 TG Fish Oil | 2047096 | 7.86 | 2.57 | 2.72 | oil weight unavailable: capsule oil weight not found on the label |
-| Essential Nutrition | CoQ10 + Omega-3 TG | 1000029546 | 5.2 | 0.9 | 3.4 | oil weight unavailable: capsule oil weight not found on the label |
-| Essential Nutrition | Super Omega 3 TG | 1000030018 | 8.76 | 2.15 | 4.46 | oil weight unavailable: capsule oil weight not found on the label |
-| Essential Nutrition | Super Omega 3 TG 500mg | 1000030395 T46A14I251 | 8.76 | 2.74 | 3.28 | oil weight unavailable: capsule oil weight not found on the label |
-| Essential Nutrition | Super Omega-3 TG 1g Comfort | 7000004185 | 7.97 | 2.55 | 2.87 | oil weight unavailable: capsule oil weight not found on the label |
-| FMW Corp. | Supercritical rTG Omega 600 | 6AAA | 6.72 | 2.86 | 1 | oil weight unavailable: capsule oil weight not found on the label |
-| FMW Corp. | Supercritical rTG Omega Essence 1000 | BGQ | 4.98 | 0.24 | 4.5 | oil weight unavailable: capsule oil weight not found on the label |
-| Goldlake | Goldlake 97% rTG Deep Sea Fish Oil | 326Y0319 | 6.9 | 0.2 | 6.5 | oil weight unavailable: capsule oil weight not found on the label |
-| Health First | Omega Supreme One Daily | 26065SZ135 | 7.71 | 0.12 | 7.47 | oil weight unavailable: capsule oil weight not found on the label |
-| Health Formula | Health Formula Premium r-TG Fish Oil | 20280814 | 9.7 | 3 | 3.7 | oil weight unavailable: capsule oil weight not found on the label |
-| Heracles | Heracles Expert Omega 3 | 26008 | 5.86 | 2.23 | 1.4 | oil weight unavailable: capsule oil weight not found on the label |
-| Heracles | Heracles Omega 3 Easy | 26001 | 4.8 | 1.7 | 1.4 | oil weight unavailable: capsule oil weight not found on the label |
-| Hong Kong Healthcare & HeartBioTech Co., Limited | ULTRA PURE FISH OIL | 325Y0912 | 1.1 | 0.08 | 1.1 | oil weight unavailable: capsule oil weight not found on the label |
-| Igennus Healthcare Nutrition | Pharmepa RESTORE | 2092 | 3.28 | 0.49 | 2.3 | oil weight unavailable: capsule oil weight not found on the label |
-| J.zao | J.ZAO High Purity TGN Fish Oil | 126Y0302 | 7.9 | 0.2 | 7.5 | oil weight unavailable: capsule oil weight not found on the label |
-| Kzufy | Kzufy Liver Care Fish Oil | U606218 | 7.8 | 0.4 | 7 | oil weight unavailable: capsule oil weight not found on the label |
-| LABO Nutrition | OmaxPure Omega-3 Fish Oil | 375229 | 7.5 | 0.08 | 7.34 | oil weight unavailable: capsule oil weight not found on the label |
-| Maiova | SUPER OMEGA-3 FISH OIL | MO10926 | 7.4 | 0.2 | 7 | oil weight unavailable: capsule oil weight not found on the label |
-| Medipharm Corp | Dual Premium Supercritical rTG Omega 3 | PU26003 | 8.46 | 1.39 | 5.68 | oil weight unavailable: capsule oil weight not found on the label |
-| MitoQ Limited | MitoQ + Liver & High EPA Omega-3 Combo Pack | M5181GH | 7.4 | 1.8 | 3.8 | oil weight unavailable: capsule oil weight not found on the label |
-| MitoQ Limited | MitoQ 92% EPA Omega-3 | Q5242GH | 9 | 1.88 | 5.24 | oil weight unavailable: capsule oil weight not found on the label |
-| MitoQ Limited | MitoQ High EPA Omega-3 30's | J5002GH | 7.4 | 1.8 | 3.8 | oil weight unavailable: capsule oil weight not found on the label |
-| MitoQ Limited | MitoQ MitoMega Omega-3 | Q6186G | 8 | 3 | 2 | oil weight unavailable: capsule oil weight not found on the label |
-| Muted | MUTED Alaska Large Softgel rTG Omega-3 1100 | 2605 | 6.32 | 2.56 | 1.2 | oil weight unavailable: capsule oil weight not found on the label |
-| NUHAIM | EESY Omega-3 Fish Oil | 26PG0003 | 9.68 | 0.9 | 7.88 | oil weight unavailable: capsule oil weight not found on the label |
-| NUTRAGROUP | Soft Fish Oil Capsule 500/250 TG | VS260652-3 | 2.66 | 0.08 | 2.5 | oil weight unavailable: capsule oil weight not found on the label |
-| NUTRATA | OMEGA ultra TG | 44469252 | 7.05 | 0.52 | 6.01 | oil weight unavailable: capsule oil weight not found on the label |
-| NUTRITION STANDARD | Alaska rTG Omega Chewable 950 | E | 8.22 | 2.66 | 2.9 | oil weight unavailable: capsule oil weight not found on the label |
-| NYO3 INTERNATIONAL AS | NYO3 Fish Oil 97% EPA | 2601 | 5.61 | 0.15 | 5.31 | oil weight unavailable: capsule oil weight not found on the label |
-| Nutribiotica SL | Kiroot Kicardio | 1625 6 | 9.96 | 1.5 | 6.96 | oil weight unavailable: capsule oil weight not found on the label |
-| Nutrition Balance | Nutrition Balance 98% Omega-3 Fish Oil Extract(rTG） | U603149 | 6 | 0.87 | 4.3 | oil weight unavailable: capsule oil weight not found on the label |
-| OmegaVia | OmegaVia DHA 600 | OV260140 | 8.53 | 2.52 | 3.49 | oil weight unavailable: capsule oil weight not found on the label |
-| OmegaVia | OmegaVia EPA 500 | OV260141 | 8.68 | 2.64 | 3.4 | oil weight unavailable: capsule oil weight not found on the label |
-| OmegaVia | OmegaVia Ultra Concentrated Omega-3 | OV260297 | 7.4 | 1.76 | 3.88 | oil weight unavailable: capsule oil weight not found on the label |
-| Our Nutri | rTG CARE OMEGA3 MAX 1100 | 263814 | 4.34 | 1.72 | 0.9 | oil weight unavailable: capsule oil weight not found on the label |
-| Pharma New Zealand PNZ Limited（Phatma®️） | Pharma New Zealand Absolute EPA rTG Fish Oil | T0526012 | 2.6 | 0.65 | 1.3 | oil weight unavailable: capsule oil weight not found on the label |
-| Pharma New Zealand PNZ Limited（Phatma®️） | Pharma New Zealand rTG Omega 3 Kids Fish Oil | T0726008 | 7.4 | 2.6 | 2.2 | oil weight unavailable: capsule oil weight not found on the label |
-| Rational Nutrition LLC | Rational Nutrition Ultra-Pure Omega-3 Fish Oil | SB018331 | 3.31 | 1.43 | 0.45 | oil weight unavailable: capsule oil weight not found on the label |
-| SENHORA VITAMINA | Ômega 3 Premium Ultra Concentrado TG | P2500730MB-10 | 6.52 | 1.12 | 4.28 | oil weight unavailable: capsule oil weight not found on the label |
-| SENHORA VITAMINA | Ômega 3 Premium Ultra Concentrado TG - Mini | P250171OMB-05 | 3.39 | 0.68 | 2.03 | oil weight unavailable: capsule oil weight not found on the label |
-| Sports Research | Omega-3 Fish Oil AlaskOmega 1250 mg MSC-C-55162 | S26G026 | 2.94 | 1.39 | 0.16 | oil weight unavailable: capsule oil weight not found on the label |
-| Tasly Great Health | Complex Fish Oil (nTG Form) | 268806 | 8.6 | 1.6 | 5.4 | oil weight unavailable: capsule oil weight not found on the label |
-| The littles | rTG Booster Ultimate Omega 3 | 26004 | 4.06 | 1.23 | 1.6 | oil weight unavailable: capsule oil weight not found on the label |
-| Tsunami Nutrition SRL | OMEGA Plus | 266117 | 8.74 | 0.4 | 7.94 | oil weight unavailable: capsule oil weight not found on the label |
-| U.G.A. Nutraceuticals Srl | OMEGOR MIND | 2611004 | 5.81 | 0.41 | 4.99 | oil weight unavailable: capsule oil weight not found on the label |
-| U.G.A. Nutraceuticals Srl | VitaDHA 1000 | 2613308 | 2.54 | 0.1 | 2.34 | oil weight unavailable: capsule oil weight not found on the label |
-| UGN International Functional Nutrition Co. , Limited | ULTRA OMEGA 850 | U503002 | 5.8 | 0.24 | 5.3 | oil weight unavailable: capsule oil weight not found on the label |
-| Unilife Vitamins | Óleo de Peixe - Ômega 3 TG 1000 mg | 123778 | 7.14 | 1.9 | 3.34 | oil weight unavailable: capsule oil weight not found on the label |
-| VIBE Nutraceuticals, SL | Omega 3 Pro Mini | 1326 4 | 6.03 | 0.84 | 4.35 | oil weight unavailable: capsule oil weight not found on the label |
-| VITAPAW | SO!HEALTHY 10mm rTG Omega-3 | 707003 | 9.29 | 2.1 | 5.09 | oil weight unavailable: capsule oil weight not found on the label |
-| Vhita | Omega 3 TG 1000mg | 4470 | 8.32 | 2.97 | 2.38 | oil weight unavailable: capsule oil weight not found on the label |
-| Vhita | Ômega 3 Super DHA | 4129 | 7.9 | 2.03 | 3.84 | oil weight unavailable: capsule oil weight not found on the label |
-| Vitafor | Omegafor Vision | E26 | 1.81 | 0.26 | 1.29 | oil weight unavailable: capsule oil weight not found on the label |
-| Vital Planet, LLC | Vital Omega Easy Swallow | 22603147 | 3.4 | 0.2 | 3 | oil weight unavailable: capsule oil weight not found on the label |
-| Vital Planet, LLC | Vital Omega Ultra Daily | 22603146 | 3.4 | 0.2 | 3 | oil weight unavailable: capsule oil weight not found on the label |
-| Viva Naturals Inc. | Triple Strength Omega-3 Fish Oil | SG26083104 | 5.65 | 0.84 | 3.97 | oil weight unavailable: capsule oil weight not found on the label |
-| Viva Pharmaceutical Inc. | Viva RTG OMEGA 3 | 22606501 | 6.66 | 1.37 | 3.92 | oil weight unavailable: capsule oil weight not found on the label |
-| Weetamin | Weetamin rTG Omega 3 | D | 6.38 | 0.19 | 6 | oil weight unavailable: capsule oil weight not found on the label |
-| Wellcare-Ilko Ilac San. ve Tic. A.S. | Wellcare Day 90 Omega 3 Fish Oil Capsule | 26020091A | 7.08 | 1.54 | 4 | oil weight unavailable: capsule oil weight not found on the label |
-| Wellcare-Ilko Ilac San. ve Tic. A.S. | Wellcare Omega 3 | 26020092A | 7.08 | 1.44 | 4 | oil weight unavailable: capsule oil weight not found on the label |
-| Wellcare-Ilko Ilac San. ve Tic. A.S. | Wellcare Omega 3 UniQ DHA 750 Omega 3 | 26020093A | 8.22 | 1.01 | 6.2 | oil weight unavailable: capsule oil weight not found on the label |
-| Xymogen | OmegaPure 600 EC™ | UC260284 | 8.34 | 2.85 | 2.64 | oil weight unavailable: capsule oil weight not found on the label |
-| zanhuo pro+ | HIGH PURITY FISH OIL | U610127 | 9.4 | 1.4 | 6.6 | oil weight unavailable: capsule oil weight not found on the label |
-
+Form is known, but IFOS reports potency per gram of oil and no capsule oil weight was found, so EPA+DHA per capsule cannot be computed. Not guessed.
+None.
 ## Monoglyceride
 
 | Brand | Product | Lot | TOTOX | PV | AV | Reason |
@@ -736,11 +724,10 @@ Form is known, but no capsule oil weight was found, so the oxidation load cannot
 | Reason | Products |
 |---|---|
 | oxidation cutoff | 312 |
-| form unverified, not attempted | 167 |
+| form unverified, not attempted | 162 |
 | not a capsule | 117 |
-| oil weight unavailable | 79 |
+| form unverified | 46 |
 | no unexpired batch | 42 |
-| form unverified | 41 |
 | pet product | 18 |
 | chewable, not a softgel | 10 |
 | chewable, not stated to be a softgel | 8 |
@@ -753,8 +740,8 @@ Form is known, but no capsule oil weight was found, so the oxidation load cannot
 | raw-material certificate, no batch results | 2 |
 | potency reported per 'mg / teaspoon', not per capsule or gram | 1 |
 | no EPA or DHA result | 1 |
-| **Ranked** | **11** |
-| **Flavored, ranked separately** | **3** |
+| **Ranked** | **83** |
+| **Flavored, ranked separately** | **10** |
 | **Total** | **838** |
 
 <details><summary>Excluded products (501)</summary>
@@ -1268,6 +1255,6 @@ Form is known, but no capsule oil weight was found, so the oxidation load cannot
 ## How this run was produced
 
 - Extraction: llm failed 2, llm ok 7, parser no results 2, parser ok 4104.
-- Label verification: 78 product(s) attempted, 14 with the form verified, 140 tool calls. Agent API cost: $0 (in-session mode; see DECISIONS O-1).
+- Label verification: 83 product(s) attempted, 14 with the form verified, 156 tool calls. Agent API cost: $0 (in-session mode; see DECISIONS O-1).
 - Cutoffs: TOTOX below 10, PV at most 3, AV at most 8, acid value at most 3 mg KOH/g, every reported contaminant within IFOS's limit. IFOS's own TOTOX limit is 19.5.
 - Ranking is deterministic code. No LLM takes part in filtering, scoring or ordering.

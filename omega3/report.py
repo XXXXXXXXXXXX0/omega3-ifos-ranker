@@ -36,22 +36,28 @@ def reasoning(row: dict, neighbours: dict[int, list[dict]], cfg) -> str:
     """Plain-language account of why a product sits where it does, built from its numbers."""
     ox = cfg["filters"]["oxidation"]
     target = cfg["scoring"]["target_epa_dha_mg"]
+    if cfg["scoring"].get("basis", "oil_weight") == "per_capsule":
+        first = (f"Oxidation load {row['score']:.2f} = TOTOX {row['totox']:g} x {row['capsules_per_target']:.2f} capsules needed for "
+                 f"{target} mg EPA+DHA ({row['epa_dha_mg_cap']:.0f} mg per capsule, measured by IFOS).")
+    else:
+        first = (f"Oxidation load {row['score']:.2f} = TOTOX {row['totox']:g} x {row['oil_g_per_target']:.2f} g of oil needed for "
+                 f"{target} mg EPA+DHA ({row['epa_dha_mg_g']:.0f} mg per g of oil).")
     parts = [
-        f"Oxidation load {row['score']:.2f} = TOTOX {row['totox']:g} x {row['oil_g_per_target']:.2f} g of oil needed for "
-        f"{target} mg EPA+DHA ({row['epa_dha_mg_g']:.0f} mg per g of oil).",
+        first,
         f"Lot {row['lot']}: PV {fmt(row['pv'], '{:g}')}, AV {fmt(row['av'], '{:g}')}, acid value {fmt(row['acid_value'], '{:g}')}; "
         f"all reported contaminants within IFOS limits.",
     ]
     parts.append(f"TOTOX is in the preferred tier (at or below {ox['totox_preferred_max']:g})." if row["preferred"]
                  else f"TOTOX passes the cutoff (below {ox['totox_max_exclusive']:g}) but is above the preferred tier of {ox['totox_preferred_max']:g}.")
     parts.append(f"Form {row['form']} per {row['form_source']}: \"{(row['form_evidence'] or '').strip()[:160]}\".")
+    per_capsule = cfg["scoring"].get("basis", "oil_weight") == "per_capsule"
     if row["oil_source"] == "label":
-        parts.append(f"Oil weight {row['oil_mg_per_capsule']:g} mg per capsule from the label.")
+        parts.append(f"Oil weight {row['oil_mg_per_capsule']:g} mg per capsule from the label" + (" (shown for reference; not used in the score)." if per_capsule else "."))
     elif row["oil_source"] == "ifos_listing":
-        parts.append(f"Oil weight {row['oil_mg_per_capsule']:g} mg per capsule as stated in the brand's IFOS listing text.")
+        parts.append(f"Oil weight {row['oil_mg_per_capsule']:g} mg per capsule as stated in the brand's IFOS listing text" + (" (shown for reference; not used in the score)." if per_capsule else "."))
     elif row["oil_source"] == "ifos_area_pct":
         parts.append(f"Oil weight {row['oil_mg_per_capsule']:g} mg per capsule is an estimate from the area-% figures in the IFOS report, not a label value.")
-    else:
+    elif not per_capsule:
         parts.append("The IFOS report gives potency per gram of oil, so no capsule weight was needed.")
     tied = [r for r in neighbours.get(row["tie_group"], []) if r["product_num"] != row["product_num"]]
     if tied:
@@ -131,6 +137,7 @@ def build_context(cfg, conn, result: RankResult, run_id: str, stats: dict) -> di
         "titles": LIST_TITLES, "rows": rows, "top": top, "counts": result.counts(), "exclusion_counts": result.exclusion_counts(),
         "inconsistent": [placement_row(p) for p in sorted(result.inconsistent, key=lambda p: (p.list_name, p.rank or 9999, p.product.name))],
         "total_products": len(result.placements), "stats": stats,
+        "per_capsule": cfg["scoring"].get("basis", "oil_weight") == "per_capsule",
         "coverage": {"queue": len(queue), "in_reach": len(in_reach), "threshold": threshold, "ranked": len(rows[RANKED]),
                      "in_reach_checked": len(checked), "in_reach_unchecked": len(in_reach) - len(checked),
                      "top_complete": len(rows[RANKED]) >= top_n and not in_reach,

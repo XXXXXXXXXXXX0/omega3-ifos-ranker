@@ -70,6 +70,9 @@ def write_labels(cfg, labels=LABELS):
 
 @pytest.fixture
 def ran(cfg, conn, fixtures, fake_response_cls):
+    # These scenarios were built on the oil-weight score; the per-capsule default
+    # has its own end-to-end test below (D-35).
+    cfg["scoring"]["basis"] = "oil_weight"
     cfg["as_of_date"] = "2026-11-17"
     write_labels(cfg)
     site = Site(fixtures, fake_response_cls)
@@ -225,3 +228,20 @@ def test_report_renders_inconsistent_batches(cfg, conn, fixtures, fake_response_
     section = md.split("## Inconsistent batches")[1].split("##")[0]
     assert "Blackmores Omega Ultra rTG" in section and "5.4 to 14.1" in section and "inconsistent batches: 1 of 1 other" in section
     assert "inconsistent batches" in (cfg.reports_dir / "2026-11-17" / "report.html").read_text(encoding="utf-8")
+
+
+def test_end_to_end_per_capsule_default(cfg, conn, fixtures, fake_response_cls):
+    assert cfg["scoring"]["basis"] == "per_capsule"
+    cfg["as_of_date"] = "2026-11-17"
+    write_labels(cfg)
+    stats = run_all(cfg, conn, Site(fixtures, fake_response_cls), log=lambda *_: None)
+    placed = results(conn, stats["run_id"])
+    # CERN: TOTOX 5.6, 558 mg EPA+DHA per capsule -> 10.04. BEBI: TOTOX 8.6, 499 mg -> 17.23.
+    # 17.23 is more than 10% above 10.04, so they are not tied and CERN goes first.
+    assert placed["CERN0001"] == ("ranked", 1) and placed["BEBI0001"] == ("ranked", 2)
+    scores = dict(conn.execute("SELECT product_num, score FROM results WHERE run_id = ?", (stats["run_id"],)).fetchall())
+    assert scores["CERN0001"] == pytest.approx(5.6 * 1000 / 558, abs=1e-3) and scores["BEBI0001"] == pytest.approx(8.6 * 1000 / 499, abs=1e-3)
+    md = (cfg.reports_dir / "2026-11-17" / "report.md").read_text(encoding="utf-8")
+    assert "Oxidation load = TOTOX x the number of capsules needed for 1000 mg EPA+DHA" in md
+    assert "Oxidation load 17.23 = TOTOX 8.6 x 2.00 capsules needed for 1000 mg EPA+DHA (499 mg per capsule, measured by IFOS)." in md
+    assert "(shown for reference; not used in the score)" in md

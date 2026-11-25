@@ -74,6 +74,8 @@ Hard limits: max 8 tool calls and a token cap per product; stop and log if excee
 Log every agent decision trace to the repo for auditability.
 SCORING:
 Primary score: oxidation load = TOTOX x grams of oil required to deliver 1000 mg EPA+DHA. Lower is better. Combines low oxidation and high concentration in one number.
+
+**Owner change (2026-11-25, D-35):** the score is now TOTOX x the number of capsules needed for 1000 mg EPA+DHA, using IFOS-measured EPA+DHA per capsule. The capsule oil weight is no longer needed. The original formula is kept as `scoring.basis: oil_weight` in `config.yaml`.
 Scores within 10% of each other are ties (lab measurement noise); break ties by lower AV first, then by higher EPA+DHA per capsule.
 Missing EPA or DHA stored as null, not zero. Combined total uses what is present; label "EPA only" or "DHA only" clearly.
 Flag flavored products (anisidine test interference) and rank them separately.
@@ -96,7 +98,7 @@ ADOPTED TECHNICAL CHANGES (Phase 0, 2026-11-17; IDs refer to DECISIONS_FOR_ANGEL
 Enumeration [F-1, F-2]: products come from the public JSON endpoint behind the IFOS product search (GetFilteredProducts, forCertification=IFOS, page size 100); lots, expiry dates, product type and PDF filenames come from each product page; PDFs from andi.nutrasource.ca/files/<filename>.
 Templates [F-5]: live reports are one family (T1 category table, T1-2024 "Category N:" wording) plus a Raw Materials Certificate (not a batch report, excluded [D-6]). No legacy Consumer Report is currently served; unknown layouts are logged and sent to the LLM fallback.
 Test date [P-1]: IFOS publishes no test date. report_date (PDF creation date, then HTTP Last-Modified, then expiry) stands in for it when choosing the most recent batch. Config: batches.recency_key.
-Oil weight [P-2, D-3]: IFOS reports do not state grams of oil per capsule. The verification agent collects it from the label on the same visits, along with serving size, servings per bottle and flavoring. No oil-weight evidence means flagged and excluded from ranking, per the spec's own rule.
+Oil weight [P-2, D-3]: IFOS reports do not state grams of oil per capsule. The verification agent collects it from the label on the same visits, along with serving size, servings per bottle and flavoring. No oil-weight evidence means flagged and excluded from ranking, per the spec's own rule. (Superseded by D-35: with the per-capsule score, oil weight is needed only when IFOS reports potency per gram.)
 Agent queue [D-4]: the agent runs only for capsule products that pass every other hard filter, ordered by best-possible score, and may stop once no remaining candidate can enter the top 10. Products not reached stay "form unverified (not attempted)".
 Form from listing text [D-9]: a form stated in the IFOS product name or summary classifies the product deterministically with that page as evidence.
 Storage [D-5]: committed = manifest with SHA-256 for every report, extracted text layer of every report, raw PDFs for ranked batches and fixtures. Other raw PDFs live in a gitignored cache. Config: storage.commit_raw_pdfs (ranked | all | none). Git LFS not used.

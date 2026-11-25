@@ -450,18 +450,64 @@ ranking is meant to work, since each product is ranked on its newest batch.
 It also shows that one new lot can move a product five places or drop it.
 Read a rank as "this batch", not "this brand".
 
-**D-33. OPEN: is "EFA tested as triglyceride (TG) form" really evidence of
-form?** I counted it as form evidence (Phase 0b). Only one ranked product
-depends on it: Omegor Vitality 1000 (#7). But U.G.A.'s newer reports for the
-same product say "EFA expressed as triglyceride (TG) form" instead. "Expressed
-as" usually describes how a result was calculated (as TG equivalents), not the
-form of the oil, so I do **not** count it. It appears in 90 reports, against
-63 for "tested as". If both are the same template note, then neither proves
-the form, and UGAN0004 should go to "form unverified". Tell me which reading
-you want. To drop it, remove the IFOS report comment as a form source.
+**D-33. RESOLVED (2026-11-25): "tested as" and "expressed as" are the same
+note, and it does state the form.** You asked me to look into the
+inconsistency. What the 4,115 reports show:
+- The note appears on reports from 3 brands (U.G.A., Pleo/Aquaomega, Vivn).
+- "Expressed as" first appears on 2026-05-12. 7 of the 8 products that use it
+  said "tested as" before that date, so this is a wording change in the
+  report template, not a different statement.
+- The note names a different form for different products, and the same form
+  for a product across all its lots: "ethyl ester (EE)" on all 71 notes for
+  meaQuor (UGAN0001) and all 48 for UGAN0014, "re-esterified triglyceride" on
+  others, "triglyceride" on the rest. A calculation convention would read the
+  same on every report. This one follows the product.
+- Where a label is also on file (UGAN0018), it agrees.
+
+So my concern was wrong: the note is form evidence, and the honest fix was the
+opposite of the one I floated. The parser now reads both wordings (parser
+version 6), so a product does not lose its form when its older "tested as"
+lots expire. Omegor Vitality 1000 keeps TG. Test:
+`test_report_form_note_accepts_both_template_wordings`.
 
 **D-34. NOTE: IFOS sometimes lists a report number as the lot.** Omegor Ultra
 1200 (UGAN0010) shows "Lot #: 50092026" on its IFOS page. The report file is
 "... 2612907 50092026 Product Approval Report.pdf", so 50092026 is the report
 number and the batch is 2612907. The pipeline keeps IFOS's lot label as
 given. The product is excluded on its TOTOX anyway.
+
+## After the first PR (2026-11-25)
+
+**D-35. OWNER DECISION: score per capsule, not per gram of oil.** You said
+you do not need the oil weight, and chose (when asked) the per-capsule score
+using IFOS-measured EPA+DHA:
+
+    oxidation load = TOTOX x capsules needed for 1000 mg EPA+DHA
+
+This replaces the locked spec formula (TOTOX x grams of oil per 1000 mg). The
+old one stays available as `scoring.basis: oil_weight` in `config.yaml`, and
+both are tested. Effects on the same data:
+- 83 ranked and 10 flavored, up from 11 and 3. The 79 "oil weight
+  unavailable" products all have measured mg per capsule and are now ranked
+  or flavored. 0 remain on that list. It now holds only per-gram reports with
+  no known capsule weight, and there are none at the moment.
+- The new top 3: BIO-H rTG 97% (1.83), Hong Kong Healthcare Ultra Pure
+  (2.13), Pharma New Zealand 1440mg (2.25, the old #1). Coco March (old #2)
+  is now #11.
+- The score no longer depends on the label, so "best possible score" is the
+  real score. The top-10 threshold is 5.12, and 21 form-unverified products
+  are under it.
+- What it gives up: a large capsule counts the same as a small one. A product
+  that packs 1,400 mg into a 2 g capsule scores the same as one that packs it
+  into 1.5 g, though you would swallow a third more oil, and so more oxidized
+  material. Oil weight is still shown wherever it is known, for reference.
+
+**D-36. NOTE: the 21 form-unverified contenders.** All 21 have now been
+looked for (5 more in this round: MNSA0001, SWIT0002, HURR0001, GNCC0008,
+WHCC0001). None has a label or brand page online that states the form.
+Either the brand site refuses automated access, or the only text is a health
+claim about "triglyceride levels". One lead I did not use: a third-party
+review site says UnoCardio 1000 is "r-triglyceride" with "a pleasant orange
+flavor". That is not the label. If it is right, the product belongs in the
+flavored list, not the top 10. The quickest way to settle any of the 21 is a
+photo of the bottle or an email to the brand, recorded with `agent-record`.

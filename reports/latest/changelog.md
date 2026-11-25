@@ -1,142 +1,16 @@
-# Changelog for run 2026-11-25T02:47:40.178+00:00
+# Changelog for run 2026-11-25T04:27:19.783+00:00
 
-As of 2026-11-25. Compared with run `2026-11-25T02:27:38.074+00:00`.
-Totals: 11 ranked, 3 flavored, 208 form unverified, 79 oil weight unavailable, 7 monoglyceride, 11 incomplete data, 18 pet, 501 excluded.
+As of 2026-11-25. Compared with run `2026-11-25T04:20:41.906+00:00`.
+Totals: 83 ranked, 10 flavored, 208 form unverified, 0 oil weight unavailable, 7 monoglyceride, 11 incomplete data, 18 pet, 501 excluded.
 
-## New batches (80)
+## New batches (0)
 
-- A M B Well Inc. Ultra Refined Omega-3 PGFO (AMBW0002), lot L100869, expires 2029-03-31
-- Bayer Healthcare Limited One A Day High Purity Fish Oil (BAYR0001), lot 04122025G, expires 2027-12-22
-- Bayer Healthcare Limited One A Day High Purity Fish Oil (BAYR0001), lot 05122025G, expires 2027-12-22
-- Bayer Healthcare Limited One A Day High Purity Fish Oil (BAYR0001), lot 06122025G, expires 2027-12-22
-- CPTKING COMPOUND FISH OIL (CPKI0001), lot 26100201, expires 2028-10-01
-- CPTKING COMPOUND FISH OIL (CPKI0001), lot 26102401, expires 2028-10-23
-- CPTKING COMPOUND FISH OIL(MINI) (CPKI0002), lot 26100203, expires 2028-10-01
-- CanPrev Natural Health Products Ltd. Omega-Pro Balance (CPRV0002), lot BFT006KK, expires 2028-09-30
-- CanPrev Natural Health Products Ltd. Omega-Pro High DHA (CPRV0003), lot HDH004KK, expires 2028-09-30
-- Cyto-Matrix Omega D3 Liquid Forte (CYTO0001), lot CFT006KK, expires 2028-09-30
-- Cyto-Matrix Omega DHA Liquid Forte (CYTO0004), lot CDH004KK, expires 2028-09-30
-- FMW Corp. Supercritical rTG Omega Essence 1000 (FMWC0001), lot BGJ, expires 2029-07-02
-- FMW Corp. Supercritical rTG Omega Essence 1000 (FMWC0001), lot BGK, expires 2029-07-02
-- FMW Corp. Supercritical rTG Omega Essence 1000 (FMWC0001), lot BGM, expires 2029-07-02
-- FMW Corp. Supercritical rTG Omega Essence 1000 (FMWC0001), lot BGN, expires 2029-07-02
-- FMW Corp. Supercritical rTG Omega Essence 1000 (FMWC0001), lot BGP, expires 2029-07-02
-- FMW Corp. Supercritical rTG Omega Essence 1000 (FMWC0001), lot BGQ, expires 2029-08-09
-- FMW Corp. Kids rTG Omega Chew 600 (FMWC0004), lot Y, expires 2028-02-20
-- FMW Corp. Alaska rTG Omega Essence 1000 (FMWC0005), lot BBT, expires 2029-07-19
-- FMW Corp. Alaska rTG Omega Essence 1000 (FMWC0005), lot BBU, expires 2029-07-19
-- FMW Corp. Alaska rTG Omega Essence 1000 (FMWC0005), lot BBV, expires 2029-07-23
-- FMW Corp. Alaska rTG Omega Essence 1000 (FMWC0005), lot BBW, expires 2029-07-23
-- FoYes Deep Sea Fish Oil (FOYE0001), lot 2G22K044, expires 2028-10-26
-- FoYes Deep Sea Fish Oil (FOYE0001), lot 2G22K045, expires 2028-10-27
-- GNC Hong Kong Limited 97% HIGH PURITY FISH OIL (GNCC0003), lot 1041DE2602, expires 2028-08-31
-- GNC Hong Kong Limited 97% HIGH PURITY FISH OIL (GNCC0003), lot 1041DE2603, expires 2028-08-31
-- GNC Hong Kong Limited 97% HIGH PURITY FISH OIL (GNCC0003), lot 1041DE2604, expires 2028-08-31
-- GNC Hong Kong Limited 97% HIGH PURITY FISH OIL (GNCC0003), lot 1041DE2605, expires 2028-08-31
-- HSN - Harrison Sport Nutrition S.L. Ultra Omega-3 TG 1000mg (HSNS0001), lot 260928E3, expires 2029-09-30
-- HSN - Harrison Sport Nutrition S.L. Ultra Omega-3 TG 1000mg (HSNS0001), lot 260929E3, expires 2029-09-30
-- HSN - Harrison Sport Nutrition S.L. Ultra Omega-3 TG 1000mg (HSNS0001), lot 260930E3, expires 2029-09-30
-- HSN - Harrison Sport Nutrition S.L. Ultra Omega-3 TG 1000mg (HSNS0001), lot 261005E3, expires 2029-10-31
-- HSN - Harrison Sport Nutrition S.L. Ultra Omega-3 TG 1000mg (HSNS0001), lot 261006E3, expires 2029-10-31
-- HSN - Harrison Sport Nutrition S.L. Premium Omega-3 TG 1000mg (HSNS0002), lot 260914E3, expires 2029-09-30
-- HSN - Harrison Sport Nutrition S.L. Premium Omega-3 TG 1000mg (HSNS0002), lot 260915E3, expires 2029-09-30
-- Kress Farmaceutica S.A. Omegative Plus (KRES0001), lot 01261317, expires 2029-08-20
-- Kzufy OMEGA-3 FISH OIL SOFTGEL (KZUF0001), lot KZ09260010, expires 2029-09-16
-- MARTÍNEZ NIETO, S.A. MARNYS® Omegamar 1500 (MNSA0001), lot M2962, expires 2029-10-31
-- Newscience Chile UltraPure UP (NWCL0001), lot C2601111, expires 2029-09-30
-- Our Nutri rTG CARE OMEGA3 MAX 1100 (ORNR0001), lot 263813, expires 2029-08-30
-- Our Nutri rTG CARE OMEGA3 MAX 1100 (ORNR0001), lot 263814, expires 2029-08-30
-- Orange Naturals Kids Omega Yum Berry Splash (ORNT0001), lot NKB010KK, expires 2028-09-30
-- Aquaomega Plant Based High DHA Omega-3 Softgels (PLEO0011), lot 26074SZ180, expires 2029-10-31
-- Aquaomega Plant Based High DHA Omega-3 Softgels (PLEO0011), lot 26074SZ181, expires 2029-10-31
-- Aquaomega Plant Based High DHA Omega-3 Softgels (PLEO0011), lot 26074SZ182, expires 2029-10-31
-- SCIGOWELL Fish Oil (SCIG0001), lot Various SKUs, expires 2027-11-30
-- Nlize Co. Ltd. The Real r-TG OMEGA-3 MAX 1400 (SMTC0004), lot 22604109, expires 2029-04-05
-- Sports Research Omega-3 Fish Oil AlaskOmega 1250 mg MSC-C-55162 (SPRT0002), lot S26G025, expires 2029-10-31
-- Sports Research Omega-3 Fish Oil AlaskOmega 1250 mg MSC-C-55162 (SPRT0002), lot S26G026, expires 2029-10-31
-- Sports Research Omega-3 Fish Oil Triple Strength 1250mg (SPRT0048), lot S26E206, expires 2029-09-30
-- Think Pets Real rTG Omega-3 2.0 (THPT0001), lot 263532, expires 2028-08-18
-- Think Pets Real rTG Omega-3 Plus 2.0 (THPT0002), lot 263538, expires 2028-08-18
-- Tasly Great Health Complex Fish Oil (nTG Form) (TSGH0001), lot 268806, expires 2028-04-30
-- U.G.A. Nutraceuticals Srl meaQuor 1000 (UGAN0001), lot 2603201, expires 2029-09-30
-- U.G.A. Nutraceuticals Srl meaQuor 1000 (UGAN0001), lot 2603301, expires 2029-09-30
-- U.G.A. Nutraceuticals Srl meaQuor 1000 (UGAN0001), lot 2603401, expires 2029-09-30
-- U.G.A. Nutraceuticals Srl Omegor Vitality 1000 (UGAN0004), lot 2608002, expires 2029-10-31
-- U.G.A. Nutraceuticals Srl Omegor Vitality 1000 (UGAN0004), lot 2608102, expires 2029-10-31
-- U.G.A. Nutraceuticals Srl Omegor Vitality 1000 (UGAN0004), lot 2608202, expires 2029-10-31
-- U.G.A. Nutraceuticals Srl Omegor Vitality 500 (UGAN0005), lot 2608095, expires 2029-09-30
-- U.G.A. Nutraceuticals Srl VitaDHA 1000 (UGAN0006), lot 2613308, expires 2029-09-30
-- U.G.A. Nutraceuticals Srl VitaDHA Brain (UGAN0008), lot 44006292, expires 2028-08-31
-- U.G.A. Nutraceuticals Srl VitaDHA Brain (UGAN0008), lot 44006319, expires 2028-08-31
-- U.G.A. Nutraceuticals Srl VitaDHA Brain (UGAN0008), lot 44006320, expires 2028-08-31
-- U.G.A. Nutraceuticals Srl Omegor Ultra 1200 (UGAN0010), lot 50092026, expires 2029-08-31
-- U.G.A. Nutraceuticals Srl OMEGOR PET (UGAN0011), lot 2608126, expires 2029-09-30
-- VENATURA SAGLIK ÜRÜNLERI TICARET VE SANAYI ANONIM SIRKETI Venatura Omega 3 (VENA0001), lot 26101178, expires 2029-10-31
-- Vitamin Way Nutrition OMEGA 3 VITAMIN WAY® (VITW0001), lot 1964 (90 count), expires 2028-07-31
-- Vitamin Way Nutrition Omega 3 Vitamin Way Sport (VITW0002), lot 1964, expires 2028-07-31
-- Weetamin Weetamin Alaska Omega 3 Chewable (WETM0005), lot N, expires 2028-07-07
-- WHC Labs BV UnoCardio 1000 (WHCC0001), lot 30027368-9, expires 2029-05-31
-- WHC Labs BV UnoCardio 1000 (WHCC0001), lot 30027370-1, expires 2029-05-31
-- WHC Labs BV QuattrO3+PS (WHCC0004), lot 30027313-4, expires 2029-04-30
-- WHC Labs BV UnoCardio 1000 MINI (WHCC0005), lot 30027410, expires 2029-05-31
-- WHC Labs BV UnoCardio CHEWY (WHCC0007), lot 44006356, expires 2028-09-30
-- WHC Labs BV UnoCardio CHEWY (WHCC0007), lot 44006357, expires 2028-09-30
-- WHC Labs BV UnoCardio CHEWY (WHCC0007), lot 44006358, expires 2028-09-30
-- WHC Labs BV UnoCardio CHEWY (WHCC0007), lot 44006359, expires 2028-09-30
-- WHC Labs BV UnoCardio CHEWY (WHCC0007), lot 44006360, expires 2028-09-30
-- WHC Labs BV UnoCardio CHEWY (WHCC0007), lot 44006361, expires 2028-09-30
+None.
 
-## Expired or withdrawn batches (8)
+## Expired or withdrawn batches (0)
 
-- Health First Omega-First Liquid (H1ST0002), lot 241809-1, expiry 2026-11-18: expired
-- Jinan Falanxiu Biological Engineering Co., Ltd Fransau DHA Fischolkapseln (JINF0001), lot U3114, expiry 2026-11-19: expired
-- NYO3 INTERNATIONAL AS NYO3 85% Ultra Omega-3 (NYO30011), lot 2407, expiry 2026-11-19: expired
-- Nlize Co. Ltd. The Real r-TG OMEGA-3 MAX 1400 (SMTC0004), lot 22309983, expiry 2026-11-20: expired
-- Vetwish vetwish anchovy pet fish oil for dog (VETW0001), lot 20241120, expiry 2026-11-19: expired
-- Vetwish vetwish anchovy pet fish oil for cat (VETW0002), lot 20241120, expiry 2026-11-19: expired
-- Vetwish vetwish's high-end MAX+ series of dog anchovy oil (VETW0003), lot 20241125, expiry 2026-11-24: expired
-- Vetwish vetwish's high-end MAX+ series of cat anchovy oil (VETW0004), lot 20241125, expiry 2026-11-24: expired
+None.
 
-## Ranking changes (41)
+## Ranking changes (0)
 
-- **Amplecare Pharmaceutical Pty Ltd Amplecare EPA 1000 rTG Fish Oil** (AMPP0002): Ranked #6 -> Ranked #5
-- **OmegaVia OmegaVia Prenatal Omega-3 DHA** (OVIA0006): Ranked #7 -> Ranked #6
-- **Sports Research Omega-3 Fish Oil Triple Strength 1250mg** (SPRT0048): Ranked #5 -> Ranked #10 (lot S26G157 -> S26E206)
-- **U.G.A. Nutraceuticals Srl Omegor Vitality 1000** (UGAN0004): Excluded -> Ranked #7 (lot 2612807 -> 2608202)
-- **U.G.A. Nutraceuticals Srl Omegor Vitality 500** (UGAN0005): Ranked #10 -> Excluded (lot 2601020 -> 2608095)
-- A M B Well Inc. Ultra Refined Omega-3 PGFO (AMBW0002): Ranked #11 -> Excluded (lot 2411090 -> L100869)
-- Aquaomega Plant Based High DHA Omega-3 Softgels (PLEO0011): Excluded -> Form unverified (lot 26009SZ030 -> 26074SZ182)
-- Bayer Healthcare Limited One A Day High Purity Fish Oil (BAYR0001): Form unverified -> Excluded (lot 04062026G -> 06122025G)
-- CPTKING COMPOUND FISH OIL (CPKI0001): Excluded -> Form unverified (lot 26091601 -> 26100201)
-- CPTKING COMPOUND FISH OIL(MINI) (CPKI0002): Excluded -> Form unverified (lot 26070103 -> 26100203)
-- CanPrev Natural Health Products Ltd. Omega-Pro Balance (CPRV0002): not listed -> Excluded
-- CanPrev Natural Health Products Ltd. Omega-Pro High DHA (CPRV0003): not listed -> Excluded
-- Cyto-Matrix Omega DHA Liquid Forte (CYTO0004): not listed -> Excluded
-- Dong Fang You Xuan (Beijing) Technology Co., Ltd. East Buy Fish Oil (DFNG0008): not listed -> Excluded
-- FMW Corp. Alaska rTG Omega Essence 1000 (FMWC0005): Excluded -> Excluded (lot BBS -> BBU)
-- FMW Corp. Supercritical rTG Omega Essence 1000 (FMWC0001): Excluded -> Oil weight unavailable (lot BGH -> BGQ)
-- GNC Hong Kong Limited 97% HIGH PURITY FISH OIL (GNCC0003): Form unverified -> Excluded (lot 1041DE 2516 -> 1041DE2605)
-- HSN - Harrison Sport Nutrition S.L. Premium Omega-3 TG 1000mg (HSNS0002): Excluded -> Excluded (lot 260112E3 -> 260915E3)
-- HSN - Harrison Sport Nutrition S.L. Ultra Omega-3 TG 1000mg (HSNS0001): Excluded -> Excluded (lot 260720E3 - 240 Softgels -> 261006E3)
-- Kress Farmaceutica S.A. Omegative Plus (KRES0001): Form unverified -> Form unverified (lot 01251759 -> 01261317)
-- Kzufy OMEGA-3 FISH OIL SOFTGEL (KZUF0001): Excluded -> Excluded (lot KZ06260009 -> KZ09260010)
-- Longify Longify Omega-3 + D3K2 (LNGF0001): Ranked #12 -> Ranked #11
-- MARTÍNEZ NIETO, S.A. MARNYS® Omegamar 1500 (MNSA0001): Form unverified -> Form unverified (lot L8989 -> M2962)
-- Newscience Chile UltraPure UP (NWCL0001): Excluded -> Excluded (lot C2601018 -> C2601111)
-- Nlize Co. Ltd. The Real r-TG OMEGA-3 MAX 1400 (SMTC0004): Excluded -> Excluded (lot 22601102 -> 22604109)
-- Our Nutri rTG CARE OMEGA3 MAX 1100 (ORNR0001): Oil weight unavailable -> Oil weight unavailable (lot 263140 -> 263814)
-- Sports Research Omega-3 Fish Oil AlaskOmega 1250 mg MSC-C-55162 (SPRT0002): Oil weight unavailable -> Oil weight unavailable (lot S26F049 -> S26G026)
-- Tasly Great Health Complex Fish Oil (nTG Form) (TSGH0001): Excluded -> Oil weight unavailable (lot 268805 -> 268806)
-- Think Pets Real rTG Omega-3 2.0 (THPT0001): Pet products -> Pet products (lot 254153 -> 263532)
-- Think Pets Real rTG Omega-3 Plus 2.0 (THPT0002): Pet products -> Pet products (lot 254152 -> 263538)
-- U.G.A. Nutraceuticals Srl OMEGOR PET (UGAN0011): Pet products -> Pet products (lot 2601007 -> 2608126)
-- U.G.A. Nutraceuticals Srl Omegor Ultra 1200 (UGAN0010): Oil weight unavailable -> Excluded (lot 2605101 -> 50092026)
-- U.G.A. Nutraceuticals Srl VitaDHA 1000 (UGAN0006): Excluded -> Oil weight unavailable (lot 2605301 -> 2613308)
-- U.G.A. Nutraceuticals Srl meaQuor 1000 (UGAN0001): Excluded -> Excluded (lot 2607801 -> 2603401)
-- VENATURA SAGLIK ÜRÜNLERI TICARET VE SANAYI ANONIM SIRKETI Venatura Omega 3 (VENA0001): Excluded -> Excluded (lot 24091327 -> 26101178)
-- Vitamin Way Nutrition OMEGA 3 VITAMIN WAY® (VITW0001): Form unverified -> Form unverified (lot 1964 (60 count) -> 1964 (90 count))
-- Vitamin Way Nutrition Omega 3 Vitamin Way Sport (VITW0002): not listed -> Form unverified (lot none -> 1964)
-- Vitanna OMEGA 3 SALMON OIL (VTNN0001): not listed -> Excluded
-- WHC Labs BV QuattrO3+PS (WHCC0004): Form unverified -> Form unverified (lot 30026213-4 -> 30027313-4)
-- WHC Labs BV UnoCardio 1000 (WHCC0001): Form unverified -> Form unverified (lot 30027252-3 -> 30027370-1)
-- WHC Labs BV UnoCardio 1000 MINI (WHCC0005): Form unverified -> Form unverified (lot 30027255 -> 30027410)
+None.

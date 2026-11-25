@@ -1,0 +1,31 @@
+{
+ "product_num": "SWIT0002",
+ "status": "unverified",
+ "form": null,
+ "form_source_url": null,
+ "form_evidence": null,
+ "oil_mg_per_capsule": null,
+ "oil_source_url": null,
+ "oil_evidence": null,
+ "serving_capsules": null,
+ "servings_per_bottle": null,
+ "flavored": null,
+ "flavor_evidence": null,
+ "pet": null,
+ "pet_evidence": null,
+ "antioxidants": [],
+ "packaging": [],
+ "reasoning": "No brand website in the IFOS listing; drmax.it refuses access (403). The 1000farmacie.it page mentions 'trigliceridi' only as blood triglyceride levels (a health claim), not the oil form. Form left unverified.",
+ "sources_checked": [
+  "Swisse Omega 3 Concentrato capsule trigliceridi",
+  "https://www.drmax.it/swisse-omega-3-conc-60cps",
+  "https://1000farmacie.it/swisse-omega-3-concentrato-60-capsule.html"
+ ],
+ "page_hashes": {
+  "https://www.1000farmacie.it:443/swisse-omega-3-concentrato-60-capsule.html": "9e27596250d715477c870713a04376d916f98d4eedfba40243cd03037296d47d"
+ },
+ "model": "in-session",
+ "tool_calls": 3,
+ "cost_usd": 0.0,
+ "verified_at": "2026-11-25T04:27:11+00:00"
+}

@@ -33,8 +33,8 @@ IFOS listing API -> product pages -> report PDFs -> text layer -> parser -> SQLi
 4. **Extract** values cell by cell from the PDF tables with a deterministic
    parser (99.7% of 4,115 reports). The rest go to an LLM fallback whose
    output passes through the same parsing and range checks.
-5. **Verify labels** for products that pass every other check: the oil form
-   and the capsule's oil weight, which IFOS reports do not contain.
+5. **Verify labels** for products that pass every other check but whose oil
+   form IFOS does not state.
 6. **Rank** with pure code, and write the report, a dated changelog and CSV
    exports.
 
@@ -45,7 +45,7 @@ pip install -r requirements.txt
 python -m omega3 run            # everything, incremental
 python -m omega3 run --offline  # re-rank from the database, no network
 python -m omega3 top            # print the current top 10
-python -m pytest -q             # 305 tests
+python -m pytest -q             # 312 tests
 ```
 
 Stages can also be run separately: `crawl`, `fetch`, `extract`, `rank`. The
@@ -119,19 +119,23 @@ tool opens the database read-only.
 ## The score: oxidation load
 
 ```
-oxidation load = TOTOX x grams of oil needed to deliver 1000 mg EPA+DHA
+oxidation load = TOTOX x capsules needed to deliver 1000 mg EPA+DHA
 ```
 
 Lower is better. It folds two things into one number: how oxidized the oil
-was when tested, and how much of it you would swallow to get a given dose. A
-very fresh but dilute oil can lose to a slightly less fresh, highly
-concentrated one, because you take in less oxidized material per gram of
-EPA+DHA.
+was when tested, and how many capsules you take for a given dose. EPA+DHA per
+capsule is the amount IFOS measured in that batch, not the label claim. The
+capsule's oil weight is not needed (owner's decision, D-35).
 
-It is **a proxy**. TOTOX is a lab index (2 x PV + AV), not a measure of harm,
-and the score assumes oxidation products scale with the amount of oil, which
-is a simplification. Scores within 10% of each other are treated as ties
-(measurement noise), broken by lower AV, then by more EPA+DHA per capsule.
+It is **a proxy**. TOTOX is a lab index (2 x PV + AV), not a measure of harm.
+Counting capsules ignores their size: a large capsule counts the same as a
+small one, so the score does not measure how many grams of oxidized oil you
+swallow. The original spec score, TOTOX x grams of oil per 1000 mg EPA+DHA,
+did measure that, but it needs the capsule oil weight, which IFOS does not
+report and most labels online do not state. It is still available:
+`scoring.basis: oil_weight` in `config.yaml`. Scores within 10% of each other
+are treated as ties (measurement noise), broken by lower AV, then by more
+EPA+DHA per capsule.
 
 **PV vs AV.** Peroxide value measures primary oxidation products
 (hydroperoxides). They form early, then break down into secondary products
@@ -143,11 +147,11 @@ history, and is why it is the first tiebreaker.
 **Unit conversion.** IFOS reports state EPA and DHA per capsule, per *N*
 capsules, per gram, per 100 g, per mL, per teaspoon, or as area %. Per-*N*
 amounts are divided by *N*. Per-gram amounts give the concentration directly.
-Per-capsule amounts are turned into mg per gram of oil using the capsule's oil
-(fill) weight from the label, or from an explicit statement in the brand's own
-IFOS listing text ("each softgel contains 1000 mg fish oil"). Without an oil
-weight the product is flagged and left out of the ranking, never guessed. Per
-mL, per teaspoon and per serving amounts are not converted. Original value,
+Per-capsule amounts are used directly. Per-gram amounts are turned into mg per
+capsule only when the capsule's oil weight is known, from the label or from an
+explicit statement in the brand's own IFOS listing text ("each softgel
+contains 1000 mg fish oil"). Otherwise the product is flagged, never guessed.
+Per mL, per teaspoon and per serving amounts are not converted. Original value,
 original unit and the conversion applied are all stored.
 
 ## Why these rules
@@ -213,24 +217,25 @@ See the [report](reports/latest/report.md). In brief (as of 2026-11-25):
   deterministic parser read 4,104 of them (99.7%). 9 more went to the LLM
   fallback, done in-session (see `DECISIONS_FOR_ANGELA.md` O-1): 7 were
   read, and 2 were left unread on purpose. 15 report links are dead.
-- **11 products ranked, 3 more ranked separately as flavored.** The top 3:
-  Pharma New Zealand Omega 3 1440mg (oxidation load 3.37, TOTOX 3.1), Coco
-  March Marine Omega 3 (4.32) and VIBE OMEGA 3 PRO (5.97). All 11 are in the
-  preferred tier (TOTOX at or below 8).
-- **Where the other 824 went.** 312 failed an oxidation cutoff. 208 are
-  "form unverified" (no source states TG or rTG). 117 are not capsules. 79
-  have no oil weight on the label. 42 have no unexpired batch. 18 are pet
-  products, 7 monoglyceride, 6 ethyl ester, 4 krill or phospholipid, and 11
-  have incomplete data. The report gives the full breakdown.
-- **The live re-run moved four products** (new lots; see the
-  [changelog](reports/latest/changelog.md) and D-32): one entered at #7, one
-  fell from #5 to #10, and two dropped out.
+- **83 products ranked, 10 more ranked separately as flavored.** The top 3
+  are BIO-H rTG 97% Fish Oil Extract (oxidation load 1.83: TOTOX 2.5, 1369
+  mg EPA+DHA per capsule), Hong Kong Healthcare Ultra Pure Fish Oil (2.13)
+  and Pharma New Zealand Omega 3 1440mg (2.25, a tie with #4). All of the top
+  10 are in the preferred tier (TOTOX at or below 8), and every value was
+  checked against its source PDF.
+- **Where the other 745 went.** 312 failed an oxidation cutoff. 208 are
+  "form unverified" (no source states TG or rTG). 117 are not capsules. 42
+  have no unexpired batch. 18 are pet products, 7 monoglyceride, 6 ethyl
+  ester, 4 krill or phospholipid, and 11 have incomplete data. The report
+  gives the full breakdown.
+- **The live re-run moved four products** on new lots (see the
+  [changelog](reports/latest/changelog.md) and D-32).
 
-The top 10 is **provisional**. Ranking a product needs its oil form and its
-capsule oil weight from the label. Many candidates still pass every other
-check but have not been verified, and their best case (if the capsule were
-pure omega-3) could still beat the 10th score. The report lists them. Finishing
-them needs the API agent (`agent-run`) or more in-session verification.
+The top 10 is **provisional**. 21 products score well enough for it but no
+source states their oil form, and it is never assumed to be TG. All 21 have
+been looked for; their labels are not online, or the brand sites refuse
+automated access. The report lists them. A photo of the label or an email
+to the brand would settle each one.
 
 ## Layout
 

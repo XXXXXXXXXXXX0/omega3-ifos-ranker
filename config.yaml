@@ -74,8 +74,13 @@ oil_weight:
   sources: [label, ifos_listing]
   min_ratio_to_total_omega3: 0.98   # oil weight below total omega-3 per capsule is impossible
 
-scoring:                      # LOCKED
-  target_epa_dha_mg: 1000     # oxidation load = TOTOX x g oil to deliver this
+scoring:                      # LOCKED (basis changed by the owner, D-35)
+  # per_capsule: oxidation load = TOTOX x capsules needed for target_epa_dha_mg (IFOS-measured
+  #   EPA+DHA per capsule). No capsule oil weight needed.
+  # oil_weight: oxidation load = TOTOX x grams of oil needed for target_epa_dha_mg (needs the
+  #   capsule's oil weight from the label or the IFOS listing text). The original spec formula.
+  basis: per_capsule
+  target_epa_dha_mg: 1000
   tie_margin: 0.10            # scores within 10% of the group anchor are ties
   top_n: 10
 
