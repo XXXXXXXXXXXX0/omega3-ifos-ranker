@@ -4,11 +4,9 @@ Last updated: 2026-11-25. Branch: `claude/keen-ptolemy-j47bf2`.
 
 ## Resume here
 
-Stages 0-6 are done. Stage 7 (README, final run, pull request) is in
-progress: a full incremental `python -m omega3 run` against the live site
-was started to exercise re-runs and produce a real changelog. If this session
-ended before it finished, run it again (it resumes from the cache), then
-commit, update the README results summary, and open the pull request.
+All stages are done. The draft pull request to `main` is open. The top 10
+is provisional: 248 candidates still in reach have not been verified
+(D-30, D-32). The one open question that touches a ranked product is D-33.
 
 To continue label verification later: `python -m omega3 agent-queue` lists
 what is waiting; with an API key, `llm.api_enabled: true` and
@@ -25,9 +23,23 @@ what is waiting; with an API key, `llm.api_enabled: true` and
 | 4 Filters, scoring, ranking | done | pass |
 | 5 Label verification agent | done (in-session; top 10 provisional) | pass |
 | 6 Reports, changelog, re-runs | done | pass |
-| 7 README, final run, PR | in progress | pass |
+| 7 README, final run, PR | done | pass |
 
 `python -m pytest -q` -> `305 passed` (2026-11-25).
+
+## Stage 7 evidence
+
+Live incremental `python -m omega3 run`, run `2026-11-25T02:47:40.178Z`,
+exit 0. Crawl: 838 products (6 new), 51 pages changed, 4,496 lots, 8
+delisted. Fetch: 76 pending, 61 downloaded (17.9 MB), 15 errors (the known
+dead links). Extract: all 61 read by the parser. 2 LLM entries were served
+from the cache (still failed, as intended). Lists: 11 ranked, 3 flavored, 208
+form unverified, 79 oil weight unavailable, 7 monoglyceride, 11 incomplete,
+18 pet, 501 excluded. Changelog `reports/changelogs/2026-11-25T024740.178Z.md`:
+80 new batches, 8 gone, 41 list or rank changes. 927 HTTP requests. The new
+#7 (UGAN0004 lot 2608202) and #10 (SPRT0048 lot S26E206) were checked
+against their PDF text and every value matches. 14 PDFs are kept for the
+ranked and flavored batches.
 
 ## Stage 6 evidence
 
@@ -138,6 +150,7 @@ Stage 1 medium.
 
 - "Omega-3 build started." sent, ntfy returned HTTP 200.
 - Stage 0 to 5 notifications sent, HTTP 200.
+- BUILD COMPLETE sent at the end of Stage 7.
 
 ## Session override in force
 

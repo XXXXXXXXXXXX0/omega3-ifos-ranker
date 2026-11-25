@@ -22,7 +22,7 @@ IFOS listing API -> product pages -> report PDFs -> text layer -> parser -> SQLi
                           filters and form from IFOS text  -> label agent -> ranker -> report + changelog
 ```
 
-1. **Crawl** the public JSON endpoint behind the IFOS product search (832
+1. **Crawl** the public JSON endpoint behind the IFOS product search (838
    products in November 2026) and each product page (lots, expiry dates,
    product type, report file names).
 2. **Filter before downloading**: only capsule and softgel products' unexpired
@@ -31,7 +31,7 @@ IFOS listing API -> product pages -> report PDFs -> text layer -> parser -> SQLi
    cells (`data/raw/text/`). Raw PDFs live in a local cache; the ones behind
    ranked batches are committed (`data/raw/pdf_kept/`).
 4. **Extract** values cell by cell from the PDF tables with a deterministic
-   parser (99.7% of 4,054 reports). The rest go to an LLM fallback whose
+   parser (99.7% of 4,115 reports). The rest go to an LLM fallback whose
    output passes through the same parsing and range checks.
 5. **Verify labels** for products that pass every other check: the oil form
    and the capsule's oil weight, which IFOS reports do not contain.
@@ -77,7 +77,7 @@ call, so expect a shakedown run.
 
 **Deterministic first, LLM only where needed.** IFOS reports are generated from
 a Word template, so a table parser reads almost all of them exactly. The LLM
-is a fallback for the few it cannot read (9 of 4,054 this run), and it only
+is a fallback for the few it cannot read (9 of 4,115 this run), and it only
 transcribes cells: numbers are parsed, unit-converted and range-checked by the
 same code as everything else, and every result is cached by the PDF's SHA-256
 so no report is ever sent twice.
@@ -195,7 +195,7 @@ product is flagged "inconsistent batches" with the TOTOX range across them.
 ## What IFOS data can and cannot tell you
 
 - **Brand-paid, opt-in testing.** Brands submit and pay for these tests. The
-  832 products are those that chose to be listed, not a market survey.
+  838 products are those that chose to be listed, not a market survey.
 - **Tested at production, not on the shelf.** Oxidation continues after
   testing. A good number at manufacture says nothing about storage,
   shipping heat, or a bottle open for two months.
@@ -209,7 +209,22 @@ product is flagged "inconsistent batches" with the TOTOX range across them.
 
 See the [report](reports/latest/report.md). In brief (as of 2026-11-25):
 
-RESULTS_SUMMARY
+- **838 IFOS-listed products, 4,496 lots, 4,115 reports downloaded.** The
+  deterministic parser read 4,104 of them (99.7%). 9 more went to the LLM
+  fallback, done in-session (see `DECISIONS_FOR_ANGELA.md` O-1): 7 were
+  read, and 2 were left unread on purpose. 15 report links are dead.
+- **11 products ranked, 3 more ranked separately as flavored.** The top 3:
+  Pharma New Zealand Omega 3 1440mg (oxidation load 3.37, TOTOX 3.1), Coco
+  March Marine Omega 3 (4.32) and VIBE OMEGA 3 PRO (5.97). All 11 are in the
+  preferred tier (TOTOX at or below 8).
+- **Where the other 824 went.** 312 failed an oxidation cutoff. 208 are
+  "form unverified" (no source states TG or rTG). 117 are not capsules. 79
+  have no oil weight on the label. 42 have no unexpired batch. 18 are pet
+  products, 7 monoglyceride, 6 ethyl ester, 4 krill or phospholipid, and 11
+  have incomplete data. The report gives the full breakdown.
+- **The live re-run moved four products** (new lots; see the
+  [changelog](reports/latest/changelog.md) and D-32): one entered at #7, one
+  fell from #5 to #10, and two dropped out.
 
 The top 10 is **provisional**. Ranking a product needs its oil form and its
 capsule oil weight from the label. Many candidates still pass every other

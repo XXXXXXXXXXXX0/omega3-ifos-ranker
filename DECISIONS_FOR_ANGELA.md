@@ -426,3 +426,42 @@ products are checked, not how anything is scored. Off until you agree.
 is a minimum 80% in triglyceride form. I counted it as TG because the label
 states TG, but a minority may be in another form. Tell me if a stated TG share
 below 100% should go to "form unverified".
+
+## Stage 7: live re-run (2026-11-25)
+
+**D-32. NOTE: the re-run changed the top 10.** A full incremental
+`python -m omega3 run` against the live site found 6 new products, 80 new
+batches and 8 withdrawn ones (51 product pages had changed since the crawl a
+week earlier). It made 927 HTTP requests and downloaded 61 new reports, all
+read by the parser. 15 report links are still dead, the same ones as before.
+Effects on the ranking, all from new lots:
+- Omegor Vitality 1000 (UGAN0004) entered at #7. Its newest lot, 2608202,
+  passes (TOTOX 6.55). The lot it was ranked on before failed.
+- Omegor Vitality 500 (UGAN0005) dropped out. Its new lot, 2608095, fails
+  (TOTOX 13.22, PV 3.86).
+- Sports Research Triple Strength (SPRT0048) fell from #5 to #10 on its new
+  lot S26E206 (TOTOX 7.32, up from the lot it was ranked on).
+- A M B Well PGFO (AMBW0002, #11 before) dropped out. Its new lot, L100869,
+  has PV 4.63.
+
+Now 11 ranked and 3 flavored, and the stopping threshold is 9.66. I checked
+the new #7 and #10 against their PDFs and every value matches. This is how the
+ranking is meant to work, since each product is ranked on its newest batch.
+It also shows that one new lot can move a product five places or drop it.
+Read a rank as "this batch", not "this brand".
+
+**D-33. OPEN: is "EFA tested as triglyceride (TG) form" really evidence of
+form?** I counted it as form evidence (Phase 0b). Only one ranked product
+depends on it: Omegor Vitality 1000 (#7). But U.G.A.'s newer reports for the
+same product say "EFA expressed as triglyceride (TG) form" instead. "Expressed
+as" usually describes how a result was calculated (as TG equivalents), not the
+form of the oil, so I do **not** count it. It appears in 90 reports, against
+63 for "tested as". If both are the same template note, then neither proves
+the form, and UGAN0004 should go to "form unverified". Tell me which reading
+you want. To drop it, remove the IFOS report comment as a form source.
+
+**D-34. NOTE: IFOS sometimes lists a report number as the lot.** Omegor Ultra
+1200 (UGAN0010) shows "Lot #: 50092026" on its IFOS page. The report file is
+"... 2612907 50092026 Product Approval Report.pdf", so 50092026 is the report
+number and the batch is 2612907. The pipeline keeps IFOS's lot label as
+given. The product is excluded on its TOTOX anyway.
