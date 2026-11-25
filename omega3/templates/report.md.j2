@@ -24,7 +24,7 @@ Run `{{ run_id }}`. {{ total_products }} IFOS-listed products considered; {{ cou
 {% elif coverage.ranked < top_n %}
 **Top {{ top_n }} status: incomplete.** Only {{ coverage.ranked }} product(s) have every fact needed for a score. {{ coverage.queue }} more pass the oxidation, acid-value and contaminant cutoffs but still need their oil form or capsule oil weight verified from the label.
 {% else %}
-**Top {{ top_n }} status: provisional.** {{ coverage.in_reach }} product(s) still waiting for label verification could enter the top {{ top_n }} in their best case (best-possible score at or below {{ coverage.threshold | num("{:.2f}") }}).
+**Top {{ top_n }} status: provisional.** {{ coverage.in_reach }} product(s) that pass every other check could still enter the top {{ top_n }} in their best case (best-possible score at or below {{ coverage.threshold | num("{:.2f}") }}): {{ coverage.in_reach_unchecked }} not yet checked, and {{ coverage.in_reach_checked }} checked without the label giving both the oil form and the oil weight.
 {% endif %}
 
 ## Top {{ top_n }}
@@ -45,6 +45,18 @@ No product has every fact needed for a score yet.
 
 {{ table(rows.ranked[top_n:]) }}
 {% endif %}
+{% if coverage.in_reach_rows %}
+## Not yet verified, could still enter the top {{ top_n }}
+
+These pass every check that can be made without the label, and their best-possible oxidation load (assuming the capsule is nothing but omega-3) is at or below {{ coverage.threshold | num("{:.2f}") if coverage.threshold else "the threshold" }}. Showing the first {{ coverage.in_reach_rows | length }} of {{ coverage.in_reach }}, best case first. "Checked" means the label was looked for and did not state what is missing.
+
+| Brand | Product | Lot | TOTOX | PV | AV | Best possible load | Needs | Checked |
+|---|---|---|---|---|---|---|---|---|
+{% for r in coverage.in_reach_rows %}
+| {{ r.brand }} | {{ r.product }} | {{ r.lot }} | {{ r.totox | num }} | {{ r.pv | num }} | {{ r.av | num }} | {{ r.optimistic_score | num("{:.2f}") }} | {{ "form and oil weight" if not r.form and not r.oil_mg_per_capsule else ("form" if not r.form else "oil weight") }} | {{ "yes" if r.label_checked else "no" }} |
+{% endfor %}
+
+{% endif %}
 ## Flavored (ranked separately)
 
 Flavorings can raise the anisidine reading, so these are not compared with unflavored oils.
@@ -62,7 +74,7 @@ Ranked on their newest batch, but another unexpired batch fails a cutoff.
 | Brand | Product | List | Ranked lot | TOTOX range across unexpired batches | Detail |
 |---|---|---|---|---|---|
 {% for r in inconsistent %}
-| {{ r.brand }} | {{ r.product }} | {{ titles[r.list] }}{{ " #" ~ r.rank if r.rank else "" }} | {{ r.lot }} | {{ r.totox_range[0] | num }} to {{ r.totox_range[1] | num }} | {{ r.flags | select("match", "inconsistent") | join("; ") }} |
+| {{ r.brand }} | {{ r.product }} | {{ titles[r.list] }}{{ " #" ~ r.rank if r.rank else "" }} | {{ r.lot }} | {{ r.totox_range[0] | num }} to {{ r.totox_range[1] | num }} | {{ r.inconsistent_detail }} |
 {% endfor %}
 {% else %}
 None.

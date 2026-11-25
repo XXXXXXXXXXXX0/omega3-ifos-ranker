@@ -96,6 +96,8 @@ def placement_row(p: Placement) -> dict:
         "preferred": p.preferred, "flavored": p.flavored, "inconsistent": p.inconsistent,
         "totox_range": list(p.totox_range) if p.totox_range else None,
         "unexpired_batches": p.unexpired_batches, "expired_dropped": p.expired_dropped, "flags": p.flags,
+        "inconsistent_detail": next((f for f in p.flags if f.startswith("inconsistent")), ""),
+        "label_checked": p.product.label is not None,
     }
 
 

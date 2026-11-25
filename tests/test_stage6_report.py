@@ -211,3 +211,17 @@ def test_text_table(cfg, conn, ran):
     lines = table.splitlines()
     assert lines[0].split()[:4] == ["#", "Load", "TOTOX", "PV"] and lines[2].startswith("1  10.34  8.6")
     assert "Better Bioscience / Joy Fish Oil" in lines[2] and len(lines) == 4
+
+
+def test_report_renders_inconsistent_batches(cfg, conn, fixtures, fake_response_cls):
+    # Blackmores with an older, failing lot (ACAO0002 report from 2025: TOTOX 14.1) and a verified label.
+    cfg["as_of_date"] = "2026-11-17"
+    products = dict(PRODUCTS)
+    products["BLKC0001"] = ("Blackmores Omega Ultra rTG", "", "Softgels", "Take 1 softgel",
+                            [("324381", "Dec 03, 2026", "BLKC0001_ddmmyyyy"), ("OLD1", "Dec 31, 2027", "ACAO0002_split_header_mmYYYY")])
+    write_labels(cfg, {**LABELS, "BLKC0001": dict(status="verified", form=None, oil_mg_per_capsule=1800.0, oil_evidence="1800 mg", oil_source_url="https://b.example")})
+    stats = run_all(cfg, conn, Site(fixtures, fake_response_cls, products), log=lambda *_: None)
+    md = (cfg.reports_dir / "2026-11-17" / "report.md").read_text(encoding="utf-8")
+    section = md.split("## Inconsistent batches")[1].split("##")[0]
+    assert "Blackmores Omega Ultra rTG" in section and "5.4 to 14.1" in section and "inconsistent batches: 1 of 1 other" in section
+    assert "inconsistent batches" in (cfg.reports_dir / "2026-11-17" / "report.html").read_text(encoding="utf-8")

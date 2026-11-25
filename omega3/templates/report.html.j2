@@ -55,7 +55,7 @@ ol.why li { margin:0 0 12px; max-width:90ch; } .counts td:first-child, .counts t
 {% elif coverage.ranked < top_n %}
 <div class="note warn"><strong>Top {{ top_n }} status: incomplete.</strong> Only {{ coverage.ranked }} product(s) have every fact needed for a score. {{ coverage.queue }} more pass the oxidation, acid-value and contaminant cutoffs but still need their oil form or capsule oil weight verified from the label.</div>
 {% else %}
-<div class="note warn"><strong>Top {{ top_n }} status: provisional.</strong> {{ coverage.in_reach }} product(s) still waiting for label verification could enter the top {{ top_n }} in their best case (best-possible score at or below {{ coverage.threshold | num("{:.2f}") }}).</div>
+<div class="note warn"><strong>Top {{ top_n }} status: provisional.</strong> {{ coverage.in_reach }} product(s) that pass every other check could still enter the top {{ top_n }} in their best case (best-possible score at or below {{ coverage.threshold | num("{:.2f}") }}): {{ coverage.in_reach_unchecked }} not yet checked, and {{ coverage.in_reach_checked }} checked without the label giving both the oil form and the oil weight.</div>
 {% endif %}
 
 <h2>Top {{ top_n }}</h2>
@@ -73,6 +73,17 @@ ol.why li { margin:0 0 12px; max-width:90ch; } .counts td:first-child, .counts t
 {{ table(rows.ranked[top_n:]) }}
 {% endif %}
 
+{% if coverage.in_reach_rows %}
+<h2>Not yet verified, could still enter the top {{ top_n }}</h2>
+<p class="dim">These pass every check that can be made without the label, and their best-possible oxidation load (assuming the capsule is nothing but omega-3) is at or below {{ coverage.threshold | num("{:.2f}") if coverage.threshold else "the threshold" }}. Showing the first {{ coverage.in_reach_rows | length }} of {{ coverage.in_reach }}, best case first. "Checked" means the label was looked for and did not state what is missing.</p>
+<div class="scroll"><table><thead><tr><th class="l">Brand / product</th><th>Lot</th><th>TOTOX</th><th>PV</th><th>AV</th><th>Best possible load</th><th class="l">Needs</th><th>Checked</th></tr></thead><tbody>
+{% for r in coverage.in_reach_rows %}
+<tr><td class="l"><strong>{{ r.brand }}</strong> {{ r.product }}</td><td>{{ r.lot }}</td><td>{{ r.totox | num }}</td><td>{{ r.pv | num }}</td><td>{{ r.av | num }}</td><td>{{ r.optimistic_score | num("{:.2f}") }}</td>
+<td class="l">{{ "form and oil weight" if not r.form and not r.oil_mg_per_capsule else ("form" if not r.form else "oil weight") }}</td><td>{{ "yes" if r.label_checked else "no" }}</td></tr>
+{% endfor %}
+</tbody></table></div>
+{% endif %}
+
 <h2>Flavored (ranked separately)</h2>
 <p class="dim">Flavorings can raise the anisidine reading, so these are not compared with unflavored oils.</p>
 {% if rows.flavored %}{{ table(rows.flavored) }}{% else %}<p class="dim">None.</p>{% endif %}
@@ -83,7 +94,7 @@ ol.why li { margin:0 0 12px; max-width:90ch; } .counts td:first-child, .counts t
 <div class="scroll"><table><thead><tr><th class="l">Brand / product</th><th class="l">List</th><th>Ranked lot</th><th>TOTOX range, unexpired batches</th><th class="l">Detail</th></tr></thead><tbody>
 {% for r in inconsistent %}
 <tr><td class="l"><strong>{{ r.brand }}</strong> {{ r.product }}</td><td class="l">{{ titles[r.list] }}{{ " #" ~ r.rank if r.rank else "" }}</td><td>{{ r.lot }}</td>
-<td>{{ r.totox_range[0] | num }} to {{ r.totox_range[1] | num }}</td><td class="l">{{ r.flags | select("match", "inconsistent") | join("; ") }}</td></tr>
+<td>{{ r.totox_range[0] | num }} to {{ r.totox_range[1] | num }}</td><td class="l">{{ r.inconsistent_detail }}</td></tr>
 {% endfor %}
 </tbody></table></div>
 {% else %}<p class="dim">None.</p>{% endif %}

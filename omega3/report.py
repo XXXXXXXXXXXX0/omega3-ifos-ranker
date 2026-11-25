@@ -123,6 +123,7 @@ def build_context(cfg, conn, result: RankResult, run_id: str, stats: dict) -> di
         flavored_groups.setdefault(row["tie_group"], []).append(row)
     queue, threshold = agent_queue(result, cfg)
     in_reach = [p for p in queue if threshold is None or p.optimistic_score <= threshold]
+    checked = [p for p in in_reach if p.product.label is not None]
     attempted = conn.execute("SELECT COUNT(*), SUM(status='verified'), SUM(tool_calls), SUM(cost_usd) FROM label_facts").fetchone()
     models = [r[0] for r in conn.execute("SELECT DISTINCT model FROM label_facts")]
     return {
@@ -131,8 +132,9 @@ def build_context(cfg, conn, result: RankResult, run_id: str, stats: dict) -> di
         "inconsistent": [placement_row(p) for p in sorted(result.inconsistent, key=lambda p: (p.list_name, p.rank or 9999, p.product.name))],
         "total_products": len(result.placements), "stats": stats,
         "coverage": {"queue": len(queue), "in_reach": len(in_reach), "threshold": threshold, "ranked": len(rows[RANKED]),
+                     "in_reach_checked": len(checked), "in_reach_unchecked": len(in_reach) - len(checked),
                      "top_complete": len(rows[RANKED]) >= top_n and not in_reach,
-                     "in_reach_rows": [placement_row(p) for p in in_reach[:25]]},
+                     "in_reach_rows": [placement_row(p) for p in in_reach[:30]]},
         "agent": {"attempted": attempted[0] or 0, "verified": attempted[1] or 0, "tool_calls": attempted[2] or 0,
                   "cost_usd": attempted[3] or 0.0, "models": models, "in_session": models == ["in-session"] or not models},
         "extraction": dict(conn.execute("SELECT method || '_' || status, COUNT(*) FROM extractions GROUP BY 1").fetchall()),

@@ -280,9 +280,10 @@ def resolve_form(product: Product, batches: list[Batch]) -> tuple[str | None, st
         if batch.report_form:
             found.append((batch.report_form, "IFOS report", f"{batch.report_form_evidence} [lot {batch.lot}]"))
             break
-    listing_form, listing_evidence = classify_form(f"{product.name}. {product.summary}")
+    listing_text = f"{product.name}. {product.summary}"
+    listing_form, listing_evidence = classify_form(listing_text)
     if listing_form:
-        found.append((listing_form, "IFOS listing", listing_evidence))
+        found.append((listing_form, "IFOS listing", _quote_around(listing_text, listing_evidence)))
     elif listing_evidence.startswith("conflicting") and not found:
         # Marketing copy often names other forms to compare ("3x the absorption of
         # ethyl ester"). Such a listing settles nothing; it only blocks when it is
@@ -298,6 +299,16 @@ def resolve_form(product: Product, batches: list[Batch]) -> tuple[str | None, st
     if families == {"TG"} and any(f == "rTG" for f, _, _ in found):
         form = "rTG"                                   # the more specific reading
     return form, source, evidence
+
+
+def _quote_around(text: str, evidence: str, width: int = 70) -> str:
+    """The listing sentence around the first matched form term, for the report."""
+    phrase = evidence.split(": ", 1)[-1].split(",")[0].strip()
+    m = re.search(re.escape(phrase), text, re.I)
+    if not m:
+        return evidence
+    start, end = max(0, m.start() - width), min(len(text), m.end() + width)
+    return ("..." if start else "") + text[start:end].strip() + ("..." if end < len(text) else "")
 
 
 def serving_capsules(product: Product, batch: Batch) -> float | None:
