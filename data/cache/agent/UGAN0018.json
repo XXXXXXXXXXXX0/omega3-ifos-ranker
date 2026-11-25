@@ -1,0 +1,31 @@
+{
+ "product_num": "UGAN0018",
+ "status": "verified",
+ "form": "TG",
+ "form_source_url": "https://www.omegor.com/products/omegor-mind",
+ "form_evidence": "Olio di pesce purificato e standardizzato al 75% in acidi grassi omega-3 come trigliceridi",
+ "oil_mg_per_capsule": null,
+ "oil_source_url": null,
+ "oil_evidence": null,
+ "serving_capsules": null,
+ "servings_per_bottle": null,
+ "flavored": null,
+ "flavor_evidence": null,
+ "pet": null,
+ "pet_evidence": null,
+ "antioxidants": [],
+ "packaging": [],
+ "reasoning": "Brand label (Italian): 'Olio di pesce purificato e standardizzato al 75% in acidi grassi omega-3 come trigliceridi'. Multi-ingredient product (Bacopa, borage oil, vitamins); the fish-oil weight per softgel is not stated.",
+ "sources_checked": [
+  "https://omegor.com/",
+  "https://www.omegor.com/products/omegor-mind"
+ ],
+ "page_hashes": {
+  "https://www.omegor.com/": "4076abd11fcbe8da73fcfe91d4090c7a6915b2fb8be39dc8872ee995506dcafc",
+  "https://www.omegor.com/products/omegor-mind": "0faa00c63eabf707d68f12a602dd700848c12a4d0f4fa0f99a78e9e6d427331b"
+ },
+ "model": "in-session",
+ "tool_calls": 2,
+ "cost_usd": 0.0,
+ "verified_at": "2026-11-25T02:23:32+00:00"
+}

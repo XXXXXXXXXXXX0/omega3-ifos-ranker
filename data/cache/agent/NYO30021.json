@@ -1,0 +1,29 @@
+{
+ "product_num": "NYO30021",
+ "status": "unverified",
+ "form": null,
+ "form_source_url": null,
+ "form_evidence": null,
+ "oil_mg_per_capsule": null,
+ "oil_source_url": null,
+ "oil_evidence": null,
+ "serving_capsules": null,
+ "servings_per_bottle": null,
+ "flavored": null,
+ "flavor_evidence": null,
+ "pet": null,
+ "pet_evidence": null,
+ "antioxidants": [],
+ "packaging": [],
+ "reasoning": "Brand home page (nyo3.com) does not show the DHA500 label.",
+ "sources_checked": [
+  "https://nyo3.com/"
+ ],
+ "page_hashes": {
+  "https://nyo3.com/": "c1130c9d47962a6a6af91d92ea8f225e5fd600cb0d013bc489648176435e4e9f"
+ },
+ "model": "in-session",
+ "tool_calls": 1,
+ "cost_usd": 0.0,
+ "verified_at": "2026-11-25T02:20:21+00:00"
+}

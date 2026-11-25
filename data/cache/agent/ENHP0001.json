@@ -1,0 +1,31 @@
+{
+ "product_num": "ENHP0001",
+ "status": "verified",
+ "form": "TG",
+ "form_source_url": "https://everydaehealth.com/products/essential-dha",
+ "form_evidence": "500 mg DHA in triglyceride form",
+ "oil_mg_per_capsule": 500.0,
+ "oil_source_url": "https://everydaehealth.com/products/essential-dha",
+ "oil_evidence": "refined and concentrated in Norway) 500 mg",
+ "serving_capsules": 2.0,
+ "servings_per_bottle": null,
+ "flavored": true,
+ "flavor_evidence": "natural organic orange oil",
+ "pet": null,
+ "pet_evidence": null,
+ "antioxidants": [],
+ "packaging": [],
+ "reasoning": "Brand supplement facts: 'Fish Oil (... refined and concentrated in Norway) 500 mg' per softgel, DHA 250 mg, EPA 50 mg; page states '500 mg DHA in triglyceride form'; flavored with natural organic orange oil.",
+ "sources_checked": [
+  "https://everydaehealth.com/",
+  "https://everydaehealth.com/products/essential-dha"
+ ],
+ "page_hashes": {
+  "https://everydaehealth.com/": "24c549d37775655698274c02b3644307c87dc314e9d763d0a13932cc6753dc2a",
+  "https://everydaehealth.com/products/essential-dha": "4172b5aa43724b578af4a983eca7e041111329512302a9176170f1380e6cb063"
+ },
+ "model": "in-session",
+ "tool_calls": 2,
+ "cost_usd": 0.0,
+ "verified_at": "2026-11-25T02:20:21+00:00"
+}

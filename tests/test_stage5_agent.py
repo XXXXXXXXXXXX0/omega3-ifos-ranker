@@ -447,3 +447,14 @@ def test_label_numbers_in_every_format():
     assert parse_numbers("Concentrated fish Omega-3 triglycerides: 1,176.5 mg") == [3.0, 1176.5]
     assert parse_numbers("fish oil concentrate 1.3 g") == [1.3] and parse_numbers("Fischöl 1,5 g") == [1.5]
     assert parse_numbers("2 000 mg") == [2000.0]
+
+
+def test_reopening_keeps_history_and_the_budget(cfg, conn, seeded, site):
+    session = fetched(cfg, conn, site)
+    session.finish(None, "site unavailable")
+    again = Session(cfg, conn, "BEBI0001", model="in-session", mode="in-session", http=site, resume=True)
+    again.reopen("new source")
+    assert again.calls_used == 1 and again.calls_left == 7
+    again.call("fetch_page", {"url": "https://brand.example/joy"})
+    trace = json.loads(trace_path(cfg, "BEBI0001").read_text())
+    assert len(trace["calls"]) == 2 and trace["reopened"][0]["previous_result"]["reasoning"].startswith("no decision recorded")

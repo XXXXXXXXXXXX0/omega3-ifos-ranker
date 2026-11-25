@@ -343,3 +343,86 @@ products without a label lookup: `oil_weight.sources: [label, ifos_area_pct]`.
 **P-7. PROPOSAL: treat "mg per softgel as TG" as form evidence.** It would
 settle the form of only 4 current candidates (all WHC), so I left it off
 (D-14).
+
+---
+
+## Stage 5: label verification (in-session, 2026-11-25)
+
+**D-24. ADOPTED: form vocabulary in other languages.** Many brands label in
+Spanish, Portuguese, Italian, German, French, Turkish, Korean or Chinese. The
+spec's terms are extended with direct translations ("triglicéridos",
+"come trigliceridi", "Ethylester", "알티지", "甘油三酯", ...), under the same
+whole-word matching rules. Blood-lipid phrases ("niveles de triglicéridos")
+are excluded as in English.
+
+**D-25. ADOPTED: an oil weight stated outright in the brand's IFOS listing
+text counts as a label value.** Examples: "Each softgel capsule contains 2000
+mg fish oil", "Each daily dose of 2 capsules provides 3,000 mg of fish oil",
+and IFOS's own template "Each 1700 mg capsule contains a minimum 60% omega-3".
+These are direct statements, not calculations. Strict patterns only: a number
+in a product name ("Omega 3 1400mg") is not used, since it is often the
+omega-3 content, and two disagreeing statements cancel. Shown in the report
+as "oil weight from IFOS listing text". Switch: drop `ifos_listing` from
+`oil_weight.sources`. In this run it supplies the oil weight for 4 of the 12
+ranked products.
+
+**D-26. ADOPTED: label sources the agent can read.** Besides brand pages:
+the NIH Dietary Supplement Label Database (a public API with transcribed
+supplement-facts panels, used for US brands and counted as "label"), Shopify
+product JSON (`/products/<handle>.json`, which carries the description a page
+loads with JavaScript), Shopify's product search (`/search/suggest.json`) to
+find the right product page, and PDF label text. The fetch tool reads JSON
+and PDF as text only; nothing is executed.
+
+**D-27. ADOPTED: pet products found on brand pages.** CHKA0002's brand site
+describes itself as dog and cat treats and supplements, which the IFOS listing
+does not show. The decision schema gained a validated `pet` field, and such
+products go to the pet list. THPT0001 ("Think Pets") was caught by adding the
+brand name to pet detection.
+
+**D-28. ADOPTED: comparison copy does not block a verified label.** Listing
+text such as "three times the absorption of ethyl ester" names two forms, which
+settles nothing, so it no longer overrides a verified label or a report
+statement. A listing that names a single form different from the label still
+leaves the product unverified.
+
+**D-29. NOTE: how the evidence check behaved.** Every stored form and oil
+weight is backed by a verbatim quote found on a page fetched in that product's
+own session. The check rejected one of my own quotes (I had copied the
+sibling page's wording, "With a capsule filling weight", where the page
+fetched for PNZL0002 reads "With capsule filling weight") until I used the
+exact text. Values I could only have derived, such as oil from "500 mg EPA,
+90% EPA concentrate", were not recorded. Where a label disagreed with the
+current IFOS lot (a 2018 Renew Life label, an NIH record whose serving size
+did not fit), the label value was not used.
+
+**D-30. NOTE: what the stopping rule could and could not do.** In-session I
+worked the queue in best-possible-score order, using 82 product sessions
+(none over the 8-call cap; 37 needed a single call). Result: 12 products
+ranked plus 3 flavored. The stopping threshold (10th score plus 10%) is 10.21.
+Because the best-possible score must assume a capsule is pure omega-3 when the
+label is unknown, **198 unverified candidates could still reach the top 10**.
+The top 10 is therefore published as **provisional**, and the report lists
+the in-reach candidates. To finish: set `llm.api_enabled: true`, provide
+`OMEGA3_ANTHROPIC_API_KEY`, run `python -m omega3 agent-run`. My estimate at
+the configured cap of 60k tokens per product is roughly $10-25 for the 198,
+but the API path has never run against the live API (O-1).
+
+**D-31. NOTE: yield.** Most failures were sites that render without
+JavaScript, refuse automated access (403/429/connection resets) or have no
+English. Where a label was reached, the oil weight was usually there; the
+oil form often was not. Many brands never state it. That is the binding
+constraint, and it is the spec working as written ("never assumed TG").
+
+### Proposals from Stage 5 (not applied)
+
+**P-8. PROPOSAL: a tighter best-possible bound from the IFOS minimum
+concentration.** Many IFOS summaries say "a minimum N% omega-3 concentration".
+Using it would bound the oil weight from above for the stopping rule only,
+never for a score, and could prune a large part of the 198. It changes which
+products are checked, not how anything is scored. Off until you agree.
+
+**P-9. OPEN: "min 80% TG" products.** MEIN0001's label states the omega-3
+is a minimum 80% in triglyceride form. I counted it as TG because the label
+states TG, but a minority may be in another form. Tell me if a stated TG share
+below 100% should go to "form unverified".

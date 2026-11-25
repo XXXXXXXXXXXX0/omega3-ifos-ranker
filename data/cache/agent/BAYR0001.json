@@ -1,0 +1,29 @@
+{
+ "product_num": "BAYR0001",
+ "status": "unverified",
+ "form": null,
+ "form_source_url": null,
+ "form_evidence": null,
+ "oil_mg_per_capsule": null,
+ "oil_source_url": null,
+ "oil_evidence": null,
+ "serving_capsules": null,
+ "servings_per_bottle": null,
+ "flavored": null,
+ "flavor_evidence": null,
+ "pet": null,
+ "pet_evidence": null,
+ "antioxidants": [],
+ "packaging": [],
+ "reasoning": "Brand website does not resolve; the NIH label database search returned no matching label.",
+ "sources_checked": [
+  "https://api.ods.od.nih.gov/dsld/v9/search-filter?size=8&q=One%20A%20Day%20High%20Purity%20Fish%20Oil"
+ ],
+ "page_hashes": {
+  "https://api.ods.od.nih.gov/dsld/v9/search-filter?size=8&q=One%20A%20Day%20High%20Purity%20Fish%20Oil": "ba123a5846c30cae816d771f12c291bbaa3e4aebf76042d2e6411d5eccc4b282"
+ },
+ "model": "in-session",
+ "tool_calls": 1,
+ "cost_usd": 0.0,
+ "verified_at": "2026-11-25T02:21:43+00:00"
+}

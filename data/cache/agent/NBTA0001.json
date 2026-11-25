@@ -1,0 +1,31 @@
+{
+ "product_num": "NBTA0001",
+ "status": "unverified",
+ "form": null,
+ "form_source_url": null,
+ "form_evidence": null,
+ "oil_mg_per_capsule": 1316.0,
+ "oil_source_url": "https://nutribiotica.es/shop/kiroot/suplementos/omegas/omega-3-dha/",
+ "oil_evidence": "Aceite de pescado Omegatex® DHA760TG 2632,00 mg",
+ "serving_capsules": 2.0,
+ "servings_per_bottle": null,
+ "flavored": null,
+ "flavor_evidence": null,
+ "pet": null,
+ "pet_evidence": null,
+ "antioxidants": [],
+ "packaging": [],
+ "reasoning": "Brand label table: 'Aceite de pescado Omegatex® DHA760TG 2632,00 mg' per 2 perlas (1,316 mg per perla); TG form also stated in the IFOS listing ('in the form of triglycerides').",
+ "sources_checked": [
+  "https://www.nutribiotica.es",
+  "https://nutribiotica.es/shop/kiroot/suplementos/omegas/omega-3-dha/"
+ ],
+ "page_hashes": {
+  "https://nutribiotica.es/": "fdb39e13d7dc091d31d14799ea91d0f7a454db01471d0e7650fcc30831e2747f",
+  "https://nutribiotica.es/shop/kiroot/suplementos/omegas/omega-3-dha/": "5ac1bffaf99dfe93219e4711e9832683db4b864e619b34524ddfcb23c02cb07f"
+ },
+ "model": "in-session",
+ "tool_calls": 2,
+ "cost_usd": 0.0,
+ "verified_at": "2026-11-25T02:23:32+00:00"
+}

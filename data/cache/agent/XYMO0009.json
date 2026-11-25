@@ -1,0 +1,35 @@
+{
+ "product_num": "XYMO0009",
+ "status": "unverified",
+ "form": null,
+ "form_source_url": null,
+ "form_evidence": null,
+ "oil_mg_per_capsule": null,
+ "oil_source_url": null,
+ "oil_evidence": null,
+ "serving_capsules": null,
+ "servings_per_bottle": null,
+ "flavored": null,
+ "flavor_evidence": null,
+ "pet": null,
+ "pet_evidence": null,
+ "antioxidants": [
+  "Mixed Tocopherols, Natural"
+ ],
+ "packaging": [],
+ "reasoning": "NIH label record (Arctic Oils OmegaPure 820; 'Arctic Oils is a registered trademark of XYMOGEN, Inc.') lists Fish Oil Concentrate 2.5 g and 1.875 g omega-3 per serving of 1 softgel, which does not fit the IFOS lot (1,066 mg omega-3 per softgel); the serving size on the record looks wrong, so the oil weight is not used. No oil form is stated.",
+ "sources_checked": [
+  "https://xymogen.com/",
+  "https://api.ods.od.nih.gov/dsld/v9/search-filter?size=6&q=OmegaPure%20820",
+  "https://api.ods.od.nih.gov/dsld/v9/label/303787"
+ ],
+ "page_hashes": {
+  "https://www.xymogen.com/": "b385026d4391be6dd0fb6c19ab5e75c61c91bd2aeca25845df9de0ec76c7bc2e",
+  "https://api.ods.od.nih.gov/dsld/v9/search-filter?size=6&q=OmegaPure%20820": "bafe18a5ad23d52a17c9a23f5d43a495f17e4ff24133edc4aa8073fa959f5160",
+  "https://api.ods.od.nih.gov/dsld/v9/label/303787": "cc8cd1e03747ba9beaea0b56aaf9050f42ac9d8a1c78544d22c753e845ea3e71"
+ },
+ "model": "in-session",
+ "tool_calls": 3,
+ "cost_usd": 0.0,
+ "verified_at": "2026-11-25T02:20:21+00:00"
+}

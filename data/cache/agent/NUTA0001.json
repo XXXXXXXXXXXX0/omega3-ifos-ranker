@@ -1,0 +1,31 @@
+{
+ "product_num": "NUTA0001",
+ "status": "unverified",
+ "form": null,
+ "form_source_url": null,
+ "form_evidence": null,
+ "oil_mg_per_capsule": null,
+ "oil_source_url": null,
+ "oil_evidence": null,
+ "serving_capsules": null,
+ "servings_per_bottle": null,
+ "flavored": null,
+ "flavor_evidence": null,
+ "pet": null,
+ "pet_evidence": null,
+ "antioxidants": [],
+ "packaging": [],
+ "reasoning": "Brand site (nutrata.com.br) resolved to a blog; no label.",
+ "sources_checked": [
+  "https://nutrata.com.br/",
+  "https://nutrata.com.br/blog/author/nutrata/"
+ ],
+ "page_hashes": {
+  "https://nutrata.com.br/": "beaf543c217d5328a7621a48bc36ef5772f1cbba86ea3c2dc081a6c6acf99201",
+  "https://nutrata.com.br/blog/author/nutrata/": "3dcfb79d4b38258974b3265c9f8481014143735400aaafacdc8dd9972b0a4dad"
+ },
+ "model": "in-session",
+ "tool_calls": 2,
+ "cost_usd": 0.0,
+ "verified_at": "2026-11-25T02:23:32+00:00"
+}

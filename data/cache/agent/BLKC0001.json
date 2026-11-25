@@ -1,0 +1,33 @@
+{
+ "product_num": "BLKC0001",
+ "status": "unverified",
+ "form": null,
+ "form_source_url": null,
+ "form_evidence": null,
+ "oil_mg_per_capsule": null,
+ "oil_source_url": null,
+ "oil_evidence": null,
+ "serving_capsules": null,
+ "servings_per_bottle": null,
+ "flavored": null,
+ "flavor_evidence": null,
+ "pet": null,
+ "pet_evidence": null,
+ "antioxidants": [],
+ "packaging": [],
+ "reasoning": "Brand site (blackmores.com.au) visits reached category pages only; no Omega Ultra label with form or oil weight.",
+ "sources_checked": [
+  "https://blackmores.com.au/",
+  "https://www.blackmores.com.au/products/by-ingredient/echinacea",
+  "https://www.blackmores.com.au/health-hub/fish-nutrition-oils"
+ ],
+ "page_hashes": {
+  "https://www.blackmores.com.au/": "79693a64da3cfa98090c05ddbd45e2595106a2df9e63178adb1bb96aa1d1d574",
+  "https://www.blackmores.com.au/products/by-ingredient/echinacea": "38a43933e95cc5d945ef022519c0b2ca8b35c75bdca3de61b32104bcdc6f4f8a",
+  "https://www.blackmores.com.au/health-hub/fish-nutrition-oils": "53c50b481ebea699266acc8fbadaefa1b7de4ef41b0f544e53dc71fc3e423d82"
+ },
+ "model": "in-session",
+ "tool_calls": 3,
+ "cost_usd": 0.0,
+ "verified_at": "2026-11-25T02:20:21+00:00"
+}

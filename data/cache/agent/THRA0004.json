@@ -1,0 +1,33 @@
+{
+ "product_num": "THRA0004",
+ "status": "unverified",
+ "form": null,
+ "form_source_url": null,
+ "form_evidence": null,
+ "oil_mg_per_capsule": null,
+ "oil_source_url": null,
+ "oil_evidence": null,
+ "serving_capsules": null,
+ "servings_per_bottle": null,
+ "flavored": null,
+ "flavor_evidence": null,
+ "pet": null,
+ "pet_evidence": null,
+ "antioxidants": [],
+ "packaging": [],
+ "reasoning": "Brand product page says 600 mg EPA and DHA per softgel but states no oil form. The IFOS summary ('each 1000mg capsule ... 350 mg EPA and 250 mg DHA') is older than the current lot, which measured 852 mg EPA+DHA.",
+ "sources_checked": [
+  "https://theralogix.com",
+  "https://theralogix.com/search/suggest.json?q=TherOmega&resources%5Btype%5D=product",
+  "https://theralogix.com/products/theromega-omega-3-fish-oil-supplement"
+ ],
+ "page_hashes": {
+  "https://theralogix.com/": "b536d6f6c3f29145ff0464fba0f37d209c760a9b5d10de9f4e67f2c5e266e10d",
+  "https://theralogix.com/search/suggest.json?q=TherOmega&resources%5Btype%5D=product": "65916d81a0273549b74587706c0e15d0a2fe7016a97a9ff62d19b0771189cb2e",
+  "https://theralogix.com/products/theromega-omega-3-fish-oil-supplement": "54a30af87b680c645b8dfc0316863ce8d51f073b176f0435ef88b2ae683d4065"
+ },
+ "model": "in-session",
+ "tool_calls": 3,
+ "cost_usd": 0.0,
+ "verified_at": "2026-11-25T02:20:21+00:00"
+}

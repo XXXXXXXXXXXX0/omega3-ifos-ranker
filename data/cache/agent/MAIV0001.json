@@ -1,0 +1,29 @@
+{
+ "product_num": "MAIV0001",
+ "status": "unverified",
+ "form": null,
+ "form_source_url": null,
+ "form_evidence": null,
+ "oil_mg_per_capsule": null,
+ "oil_source_url": null,
+ "oil_evidence": null,
+ "serving_capsules": null,
+ "servings_per_bottle": null,
+ "flavored": null,
+ "flavor_evidence": null,
+ "pet": null,
+ "pet_evidence": null,
+ "antioxidants": [],
+ "packaging": [],
+ "reasoning": "Brand home page (maiova.ca) shows no label for this product.",
+ "sources_checked": [
+  "https://www.maiova.ca"
+ ],
+ "page_hashes": {
+  "https://www.maiova.ca/": "3c769b0b277b22594f5bd4383a3dd4469c5a2b62f1b96e51af5b5f805ede18db"
+ },
+ "model": "in-session",
+ "tool_calls": 1,
+ "cost_usd": 0.0,
+ "verified_at": "2026-11-25T02:23:32+00:00"
+}

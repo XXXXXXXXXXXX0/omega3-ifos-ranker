@@ -1,0 +1,31 @@
+{
+ "product_num": "WHCC0004",
+ "status": "unverified",
+ "form": null,
+ "form_source_url": null,
+ "form_evidence": null,
+ "oil_mg_per_capsule": null,
+ "oil_source_url": null,
+ "oil_evidence": null,
+ "serving_capsules": null,
+ "servings_per_bottle": null,
+ "flavored": null,
+ "flavor_evidence": null,
+ "pet": null,
+ "pet_evidence": null,
+ "antioxidants": [],
+ "packaging": [],
+ "reasoning": "Brand site (whclabs.eu) home page and product search returned no QuattrO3+PS label.",
+ "sources_checked": [
+  "http://unocardio.eu",
+  "https://whclabs.eu/search/suggest.json?q=QuattrO3&resources%5Btype%5D=product"
+ ],
+ "page_hashes": {
+  "https://whclabs.eu": "cc5d64ee76a4cfbe7be5b0230c08db8168b5837f11bd5009e4dd3aa4512a8818",
+  "https://whclabs.eu/search/suggest.json?q=QuattrO3&resources%5Btype%5D=product": "cc5d64ee76a4cfbe7be5b0230c08db8168b5837f11bd5009e4dd3aa4512a8818"
+ },
+ "model": "in-session",
+ "tool_calls": 2,
+ "cost_usd": 0.0,
+ "verified_at": "2026-11-25T02:20:21+00:00"
+}

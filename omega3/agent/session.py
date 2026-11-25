@@ -134,6 +134,14 @@ class Session:
         common = {"omega", "fish", "oil", "with", "plus", "the", "and", "for", "mg", "ultra", "pure", "high", "softgels", "softgel", "capsules"}
         self.product_words = {w for w in re.findall(r"[a-z0-9]{3,}", text) if w not in common}
 
+    def reopen(self, why: str) -> None:
+        """Continue a finished session (e.g. a new source came to light). The earlier
+        calls stay in the trace and still count against the same budget."""
+        if self.trace["finished_at"]:
+            self.trace.setdefault("reopened", []).append({"at": db.now_iso(), "why": why, "previous_result": self.trace["result"]})
+            self.trace["finished_at"] = None
+            self.save()
+
     # --- budget ---------------------------------------------------------------
     @property
     def calls_used(self) -> int:

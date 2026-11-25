@@ -38,8 +38,9 @@ def run(pairs: list[tuple[str, str]], width: int = 170) -> None:
     conn = db.connect(cfg.db_path)
     http = PoliteSession(cfg)
     for product, url in pairs:
-        resume = trace_path(cfg, product).exists() and not json.loads(trace_path(cfg, product).read_text())["finished_at"]
+        resume = trace_path(cfg, product).exists()
         session = Session(cfg, conn, product, model="in-session", mode="in-session", http=http, resume=resume)
+        session.reopen("further source checked")
         try:
             session.call("fetch_page", {"url": url})
         except tools.ToolError as exc:
