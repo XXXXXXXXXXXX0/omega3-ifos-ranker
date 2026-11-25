@@ -1,0 +1,31 @@
+{
+ "product_num": "MEIN0001",
+ "status": "verified",
+ "form": "TG",
+ "form_source_url": "https://mederinutricion.com/producto/dha-pure-npd1-1000/",
+ "form_evidence": "Omega 3 (min 80% TG)",
+ "oil_mg_per_capsule": 1316.0,
+ "oil_source_url": "https://mederinutricion.com/producto/dha-pure-npd1-1000/",
+ "oil_evidence": "Aceite de PESCADO 1.316,0 mg",
+ "serving_capsules": 1.0,
+ "servings_per_bottle": null,
+ "flavored": null,
+ "flavor_evidence": null,
+ "pet": null,
+ "pet_evidence": null,
+ "antioxidants": [],
+ "packaging": [],
+ "reasoning": "Brand label table: 'Aceite de PESCADO 1.316,0 mg' per capsule, of which 'Omega 3 (min 80% TG)' and 'DHA (min. 76% TG)'. Note: the label states a minimum TG share of 80%, so a minority of the omega-3 may be in other forms.",
+ "sources_checked": [
+  "https://mederinutricion.com",
+  "https://mederinutricion.com/producto/dha-pure-npd1-1000/"
+ ],
+ "page_hashes": {
+  "https://mederinutricion.com/": "f48d7f9d43130a571c681806514e15ecab175dab5aa8dc912c07c5aa8404d0cb",
+  "https://mederinutricion.com/producto/dha-pure-npd1-1000/": "b0fe2e2cfa6b263f99014e9b65b9401deb86f0b3d523e3bee1326da2a9e2cb82"
+ },
+ "model": "in-session",
+ "tool_calls": 2,
+ "cost_usd": 0.0,
+ "verified_at": "2026-11-25T02:13:18+00:00"
+}

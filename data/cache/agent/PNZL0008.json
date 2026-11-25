@@ -1,0 +1,36 @@
+{
+ "product_num": "PNZL0008",
+ "status": "verified",
+ "form": "rTG",
+ "form_source_url": "https://pharmanewzealand.co.nz/vascular-rtg-fish-oil/",
+ "form_evidence": "Absolute EPA Ultra Purity rTG Fish Oil Extract",
+ "oil_mg_per_capsule": null,
+ "oil_source_url": null,
+ "oil_evidence": null,
+ "serving_capsules": null,
+ "servings_per_bottle": null,
+ "flavored": null,
+ "flavor_evidence": null,
+ "pet": null,
+ "pet_evidence": null,
+ "antioxidants": [],
+ "packaging": [],
+ "reasoning": "Brand page names the product 'Absolute EPA Ultra Purity rTG Fish Oil Extract' (1010 mg EPA). No capsule fill weight is given for this product; the 1,500 mg fill weight on the same page belongs to the other rTG and EE products.",
+ "sources_checked": [
+  "https://pharmanewzealand.co.nz/",
+  "https://pharmanewzealand.co.nz/rtg-fish-oil-brain/",
+  "https://pharmanewzealand.co.nz/vascular-rtg-fish-oil/",
+  "https://pharmanewzealand.co.nz/products/",
+  "Pharma New Zealand Absolute EPA rTG fish oil capsule 1000mg EPA supplement facts"
+ ],
+ "page_hashes": {
+  "https://pharmanewzealand.co.nz/": "c1408a1ba06c2face8a43aafb69a03ef7074212085b8ad2a5d06ca057cc77537",
+  "https://pharmanewzealand.co.nz/rtg-fish-oil-brain/": "c6e64beefc992f43aa0a472dc9d6694b20035c58dcd531d5dde75a0b93e3172a",
+  "https://pharmanewzealand.co.nz/vascular-rtg-fish-oil/": "2167dd5d8dc6a68b97aa3d4948f95a03ba6f93e3a18ec049056d889b2e90fe25",
+  "https://pharmanewzealand.co.nz/products/": "fe47f44a64fa54028ef7205fe36a51cdfe46fb2c3963a11d2dc81de02c223383"
+ },
+ "model": "in-session",
+ "tool_calls": 5,
+ "cost_usd": 0.0,
+ "verified_at": "2026-11-25T02:23:59+00:00"
+}

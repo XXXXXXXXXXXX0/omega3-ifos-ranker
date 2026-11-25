@@ -1,0 +1,31 @@
+{
+ "product_num": "PNZL0001",
+ "status": "unverified",
+ "form": null,
+ "form_source_url": null,
+ "form_evidence": null,
+ "oil_mg_per_capsule": null,
+ "oil_source_url": null,
+ "oil_evidence": null,
+ "serving_capsules": null,
+ "servings_per_bottle": null,
+ "flavored": null,
+ "flavor_evidence": null,
+ "pet": null,
+ "pet_evidence": null,
+ "antioxidants": [],
+ "packaging": [],
+ "reasoning": "Brand pages describe the PNZ range: the 1440 mg rTG product (730 EPA / 585 DHA) and an ethyl ester (EE) product with 1,060 mg EPA and 210 mg DHA. This product (min 1050 EPA / 200 DHA) is closest to the EE one but the names do not match exactly (1400 mg vs 1440 mg), so its form is left unverified rather than assumed.",
+ "sources_checked": [
+  "https://pharmanewzealand.co.nz/",
+  "https://pharmanewzealand.co.nz/products/"
+ ],
+ "page_hashes": {
+  "https://pharmanewzealand.co.nz/": "c1408a1ba06c2face8a43aafb69a03ef7074212085b8ad2a5d06ca057cc77537",
+  "https://pharmanewzealand.co.nz/products/": "fe47f44a64fa54028ef7205fe36a51cdfe46fb2c3963a11d2dc81de02c223383"
+ },
+ "model": "in-session",
+ "tool_calls": 2,
+ "cost_usd": 0.0,
+ "verified_at": "2026-11-25T02:20:21+00:00"
+}

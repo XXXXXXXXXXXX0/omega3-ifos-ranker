@@ -1,0 +1,31 @@
+{
+ "product_num": "NOBL0003",
+ "status": "verified",
+ "form": "PL",
+ "form_source_url": "https://nblturkiye.com/urunler/nbl-omega-3-fish-and-krill-oil/",
+ "form_evidence": "NBL OMEGA-3 Fish and Krill Oil",
+ "oil_mg_per_capsule": null,
+ "oil_source_url": null,
+ "oil_evidence": null,
+ "serving_capsules": null,
+ "servings_per_bottle": null,
+ "flavored": null,
+ "flavor_evidence": null,
+ "pet": null,
+ "pet_evidence": null,
+ "antioxidants": [],
+ "packaging": [],
+ "reasoning": "Brand page names the product 'NBL OMEGA-3 Fish and Krill Oil', and the IFOS listing says each capsule has 1400 mg fish oil plus 200 mg krill oil. A krill (phospholipid) blend is excluded by the spec.",
+ "sources_checked": [
+  "https://nblturkiye.com/",
+  "https://nblturkiye.com/urunler/nbl-omega-3-fish-and-krill-oil/"
+ ],
+ "page_hashes": {
+  "https://nblturkiye.com/": "54a7a0f7a9f2ef2b7e4e218d7444cb49a2989b9c71287e905a15de5639fef8f6",
+  "https://nblturkiye.com/urunler/nbl-omega-3-fish-and-krill-oil/": "8235d51a77b544129882b1953baba2beb8686de70e3a64add5fb2698395f15df"
+ },
+ "model": "in-session",
+ "tool_calls": 2,
+ "cost_usd": 0.0,
+ "verified_at": "2026-11-25T02:13:18+00:00"
+}

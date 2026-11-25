@@ -1,0 +1,104 @@
+{
+ "sha256": "6b5d791decd2aed19779d1a2991a01efadb1047d33c23a046acabff3e1003f23",
+ "model": "in-session",
+ "created": "2026-11-25T01:40:08+00:00",
+ "usage": null,
+ "payload": {
+  "sha256": "6b5d791decd2aed19779d1a2991a01efadb1047d33c23a046acabff3e1003f23",
+  "is_batch_report": true,
+  "lot": "26001",
+  "expiry_text": "19-Feb-2029",
+  "directions": "Take two capsule once a day",
+  "basis_text": "mg per 2 capsules",
+  "rows": [
+   {
+    "analyte": "epa_dha",
+    "label_raw": "EPA + DHA",
+    "spec_text": "900",
+    "result_text": "927",
+    "compliance": "Yes"
+   },
+   {
+    "analyte": "pcbs",
+    "label_raw": "PCBs",
+    "spec_text": "<= 45 ppb",
+    "result_text": "0.539 ppb",
+    "compliance": "Yes"
+   },
+   {
+    "analyte": "dioxins_furans",
+    "label_raw": "Dioxins and Furans",
+    "spec_text": "<= 1 ppt WHO-TEQ (2005)",
+    "result_text": "0.0645 ppt WHO-TEQ (2005)",
+    "compliance": "Yes"
+   },
+   {
+    "analyte": "dioxin_like_pcbs",
+    "label_raw": "Dioxin-Like PCBs",
+    "spec_text": "<= 1.5 ppt WHO-TEQ (2005)",
+    "result_text": "0.00284 WHO-TEQ (2005)",
+    "compliance": "Yes"
+   },
+   {
+    "analyte": "acid_value",
+    "label_raw": "Acid Value",
+    "spec_text": "<= 3 mg KOH/g",
+    "result_text": "0.13 mg KOH/g",
+    "compliance": "Yes"
+   },
+   {
+    "analyte": "pv",
+    "label_raw": "Peroxide",
+    "spec_text": "<= 5 meq/kg",
+    "result_text": "1.7 meq/kg",
+    "compliance": "Yes"
+   },
+   {
+    "analyte": "av",
+    "label_raw": "Anisidine",
+    "spec_text": "<= 20",
+    "result_text": "1.4",
+    "compliance": "Yes"
+   },
+   {
+    "analyte": "totox",
+    "label_raw": "TOTOX",
+    "spec_text": "<= 19.5",
+    "result_text": "4.8",
+    "compliance": "Yes"
+   },
+   {
+    "analyte": "mercury",
+    "label_raw": "Mercury",
+    "spec_text": "<=0.1 ppm",
+    "result_text": "< 0.005 ppm",
+    "compliance": "Yes"
+   },
+   {
+    "analyte": "cadmium",
+    "label_raw": "Cadmium",
+    "spec_text": "<=0.1 ppm",
+    "result_text": "< 0.005 ppm",
+    "compliance": "Yes"
+   },
+   {
+    "analyte": "lead",
+    "label_raw": "Lead",
+    "spec_text": "<=0.05 ppm",
+    "result_text": "< 0.005 ppm",
+    "compliance": "Yes"
+   },
+   {
+    "analyte": "arsenic",
+    "label_raw": "Inorganic Arsenic",
+    "spec_text": "<=0.1 ppm",
+    "result_text": "< 0.0682 ppm",
+    "compliance": "Yes"
+   }
+  ],
+  "comments": [
+   "Batch results EPA: 333 mg/cap, DHA: 131 mg/cap Radioactivity specification: <50 Bq/kg, result: < 30 Bq/kg"
+  ],
+  "notes": "Dioxins and Furans result printed '0.0645 ppt WHO-TEQ 92005)': '92005)' is a typo for '(2005)', the reference year, not a value. Dioxin-Like PCBs result printed without 'ppt'; copied as printed."
+ }
+}

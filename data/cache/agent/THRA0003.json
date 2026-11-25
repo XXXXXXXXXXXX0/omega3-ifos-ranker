@@ -1,0 +1,32 @@
+{
+ "product_num": "THRA0003",
+ "status": "unverified",
+ "form": null,
+ "form_source_url": null,
+ "form_evidence": null,
+ "oil_mg_per_capsule": null,
+ "oil_source_url": null,
+ "oil_evidence": null,
+ "serving_capsules": 1.0,
+ "servings_per_bottle": 90.0,
+ "flavored": null,
+ "flavor_evidence": null,
+ "antioxidants": [],
+ "packaging": [],
+ "reasoning": "Brand page says only 'ultra-pure, molecularly distilled fish oil' from Alaska pollock; the NIH label record lists 'Fish Oil Concentrate' as an ingredient with 300 mg DHA and 150 mg EPA but no oil weight and no form. Total Fat 0.5 g is rounded and includes other fats, so it is not used as the oil weight.",
+ "sources_checked": [
+  "TheraNatal ONE softgel supplement facts fish oil triglyceride form",
+  "https://api.ods.od.nih.gov/dsld/v9/search-filter?q=TheraNatal%20One&size=5",
+  "https://api.ods.od.nih.gov/dsld/v9/label/282955",
+  "https://theralogix.com/products/theranatal-one-prenatal-vitamin"
+ ],
+ "page_hashes": {
+  "https://api.ods.od.nih.gov/dsld/v9/search-filter?q=TheraNatal%20One&size=5": "3c34f2cd6b1b58c46aae32dcd0e6376a27e0065c700f8356c9ea794eb1c0e5d4",
+  "https://api.ods.od.nih.gov/dsld/v9/label/282955": "0f577a1b741f281d6e3968b139c93ebb7dcc46c633e6c7915e4b2146f427533d",
+  "https://theralogix.com/products/theranatal-one-prenatal-vitamin": "44a7e31cfafb95cf5ab78a2e3c444fe2bb27489b68067df4e41a5063331c0164"
+ },
+ "model": "in-session",
+ "tool_calls": 4,
+ "cost_usd": 0.0,
+ "verified_at": "2026-11-25T01:49:47+00:00"
+}

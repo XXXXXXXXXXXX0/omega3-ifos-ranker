@@ -1,0 +1,29 @@
+{
+ "product_num": "SAID0001",
+ "status": "unverified",
+ "form": null,
+ "form_source_url": null,
+ "form_evidence": null,
+ "oil_mg_per_capsule": null,
+ "oil_source_url": null,
+ "oil_evidence": null,
+ "serving_capsules": null,
+ "servings_per_bottle": null,
+ "flavored": null,
+ "flavor_evidence": null,
+ "pet": null,
+ "pet_evidence": null,
+ "antioxidants": [],
+ "packaging": [],
+ "reasoning": "Brand site (ayskjaj.com) home page is a general health store; no label for this product.",
+ "sources_checked": [
+  "https://ayskjaj.com/"
+ ],
+ "page_hashes": {
+  "https://ayskjaj.com/": "66d5bd4617f462ce2fddcc301e6a304cd986858cdda895e49edfcdbfbd1628a0"
+ },
+ "model": "in-session",
+ "tool_calls": 1,
+ "cost_usd": 0.0,
+ "verified_at": "2026-11-25T02:20:21+00:00"
+}

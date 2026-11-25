@@ -1,0 +1,114 @@
+# Every threshold, weight, margin and switch lives here. Nothing is hard-coded
+# in the ranking code. Locked criteria (do not change without Angela) are
+# marked LOCKED.
+
+as_of_date: null            # null = today (UTC). Set YYYY-MM-DD to reproduce a run.
+
+paths:
+  data_dir: data
+  reports_dir: reports
+
+http:
+  user_agent: "omega3-ifos-ranker/0.1 (personal research; polite crawler)"
+  min_interval_seconds: 1.0   # per host
+  timeout_seconds: 60
+  max_retries: 4
+  backoff_seconds: 5
+
+scrape:
+  certification: IFOS
+  listing_url: "https://certifications.nutrasource.ca/umbraco/surface/NutrasourceContent/GetFilteredProducts"
+  brands_url: "https://certifications.nutrasource.ca/umbraco/surface/NutrasourceContent/GetFilteredBrands"
+  product_url: "https://certifications.nutrasource.ca/certified-products/product"
+  files_url: "https://andi.nutrasource.ca/files/"
+  page_size: 100              # 1000 makes the server return HTTP 500
+  page_refresh_hours: 24      # product pages younger than this are not re-fetched
+
+storage:
+  commit_raw_pdfs: ranked     # ranked | all | none   (see DECISIONS D-5)
+
+llm:
+  api_enabled: false          # session override O-1: LLM work is done in-session
+  api_key_env: OMEGA3_ANTHROPIC_API_KEY   # never ANTHROPIC_API_KEY
+  extraction_model: claude-haiku-5-5
+  agent_model: claude-sonnet-5-5
+  extraction_batch_size: 10   # reports per request
+  max_output_tokens: 2000     # per report
+  pricing_usd_per_mtok:       # for the cost report; check current prices when enabling
+    claude-haiku-5-5: {input: 0.10, output: 0.50}
+    claude-sonnet-5-5: {input: 2.00, output: 10.00}
+
+formats:                      # LOCKED: capsules only
+  included: [Capsules, Softgels]
+  excluded: [Liquids, Gummies, Food]
+  conditional: [Chewables]    # kept + flagged only if text says softgel/capsule
+  softgel_words: [softgel, softgels, "soft gel", "soft gels", capsule, capsules, gelcap, gelcaps, cap, caps]
+  gummy_words: [gummy, gummies, chew, chews, chewy, jelly, jellies]
+
+filters:
+  exclude_pet_products: true  # DECISIONS D-1
+  pet_words: [pet, pets, cat, cats, dog, dogs, canine, feline, puppy, kitten, veterinary]
+  flavor_words: [lemon, orange, citrus, lime, strawberry, berry, berries, mint, peppermint, spearmint, vanilla, mango,
+                 grapefruit, cherry, apple, banana, peach, tropical, "tutti frutti", bubblegum, chocolate, fruit, fruity,
+                 flavor, flavour, flavored, flavoured, flavors, flavours]
+  unflavored_words: [unflavored, unflavoured, "flavor free", "flavour free", flavorless, flavourless, "no flavor", "no flavour",
+                     "non flavored", "non flavoured", "natural taste", unscented]
+  # Display flags only (DECISIONS D-21): not fish oil, or a multi-ingredient product. Never excluded or scored.
+  algal_words: [algae, algal, "algal oil", "algae oil", schizochytrium, microalgae, "plant-based omega", vegan]
+  combination_words: [prenatal, multivitamin, "multi vitamin", lutein, coq10, "co-q10", "vitamin d3", "vitamin k2", folate, astaxanthin, krill]
+  oxidation:                  # LOCKED
+    totox_max_exclusive: 10   # TOTOX < 10
+    pv_max: 3                 # PV <= 3
+    av_max: 8                 # AV <= 8
+    totox_preferred_max: 8    # TOTOX <= 8 is the preferred tier
+  acid_value_max: 3           # LOCKED: <= 3 mg KOH/g
+  totox_crosscheck_tolerance: 0.15   # |reported - (2*PV+AV)| above this is flagged
+
+batches:
+  recency_key: report_date    # report_date | expiry_date   (see DECISIONS P-1)
+
+oil_weight:
+  # Where grams of oil per capsule may come from, best first. The spec says the label (LOCKED unit rule).
+  # Adding ifos_area_pct estimates it from area-% figures on the IFOS report (DECISIONS P-6: proposal, off).
+  # ifos_listing: an explicit statement in the brand-written IFOS summary, e.g. "each softgel contains 2000 mg fish oil" (D-25).
+  sources: [label, ifos_listing]
+  min_ratio_to_total_omega3: 0.98   # oil weight below total omega-3 per capsule is impossible
+
+scoring:                      # LOCKED (basis changed by the owner, D-35)
+  # per_capsule: oxidation load = TOTOX x capsules needed for target_epa_dha_mg (IFOS-measured
+  #   EPA+DHA per capsule). No capsule oil weight needed.
+  # oil_weight: oxidation load = TOTOX x grams of oil needed for target_epa_dha_mg (needs the
+  #   capsule's oil weight from the label or the IFOS listing text). The original spec formula.
+  basis: per_capsule
+  target_epa_dha_mg: 1000
+  tie_margin: 0.10            # scores within 10% of the group anchor are ties
+  top_n: 10
+
+validation:                   # plausible ranges; outside = extraction rejected
+  epa_dha_mg_per_capsule: [0, 2000]
+  total_omega3_mg_per_capsule: [1, 2500]
+  mg_per_g: [0, 1000]
+  pv: [0, 50]
+  av: [0, 100]
+  totox: [0, 150]
+  acid_value: [0, 30]
+  oil_mg_per_capsule: [100, 3000]
+  epa_dha_over_total_tolerance: 0.05   # EPA+DHA may exceed total omega-3 by this much (two methods); more = parse error
+
+agent:
+  max_tool_calls: 8           # LOCKED hard limit per product (searches + fetches + lookups)
+  max_tokens_per_product: 60000        # API path: input + output tokens across the loop
+  max_tool_output_chars: 60000         # in-session stand-in for the token cap (D-12)
+  fetch_max_chars: 5000       # text returned per page, keyword-windowed
+  fetch_max_bytes: 3000000
+  fetch_window_chars: 220     # context kept on each side of a keyword hit
+  max_links: 12
+  respect_robots_txt: true
+  recheck_days: 60            # cached results are re-checked against their pages no more often than this
+  sql_max_rows: 50
+  # Words that mark the parts of a product page worth reading.
+  keywords: [triglyceride, triglycerides, triacylglycerol, rTG, "re-esterified", reesterified, "ethyl ester", "ethyl esters",
+             phospholipid, krill, monoglyceride, "TG form", "EE form", "supplement facts", "nutrition facts", "serving size",
+             "servings per", "per softgel", "per capsule", "fish oil concentrate", "fish oil", "omega-3", "mg", tocopherol,
+             tocopherols, "vitamin E", rosemary, astaxanthin, antioxidant, flavor, flavour, lemon, blister, nitrogen,
+             amber, opaque, "other ingredients", ingredients]

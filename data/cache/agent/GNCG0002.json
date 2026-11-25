@@ -1,0 +1,29 @@
+{
+ "product_num": "GNCG0002",
+ "status": "unverified",
+ "form": null,
+ "form_source_url": null,
+ "form_evidence": null,
+ "oil_mg_per_capsule": null,
+ "oil_source_url": null,
+ "oil_evidence": null,
+ "serving_capsules": 2.0,
+ "servings_per_bottle": 60.0,
+ "flavored": null,
+ "flavor_evidence": null,
+ "antioxidants": [],
+ "packaging": [],
+ "reasoning": "NIH label record (GNC Triple Strength Fish Oil Mini, 2025): 1000 mg EPA+DHA per 2 mini softgels, ingredient 'Fish Oil'; no oil form and no fish-oil weight (Total Fat 1.5 g is rounded).",
+ "sources_checked": [
+  "https://api.ods.od.nih.gov/dsld/v9/search-filter?size=6&q=GNC%20Triple%20Strength%20Fish%20Oil%20Ultra%20Mini",
+  "https://api.ods.od.nih.gov/dsld/v9/label/336375"
+ ],
+ "page_hashes": {
+  "https://api.ods.od.nih.gov/dsld/v9/search-filter?size=6&q=GNC%20Triple%20Strength%20Fish%20Oil%20Ultra%20Mini": "8b9316b849ad599b0416ae809587c8fffcbe52a71df9aed09789aca01ad0fbe9",
+  "https://api.ods.od.nih.gov/dsld/v9/label/336375": "1e825d2d44050a7ad4fb619be364d283d47c613d7ebdee1e9be7275bd079f895"
+ },
+ "model": "in-session",
+ "tool_calls": 2,
+ "cost_usd": 0.0,
+ "verified_at": "2026-11-25T01:58:55+00:00"
+}

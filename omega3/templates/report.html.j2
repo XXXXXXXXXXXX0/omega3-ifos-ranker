@@ -1,0 +1,142 @@
+{% macro flaglist(row) %}{% for f in row.flags %}<span class="flag{{ ' warn' if 'inconsistent' in f or 'estimated' in f or 'flavored' in f else '' }}">{{ f }}</span>{% endfor %}{% endmacro %}
+{% macro table(items) %}
+<div class="scroll"><table>
+<thead><tr><th>#</th><th class="l">Brand / product</th><th>Oxidation load</th><th>TOTOX</th><th>PV</th><th>AV</th><th>Acid value</th>
+<th>EPA+DHA mg/capsule</th><th>mg/serving</th><th>mg/g oil</th><th>EPA:DHA</th><th>Form</th><th>Report date</th><th>Expiry</th><th class="l">Flags</th></tr></thead>
+<tbody>
+{% for r in items %}
+<tr><td class="rank">{{ r.rank }}</td><td class="l"><strong>{{ r.brand }}</strong><br>{{ r.product }}<br><span class="dim">lot {{ r.lot }}</span></td>
+<td class="score">{{ r.score | num("{:.2f}") }}</td><td>{{ r.totox | num }}{% if r.preferred %} <span class="star" title="preferred tier">★</span>{% endif %}</td>
+<td>{{ r.pv | num }}</td><td>{{ r.av | num }}</td><td>{{ r.acid_value | num }}</td><td>{{ r.epa_dha_mg_cap | num("{:.0f}") }}</td>
+<td>{{ r.epa_dha_mg_serving | num("{:.0f}") }}</td><td>{{ r.epa_dha_mg_g | num("{:.0f}") }}</td><td>{{ r.epa_dha_ratio | num("{:.2f}") }}</td>
+<td>{{ r.form }}</td><td>{{ r.report_date or "n/a" }}</td><td>{{ r.expiry_date or "n/a" }}</td><td class="l">{{ flaglist(r) }}</td></tr>
+{% endfor %}
+</tbody></table></div>
+{% endmacro %}
+{% macro simple(items) %}
+{% if items %}
+<div class="scroll"><table><thead><tr><th class="l">Brand / product</th><th>Lot</th><th>TOTOX</th><th>PV</th><th>AV</th><th class="l">Reason</th></tr></thead><tbody>
+{% for r in items %}
+<tr><td class="l"><strong>{{ r.brand }}</strong> {{ r.product }}</td><td>{{ r.lot or "" }}</td><td>{{ r.totox | num }}</td><td>{{ r.pv | num }}</td><td>{{ r.av | num }}</td><td class="l">{{ r.reason }}</td></tr>
+{% endfor %}
+</tbody></table></div>
+{% else %}<p class="dim">None.</p>{% endif %}
+{% endmacro %}
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Omega-3 IFOS ranking, {{ as_of }}</title>
+<style>
+:root { --bg:#fbfaf7; --fg:#1d2327; --dim:#667078; --line:#dcd9d1; --card:#fff; --accent:#0b5c70; --warn:#8a4b00; --warnbg:#fff3dc; }
+@media (prefers-color-scheme: dark) { :root { --bg:#14181b; --fg:#e6e8ea; --dim:#98a2ab; --line:#2c343a; --card:#1b2125; --accent:#6cc4d8; --warn:#f0b866; --warnbg:#3a2c12; } }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--fg); font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif; }
+main { max-width:1200px; margin:0 auto; padding:24px 16px 64px; }
+h1 { font-size:1.7rem; margin:0 0 4px; } h2 { font-size:1.2rem; margin:40px 0 8px; padding-top:16px; border-top:1px solid var(--line); }
+p { max-width:78ch; } .dim { color:var(--dim); } code { font-size:.9em; }
+.note { background:var(--card); border:1px solid var(--line); border-left:4px solid var(--accent); padding:12px 16px; border-radius:6px; margin:16px 0; }
+.note.warn { border-left-color:var(--warn); }
+.scroll { overflow-x:auto; border:1px solid var(--line); border-radius:6px; background:var(--card); }
+table { border-collapse:collapse; width:100%; font-size:.86rem; font-variant-numeric:tabular-nums; }
+th,td { padding:7px 9px; text-align:right; border-bottom:1px solid var(--line); vertical-align:top; white-space:nowrap; }
+th { font-weight:600; background:var(--bg); position:sticky; top:0; } tr:last-child td { border-bottom:0; }
+.l { text-align:left; white-space:normal; min-width:11rem; } .rank { font-weight:700; } .score { font-weight:700; color:var(--accent); }
+.star { color:var(--accent); } .flag { display:inline-block; margin:1px 3px 1px 0; padding:0 6px; border:1px solid var(--line); border-radius:10px; font-size:.78rem; white-space:normal; }
+.flag.warn { background:var(--warnbg); color:var(--warn); border-color:transparent; }
+details { margin:16px 0; } summary { cursor:pointer; font-weight:600; padding:8px 0; }
+ol.why li { margin:0 0 12px; max-width:90ch; } .counts td:first-child, .counts th:first-child { text-align:left; white-space:normal; }
+</style></head><body><main>
+<h1>Omega-3 IFOS ranking</h1>
+<p class="dim">As of {{ as_of }} · run <code>{{ run_id }}</code> · {{ total_products }} IFOS-listed products considered · {{ counts.ranked }} ranked · {{ counts.flavored }} flavored, ranked separately</p>
+
+<div class="note"><strong>Read this first.</strong> {% if per_capsule %}Oxidation load = TOTOX x the number of capsules needed for {{ cfg.scoring.target_epa_dha_mg }} mg EPA+DHA (IFOS-measured mg per capsule); lower is better. {% endif %}Oxidation load is a proxy, not a health outcome. IFOS tests batches the brand pays to submit, at production, not off the shelf. "Report date" is the date IFOS issued the report; IFOS does not publish a test date. ★ marks TOTOX at or below {{ cfg.filters.oxidation.totox_preferred_max }} (preferred tier).</div>
+
+{% if coverage.top_complete %}
+<div class="note"><strong>Top {{ top_n }} status: complete.</strong> No product still waiting for label verification can reach the top {{ top_n }}, even in its best case.</div>
+{% elif coverage.ranked < top_n %}
+<div class="note warn"><strong>Top {{ top_n }} status: incomplete.</strong> Only {{ coverage.ranked }} product(s) have every fact needed for a score. {{ coverage.queue }} more pass the oxidation, acid-value and contaminant cutoffs but still need their oil form or capsule oil weight verified from the label.</div>
+{% else %}
+<div class="note warn"><strong>Top {{ top_n }} status: provisional.</strong> {% if per_capsule %}{{ coverage.in_reach }} product(s) score well enough for the top {{ top_n }} (oxidation load at or below {{ coverage.threshold | num("{:.2f}") }}) but their oil form is not yet confirmed as TG or rTG: {{ coverage.in_reach_unchecked }} not yet checked, and {{ coverage.in_reach_checked }} checked without the label stating the form.</div>
+{% else %}{{ coverage.in_reach }} product(s) that pass every other check could still enter the top {{ top_n }} in their best case (best-possible score at or below {{ coverage.threshold | num("{:.2f}") }}): {{ coverage.in_reach_unchecked }} not yet checked, and {{ coverage.in_reach_checked }} checked without the label giving both the oil form and the oil weight.</div>
+{% endif %}
+{% endif %}
+
+<h2>Top {{ top_n }}</h2>
+{% if top %}
+{{ table(top) }}
+<h3>Why each product is here</h3>
+<ol class="why">
+{% for r in top %}<li><strong>{{ r.brand }}: {{ r.product }}.</strong> {{ r.reasoning }}</li>
+{% endfor %}
+</ol>
+{% else %}<p>No product has every fact needed for a score yet.</p>{% endif %}
+
+{% if rows.ranked | length > top_n %}
+<h2>Rest of the ranked list</h2>
+{{ table(rows.ranked[top_n:]) }}
+{% endif %}
+
+{% if coverage.in_reach_rows %}
+<h2>Not yet verified, could still enter the top {{ top_n }}</h2>
+{% if per_capsule %}<p class="dim">These pass every check except the oil form, and their oxidation load is at or below {{ coverage.threshold | num("{:.2f}") if coverage.threshold else "the threshold" }}. Each needs a source stating TG or rTG.</p>{% else %}<p class="dim">These pass every check that can be made without the label, and their best-possible oxidation load (assuming the capsule is nothing but omega-3) is at or below {{ coverage.threshold | num("{:.2f}") if coverage.threshold else "the threshold" }}. Showing the first {{ coverage.in_reach_rows | length }} of {{ coverage.in_reach }}, best case first. "Checked" means the label was looked for and did not state what is missing.</p>{% endif %}
+<div class="scroll"><table><thead><tr><th class="l">Brand / product</th><th>Lot</th><th>TOTOX</th><th>PV</th><th>AV</th><th>{{ "Oxidation load" if per_capsule else "Best possible load" }}</th><th class="l">Needs</th><th>Checked</th></tr></thead><tbody>
+{% for r in coverage.in_reach_rows %}
+<tr><td class="l"><strong>{{ r.brand }}</strong> {{ r.product }}</td><td>{{ r.lot }}</td><td>{{ r.totox | num }}</td><td>{{ r.pv | num }}</td><td>{{ r.av | num }}</td><td>{{ r.optimistic_score | num("{:.2f}") }}</td>
+<td class="l">{{ "form" if per_capsule else ("form and oil weight" if not r.form and not r.oil_mg_per_capsule else ("form" if not r.form else "oil weight")) }}</td><td>{{ "yes" if r.label_checked else "no" }}</td></tr>
+{% endfor %}
+</tbody></table></div>
+{% endif %}
+
+<h2>Flavored (ranked separately)</h2>
+<p class="dim">Flavorings can raise the anisidine reading, so these are not compared with unflavored oils.</p>
+{% if rows.flavored %}{{ table(rows.flavored) }}{% else %}<p class="dim">None.</p>{% endif %}
+
+<h2>Inconsistent batches</h2>
+<p class="dim">Ranked on their newest batch, but another unexpired batch fails a cutoff.</p>
+{% if inconsistent %}
+<div class="scroll"><table><thead><tr><th class="l">Brand / product</th><th class="l">List</th><th>Ranked lot</th><th>TOTOX range, unexpired batches</th><th class="l">Detail</th></tr></thead><tbody>
+{% for r in inconsistent %}
+<tr><td class="l"><strong>{{ r.brand }}</strong> {{ r.product }}</td><td class="l">{{ titles[r.list] }}{{ " #" ~ r.rank if r.rank else "" }}</td><td>{{ r.lot }}</td>
+<td>{{ r.totox_range[0] | num }} to {{ r.totox_range[1] | num }}</td><td class="l">{{ r.inconsistent_detail }}</td></tr>
+{% endfor %}
+</tbody></table></div>
+{% else %}<p class="dim">None.</p>{% endif %}
+
+<h2>Form unverified</h2>
+<p class="dim">Passed every other check that could be made, but the oil form is not stated by IFOS and has not been confirmed from the label. Never assumed to be triglyceride.</p>
+{{ simple(rows.form_unverified) }}
+
+<h2>Oil weight unavailable</h2>
+<p class="dim">{% if per_capsule %}Form is known, but IFOS reports potency per gram of oil and no capsule oil weight was found, so EPA+DHA per capsule cannot be computed. Not guessed.{% else %}Form is known, but no capsule oil weight was found, so the oxidation load cannot be computed. Not guessed.{% endif %}</p>
+{{ simple(rows.oil_weight_unavailable) }}
+
+<h2>Monoglyceride</h2>
+{{ simple(rows.monoglyceride) }}
+
+<h2>Incomplete data</h2>
+{{ simple(rows.incomplete_data) }}
+
+<h2>Pet products</h2>
+{{ simple(rows.pet) }}
+
+<h2>Exclusion counts by reason</h2>
+<div class="scroll"><table class="counts"><thead><tr><th>Reason</th><th>Products</th></tr></thead><tbody>
+{% for reason, n in exclusion_counts.items() %}<tr><td>{{ reason }}</td><td>{{ n }}</td></tr>
+{% endfor %}
+<tr><td><strong>Ranked</strong></td><td><strong>{{ counts.ranked }}</strong></td></tr>
+<tr><td><strong>Flavored, ranked separately</strong></td><td><strong>{{ counts.flavored }}</strong></td></tr>
+<tr><td><strong>Total</strong></td><td><strong>{{ total_products }}</strong></td></tr>
+</tbody></table></div>
+
+<details><summary>Excluded products ({{ rows.excluded | length }}), with the reason for each</summary>
+{{ simple(rows.excluded) }}
+</details>
+
+<h2>How this run was produced</h2>
+<ul>
+<li>Extraction: {% for k, v in extraction.items() %}{{ k | replace("_", " ") }} {{ v }}{{ ", " if not loop.last }}{% endfor %}.</li>
+<li>Label verification: {{ agent.attempted }} product(s) attempted, {{ agent.verified }} with the form verified, {{ agent.tool_calls }} tool calls.
+{% if agent.in_session %}Agent API cost: $0 (in-session mode).{% else %}Agent API cost: ${{ "%.4f" | format(agent.cost_usd) }} ({{ agent.models | join(", ") }}).{% endif %}</li>
+<li>Cutoffs: TOTOX below {{ cfg.filters.oxidation.totox_max_exclusive }}, PV at most {{ cfg.filters.oxidation.pv_max }}, AV at most {{ cfg.filters.oxidation.av_max }}, acid value at most {{ cfg.filters.acid_value_max }} mg KOH/g, every reported contaminant within IFOS's limit. IFOS's own TOTOX limit is 19.5.</li>
+<li>Ranking is deterministic code. No LLM takes part in filtering, scoring or ordering.</li>
+</ul>
+</main></body></html>

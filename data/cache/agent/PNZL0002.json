@@ -1,0 +1,29 @@
+{
+ "product_num": "PNZL0002",
+ "status": "verified",
+ "form": "rTG",
+ "form_source_url": "https://pharmanewzealand.co.nz/rtg-fish-oil-brain/",
+ "form_evidence": "Our high-purity rTG Omega-3 fish oil offers an exceptional purity level",
+ "oil_mg_per_capsule": 1500.0,
+ "oil_source_url": "https://pharmanewzealand.co.nz/rtg-fish-oil-brain/",
+ "oil_evidence": "With capsule filling weight of 1,500 mg, it contains 730 mg of EPA and 585 mg of DHA",
+ "serving_capsules": 1.0,
+ "servings_per_bottle": null,
+ "flavored": null,
+ "flavor_evidence": null,
+ "antioxidants": [],
+ "packaging": [
+  "blister packs"
+ ],
+ "reasoning": "Brand page for the 1440 mg omega-3 rTG product: capsule fill weight 1,500 mg with 730 mg EPA and 585 mg DHA, which matches the IFOS listing for PNZL0002 (minimum 730 mg EPA, 585 mg DHA; IFOS lot T0426020: 767/614).",
+ "sources_checked": [
+  "https://pharmanewzealand.co.nz/rtg-fish-oil-brain/"
+ ],
+ "page_hashes": {
+  "https://pharmanewzealand.co.nz/rtg-fish-oil-brain/": "c6e64beefc992f43aa0a472dc9d6694b20035c58dcd531d5dde75a0b93e3172a"
+ },
+ "model": "in-session",
+ "tool_calls": 1,
+ "cost_usd": 0.0,
+ "verified_at": "2026-11-25T01:52:33+00:00"
+}

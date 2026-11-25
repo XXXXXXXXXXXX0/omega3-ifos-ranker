@@ -1,0 +1,132 @@
+[
+ {
+  "fixture": "PLLF0001_per_cap.pdf",
+  "product_num": "PLLF0001",
+  "source_filename": "Plus LIFE (Nutramis) F2604-0538 17322026 Report Rev 01.pdf",
+  "source_url": "https://andi.nutrasource.ca/files/Plus LIFE (Nutramis) F2604-0538 17322026 Report Rev 01.pdf",
+  "listing_lot_text": "Lot #: F2604-0538 (Apr 30, 2028)",
+  "sha256": "fe961d275933a6e856f1cf54914055c02c8b680acb84d2cd8ce96c89b69a3f80",
+  "bytes": 288811,
+  "retrieved": "2026-11-17"
+ },
+ {
+  "fixture": "ACAO0002_split_header_mmYYYY.pdf",
+  "product_num": "ACAO0002",
+  "source_filename": "Vitafor H25 31362025 Report Rev1.pdf",
+  "source_url": "https://andi.nutrasource.ca/files/Vitafor H25 31362025 Report Rev1.pdf",
+  "listing_lot_text": "Lot #: H25 (Nov 30, 2026)",
+  "sha256": "3938f378a6db03e89f9d10b3ad482bd873b2b012d9fa06155530e88e07140089",
+  "bytes": 281618,
+  "retrieved": "2026-11-17"
+ },
+ {
+  "fixture": "BEBI0001_per_2_softgels_rtg.pdf",
+  "product_num": "BEBI0001",
+  "source_filename": "Joy fish Oil Lot JFO202501 33702025 Report.pdf",
+  "source_url": "https://andi.nutrasource.ca/files/Joy fish Oil Lot JFO202501 33702025 Report.pdf",
+  "listing_lot_text": "Lot #: JFO202501 (May 05, 2027)",
+  "sha256": "761e55ec78b48fbc8a6ccd396a6b98df44ac1cb832461c1b0bb6358e96ef3cfc",
+  "bytes": 390020,
+  "retrieved": "2026-11-17"
+ },
+ {
+  "fixture": "PIFT0001_per_5_softgels.pdf",
+  "product_num": "PIFT0001",
+  "source_filename": "Pink Fit C522504001 23482025 Report.pdf",
+  "source_url": "https://andi.nutrasource.ca/files/Pink Fit C522504001 23482025 Report.pdf",
+  "listing_lot_text": "Lot #: C522504001 (Mar 31, 2028)",
+  "sha256": "9dd3ff6b2bb4269bf3dc48ada5a4472ee3cafd5f88319bb792b675f14292272d",
+  "bytes": 387698,
+  "retrieved": "2026-11-17"
+ },
+ {
+  "fixture": "CERN0001_category_2024.pdf",
+  "product_num": "CERN0001",
+  "source_filename": "13981_FMAXO012b (22404132)_ClinicalOmega3X_CertifiedNaturals_IFOS.pdf",
+  "source_url": "https://andi.nutrasource.ca/files/13981_FMAXO012b (22404132)_ClinicalOmega3X_CertifiedNaturals_IFOS.pdf",
+  "listing_lot_text": "Lot #: 13981 (May 15, 2027)",
+  "sha256": "9903b6145862be0e9b2bccad4234d352ef81d306883e39b15ba39086ea4d5eab",
+  "bytes": 644910,
+  "retrieved": "2026-11-17"
+ },
+ {
+  "fixture": "BLKC0001_ddmmyyyy.pdf",
+  "product_num": "BLKC0001",
+  "source_filename": "Blackmores Omega Ultra 60 exp 03-12-2026 - 324381 5932026.pdf",
+  "source_url": "https://andi.nutrasource.ca/files/Blackmores Omega Ultra 60 exp 03-12-2026 - 324381 5932026.pdf",
+  "listing_lot_text": "Lot #: 324381 (Dec 03, 2026)",
+  "sha256": "6dc44a56346e886ab0de17e93b555e98fa2fb5e7f37a90c8e8126d2fadd2e003",
+  "bytes": 292884,
+  "retrieved": "2026-11-17"
+ },
+ {
+  "fixture": "BARE0004_liquid_per_g.pdf",
+  "product_num": "BARE0004",
+  "source_filename": "Bare Biology Ltd. AHL59675 27412025 Report Rev2.pdf",
+  "source_url": "https://andi.nutrasource.ca/files/Bare Biology Ltd. AHL59675 27412025 Report Rev2.pdf",
+  "listing_lot_text": "Lot #: AHL59675 (May 27, 2027)",
+  "sha256": "7ae1b4da400d3be92501d01242599af464b666ae4b856bb33f22e6c5de463f91",
+  "bytes": 327669,
+  "retrieved": "2026-11-17"
+ },
+ {
+  "fixture": "CRLL0082_liquid_per_ml.pdf",
+  "product_num": "CRLL0082",
+  "source_filename": "Carlson Nutritional Supplements 0020226 39864 56102026 Report Rev 1.pdf",
+  "source_url": "https://andi.nutrasource.ca/files/Carlson Nutritional Supplements 0020226 39864 56102026 Report Rev 1.pdf",
+  "listing_lot_text": "Lot #: 0020226 (Feb 28, 2029)",
+  "sha256": "9a62a09fe3c16cdee1ba30e1f152a00d5716eea7e8011950dd1df43f3e0722fa",
+  "bytes": 311480,
+  "retrieved": "2026-11-17"
+ },
+ {
+  "fixture": "DYBT0001_raw_material_cert.pdf",
+  "product_num": "DYBT0001",
+  "source_filename": "IFOS Raw Materials Certificate - Dynes- 2026.pdf",
+  "source_url": "https://andi.nutrasource.ca/files/IFOS Raw Materials Certificate - Dynes- 2026.pdf",
+  "listing_lot_text": "Lot #: Various SKUs (Nov 30, 2026)",
+  "sha256": "ed345f440e37c0fcb19591380505db5a3c75084fd886ae1f2b905954676881dc",
+  "bytes": 173549,
+  "retrieved": "2026-11-17"
+ },
+ {
+  "fixture": "WHCC0007_chewy.pdf",
+  "product_num": "WHCC0007",
+  "source_filename": "WHC Labs BV 44006277 49712026 Product Approval Report.pdf",
+  "source_url": "https://andi.nutrasource.ca/files/WHC Labs BV 44006277 49712026 Product Approval Report.pdf",
+  "listing_lot_text": "Lot #: 44006277 (Aug 31, 2028)",
+  "sha256": "dff4f289e35877c7b691f84828cf177554bfdefbdaef1eea0a7ef285a2cdf0af",
+  "bytes": 290555,
+  "retrieved": "2026-11-17"
+ },
+ {
+  "fixture": "BIOH0013_per_2_capsules_radio.pdf",
+  "product_num": "BIOH0013",
+  "source_filename": "BIO-H rTG 98 mini vitamin Complex with Fish Oil exp 07-06-2029 - U606189 38742026 Report.pdf",
+  "source_url": "https://andi.nutrasource.ca/files/BIO-H rTG 98 mini vitamin Complex with Fish Oil exp 07-06-2029 - U606189 38742026 Report.pdf",
+  "listing_lot_text": "Lot #: U606189 (Jun 07, 2029)",
+  "sha256": "adffcc1738fc53de14d1de4e0a1424d6db87696134b003e6c1e9998e192843db",
+  "bytes": 277214,
+  "retrieved": "2026-11-17"
+ },
+ {
+  "fixture": "VETW0002_pet_per_cap.pdf",
+  "product_num": "VETW0002",
+  "source_filename": "IFOS Report Vetwish anchovy pet fish oil for cat, lot 20241120 rev1.pdf",
+  "source_url": "https://andi.nutrasource.ca/files/IFOS Report Vetwish anchovy pet fish oil for cat, lot 20241120 rev1.pdf",
+  "listing_lot_text": "Lot #: 20241120 (Nov 19, 2026)",
+  "sha256": "6b20eba16017fb3f5f740be4741506cd03ac65798d27029ed8ca2f483e92b3a1",
+  "bytes": 372544,
+  "retrieved": "2026-11-17"
+ },
+ {
+  "fixture": "GNCC0011_per_2_softgels.pdf",
+  "product_num": "GNCC0011",
+  "source_filename": "GNC Hong Kong Limited 1069DJ2518 6302026 Report.pdf",
+  "source_url": "https://andi.nutrasource.ca/files/GNC Hong Kong Limited 1069DJ2518 6302026 Report.pdf",
+  "listing_lot_text": "Lot #: 1069DJ2518 (Nov 30, 2028)",
+  "sha256": "f98bac01fce146741c2d1d4fb80eb6b4303dad81d65cac7646c094bfd681c355",
+  "bytes": 269648,
+  "retrieved": "2026-11-17"
+ }
+]

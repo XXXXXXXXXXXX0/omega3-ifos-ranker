@@ -1,0 +1,32 @@
+{
+ "product_num": "SPRT0048",
+ "status": "unverified",
+ "form": null,
+ "form_source_url": null,
+ "form_evidence": null,
+ "oil_mg_per_capsule": 1250.0,
+ "oil_source_url": "https://api.ods.od.nih.gov/dsld/v9/label/268581",
+ "oil_evidence": "ingredientRows[2].quantity[0].quantity: 1250 | ingredientRows[2].quantity[0].unit: mg",
+ "serving_capsules": 1.0,
+ "servings_per_bottle": 90.0,
+ "flavored": null,
+ "flavor_evidence": null,
+ "pet": null,
+ "pet_evidence": null,
+ "antioxidants": [],
+ "packaging": [],
+ "reasoning": "NIH label record (SR Sports Research 'Omega-3 Fish Oil 1250 mg', 2022): Fish Oil Concentrate 1250 mg per softgel with 1040 mg total omega-3. The current IFOS lot measured 1166 mg omega-3 per softgel, which still fits a 1250 mg fill; the label may be an earlier revision. Form TG comes from the IFOS listing. Label site sportsresearch.com answered 429 throughout.",
+ "sources_checked": [
+  "https://sportsresearch.com/",
+  "https://api.ods.od.nih.gov/dsld/v9/search-filter?size=8&q=Sports%20Research%20Triple%20Strength%20Omega-3%20Fish%20Oil",
+  "https://api.ods.od.nih.gov/dsld/v9/label/268581"
+ ],
+ "page_hashes": {
+  "https://api.ods.od.nih.gov/dsld/v9/search-filter?size=8&q=Sports%20Research%20Triple%20Strength%20Omega-3%20Fish%20Oil": "813295e0e35acdf1c43d91114c09b1d053f7bf77af760f1abe3b111d65db8390",
+  "https://api.ods.od.nih.gov/dsld/v9/label/268581": "03a979b1fbfd5ce71f5230f94040229f413c81356456fe4a4ff76c4b8ca80fae"
+ },
+ "model": "in-session",
+ "tool_calls": 3,
+ "cost_usd": 0.0,
+ "verified_at": "2026-11-25T02:21:43+00:00"
+}

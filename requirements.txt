@@ -1,0 +1,8 @@
+requests>=2.31
+beautifulsoup4>=4.12
+pdfplumber>=0.11
+PyYAML>=6.0
+Jinja2>=3.1
+pytest>=8.0
+# Optional, only needed when llm.api_enabled is true:
+# anthropic>=0.40

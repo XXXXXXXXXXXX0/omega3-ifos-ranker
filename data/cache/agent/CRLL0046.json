@@ -1,0 +1,31 @@
+{
+ "product_num": "CRLL0046",
+ "status": "unverified",
+ "form": null,
+ "form_source_url": null,
+ "form_evidence": null,
+ "oil_mg_per_capsule": null,
+ "oil_source_url": null,
+ "oil_evidence": null,
+ "serving_capsules": null,
+ "servings_per_bottle": null,
+ "flavored": null,
+ "flavor_evidence": null,
+ "pet": null,
+ "pet_evidence": null,
+ "antioxidants": [],
+ "packaging": [],
+ "reasoning": "Brand site followed to a collection page; the Maximum Omega Minis label was not reached.",
+ "sources_checked": [
+  "https://carlsonlabs.com/",
+  "https://www.carlsonlabs.com/collections/sleep-supplements"
+ ],
+ "page_hashes": {
+  "https://www.carlsonlabs.com/": "4e9cb25ed1ec0a1c6dcc5ad08d62ed5cb0a226f3149e2ddd3a22cbb3b60add47",
+  "https://www.carlsonlabs.com/collections/sleep-supplements": "011912380bf4983024ec7d3c52dfc279648da2e13f520ae321485513329fe462"
+ },
+ "model": "in-session",
+ "tool_calls": 2,
+ "cost_usd": 0.0,
+ "verified_at": "2026-11-25T02:13:18+00:00"
+}

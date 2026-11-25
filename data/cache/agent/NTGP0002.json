@@ -1,0 +1,29 @@
+{
+ "product_num": "NTGP0002",
+ "status": "unverified",
+ "form": null,
+ "form_source_url": null,
+ "form_evidence": null,
+ "oil_mg_per_capsule": null,
+ "oil_source_url": null,
+ "oil_evidence": null,
+ "serving_capsules": null,
+ "servings_per_bottle": null,
+ "flavored": null,
+ "flavor_evidence": null,
+ "pet": null,
+ "pet_evidence": null,
+ "antioxidants": [],
+ "packaging": [],
+ "reasoning": "Brand site (nutragroup.co) is a contract-manufacturer page with no product label.",
+ "sources_checked": [
+  "https://nutragroup.co"
+ ],
+ "page_hashes": {
+  "https://nutragroup.co/": "f56259d8c1a139af088bd12c19cdc6cdeb1aaf439381feefa911ad9b1f68f9fe"
+ },
+ "model": "in-session",
+ "tool_calls": 1,
+ "cost_usd": 0.0,
+ "verified_at": "2026-11-25T02:07:45+00:00"
+}

@@ -1,0 +1,29 @@
+{
+ "product_num": "RNWL0006",
+ "status": "unverified",
+ "form": null,
+ "form_source_url": null,
+ "form_evidence": null,
+ "oil_mg_per_capsule": null,
+ "oil_source_url": null,
+ "oil_evidence": null,
+ "serving_capsules": null,
+ "servings_per_bottle": null,
+ "flavored": null,
+ "flavor_evidence": null,
+ "antioxidants": [],
+ "packaging": [],
+ "reasoning": "NIH label record (2018 version, 'Super Critical Omega Natural Orange Flavor') states 1200 mg fish oil and 1125 mg omega-3 per softgel but no oil form, and its omega-3 figures do not match the current IFOS lot (1025 mg total omega-3); the label may be an older formulation, so its oil weight is not used.",
+ "sources_checked": [
+  "https://api.ods.od.nih.gov/dsld/v9/search-filter?size=6&q=Norwegian%20Gold%20Super%20Critical%20Omega",
+  "https://api.ods.od.nih.gov/dsld/v9/label/179270"
+ ],
+ "page_hashes": {
+  "https://api.ods.od.nih.gov/dsld/v9/search-filter?size=6&q=Norwegian%20Gold%20Super%20Critical%20Omega": "f384de02fdd8f89a83519c156ded465a4e54443fa900f2a5ff9dc4c9bce30cf5",
+  "https://api.ods.od.nih.gov/dsld/v9/label/179270": "9cb07c6a35016dc39f1733686b1be1836e30761e719272ad07f48954ac37384f"
+ },
+ "model": "in-session",
+ "tool_calls": 2,
+ "cost_usd": 0.0,
+ "verified_at": "2026-11-25T01:58:55+00:00"
+}

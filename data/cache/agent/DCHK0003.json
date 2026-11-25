@@ -1,0 +1,30 @@
+{
+ "product_num": "DCHK0003",
+ "status": "unverified",
+ "form": null,
+ "form_source_url": null,
+ "form_evidence": null,
+ "oil_mg_per_capsule": null,
+ "oil_source_url": null,
+ "oil_evidence": null,
+ "serving_capsules": null,
+ "servings_per_bottle": null,
+ "flavored": null,
+ "flavor_evidence": null,
+ "pet": null,
+ "pet_evidence": null,
+ "antioxidants": [],
+ "packaging": [],
+ "reasoning": "Brand site (doctorcheck.co.kr) home page names the product ('원퍼데이 맥스 초임계 알티지 오메가3') but its product page returned 404; no oil weight found.",
+ "sources_checked": [
+  "https://doctorcheck.co.kr",
+  "https://www.doctorcheck.co.kr/product/detail.html?product_no=51&cate_no=58&display_group=2"
+ ],
+ "page_hashes": {
+  "https://doctorcheck.co.kr/": "9aa727e4d382a8d996a8346affd059db89f33ab0268ea67611914ed4d4b481c4"
+ },
+ "model": "in-session",
+ "tool_calls": 2,
+ "cost_usd": 0.0,
+ "verified_at": "2026-11-25T02:07:45+00:00"
+}

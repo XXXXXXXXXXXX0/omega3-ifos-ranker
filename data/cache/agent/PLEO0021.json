@@ -1,0 +1,35 @@
+{
+ "product_num": "PLEO0021",
+ "status": "unverified",
+ "form": null,
+ "form_source_url": null,
+ "form_evidence": null,
+ "oil_mg_per_capsule": null,
+ "oil_source_url": null,
+ "oil_evidence": null,
+ "serving_capsules": 4.0,
+ "servings_per_bottle": null,
+ "flavored": null,
+ "flavor_evidence": null,
+ "pet": null,
+ "pet_evidence": null,
+ "antioxidants": [
+  "Rosemary Leaf Extract",
+  "Green Tea Extract",
+  "Mixed Tocopherol Concentrate"
+ ],
+ "packaging": [],
+ "reasoning": "Brand product page lists ingredients (fish oil, rosemary leaf extract, green tea extract, mixed tocopherol concentrate) and 4 softgels daily, but no fish-oil weight per softgel.",
+ "sources_checked": [
+  "https://myaquaomega.ca",
+  "https://www.myaquaomega.ca/products/balanced-arthritis-brain-support-capsules"
+ ],
+ "page_hashes": {
+  "https://www.myaquaomega.ca/": "6d416ed72e11d50b3d94479a6bae3d27ab8db904cbac8587690e843ce9670060",
+  "https://www.myaquaomega.ca/products/balanced-arthritis-brain-support-capsules": "d7e3983ce45ec874b1e18e1c4f5f11a43b4ef2bf53f19cd56175d86f3302c628"
+ },
+ "model": "in-session",
+ "tool_calls": 2,
+ "cost_usd": 0.0,
+ "verified_at": "2026-11-25T02:07:45+00:00"
+}

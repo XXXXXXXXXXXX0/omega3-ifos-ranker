@@ -1,0 +1,31 @@
+{
+ "product_num": "YNGV0001",
+ "status": "unverified",
+ "form": null,
+ "form_source_url": null,
+ "form_evidence": null,
+ "oil_mg_per_capsule": null,
+ "oil_source_url": null,
+ "oil_evidence": null,
+ "serving_capsules": null,
+ "servings_per_bottle": null,
+ "flavored": null,
+ "flavor_evidence": null,
+ "pet": null,
+ "pet_evidence": null,
+ "antioxidants": [],
+ "packaging": [],
+ "reasoning": "NIH label record (Youngevity Ultimate EFA): a blend of borage, flax seed and fish oils; no oil form or fish-oil weight is stated.",
+ "sources_checked": [
+  "https://api.ods.od.nih.gov/dsld/v9/search-filter?size=8&q=Youngevity%20Ultimate%20EFA",
+  "https://api.ods.od.nih.gov/dsld/v9/label/240049"
+ ],
+ "page_hashes": {
+  "https://api.ods.od.nih.gov/dsld/v9/search-filter?size=8&q=Youngevity%20Ultimate%20EFA": "52b3d320daef76629881f87cb6747ebd71f947c29e78faae114243130462e3a7",
+  "https://api.ods.od.nih.gov/dsld/v9/label/240049": "3b23865bbde16af999e59b0b694ab076388a49458513cecc281d7a91b982c6aa"
+ },
+ "model": "in-session",
+ "tool_calls": 2,
+ "cost_usd": 0.0,
+ "verified_at": "2026-11-25T02:21:43+00:00"
+}

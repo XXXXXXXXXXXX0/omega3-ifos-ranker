@@ -1,0 +1,29 @@
+{
+ "product_num": "NUBA0004",
+ "status": "unverified",
+ "form": null,
+ "form_source_url": null,
+ "form_evidence": null,
+ "oil_mg_per_capsule": null,
+ "oil_source_url": null,
+ "oil_evidence": null,
+ "serving_capsules": null,
+ "servings_per_bottle": null,
+ "flavored": null,
+ "flavor_evidence": null,
+ "pet": null,
+ "pet_evidence": null,
+ "antioxidants": [],
+ "packaging": [],
+ "reasoning": "Brand site (natural-balance.co.nz) renders no product text.",
+ "sources_checked": [
+  "https://natural-balance.co.nz/"
+ ],
+ "page_hashes": {
+  "https://natural-balance.co.nz/": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+ },
+ "model": "in-session",
+ "tool_calls": 1,
+ "cost_usd": 0.0,
+ "verified_at": "2026-11-25T02:23:32+00:00"
+}

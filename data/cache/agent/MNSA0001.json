@@ -1,0 +1,32 @@
+{
+ "product_num": "MNSA0001",
+ "status": "unverified",
+ "form": null,
+ "form_source_url": null,
+ "form_evidence": null,
+ "oil_mg_per_capsule": null,
+ "oil_source_url": null,
+ "oil_evidence": null,
+ "serving_capsules": null,
+ "servings_per_bottle": null,
+ "flavored": null,
+ "flavor_evidence": null,
+ "pet": null,
+ "pet_evidence": null,
+ "antioxidants": [],
+ "packaging": [],
+ "reasoning": "No brand website in the IFOS listing; marnys.com and the binsina.ae retailer refuse automated access (403). The PromoFarma product page states no oil form. Form left unverified.",
+ "sources_checked": [
+  "MARNYS Omegamar 1500 triglicéridos cápsulas",
+  "https://www.promofarma.com/en/marnys-omegamar-1500-60caps/p-751340",
+  "https://www.binsina.ae/en/buy-marnys-omegamar-1500-capsules-for-heart-health-pack-of-60s.html",
+  "https://www.marnys.com/es/"
+ ],
+ "page_hashes": {
+  "https://www.promofarma.com/en/marnys-omegamar-1500-60caps/p-751340": "8ebd73be1cbfb075678d6ec01d475c4639b0dd102eced59852380ea9f1351f2e"
+ },
+ "model": "in-session",
+ "tool_calls": 4,
+ "cost_usd": 0.0,
+ "verified_at": "2026-11-25T04:27:11+00:00"
+}

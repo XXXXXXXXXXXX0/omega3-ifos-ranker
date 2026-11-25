@@ -1,0 +1,118 @@
+{
+ "sha256": "7d9ac2356407c683278a18cb37e4602ba3e30de52efd6bbb682482e9275c28c2",
+ "model": "in-session",
+ "created": "2026-11-25T01:40:08+00:00",
+ "usage": null,
+ "payload": {
+  "sha256": "7d9ac2356407c683278a18cb37e4602ba3e30de52efd6bbb682482e9275c28c2",
+  "is_batch_report": true,
+  "lot": "124Y0605",
+  "expiry_text": "05/06/2027 (DD/MM/YY)",
+  "directions": "1 dose per day, 2 capsules per",
+  "basis_text": "mg / cap",
+  "rows": [
+   {
+    "analyte": "epa",
+    "label_raw": "EPA",
+    "spec_text": null,
+    "result_text": "326 mg/cap",
+    "compliance": "YES"
+   },
+   {
+    "analyte": "dha",
+    "label_raw": "DHA",
+    "spec_text": null,
+    "result_text": "256 mg/cap",
+    "compliance": "YES"
+   },
+   {
+    "analyte": "total_omega3",
+    "label_raw": "Total Omega 3",
+    "spec_text": null,
+    "result_text": "622 mg/cap",
+    "compliance": "YES"
+   },
+   {
+    "analyte": "pcbs",
+    "label_raw": "PCBs",
+    "spec_text": "<= 45 ppb",
+    "result_text": "0.339 ppb",
+    "compliance": "YES"
+   },
+   {
+    "analyte": "dioxins_furans",
+    "label_raw": "Dioxins and Furans",
+    "spec_text": "<= 1 ppt",
+    "result_text": "0.183 ppt",
+    "compliance": "YES"
+   },
+   {
+    "analyte": "dioxin_like_pcbs",
+    "label_raw": "Dioxin-Like PCBs",
+    "spec_text": "<= 1.5 ppt",
+    "result_text": "0.0145 ppt",
+    "compliance": "YES"
+   },
+   {
+    "analyte": "acid_value",
+    "label_raw": "Acid Value",
+    "spec_text": "<= 3 mg KOH/g",
+    "result_text": "0.39 mg KOH/g",
+    "compliance": "YES"
+   },
+   {
+    "analyte": "pv",
+    "label_raw": "Peroxide",
+    "spec_text": "<= 5 meq/kg",
+    "result_text": "0.70 meq/kg",
+    "compliance": "YES"
+   },
+   {
+    "analyte": "av",
+    "label_raw": "Anisidine",
+    "spec_text": "<= 20",
+    "result_text": "7.4",
+    "compliance": "YES"
+   },
+   {
+    "analyte": "totox",
+    "label_raw": "Total Oxidation",
+    "spec_text": "<= 19.5",
+    "result_text": "8.8",
+    "compliance": "YES"
+   },
+   {
+    "analyte": "mercury",
+    "label_raw": "Mercury",
+    "spec_text": "<= 0.1 ppm",
+    "result_text": "< 0.01 ppm",
+    "compliance": "YES"
+   },
+   {
+    "analyte": "cadmium",
+    "label_raw": "Cadmium",
+    "spec_text": "<= 0.1 ppm",
+    "result_text": "< 0.02 ppm",
+    "compliance": "YES"
+   },
+   {
+    "analyte": "lead",
+    "label_raw": "Lead",
+    "spec_text": "<= 0.1 ppm",
+    "result_text": "< 0.02 ppm",
+    "compliance": "YES"
+   },
+   {
+    "analyte": "arsenic",
+    "label_raw": "Inorganic Arsenic",
+    "spec_text": "<= 0.1 ppm",
+    "result_text": "< 0.02 ppm",
+    "compliance": "YES"
+   }
+  ],
+  "comments": [
+   "Radioactivity specification:<50 bq/kg, Result: <30 bq/kg."
+  ],
+  "notes": "The potency table has no unit row; each result cell gives a share and, in parentheses, mg per capsule (cells read '51%(326mg/cap)', '41.3% (256mg/cap)', '99.4%(622mg/cap)'). The mg per capsule figures are transcribed; specifications are percentages or g/100 g and are left out."
+ }
+}

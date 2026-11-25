@@ -1,0 +1,31 @@
+{
+ "product_num": "GNCC0008",
+ "status": "unverified",
+ "form": null,
+ "form_source_url": null,
+ "form_evidence": null,
+ "oil_mg_per_capsule": null,
+ "oil_source_url": null,
+ "oil_evidence": null,
+ "serving_capsules": null,
+ "servings_per_bottle": null,
+ "flavored": null,
+ "flavor_evidence": null,
+ "pet": null,
+ "pet_evidence": null,
+ "antioxidants": [],
+ "packaging": [],
+ "reasoning": "gnc.com.cn resets the connection and the gnc.com product page denies access. Search results show GNC's Triple Strength line is ethyl ester, so the form cannot be assumed. Form left unverified.",
+ "sources_checked": [
+  "https://gnc.com.cn",
+  "GNC 97% High Purity EPA 1200+ fish oil rTG triglyceride",
+  "https://www.gnc.com/china-products/494017.html"
+ ],
+ "page_hashes": {
+  "https://www.gnc.com/china-products/494017.html": "61a0136a5f7a532538f7858e54537891b2cc996aeaaac00a864ae7ff789f0521"
+ },
+ "model": "in-session",
+ "tool_calls": 3,
+ "cost_usd": 0.0,
+ "verified_at": "2026-11-25T04:27:11+00:00"
+}

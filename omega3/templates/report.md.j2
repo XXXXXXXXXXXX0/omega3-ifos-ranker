@@ -1,0 +1,147 @@
+{% macro flags(row) %}{{ row.flags | join("; ") if row.flags else "" }}{% endmacro %}
+{% macro table(items) %}
+| Rank | Brand | Product | Lot | Oxidation load | TOTOX | PV | AV | Acid value | EPA+DHA mg/capsule | mg/serving | mg/g oil | EPA:DHA | Form | Report date | Expiry | Flags |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+{% for r in items %}
+| {{ r.rank }} | {{ r.brand }} | {{ r.product }} | {{ r.lot }} | {{ r.score | num("{:.2f}") }} | {{ r.totox | num }}{{ " ★" if r.preferred else "" }} | {{ r.pv | num }} | {{ r.av | num }} | {{ r.acid_value | num }} | {{ r.epa_dha_mg_cap | num("{:.0f}") }} | {{ r.epa_dha_mg_serving | num("{:.0f}") }} | {{ r.epa_dha_mg_g | num("{:.0f}") }} | {{ r.epa_dha_ratio | num("{:.2f}") }} | {{ r.form }} | {{ r.report_date or "n/a" }} | {{ r.expiry_date or "n/a" }} | {{ flags(r) }} |
+{% endfor %}
+{% endmacro %}
+{% macro simple(items) %}
+| Brand | Product | Lot | TOTOX | PV | AV | Reason |
+|---|---|---|---|---|---|---|
+{% for r in items %}
+| {{ r.brand }} | {{ r.product }} | {{ r.lot or "" }} | {{ r.totox | num }} | {{ r.pv | num }} | {{ r.av | num }} | {{ r.reason }} |
+{% endfor %}
+{% endmacro %}
+# Omega-3 IFOS ranking, as of {{ as_of }}
+
+Run `{{ run_id }}`. {{ total_products }} IFOS-listed products considered; {{ counts.ranked }} ranked, {{ counts.flavored }} ranked separately as flavored.
+
+**Read this first.** {% if per_capsule %}Oxidation load = TOTOX x the number of capsules needed for {{ cfg.scoring.target_epa_dha_mg }} mg EPA+DHA (IFOS-measured mg per capsule); lower is better. {% endif %}Oxidation load is a proxy, not a health outcome. IFOS tests batches the brand pays to submit, at production, not off the shelf. "Report date" is the date IFOS issued the report; IFOS does not publish a test date. ★ marks TOTOX at or below {{ cfg.filters.oxidation.totox_preferred_max }} (preferred tier).
+
+{% if coverage.top_complete %}
+**Top {{ top_n }} status: complete.** No product still waiting for label verification can reach the top {{ top_n }}, even in its best case.
+{% elif coverage.ranked < top_n %}
+**Top {{ top_n }} status: incomplete.** Only {{ coverage.ranked }} product(s) have every fact needed for a score. {{ coverage.queue }} more pass the oxidation, acid-value and contaminant cutoffs but still need their oil form or capsule oil weight verified from the label.
+{% else %}
+**Top {{ top_n }} status: provisional.** {% if per_capsule %}{{ coverage.in_reach }} product(s) score well enough for the top {{ top_n }} (oxidation load at or below {{ coverage.threshold | num("{:.2f}") }}) but their oil form is not yet confirmed as TG or rTG: {{ coverage.in_reach_unchecked }} not yet checked, and {{ coverage.in_reach_checked }} checked without the label stating the form.
+{% else %}{{ coverage.in_reach }} product(s) that pass every other check could still enter the top {{ top_n }} in their best case (best-possible score at or below {{ coverage.threshold | num("{:.2f}") }}): {{ coverage.in_reach_unchecked }} not yet checked, and {{ coverage.in_reach_checked }} checked without the label giving both the oil form and the oil weight.
+{% endif %}
+{% endif %}
+
+## Top {{ top_n }}
+
+{% if top %}
+{{ table(top) }}
+### Why each product is here
+
+{% for r in top %}
+{{ r.rank }}. **{{ r.brand }}: {{ r.product }}.** {{ r.reasoning }}{% if r.flags %} Flags: {{ flags(r) }}.{% endif %}
+
+{% endfor %}
+{% else %}
+No product has every fact needed for a score yet.
+{% endif %}
+{% if rows.ranked | length > top_n %}
+## Rest of the ranked list
+
+{{ table(rows.ranked[top_n:]) }}
+{% endif %}
+{% if coverage.in_reach_rows %}
+## Not yet verified, could still enter the top {{ top_n }}
+
+{% if per_capsule %}These pass every check except the oil form, and their oxidation load is at or below {{ coverage.threshold | num("{:.2f}") if coverage.threshold else "the threshold" }}. Each needs a source stating TG or rTG. Showing the first {{ coverage.in_reach_rows | length }} of {{ coverage.in_reach }}, best first. "Checked" means the label was looked for and did not state the form.
+{% else %}These pass every check that can be made without the label, and their best-possible oxidation load (assuming the capsule is nothing but omega-3) is at or below {{ coverage.threshold | num("{:.2f}") if coverage.threshold else "the threshold" }}. Showing the first {{ coverage.in_reach_rows | length }} of {{ coverage.in_reach }}, best case first. "Checked" means the label was looked for and did not state what is missing.
+{% endif %}
+
+| Brand | Product | Lot | TOTOX | PV | AV | {{ "Oxidation load" if per_capsule else "Best possible load" }} | Needs | Checked |
+|---|---|---|---|---|---|---|---|---|
+{% for r in coverage.in_reach_rows %}
+| {{ r.brand }} | {{ r.product }} | {{ r.lot }} | {{ r.totox | num }} | {{ r.pv | num }} | {{ r.av | num }} | {{ r.optimistic_score | num("{:.2f}") }} | {{ "form" if per_capsule else ("form and oil weight" if not r.form and not r.oil_mg_per_capsule else ("form" if not r.form else "oil weight")) }} | {{ "yes" if r.label_checked else "no" }} |
+{% endfor %}
+
+{% endif %}
+## Flavored (ranked separately)
+
+Flavorings can raise the anisidine reading, so these are not compared with unflavored oils.
+
+{% if rows.flavored %}
+{{ table(rows.flavored) }}
+{% else %}
+None.
+{% endif %}
+## Inconsistent batches
+
+Ranked on their newest batch, but another unexpired batch fails a cutoff.
+
+{% if inconsistent %}
+| Brand | Product | List | Ranked lot | TOTOX range across unexpired batches | Detail |
+|---|---|---|---|---|---|
+{% for r in inconsistent %}
+| {{ r.brand }} | {{ r.product }} | {{ titles[r.list] }}{{ " #" ~ r.rank if r.rank else "" }} | {{ r.lot }} | {{ r.totox_range[0] | num }} to {{ r.totox_range[1] | num }} | {{ r.inconsistent_detail }} |
+{% endfor %}
+{% else %}
+None.
+{% endif %}
+## Form unverified
+
+Passed every other check that could be made, but the oil form is not stated by IFOS and has not been confirmed from the label. Never assumed to be triglyceride.
+
+{% if rows.form_unverified %}
+{{ simple(rows.form_unverified) }}
+{% else %}
+None.
+{% endif %}
+## Oil weight unavailable
+
+{% if per_capsule %}Form is known, but IFOS reports potency per gram of oil and no capsule oil weight was found, so EPA+DHA per capsule cannot be computed. Not guessed.{% else %}Form is known, but no capsule oil weight was found, so the oxidation load cannot be computed. Not guessed.{% endif %}
+
+{% if rows.oil_weight_unavailable %}
+{{ simple(rows.oil_weight_unavailable) }}
+{% else %}
+None.
+{% endif %}
+## Monoglyceride
+
+{% if rows.monoglyceride %}
+{{ simple(rows.monoglyceride) }}
+{% else %}
+None.
+{% endif %}
+## Incomplete data
+
+{% if rows.incomplete_data %}
+{{ simple(rows.incomplete_data) }}
+{% else %}
+None.
+{% endif %}
+## Pet products
+
+{% if rows.pet %}
+{{ simple(rows.pet) }}
+{% else %}
+None.
+{% endif %}
+## Exclusion counts by reason
+
+| Reason | Products |
+|---|---|
+{% for reason, n in exclusion_counts.items() %}
+| {{ reason }} | {{ n }} |
+{% endfor %}
+| **Ranked** | **{{ counts.ranked }}** |
+| **Flavored, ranked separately** | **{{ counts.flavored }}** |
+| **Total** | **{{ total_products }}** |
+
+<details><summary>Excluded products ({{ rows.excluded | length }})</summary>
+
+{{ simple(rows.excluded) }}
+</details>
+
+## How this run was produced
+
+- Extraction: {% for k, v in extraction.items() %}{{ k | replace("_", " ") }} {{ v }}{{ ", " if not loop.last }}{% endfor %}.
+- Label verification: {{ agent.attempted }} product(s) attempted, {{ agent.verified }} with the form verified, {{ agent.tool_calls }} tool calls. {% if agent.in_session %}Agent API cost: $0 (in-session mode; see DECISIONS O-1).{% else %}Agent API cost: ${{ "%.4f" | format(agent.cost_usd) }} ({{ agent.models | join(", ") }}).{% endif %}
+
+- Cutoffs: TOTOX below {{ cfg.filters.oxidation.totox_max_exclusive }}, PV at most {{ cfg.filters.oxidation.pv_max }}, AV at most {{ cfg.filters.oxidation.av_max }}, acid value at most {{ cfg.filters.acid_value_max }} mg KOH/g, every reported contaminant within IFOS's limit. IFOS's own TOTOX limit is 19.5.
+- Ranking is deterministic code. No LLM takes part in filtering, scoring or ordering.

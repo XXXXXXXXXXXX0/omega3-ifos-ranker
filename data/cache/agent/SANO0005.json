@@ -1,0 +1,31 @@
+{
+ "product_num": "SANO0005",
+ "status": "unverified",
+ "form": null,
+ "form_source_url": null,
+ "form_evidence": null,
+ "oil_mg_per_capsule": null,
+ "oil_source_url": null,
+ "oil_evidence": null,
+ "serving_capsules": null,
+ "servings_per_bottle": null,
+ "flavored": null,
+ "flavor_evidence": null,
+ "pet": null,
+ "pet_evidence": null,
+ "antioxidants": [],
+ "packaging": [],
+ "reasoning": "Brand page (norsan.de, Omega-3 Kapseln) gives 1,500 mg omega-3 per daily dose but no form statement and no oil weight per capsule.",
+ "sources_checked": [
+  "https://norsan.de",
+  "https://norsan.de/shop/omega-3-kapseln/"
+ ],
+ "page_hashes": {
+  "https://norsan.de/": "63d1db6fb38cda77bd2c75ebba5f14891e1b0ecf971a1a6c7d125b57aea179a0",
+  "https://norsan.de/shop/omega-3-kapseln/": "8fa1406fccd1409437578c9ee6fb62778994a25e0d8fcee10c05330a0ddb44d5"
+ },
+ "model": "in-session",
+ "tool_calls": 2,
+ "cost_usd": 0.0,
+ "verified_at": "2026-11-25T02:13:18+00:00"
+}

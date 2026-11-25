@@ -1,0 +1,31 @@
+{
+ "product_num": "AMPP0001",
+ "status": "verified",
+ "form": "rTG",
+ "form_source_url": "https://amplecare.com/products/amplecare-ultra-rtg-fish-oil-softgels-30-softgel-capsules",
+ "form_evidence": "Amplecare ULTRA rTG Fish Oil Softgels",
+ "oil_mg_per_capsule": 1075.0,
+ "oil_source_url": "https://amplecare.com/products/amplecare-ultra-rtg-fish-oil-softgels-30-softgel-capsules",
+ "oil_evidence": "Concentrated fish Omega-3 triglycerides: 1,075 mg",
+ "serving_capsules": 1.0,
+ "servings_per_bottle": null,
+ "flavored": null,
+ "flavor_evidence": null,
+ "pet": null,
+ "pet_evidence": null,
+ "antioxidants": [],
+ "packaging": [],
+ "reasoning": "Brand product page: each soft capsule contains concentrated fish omega-3 triglycerides 1,075 mg (EPA 542.9 mg, DHA 360.1 mg); named 'ULTRA rTG Fish Oil'.",
+ "sources_checked": [
+  "https://amplecare.com/search/suggest.json?q=ULTRA%20rTG&resources%5Btype%5D=product",
+  "https://amplecare.com/products/amplecare-ultra-rtg-fish-oil-softgels-30-softgel-capsules"
+ ],
+ "page_hashes": {
+  "https://amplecare.com/search/suggest.json?q=ULTRA%20rTG&resources%5Btype%5D=product": "2af762535dfd0ddfbe9771d8def508417d3ff919ec76d5686cf1ca3a9bcebdd1",
+  "https://amplecare.com/products/amplecare-ultra-rtg-fish-oil-softgels-30-softgel-capsules": "a3689b5b560955a770ed2240a43235d59bdb6c105f97c33114935d0b7be55d9c"
+ },
+ "model": "in-session",
+ "tool_calls": 2,
+ "cost_usd": 0.0,
+ "verified_at": "2026-11-25T02:23:32+00:00"
+}

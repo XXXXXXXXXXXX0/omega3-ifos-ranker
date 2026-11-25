@@ -1,0 +1,32 @@
+{
+ "product_num": "CMRC",
+ "status": "verified",
+ "form": "rTG",
+ "form_source_url": "https://tienda.dracocomarch.com/en-us/products/marine-omega-3",
+ "form_evidence": "Fish Oil Concentrate (rTG Form) 2,000 MG",
+ "oil_mg_per_capsule": 1000.0,
+ "oil_source_url": "https://tienda.dracocomarch.com/en-us/products/marine-omega-3",
+ "oil_evidence": "Fish Oil Concentrate (rTG Form) 2,000 MG",
+ "serving_capsules": 2.0,
+ "servings_per_bottle": 45.0,
+ "flavored": null,
+ "flavor_evidence": null,
+ "pet": null,
+ "pet_evidence": null,
+ "antioxidants": [],
+ "packaging": [],
+ "reasoning": "Brand supplement facts: Fish Oil Concentrate (rTG Form) 2,000 mg per 2-softgel serving (1,000 mg per softgel), EPA 900 mg, DHA 700 mg per serving.",
+ "sources_checked": [
+  "Coco March Marine Omega 3 rTG softgel fish oil mg per softgel",
+  "https://tienda.dracocomarch.com/en-us",
+  "https://tienda.dracocomarch.com/en-us/products/marine-omega-3"
+ ],
+ "page_hashes": {
+  "https://tienda.dracocomarch.com/en-us": "a35828b3145f129612143ba2aa82d2cc6056a9b3560f2de39eb4e539b30dfe86",
+  "https://tienda.dracocomarch.com/en-us/products/marine-omega-3": "4050a1ec1e9715ac438c541b264b3272607672a456372a9e6dd2b7b131716e32"
+ },
+ "model": "in-session",
+ "tool_calls": 3,
+ "cost_usd": 0.0,
+ "verified_at": "2026-11-25T02:07:45+00:00"
+}

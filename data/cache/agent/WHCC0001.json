@@ -1,0 +1,36 @@
+{
+ "product_num": "WHCC0001",
+ "status": "unverified",
+ "form": null,
+ "form_source_url": null,
+ "form_evidence": null,
+ "oil_mg_per_capsule": null,
+ "oil_source_url": null,
+ "oil_evidence": null,
+ "serving_capsules": null,
+ "servings_per_bottle": null,
+ "flavored": null,
+ "flavor_evidence": null,
+ "pet": null,
+ "pet_evidence": null,
+ "antioxidants": [],
+ "packaging": [],
+ "reasoning": "Brand sites (unocardio.eu, whclabs.eu) return a shell page with no product text. A third-party review site (totalshape.com) says 'r-triglyceride form' and 'a pleasant orange flavor', but it is not the label or the brand, so neither is recorded. If confirmed, this product would be ranked as flavored, not in the unflavored top 10.",
+ "sources_checked": [
+  "http://unocardio.eu",
+  "UnoCardio 1000 triglyceride form omega-3 WHC",
+  "https://totalshape.com/products/whc-unocardio-1000-pure-triglyceride-fish-oil.json",
+  "https://totalshape.com/products/whc-unocardio-1000-pure-triglyceride-fish-oil",
+  "https://whclabs.eu/search/suggest.json?q=unocardio%201000&resources[type]=product"
+ ],
+ "page_hashes": {
+  "https://whclabs.eu": "cc5d64ee76a4cfbe7be5b0230c08db8168b5837f11bd5009e4dd3aa4512a8818",
+  "https://totalshape.com/products/whc-unocardio-1000-pure-triglyceride-fish-oil.json/": "c7e68806f7edfd2e6beda9df9dadb704ca8f887ffd519f979ae1cba097c36ad8",
+  "https://totalshape.com/products/whc-unocardio-1000-pure-triglyceride-fish-oil/": "91f0fe1bd565b21efa031c4ccebcd01c2d7744c6e6806b2d585027d5b850e58d",
+  "https://whclabs.eu/search/suggest.json?q=unocardio%201000&resources%5Btype%5D=product": "cc5d64ee76a4cfbe7be5b0230c08db8168b5837f11bd5009e4dd3aa4512a8818"
+ },
+ "model": "in-session",
+ "tool_calls": 5,
+ "cost_usd": 0.0,
+ "verified_at": "2026-11-25T04:27:11+00:00"
+}

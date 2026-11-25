@@ -1,0 +1,31 @@
+{
+ "product_num": "TBIS0015",
+ "status": "unverified",
+ "form": null,
+ "form_source_url": null,
+ "form_evidence": null,
+ "oil_mg_per_capsule": null,
+ "oil_source_url": null,
+ "oil_evidence": null,
+ "serving_capsules": null,
+ "servings_per_bottle": null,
+ "flavored": null,
+ "flavor_evidence": null,
+ "pet": null,
+ "pet_evidence": null,
+ "antioxidants": [],
+ "packaging": [],
+ "reasoning": "Brand site (tabilac.com) home and about pages do not show the OmePa 2000 label; the oil weight comes from the IFOS listing text, but no form statement was found.",
+ "sources_checked": [
+  "https://tabilac.com/",
+  "https://tabilac.com/neden-tabilac"
+ ],
+ "page_hashes": {
+  "https://tabilac.com/": "1b900c32ba7b001cd2929616cb43198d808cb8ca9b793ba6056696b614a8ffaa",
+  "https://tabilac.com/neden-tabilac": "1be65af53cda29cf7bc1f7824892b57a17a940ddbc58f3c6d6de73e4eab2a0f8"
+ },
+ "model": "in-session",
+ "tool_calls": 2,
+ "cost_usd": 0.0,
+ "verified_at": "2026-11-25T02:13:18+00:00"
+}

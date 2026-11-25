@@ -1,0 +1,29 @@
+{
+ "product_num": "VITS0001",
+ "status": "unverified",
+ "form": null,
+ "form_source_url": null,
+ "form_evidence": null,
+ "oil_mg_per_capsule": null,
+ "oil_source_url": null,
+ "oil_evidence": null,
+ "serving_capsules": null,
+ "servings_per_bottle": null,
+ "flavored": null,
+ "flavor_evidence": null,
+ "pet": null,
+ "pet_evidence": null,
+ "antioxidants": [],
+ "packaging": [],
+ "reasoning": "Brand site (vitsnutricion.com) renders no product text without JavaScript (357 characters).",
+ "sources_checked": [
+  "https://vitsnutricion.com/"
+ ],
+ "page_hashes": {
+  "https://vitsnutricion.com/": "8d77b9096edc100eb3b36bc54961b1d16f4d1687925e22d8f8b5f5e1924965af"
+ },
+ "model": "in-session",
+ "tool_calls": 1,
+ "cost_usd": 0.0,
+ "verified_at": "2026-11-25T02:07:45+00:00"
+}

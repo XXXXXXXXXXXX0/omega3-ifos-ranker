@@ -1,0 +1,29 @@
+{
+ "product_num": "NAEN0003",
+ "status": "unverified",
+ "form": null,
+ "form_source_url": null,
+ "form_evidence": null,
+ "oil_mg_per_capsule": null,
+ "oil_source_url": null,
+ "oil_evidence": null,
+ "serving_capsules": null,
+ "servings_per_bottle": null,
+ "flavored": null,
+ "flavor_evidence": null,
+ "antioxidants": [],
+ "packaging": [],
+ "reasoning": "Brand page gives a nutrition table per capsule (DHA 200 mg among vitamins and minerals) but no fish-oil weight and no oil form.",
+ "sources_checked": [
+  "https://www.natalben.com",
+  "https://www.natalben.com/natalben-supra"
+ ],
+ "page_hashes": {
+  "https://www.natalben.com/": "2d83d208dcbb08c3442d592fa0876d2a0886e3fcd840671eafe4e29a122f281f",
+  "https://www.natalben.com/natalben-supra": "519957e4a17e7b19f5e7dda6c3d5122fbcb3bfa897c486e5d4b4f176ca166707"
+ },
+ "model": "in-session",
+ "tool_calls": 2,
+ "cost_usd": 0.0,
+ "verified_at": "2026-11-25T01:52:22+00:00"
+}
