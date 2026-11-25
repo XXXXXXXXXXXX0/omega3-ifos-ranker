@@ -1,0 +1,31 @@
+{
+ "product_num": "XYMO0003",
+ "status": "verified",
+ "form": "MAG",
+ "form_source_url": "https://www.xymogen.com/Full-Catalog/Neurologic-%2526-Cognitive/Omega-MonoPure-1300-EC-60sg/p/000000000300001003",
+ "form_evidence": "MaxSimil ® monoglyceride fish oil",
+ "oil_mg_per_capsule": null,
+ "oil_source_url": null,
+ "oil_evidence": null,
+ "serving_capsules": null,
+ "servings_per_bottle": null,
+ "flavored": null,
+ "flavor_evidence": null,
+ "pet": null,
+ "pet_evidence": null,
+ "antioxidants": [],
+ "packaging": [],
+ "reasoning": "Brand page: 'Omega MonoPure 1300 EC features natural enzymatically enhanced MaxSimil monoglyceride fish oil': monoglyceride form.",
+ "sources_checked": [
+  "https://xymogen.com/",
+  "https://www.xymogen.com/Full-Catalog/Neurologic-%2526-Cognitive/Omega-MonoPure-1300-EC-60sg/p/000000000300001003"
+ ],
+ "page_hashes": {
+  "https://www.xymogen.com/": "fd555ec1d7b988e401d2464c396863782a313291de95df9d86c705d1b7d9ddbb",
+  "https://www.xymogen.com/Full-Catalog/Neurologic-%2526-Cognitive/Omega-MonoPure-1300-EC-60sg/p/000000000300001003": "6bee68205cc0e9a8dea3b1ee5d05c0007d485eb68fea70a904eb71bf96020a3c"
+ },
+ "model": "in-session",
+ "tool_calls": 2,
+ "cost_usd": 0.0,
+ "verified_at": "2026-11-25T02:13:18+00:00"
+}

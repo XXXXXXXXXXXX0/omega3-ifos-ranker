@@ -1,0 +1,30 @@
+{
+ "product_num": "CHKA0002",
+ "status": "unverified",
+ "form": null,
+ "form_source_url": null,
+ "form_evidence": null,
+ "oil_mg_per_capsule": null,
+ "oil_source_url": null,
+ "oil_evidence": null,
+ "serving_capsules": null,
+ "servings_per_bottle": null,
+ "flavored": null,
+ "flavor_evidence": null,
+ "pet": true,
+ "pet_evidence": "반려견·반려묘 간식과 영양 보조제",
+ "antioxidants": [],
+ "packaging": [],
+ "reasoning": "The brand's own site (choandkang.com, '조공') describes itself as dog and cat treats and nutritional supplements ('반려견·반려묘 간식과 영양 보조제'), so this is a pet product.",
+ "sources_checked": [
+  "Chogong rTG Red Omega-3 mini 초공 알티지 오메가3 미니 함량",
+  "https://www.choandkang.com"
+ ],
+ "page_hashes": {
+  "https://www.choandkang.com/": "bd9c0473fd1065b3d4024161f465fad4418da81d9442d90f944892829e2e5791"
+ },
+ "model": "in-session",
+ "tool_calls": 2,
+ "cost_usd": 0.0,
+ "verified_at": "2026-11-25T02:06:40+00:00"
+}

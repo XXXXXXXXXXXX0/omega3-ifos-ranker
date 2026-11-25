@@ -28,6 +28,7 @@ def load_products(conn) -> list[Product]:
             oil_mg_per_capsule=r["oil_mg_per_capsule"], oil_source_url=r["oil_source_url"], oil_evidence=r["oil_evidence"],
             serving_capsules=r["serving_capsules"], servings_per_bottle=r["servings_per_bottle"],
             flavored=None if r["flavored"] is None else bool(r["flavored"]), flavor_evidence=r["flavor_evidence"],
+            pet=None if r["pet"] is None else bool(r["pet"]), pet_evidence=r["pet_evidence"],
             antioxidants=_json(r["antioxidants"], []), packaging=_json(r["packaging"], []), reasoning=r["reasoning"])
 
     contaminants: dict[str, list[Contaminant]] = {}

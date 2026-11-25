@@ -1,0 +1,31 @@
+{
+ "product_num": "CTLO0001",
+ "status": "unverified",
+ "form": null,
+ "form_source_url": null,
+ "form_evidence": null,
+ "oil_mg_per_capsule": null,
+ "oil_source_url": null,
+ "oil_evidence": null,
+ "serving_capsules": null,
+ "servings_per_bottle": null,
+ "flavored": null,
+ "flavor_evidence": null,
+ "pet": null,
+ "pet_evidence": null,
+ "antioxidants": [],
+ "packaging": [],
+ "reasoning": "Brand site followed to a different product (Children's DHA Formula chewables); no label for Children's DHA IQ Fish Formula with form or oil weight.",
+ "sources_checked": [
+  "https://catalo.com/",
+  "https://www.catalo.com/products/catalo-childrens-milk-calcium-formula-zinc-vitamin-d3-added-100-chewable-tablets-50s-x-2"
+ ],
+ "page_hashes": {
+  "https://www.catalo.com/": "b57af12eff6769ef11b35ca04c60372baa064630ff1eb4b926f33b9daa196e53",
+  "https://www.catalo.com/products/catalo-childrens-milk-calcium-formula-zinc-vitamin-d3-added-100-chewable-tablets-50s-x-2": "549c28d3851e0fdb2b522638177878891d6e5023897ed1f80888f2d32363f3f8"
+ },
+ "model": "in-session",
+ "tool_calls": 2,
+ "cost_usd": 0.0,
+ "verified_at": "2026-11-25T02:13:18+00:00"
+}

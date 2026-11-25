@@ -130,6 +130,8 @@ CREATE TABLE IF NOT EXISTS label_facts (
     servings_per_bottle REAL,
     flavored        INTEGER,                   -- 1 | 0 | NULL unknown
     flavor_evidence TEXT,
+    pet             INTEGER,                   -- 1 when the brand's own pages show it is for animals
+    pet_evidence    TEXT,
     antioxidants    TEXT,                      -- JSON list, display only
     packaging       TEXT,                      -- JSON list, display only
     sources_checked TEXT,                      -- JSON list of URLs

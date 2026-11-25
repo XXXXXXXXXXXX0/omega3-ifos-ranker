@@ -1,0 +1,27 @@
+{
+ "product_num": "ATPL0004",
+ "status": "unverified",
+ "form": null,
+ "form_source_url": null,
+ "form_evidence": null,
+ "oil_mg_per_capsule": null,
+ "oil_source_url": null,
+ "oil_evidence": null,
+ "serving_capsules": null,
+ "servings_per_bottle": null,
+ "flavored": null,
+ "flavor_evidence": null,
+ "antioxidants": [],
+ "packaging": [],
+ "reasoning": "NIH label database search returned no matching label.",
+ "sources_checked": [
+  "https://api.ods.od.nih.gov/dsld/v9/search-filter?size=6&q=ATP%20Ultra%20Omega"
+ ],
+ "page_hashes": {
+  "https://api.ods.od.nih.gov/dsld/v9/search-filter?size=6&q=ATP%20Ultra%20Omega": "79ce753da1e6ab5fba507857a7cf4292e75d6bfcd18389cbe2934f4ec25a80d6"
+ },
+ "model": "in-session",
+ "tool_calls": 1,
+ "cost_usd": 0.0,
+ "verified_at": "2026-11-25T01:58:55+00:00"
+}

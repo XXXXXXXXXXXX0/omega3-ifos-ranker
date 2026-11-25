@@ -1,0 +1,31 @@
+{
+ "product_num": "OVIA0006",
+ "status": "unverified",
+ "form": null,
+ "form_source_url": null,
+ "form_evidence": null,
+ "oil_mg_per_capsule": 857.0,
+ "oil_source_url": "https://omegavia.com/products/prenatal-omega-3-dha",
+ "oil_evidence": "Omega Oil from Algae (Schizochytrum sp.) 857 mg",
+ "serving_capsules": 1.0,
+ "servings_per_bottle": null,
+ "flavored": null,
+ "flavor_evidence": null,
+ "pet": null,
+ "pet_evidence": null,
+ "antioxidants": [],
+ "packaging": [],
+ "reasoning": "Brand page: 'Omega Oil from Algae (Schizochytrum sp.) 857 mg, DHA Omega-3 600 mg' per softgel. The oil is algal, not fish (flagged). Form TG comes from the IFOS listing.",
+ "sources_checked": [
+  "https://omegavia.com/",
+  "https://omegavia.com/products/prenatal-omega-3-dha"
+ ],
+ "page_hashes": {
+  "https://omegavia.com/": "f208bf2fff9b42b609c19a29684fcdb064d34ab9c581a94e3f233967b029178a",
+  "https://omegavia.com/products/prenatal-omega-3-dha": "4461847412755df2d7a47a9f95454f18e1cc15370220b3d6130517eb1d0faecd"
+ },
+ "model": "in-session",
+ "tool_calls": 2,
+ "cost_usd": 0.0,
+ "verified_at": "2026-11-25T02:07:45+00:00"
+}

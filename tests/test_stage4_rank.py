@@ -492,3 +492,12 @@ def test_oil_weight_from_ifos_listing_text(cfg):
     assert labelled.oil_source == "label" and labelled.oil_mg_per_capsule == 1000
     cfg["oil_weight"]["sources"] = ["label"]
     assert placed(cfg, label=None, summary="Each softgel capsule contains 1000 mg fish oil.").list_name == OIL_UNAVAILABLE
+
+
+def test_comparison_copy_in_listing_does_not_override_a_verified_label(cfg):
+    copy = "MaxSimil monoglyceride fish oil with 3x the absorption of ethyl ester fish oil"     # names two forms: settles nothing
+    label = LabelFacts(status="verified", form="MAG", form_evidence="MaxSimil monoglyceride fish oil", oil_mg_per_capsule=1000)
+    assert placed(cfg, name="Omega MonoPure", summary=copy, label=label).list_name == MONOGLYCERIDE
+    assert placed(cfg, name="Omega MonoPure", summary="rTG fish oil, unlike ethyl ester", label=None).list_name == FORM_UNVERIFIED
+    single = LabelFacts(status="verified", form="TG", oil_mg_per_capsule=1000)
+    assert placed(cfg, name="Omega EE Ethyl Ester 1000", label=single).list_name == FORM_UNVERIFIED     # a real disagreement still blocks

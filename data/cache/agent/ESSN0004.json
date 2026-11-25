@@ -1,0 +1,31 @@
+{
+ "product_num": "ESSN0004",
+ "status": "unverified",
+ "form": null,
+ "form_source_url": null,
+ "form_evidence": null,
+ "oil_mg_per_capsule": null,
+ "oil_source_url": null,
+ "oil_evidence": null,
+ "serving_capsules": null,
+ "servings_per_bottle": null,
+ "flavored": null,
+ "flavor_evidence": null,
+ "pet": null,
+ "pet_evidence": null,
+ "antioxidants": [],
+ "packaging": [],
+ "reasoning": "Brand site category page shows other omega-3 products; no page for CoQ10 + Omega-3 TG with an oil weight was found.",
+ "sources_checked": [
+  "https://essentialnutrition.com.br/",
+  "https://www.essentialnutrition.com.br/produtos/omega-3"
+ ],
+ "page_hashes": {
+  "https://www.essentialnutrition.com.br/": "9723f43aaf91cc6362b9070bdb1f5134994feb17316cf962464edec0567bc3ab",
+  "https://www.essentialnutrition.com.br/produtos/omega-3": "707fc930f61aee9c7dd4785f85e8d35425a1858e10d0cd8b5b3c2ae930bce5b0"
+ },
+ "model": "in-session",
+ "tool_calls": 2,
+ "cost_usd": 0.0,
+ "verified_at": "2026-11-25T02:07:45+00:00"
+}

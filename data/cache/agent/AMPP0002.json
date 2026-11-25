@@ -1,0 +1,31 @@
+{
+ "product_num": "AMPP0002",
+ "status": "verified",
+ "form": "rTG",
+ "form_source_url": "https://amplecare.com/products/amplecare-epa-1000-rtg-fish-oil-softgels-60-softgel-capsules",
+ "form_evidence": "Amplecare EPA 1000 rTG Fish Oil Softgels",
+ "oil_mg_per_capsule": 1176.5,
+ "oil_source_url": "https://amplecare.com/products/amplecare-epa-1000-rtg-fish-oil-softgels-60-softgel-capsules",
+ "oil_evidence": "Concentrated fish Omega-3 triglycerides: 1,176.5 mg",
+ "serving_capsules": 1.0,
+ "servings_per_bottle": null,
+ "flavored": null,
+ "flavor_evidence": null,
+ "pet": null,
+ "pet_evidence": null,
+ "antioxidants": [],
+ "packaging": [],
+ "reasoning": "Brand product page: each soft capsule contains concentrated fish omega-3 triglycerides 1,176.5 mg, equivalent to 1,000 mg EPA; the product is named 'EPA 1000 rTG Fish Oil'.",
+ "sources_checked": [
+  "https://amplecare.com",
+  "https://amplecare.com/products/amplecare-epa-1000-rtg-fish-oil-softgels-60-softgel-capsules"
+ ],
+ "page_hashes": {
+  "https://amplecare.com/": "29f79df4d99eacbdf991dc008d3356563bf44eda6f5676fb6b356ae9dba01a6e",
+  "https://amplecare.com/products/amplecare-epa-1000-rtg-fish-oil-softgels-60-softgel-capsules": "0f78186faed3ac64e38f7de1bed177770830613791116c01af1cd96d1eb8a9e7"
+ },
+ "model": "in-session",
+ "tool_calls": 2,
+ "cost_usd": 0.0,
+ "verified_at": "2026-11-25T02:07:45+00:00"
+}

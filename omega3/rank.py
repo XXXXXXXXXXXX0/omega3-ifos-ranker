@@ -120,6 +120,8 @@ class LabelFacts:
     servings_per_bottle: float | None = None
     flavored: bool | None = None
     flavor_evidence: str | None = None
+    pet: bool | None = None
+    pet_evidence: str | None = None
     antioxidants: list[str] = field(default_factory=list)
     packaging: list[str] = field(default_factory=list)
     reasoning: str | None = None
@@ -281,7 +283,10 @@ def resolve_form(product: Product, batches: list[Batch]) -> tuple[str | None, st
     listing_form, listing_evidence = classify_form(f"{product.name}. {product.summary}")
     if listing_form:
         found.append((listing_form, "IFOS listing", listing_evidence))
-    elif listing_evidence.startswith("conflicting"):
+    elif listing_evidence.startswith("conflicting") and not found:
+        # Marketing copy often names other forms to compare ("3x the absorption of
+        # ethyl ester"). Such a listing settles nothing; it only blocks when it is
+        # the sole source.
         return None, None, f"IFOS listing: {listing_evidence}"
     if not found:
         reason = product.label.reasoning if product.label and product.label.reasoning else "no form stated"
@@ -392,7 +397,9 @@ def place(product: Product, cfg, today: dt.date) -> Placement:
         p.flags.append("chewable softgel")
     pet_word = detect_pet(product, cfg)
     if pet_word and cfg["filters"]["exclude_pet_products"]:
-        reasons.append((PET, f"pet product: '{pet_word}' in name or directions"))
+        reasons.append((PET, f"pet product: '{pet_word}' in name, brand or directions"))
+    elif product.label and product.label.pet and cfg["filters"]["exclude_pet_products"]:
+        reasons.append((PET, f"pet product: brand page says \"{product.label.pet_evidence}\""))
 
     # Batches: drop expired, then rank on the most recently tested one (LOCKED).
     current = [b for b in product.batches if b.expiry_date is None or b.expiry_date >= today]

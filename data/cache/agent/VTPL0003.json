@@ -1,0 +1,27 @@
+{
+ "product_num": "VTPL0003",
+ "status": "unverified",
+ "form": null,
+ "form_source_url": null,
+ "form_evidence": null,
+ "oil_mg_per_capsule": null,
+ "oil_source_url": null,
+ "oil_evidence": null,
+ "serving_capsules": null,
+ "servings_per_bottle": null,
+ "flavored": null,
+ "flavor_evidence": null,
+ "antioxidants": [],
+ "packaging": [],
+ "reasoning": "NIH label database search returned no matching label.",
+ "sources_checked": [
+  "https://api.ods.od.nih.gov/dsld/v9/search-filter?size=6&q=Vital%20Omega%20Easy%20Swallow"
+ ],
+ "page_hashes": {
+  "https://api.ods.od.nih.gov/dsld/v9/search-filter?size=6&q=Vital%20Omega%20Easy%20Swallow": "f606dfc1ee825eaa5fa25c486d21f7bc77b3f03f6b6783dcc7bd66e032099256"
+ },
+ "model": "in-session",
+ "tool_calls": 1,
+ "cost_usd": 0.0,
+ "verified_at": "2026-11-25T01:58:55+00:00"
+}

@@ -422,3 +422,28 @@ def test_fetch_reads_json_label_data_and_pdf_text(cfg, site, fixtures, fake_resp
     assert "TOTOX <= 19.5 13.63 Yes" in tools.fetch_page(cfg, site, "https://brand.example/ifos.pdf")["full_text"]
     with pytest.raises(tools.ToolError, match="not a web page, JSON or PDF"):
         tools.fetch_page(cfg, site, "https://brand.example/app.zip")
+
+
+def test_pet_evidence_from_brand_page_moves_product_to_pet_list(cfg, conn, seeded, site):
+    site.pages["https://brand.example/pets"] = "<html><body><h1>Treats and supplements for dogs and cats</h1></body></html>".encode()
+    session = new_session(cfg, conn, site)
+    session.call("fetch_page", {"url": "https://brand.example/pets"})
+    facts = session.finish({**GOOD, "pet": True, "pet_evidence": "Treats and supplements for dogs and cats",
+                            "form_evidence": None, "form": None, "oil_mg_per_capsule": None, "flavored": None,
+                            "antioxidants": [], "packaging": []}, "decision recorded")["facts"]
+    assert facts["pet"] is True
+    from omega3.load import load_products
+    from omega3.rank import PET, rank_products
+    [p] = rank_products(load_products(conn), cfg, dt.date(2026, 11, 17)).placements
+    assert p.list_name == PET and "brand page says" in p.reason
+    invented = new_session(cfg, conn, site)
+    invented.call("fetch_page", {"url": "https://brand.example/joy"})
+    assert invented.finish({**GOOD, "pet": True, "pet_evidence": "for cats"}, "x")["facts"]["pet"] is None
+
+
+def test_label_numbers_in_every_format():
+    from omega3.agent.session import parse_numbers
+    assert parse_numbers("Aceite de PESCADO 1.316,0 mg") == [1316.0]
+    assert parse_numbers("Concentrated fish Omega-3 triglycerides: 1,176.5 mg") == [3.0, 1176.5]
+    assert parse_numbers("fish oil concentrate 1.3 g") == [1.3] and parse_numbers("Fischöl 1,5 g") == [1.5]
+    assert parse_numbers("2 000 mg") == [2000.0]

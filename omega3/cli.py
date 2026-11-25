@@ -129,7 +129,10 @@ def cmd_agent_record(cfg, conn, args) -> dict:
     import json as _json
     from .agent.session import Session
     out = {}
+    from .agent.session import trace_path
     for product, decision in _json.loads(open(args.file, encoding="utf-8").read()).items():
+        if not trace_path(cfg, product).exists():
+            raise SystemExit(f"{product}: no trace; a decision needs the tool calls that support it")
         session = Session(cfg, conn, product, model="in-session", mode="in-session", resume=True)
         outcome = session.finish(decision, "decision recorded")
         out[product] = {"status": outcome["facts"]["status"], "form": outcome["facts"]["form"],

@@ -1,0 +1,33 @@
+{
+ "product_num": "IGLT0001",
+ "status": "verified",
+ "form": "rTG",
+ "form_source_url": "https://igennus.com/products/pharmepa-restore-epa-only-fish-oil-1000mg-epa-60-softgels",
+ "form_evidence": "Pharmepa Restore, 1000mg Pure EPA Omega-3 Fish Oil, rTG Form",
+ "oil_mg_per_capsule": null,
+ "oil_source_url": null,
+ "oil_evidence": null,
+ "serving_capsules": 2.0,
+ "servings_per_bottle": null,
+ "flavored": true,
+ "flavor_evidence": "High Absorption rTG Omega-3, Lemon Flavour",
+ "pet": null,
+ "pet_evidence": null,
+ "antioxidants": [],
+ "packaging": [],
+ "reasoning": "Brand page title: 'Pharmepa Restore, 1000mg Pure EPA Omega-3 Fish Oil, rTG Form'; listed as 'Lemon Flavour'. The description gives 500 mg EPA per softgel from a 90% EPA concentrate but no oil weight; deriving one from the percentage would be a calculation, not a label value.",
+ "sources_checked": [
+  "https://igennus.com",
+  "https://igennus.com/products/pharmepa-restore-epa-only-fish-oil-1000mg-epa-60-softgels",
+  "https://igennus.com/products/pharmepa-restore-epa-only-fish-oil-1000mg-epa-60-softgels.json"
+ ],
+ "page_hashes": {
+  "https://igennus.com/": "d6aaac85bc42da337502925f3f712043d58e259508e172939a8f56aa49e7ad37",
+  "https://igennus.com/products/pharmepa-restore-epa-only-fish-oil-1000mg-epa-60-softgels": "093498592243ab9ee8460e3f2fb66f24ece24d3063a7413fcda17fa297dc45d6",
+  "https://igennus.com/products/pharmepa-restore-epa-only-fish-oil-1000mg-epa-60-softgels.json": "f1c232f8ea8502761c089ab6e0f713bdf3777360068b9254140369af5e7033b2"
+ },
+ "model": "in-session",
+ "tool_calls": 3,
+ "cost_usd": 0.0,
+ "verified_at": "2026-11-25T02:13:18+00:00"
+}

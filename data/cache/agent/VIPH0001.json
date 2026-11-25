@@ -1,0 +1,29 @@
+{
+ "product_num": "VIPH0001",
+ "status": "unverified",
+ "form": null,
+ "form_source_url": null,
+ "form_evidence": null,
+ "oil_mg_per_capsule": null,
+ "oil_source_url": null,
+ "oil_evidence": null,
+ "serving_capsules": null,
+ "servings_per_bottle": null,
+ "flavored": null,
+ "flavor_evidence": null,
+ "pet": null,
+ "pet_evidence": null,
+ "antioxidants": [],
+ "packaging": [],
+ "reasoning": "Brand site visit did not reach a label for Prime Omega 3 Triple Strength.",
+ "sources_checked": [
+  "https://www.primeomega3.ro"
+ ],
+ "page_hashes": {
+  "https://www.primeomega3.ro/": "554084bc8f97843d637117aaf801b15c3e2fcde0de16ca656a9db11a2939a134"
+ },
+ "model": "in-session",
+ "tool_calls": 1,
+ "cost_usd": 0.0,
+ "verified_at": "2026-11-25T02:13:18+00:00"
+}

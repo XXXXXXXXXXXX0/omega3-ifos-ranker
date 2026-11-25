@@ -1,0 +1,29 @@
+{
+ "product_num": "BOWL0001",
+ "status": "unverified",
+ "form": null,
+ "form_source_url": null,
+ "form_evidence": null,
+ "oil_mg_per_capsule": null,
+ "oil_source_url": null,
+ "oil_evidence": null,
+ "serving_capsules": null,
+ "servings_per_bottle": null,
+ "flavored": null,
+ "flavor_evidence": null,
+ "pet": null,
+ "pet_evidence": null,
+ "antioxidants": [],
+ "packaging": [],
+ "reasoning": "Brand home page (biowellhealthcare.com) renders no product text.",
+ "sources_checked": [
+  "https://biowellhealthcare.com/"
+ ],
+ "page_hashes": {
+  "https://biowellhealthcare.com/": "b0c927d94614e7593931d9361e2c2452f685252e52e2281a23923f04d5e459f2"
+ },
+ "model": "in-session",
+ "tool_calls": 1,
+ "cost_usd": 0.0,
+ "verified_at": "2026-11-25T02:13:18+00:00"
+}

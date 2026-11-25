@@ -33,13 +33,15 @@ DECISION_SCHEMA = {
         "servings_per_bottle": {"type": ["number", "null"]},
         "flavored": {"type": ["boolean", "null"]},
         "flavor_evidence": {"type": ["string", "null"]},
+        "pet": {"type": ["boolean", "null"], "description": "true only if a fetched page shows the product is for animals"},
+        "pet_evidence": {"type": ["string", "null"]},
         "antioxidants": {"type": "array", "items": {"type": "string"}},
         "packaging": {"type": "array", "items": {"type": "string"}},
         "conflict": {"type": ["string", "null"], "description": "Describe any disagreement between sources. Non-null leaves the form unverified."},
         "reasoning": {"type": "string"},
     },
     "required": ["form", "form_source_url", "form_source_type", "form_evidence", "oil_mg_per_capsule", "oil_source_url",
-                 "oil_evidence", "serving_capsules", "servings_per_bottle", "flavored", "flavor_evidence", "antioxidants",
+                 "oil_evidence", "serving_capsules", "servings_per_bottle", "flavored", "flavor_evidence", "pet", "pet_evidence", "antioxidants",
                  "packaging", "conflict", "reasoning"],
     "additionalProperties": False,
 }
@@ -67,6 +69,20 @@ def _norm(text: str) -> str:
     text = text.replace("’", "'").replace("‘", "'").replace("“", '"').replace("”", '"')
     text = re.sub(r"[‐-―]", "-", text)
     return re.sub(r"\s+", " ", text).strip()
+
+
+def parse_numbers(text: str) -> list[float]:
+    """Numbers as a label prints them: 1,176.5 (English), 1.316,0 (European), 2 000 (spaced)."""
+    out = []
+    for raw in re.findall(r"\d{1,3}(?:[.,\u00a0 ]\d{3})+(?:[.,]\d+)?|\d+(?:[.,]\d+)?", text):
+        if re.fullmatch(r"\d{1,3}(?:\.\d{3})+(?:,\d+)?", raw):            # 1.316,0
+            value = raw.replace(".", "").replace(",", ".")
+        elif re.fullmatch(r"\d{1,3}(?:[,\u00a0 ]\d{3})+(?:\.\d+)?", raw):  # 1,176.5 / 2 000
+            value = re.sub(r"[,\u00a0 ]", "", raw)
+        else:                                                             # 1.3 or 1,5
+            value = raw.replace(",", ".")
+        out.append(float(value))
+    return out
 
 
 def trace_path(cfg, product_num: str) -> Path:
@@ -223,6 +239,7 @@ class Session:
         facts = {"status": "unverified", "form": None, "form_source_url": None, "form_evidence": None,
                  "oil_mg_per_capsule": None, "oil_source_url": None, "oil_evidence": None,
                  "serving_capsules": None, "servings_per_bottle": None, "flavored": None, "flavor_evidence": None,
+                 "pet": None, "pet_evidence": None,
                  "antioxidants": [], "packaging": [], "reasoning": str(decision.get("reasoning") or "")[:1000]}
 
         form = decision.get("form")
@@ -249,7 +266,7 @@ class Session:
             page = self._quote_page(decision.get("oil_evidence"), decision.get("oil_source_url"))
             low, high = self.cfg["validation"]["oil_mg_per_capsule"]
             serving = decision.get("serving_capsules") or 1
-            numbers = [float(n.replace(",", "")) for n in re.findall(r"\d[\d,]*\.?\d*", decision.get("oil_evidence") or "")]
+            numbers = parse_numbers(decision.get("oil_evidence") or "")
             expected = {round(oil * k, 3) for k in {1, serving}} | {round(oil * k / 1000, 3) for k in {1, serving}}
             if page is None:
                 notes.append("oil weight rejected: evidence quote not found on any fetched page")
@@ -265,6 +282,11 @@ class Session:
                 facts.update(flavored=bool(decision["flavored"]), flavor_evidence=decision["flavor_evidence"].strip()[:300])
             else:
                 notes.append("flavor rejected: evidence quote not found on any fetched page")
+        if decision.get("pet"):
+            if self._quote_page(decision.get("pet_evidence"), None):
+                facts.update(pet=True, pet_evidence=decision["pet_evidence"].strip()[:300])
+            else:
+                notes.append("pet rejected: evidence quote not found on any fetched page")
         all_text = _norm(" ".join(p["full_text"] for p in self.pages().values()))
         for key in ("antioxidants", "packaging"):
             for item in decision.get(key) or []:
@@ -285,7 +307,7 @@ class Session:
         if decision is None:
             facts = {"status": "unverified", "form": None, "form_source_url": None, "form_evidence": None, "oil_mg_per_capsule": None,
                      "oil_source_url": None, "oil_evidence": None, "serving_capsules": None, "servings_per_bottle": None,
-                     "flavored": None, "flavor_evidence": None, "antioxidants": [], "packaging": [],
+                     "flavored": None, "flavor_evidence": None, "pet": None, "pet_evidence": None, "antioxidants": [], "packaging": [],
                      "reasoning": f"no decision recorded ({stop_reason})"}
             notes = [f"stopped: {stop_reason}"]
         else:
@@ -303,7 +325,8 @@ class Session:
         self.trace.update(finished_at=now, decision_submitted=decision, validation=notes, result=facts, stop_reason=stop_reason)
         self.save()
         cache_path(self.cfg, self.product_num).write_text(json.dumps(record, ensure_ascii=False, indent=1), encoding="utf-8")
-        row = {**record, "flavored": None if facts["flavored"] is None else int(facts["flavored"])}
+        row = {**record, "flavored": None if facts["flavored"] is None else int(facts["flavored"]),
+               "pet": None if facts.get("pet") is None else int(facts["pet"])}
         db.upsert(self.conn, "label_facts", row, keys=("product_num",), keep=())
         self.conn.commit()
         return {"facts": facts, "notes": notes}
@@ -315,7 +338,8 @@ def restore_cache(cfg, conn) -> int:
     for path in sorted((cfg.data_dir / "cache" / "agent").glob("*.json")):
         record = json.loads(path.read_text(encoding="utf-8"))
         if conn.execute("SELECT 1 FROM products WHERE product_num = ?", (record["product_num"],)).fetchone():
-            row = {**record, "flavored": None if record["flavored"] is None else int(record["flavored"])}
+            row = {**record, "flavored": None if record["flavored"] is None else int(record["flavored"]),
+                   "pet": None if record.get("pet") is None else int(record["pet"])}
             db.upsert(conn, "label_facts", row, keys=("product_num",), keep=())
             count += 1
     conn.commit()

@@ -1,0 +1,31 @@
+{
+ "product_num": "IGLT0002",
+ "status": "unverified",
+ "form": null,
+ "form_source_url": null,
+ "form_evidence": null,
+ "oil_mg_per_capsule": null,
+ "oil_source_url": null,
+ "oil_evidence": null,
+ "serving_capsules": null,
+ "servings_per_bottle": null,
+ "flavored": null,
+ "flavor_evidence": null,
+ "pet": null,
+ "pet_evidence": null,
+ "antioxidants": [],
+ "packaging": [],
+ "reasoning": "Brand collection page does not show the Pure & Essential ULTRA EPA label; form and oil weight not found.",
+ "sources_checked": [
+  "https://igennus.com",
+  "https://igennus.com/collections/pure-essentials"
+ ],
+ "page_hashes": {
+  "https://igennus.com/": "d6aaac85bc42da337502925f3f712043d58e259508e172939a8f56aa49e7ad37",
+  "https://igennus.com/collections/pure-essentials": "b506b48cdec2e8b7ca235b4b81fb4866fc201360b799624674ea0e1c08e9fbf2"
+ },
+ "model": "in-session",
+ "tool_calls": 2,
+ "cost_usd": 0.0,
+ "verified_at": "2026-11-25T02:13:18+00:00"
+}

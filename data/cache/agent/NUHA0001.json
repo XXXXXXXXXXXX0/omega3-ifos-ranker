@@ -1,0 +1,33 @@
+{
+ "product_num": "NUHA0001",
+ "status": "unverified",
+ "form": null,
+ "form_source_url": null,
+ "form_evidence": null,
+ "oil_mg_per_capsule": null,
+ "oil_source_url": null,
+ "oil_evidence": null,
+ "serving_capsules": null,
+ "servings_per_bottle": null,
+ "flavored": null,
+ "flavor_evidence": null,
+ "pet": null,
+ "pet_evidence": null,
+ "antioxidants": [],
+ "packaging": [],
+ "reasoning": "Brand product page and its Shopify data have no label text (empty description).",
+ "sources_checked": [
+  "https://nuhaim.com/",
+  "https://nuhaim.com/products/epa-1000",
+  "https://nuhaim.com/products/epa-1000.json"
+ ],
+ "page_hashes": {
+  "https://nuhaim.com/": "c314bd0d4a23ede105bf3199374403cec9019605eabcbbc76cfb6f61689b1e86",
+  "https://nuhaim.com/products/epa-1000": "dbf869093e31885f1769adb7a5fa0f98e327dc1af9b2b8a596d9e1b87d75621f",
+  "https://nuhaim.com/products/epa-1000.json": "fe2e707079340aed6d8534b1062ae488efcf34d80ef96f9ac6faf398af70620b"
+ },
+ "model": "in-session",
+ "tool_calls": 3,
+ "cost_usd": 0.0,
+ "verified_at": "2026-11-25T02:13:18+00:00"
+}
