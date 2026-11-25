@@ -484,3 +484,61 @@ def test_product_without_epa_or_dha_parses_but_has_no_potency(cfg):
     d = derive(parsed, cfg)
     assert d["status"] == "ok" and d["epa_mg_cap"] is None and d["epa_dha_mg_cap"] is None and d["totox"] == 6.0
     assert parse_report(_doc([], GOOD_STABILITY)).error == "no potency rows found"
+
+
+@pytest.mark.parametrize("text,kind,count,expressed", [
+    ("mg per softgel as TG", "capsule", 1, "TG"), ("mg/2 Capsules as TG", "capsule", 2, "TG"), ("mg per sofgel as TG", "capsule", 1, "TG"),
+    ("mg / softgrl", "capsule", 1, None), ("mg per / softgel", "capsule", 1, None), ("mg / 1 chewable gel", "capsule", 1, None),
+    ("mg per softgel as EE", "capsule", 1, "EE"), ("mg / chewable", "other", 1, None), ("mg / serving", "other", 1, None),
+])
+def test_basis_variants_from_live_reports(text, kind, count, expressed):
+    basis = parse_basis(text)
+    assert (basis.kind, basis.count, basis.expressed_as) == (kind, count, expressed)
+
+
+def test_as_tg_unit_is_recorded_but_is_not_form_evidence(cfg):
+    parsed = parse_report(_doc(GOOD_POTENCY, GOOD_STABILITY, "mg per softgel as TG"))
+    d = derive(parsed, cfg)
+    assert d["status"] == "ok" and d["basis_expressed_as"] == "TG" and d["epa_mg_cap"] == 420
+    assert parsed.report_form is None                      # only an explicit "tested as ..." comment states the form
+
+
+def test_label_variants_from_live_reports():
+    assert match_label("TOTOX (Total Oxidation)")[0] == "totox" and match_label("Omega 3")[0] == "total_omega3"
+    assert match_label("Toal Arsenic")[0] == "arsenic"
+
+
+@pytest.mark.parametrize("text,expected", [
+    ("10 / 2028", dt.date(2028, 10, 31)), ("05/27/2028 (DD/MM/YY)", dt.date(2028, 5, 27)), ("27 - 05 - 2028", dt.date(2028, 5, 27)),
+])
+def test_expiry_variants_from_live_reports(text, expected):
+    assert parse_report_expiry(text) == expected
+
+
+def test_parser_version_change_triggers_re_extraction(cfg, conn, fixtures):
+    sha = _seed_report(cfg, conn, fixtures)["sha256"]
+    assert extract_all(cfg, conn, log=lambda *_: None)["parser_ok"] == 1
+    assert extract_all(cfg, conn, log=lambda *_: None).get("parser_ok", 0) == 0
+    conn.execute("UPDATE extractions SET parser_version = 0")
+    assert extract_all(cfg, conn, log=lambda *_: None)["parser_ok"] == 1
+
+
+def test_more_live_report_variants(cfg):
+    # Total omega-3 printed as % in a mg table becomes an area-% figure, not 93.3 mg.
+    potency = [["EPA", "340", "364", "Yes"], ["DHA", "170", "192", "Yes"], ["Total Omega-3", "90%", "93.3%", "Yes"]]
+    parsed = parse_report(_doc(potency, GOOD_STABILITY))
+    d = derive(parsed, cfg)
+    assert d["status"] == "ok" and d["total_omega3_orig"] is None and parsed.area_pct["total_omega3"]["result_pct"] == 93.3
+    # Footnote marks on compliance, area-percentage unit.
+    stars = [["EPA", "70 %", "70 %", "YES*"], ["DHA", "23 %", "23 %", "YES*"]]
+    d = derive(parse_report(_doc(stars, GOOD_STABILITY, "area percentage (%)")), cfg)
+    assert d["status"] == "ok" and (d["epa_mg_g"], d["dha_mg_g"]) == (700, 230)
+    # Merged header cell and a unit with the slash missing.
+    for unit, count in (("Specification mg per cap", 1), ("mg 2 softgels", 2)):
+        assert (parse_report(_doc(GOOD_POTENCY, GOOD_STABILITY, unit)).basis.count) == count, unit
+    # EPA+DHA a little over total omega-3 is method noise; far over is a parse error.
+    slight = [["EPA", "225", "311", "Yes"], ["DHA", "750", "837", "Yes"], ["Total Omega-3", "1050", "1109", "Yes"]]
+    d = derive(parse_report(_doc(slight, GOOD_STABILITY)), cfg)
+    assert d["status"] == "ok" and any("method noise" in w for w in d["warnings"])
+    gross = [["EPA", "180", "1989", "Yes"], ["DHA", "120", "132", "Yes"], ["Total Omega-3", "325", "397", "Yes"]]
+    assert derive(parse_report(_doc(gross, GOOD_STABILITY)), cfg)["status"] == "failed"

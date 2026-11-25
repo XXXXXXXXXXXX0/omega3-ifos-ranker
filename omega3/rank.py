@@ -11,6 +11,7 @@ from collections import Counter
 from dataclasses import dataclass, field
 
 from .extract.terms import CONTAMINANTS, TG_FAMILY, classify_form
+from .extract.units import mass_fraction
 from .scrape.listing import decide_format
 
 # List names. A product lands in exactly one.
@@ -30,16 +31,44 @@ class Contaminant:
     limit_value: float | None
     limit_op: str | None
     compliance: str | None
+    result_op: str | None = None
+    result_unit: str | None = None
+    limit_unit: str | None = None
+
+    def comparable(self) -> tuple[float, float] | None:
+        """(result, limit) in the same unit, or None when they cannot be compared:
+        a value is missing, the printed limit is zero (a misprint: nothing could
+        pass it), or the units are unknown or do not convert."""
+        if self.result_value is None or self.limit_value is None or self.limit_value <= 0:
+            return None
+        result, limit = self.result_value, self.limit_value
+        if self.result_unit and self.limit_unit:
+            r_scale, l_scale = mass_fraction(self.result_unit), mass_fraction(self.limit_unit)
+            if r_scale is None or l_scale is None:
+                if self.result_unit.replace(" ", "").lower() != self.limit_unit.replace(" ", "").lower():
+                    return None
+            else:
+                result = result * r_scale / l_scale              # mg/kg vs ppm, ppt vs ppb
+        return result, limit
+
+    def censored_above_limit(self) -> bool:
+        """'<0.1 ppm' against a 0.05 ppm limit: the lab's detection limit is above
+        IFOS's limit, so the number cannot show a pass or a fail."""
+        pair = self.comparable()
+        return bool(pair and self.result_op == "<" and pair[0] > pair[1])
 
     def passes(self) -> bool | None:
-        """True/False against IFOS's stated limit; None when it cannot be judged."""
+        """True/False against IFOS's stated limit; None when it cannot be judged.
+        A printed number over the printed limit fails even if IFOS marked it
+        compliant (DECISIONS D-16). Where the number cannot decide (misprint,
+        unconvertible unit, detection limit above the limit) IFOS's verdict is used."""
+        pair = self.comparable()
         numeric = None
-        # A printed limit of zero is a misprint, not a limit: nothing could pass it.
-        if self.result_value is not None and self.limit_value is not None and self.limit_value > 0:
-            numeric = self.result_value < self.limit_value if self.limit_op == "<" else self.result_value <= self.limit_value
+        if pair and not self.censored_above_limit():
+            numeric = pair[0] < pair[1] if self.limit_op == "<" else pair[0] <= pair[1]
         if self.compliance == "no" or numeric is False:
             return False
-        if self.compliance == "yes" or numeric is True:
+        if numeric is True or self.compliance == "yes":
             return True
         return None
 
@@ -55,6 +84,7 @@ class Batch:
     basis_text: str | None = None
     basis_kind: str | None = None
     basis_count: float | None = None
+    basis_expressed_as: str | None = None
     epa_mg_cap: float | None = None
     dha_mg_cap: float | None = None
     total_omega3_mg_cap: float | None = None
@@ -296,6 +326,10 @@ def resolve_concentration(product: Product, batch: Batch, cfg) -> dict:
     bounds = cfg["validation"]["oil_mg_per_capsule"]
     sources = cfg["oil_weight"]["sources"]
 
+    if batch.basis_kind == "percent" and "ifos_area_pct" not in sources:
+        # Area % is a share of the fatty acids, not mg per g of oil: only an estimate (P-6).
+        out.update(mg_g=None, mg_cap=None, problem="potency reported only as area %, not mg per capsule or per gram")
+        return out
     if out["mg_g"] is not None:                         # report already per gram of oil
         if label_oil and "label" in sources:
             out.update(oil_mg=label_oil, oil_source="label", mg_cap=round(out["mg_g"] * label_oil / 1000, 1))
@@ -392,9 +426,9 @@ def place(product: Product, cfg, today: dt.date) -> Placement:
         absent = [a for a in CONTAMINANTS if a not in reported]
         if absent:
             p.flags.append("contaminants not reported: " + ", ".join(absent))
-        unchecked = [c.label for c in batch.contaminants if c.compliance == "yes" and (c.result_value is None or not (c.limit_value or 0) > 0)]
+        unchecked = [c.label for c in batch.contaminants if c.compliance == "yes" and (c.comparable() is None or c.censored_above_limit())]
         if unchecked:
-            p.flags.append("compliance taken from IFOS's verdict only (number or limit misprinted): " + ", ".join(unchecked))
+            p.flags.append("compliance taken from IFOS's verdict only (number, unit or detection limit cannot decide): " + ", ".join(unchecked))
         if batch.totox_source == "computed":
             p.flags.append("TOTOX computed as 2*PV+AV")
         if set(batch.censored) & {"pv", "av", "totox"}:
@@ -443,7 +477,9 @@ def place(product: Product, cfg, today: dt.date) -> Placement:
             p.epa_dha_mg_serving = round(p.epa_dha_mg_cap * p.serving_capsules, 1)
         target = cfg["scoring"]["target_epa_dha_mg"]
         if conc["mg_cap"] is None and conc["mg_g"] is None:
-            if batch.basis_kind in ("capsule", "gram", "percent"):
+            if conc["problem"]:
+                reasons.append((OIL_UNAVAILABLE, f"oil weight unavailable: {conc['problem']}"))
+            elif batch.basis_kind in ("capsule", "gram", "percent"):
                 reasons.append((INCOMPLETE, "no EPA or DHA result"))
         elif not p.epa_dha_mg_g:
             detail = conc["problem"] or "capsule oil weight not found on the label"

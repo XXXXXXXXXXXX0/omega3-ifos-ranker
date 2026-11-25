@@ -48,7 +48,7 @@ def derive(parsed: Parsed, cfg, listing_lot: str | None = None, listing_expiry: 
         return out
 
     basis = parsed.basis
-    out.update(basis_text=basis.text, basis_kind=basis.kind, basis_count=basis.count)
+    out.update(basis_text=basis.text, basis_kind=basis.kind, basis_count=basis.count, basis_expressed_as=basis.expressed_as)
     for name in ("epa", "dha", "total_omega3", "epa_dha"):
         value, _ = _result(parsed, name)
         out[f"{name}_orig"] = value
@@ -105,8 +105,12 @@ def derive(parsed: Parsed, cfg, listing_lot: str | None = None, listing_expiry: 
         if out[f"epa_dha_{unit}"] is not None and not (bounds[0] <= out[f"epa_dha_{unit}"] <= bounds[1]):
             problems.append(f"implausible EPA+DHA {out[f'epa_dha_{unit}']:g} ({unit.replace('_', ' per ')})")
     epa_dha = (out["epa_orig"] or 0) + (out["dha_orig"] or 0)
-    if out["total_omega3_orig"] is not None and epa_dha > out["total_omega3_orig"] * 1.02 + 1:
-        problems.append(f"EPA+DHA {epa_dha:g} exceeds total omega-3 {out['total_omega3_orig']:g}")
+    total = out["total_omega3_orig"]
+    tolerance = v["epa_dha_over_total_tolerance"]
+    if total is not None and epa_dha > total * (1 + tolerance) + 1:
+        problems.append(f"EPA+DHA {epa_dha:g} exceeds total omega-3 {total:g}")
+    elif total is not None and epa_dha > total:
+        warnings.append(f"EPA+DHA {epa_dha:g} is slightly above total omega-3 {total:g} (within {tolerance:.0%}: method noise)")
     if out["epa_dha_orig"] is not None and out["epa_orig"] is not None and out["dha_orig"] is not None \
             and abs(out["epa_dha_orig"] - epa_dha) > 0.02 * epa_dha + 1:
         warnings.append(f"combined EPA+DHA row {out['epa_dha_orig']:g} differs from EPA + DHA = {epa_dha:g}")

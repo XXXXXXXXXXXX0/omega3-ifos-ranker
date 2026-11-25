@@ -1,0 +1,111 @@
+{
+ "sha256": "ab80bb6d935344f61c76a2a43c8ee262d22b124f67acc1bb7d5881258f2e8b14",
+ "model": "in-session",
+ "created": "2026-11-25T01:40:08+00:00",
+ "usage": null,
+ "payload": {
+  "sha256": "ab80bb6d935344f61c76a2a43c8ee262d22b124f67acc1bb7d5881258f2e8b14",
+  "is_batch_report": true,
+  "lot": "6EA33",
+  "expiry_text": "29/06/2029",
+  "directions": "1 softgel three times a day",
+  "basis_text": "mg / softgel",
+  "rows": [
+   {
+    "analyte": "epa",
+    "label_raw": "EPA",
+    "spec_text": "171",
+    "result_text": "183",
+    "compliance": "Yes"
+   },
+   {
+    "analyte": "dha",
+    "label_raw": "DHA",
+    "spec_text": "114",
+    "result_text": "138",
+    "compliance": "Yes"
+   },
+   {
+    "analyte": "pcbs",
+    "label_raw": "PCBs",
+    "spec_text": "<= 45 ppb",
+    "result_text": "5.4 ppb",
+    "compliance": "Yes"
+   },
+   {
+    "analyte": "dioxins_furans",
+    "label_raw": "Dioxins and Furans",
+    "spec_text": "<= 1 ppt WHO-TEQ (2005)",
+    "result_text": "0.152 ppt WHO-TEQ (2005)",
+    "compliance": "Yes"
+   },
+   {
+    "analyte": "dioxin_like_pcbs",
+    "label_raw": "Dioxin-Like PCBs",
+    "spec_text": "<= 1.5 ppt WHO-TEQ (2005)",
+    "result_text": "0.447 ppt WHO-TEQ (2005)",
+    "compliance": "Yes"
+   },
+   {
+    "analyte": "acid_value",
+    "label_raw": "Acid Value",
+    "spec_text": "<= 3 mg KOH/g",
+    "result_text": "0.77 mg KOH/g",
+    "compliance": "Yes"
+   },
+   {
+    "analyte": "pv",
+    "label_raw": "Peroxide",
+    "spec_text": "<= 5 meq/kg",
+    "result_text": "0.30 meq/kg",
+    "compliance": "Yes"
+   },
+   {
+    "analyte": "av",
+    "label_raw": "Anisidine",
+    "spec_text": "<= 20",
+    "result_text": "7.9",
+    "compliance": "Yes"
+   },
+   {
+    "analyte": "totox",
+    "label_raw": "TOTOX",
+    "spec_text": "<= 19.5",
+    "result_text": "8.5",
+    "compliance": "Yes"
+   },
+   {
+    "analyte": "mercury",
+    "label_raw": "Mercury",
+    "spec_text": "<= 0.1 ppm",
+    "result_text": "<0.0125 ppm",
+    "compliance": "Yes"
+   },
+   {
+    "analyte": "cadmium",
+    "label_raw": "Cadmium",
+    "spec_text": "<= 0.1 ppm",
+    "result_text": "<0.0017 ppm",
+    "compliance": "Yes"
+   },
+   {
+    "analyte": "lead",
+    "label_raw": "Lead",
+    "spec_text": "<= 0.05 ppm",
+    "result_text": "<0.0067 ppm",
+    "compliance": "Yes"
+   },
+   {
+    "analyte": "arsenic",
+    "label_raw": "Inorganic Arsenic",
+    "spec_text": "<= 0.1 ppm",
+    "result_text": "<0.02 ppm",
+    "compliance": "Yes"
+   }
+  ],
+  "comments": [
+   "ALA (Omega 3) Specification: 300mg/softgel, Result: 354mg/softgel ..."
+  ],
+  "notes": "Peroxide cell is printed '0. 30 meq/kg' (stray space). Read as 0.30: the report's own TOTOX 8.5 = 2 x 0.30 + 7.9 confirms it."
+ }
+}

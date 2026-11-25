@@ -67,6 +67,7 @@ CREATE TABLE IF NOT EXISTS extractions (
     sha256          TEXT NOT NULL,
     template        TEXT NOT NULL,             -- T1 | T1-2024 | RM | unknown
     method          TEXT NOT NULL,             -- parser | llm
+    parser_version  INTEGER,
     model           TEXT,                      -- for method=llm
     status          TEXT NOT NULL,             -- ok | no_results | failed
     error           TEXT,
@@ -78,6 +79,7 @@ CREATE TABLE IF NOT EXISTS extractions (
     basis_text      TEXT,                      -- e.g. "mg / 2 softgels"
     basis_kind      TEXT,                      -- capsule | gram | ml | other
     basis_count     REAL,                      -- 2 for "mg / 2 softgels"
+    basis_expressed_as TEXT,                   -- "TG" for "mg per softgel as TG" (a convention, not proof of form)
     epa_orig        REAL, dha_orig REAL, total_omega3_orig REAL, epa_dha_orig REAL,
     epa_spec        REAL, dha_spec REAL, total_omega3_spec REAL, epa_dha_spec REAL,
     epa_mg_cap      REAL, dha_mg_cap REAL, total_omega3_mg_cap REAL, epa_dha_mg_cap REAL,

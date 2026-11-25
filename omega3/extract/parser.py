@@ -20,14 +20,20 @@ import re
 from dataclasses import asdict, dataclass, field
 
 from .pdftext import PdfDoc
+
+# Bump when parsing or derivation changes, so stored extractions are redone on the next run.
+PARSER_VERSION = 5
 from .terms import ANALYTES, classify_form, match_label
 from .units import Basis, find_quantities, parse_basis
 
-COMPLIANCE_RE = re.compile(r"^(yes|no|pass|passed|fail|failed|n/?a|-+)\.?$", re.I)
+COMPLIANCE_RE = re.compile(r"^(yes|no|pass|passed|fail|failed|n/?a|-+)\.?\s*[*†‡]*$", re.I)   # "YES*": footnote mark
 # Result cells that are legitimately non-numeric.
 NON_NUMERIC_RE = re.compile(
     r"^(nd|n\.d\.|not\s+detected|none\s+detected|n/?a|not\s+applicable|not\s+tested|nt|blq|bdl|<\s*loq|<\s*lod|-+|—|tbd|pending)\.?$", re.I)
-BASIS_CELL_RE = re.compile(r"^(?:(?:mg|milligrams?)\s*(?:/|per\b).*|g\s*(?:/|per\b)\s*\d+\s*g|(?:area\s*)?%)$", re.I)
+BASIS_CELL_RE = re.compile(
+    r"^(?:(?:specification|batch\s+results?)\s+)?"                       # "Specification mg per cap" (merged header cell)
+    r"(?:(?:mg|milligrams?)\s*(?:/|per\b|\s(?=\d)).*|g\s*(?:/|per\b)\s*\d+\s*g|(?:area\s*)?%|area\s+percentage\s*\(?%?\)?)$", re.I)
+_BASIS_PREFIX = re.compile(r"^(?:specification|batch\s+results?)\s+", re.I)
 LOT_RE = re.compile(r"Batch\s*/\s*Lot\s*#\s*:\s*(.+?)\s*$", re.I | re.M)
 EXPIRY_RE = re.compile(r"Expiry\s+Date\s*:\s*(.+?)\s*$", re.I | re.M)
 DIRECTION_RE = re.compile(r"Directions?\s*:\s*(.*)$", re.I)
@@ -107,7 +113,7 @@ def _clean(cell) -> str:
 
 def _compliance(token: str | None) -> str | None:
     return {"yes": "yes", "pass": "yes", "passed": "yes", "no": "no", "fail": "no", "failed": "no"}.get(
-        (token or "").lower().rstrip("."))
+        re.sub(r"[\s.*†‡]+$", "", (token or "").lower()))
 
 
 def _fill(row: Row, role: str, cell: str) -> str | None:
@@ -162,10 +168,10 @@ def _parse_table(table: list[list], out: Parsed, errors: list[str]) -> None:
             continue
         hit = match_label(cells[0][1])
         # The label cell must be the label alone (a trailing footnote mark is fine).
-        if hit and re.fullmatch(r"[\s*†‡:()0-9a-z]{0,4}", hit[2], re.I):
+        if hit and (re.fullmatch(r"[\s*†‡:()0-9a-z]{0,4}", hit[2], re.I) or re.fullmatch(r"\([^()]{2,40}\)", hit[2])):
             data_rows.append((hit[0], hit[1], cells[1:]))
             continue
-        basis_cells = [c for _, c in cells if BASIS_CELL_RE.match(c)]
+        basis_cells = [_BASIS_PREFIX.sub("", c) for _, c in cells if BASIS_CELL_RE.match(c)]
         if basis_cells and out.basis is None:
             parsed = [parse_basis(c) for c in basis_cells]
             if parsed[-1] is None:
@@ -196,6 +202,13 @@ def _parse_table(table: list[list], out: Parsed, errors: list[str]) -> None:
             continue
         row_errors = [e for e in (_fill(row, role, cell) for role, cell in assigned) if e]
         out.warnings.extend(f"{label}: {m}" for m in row.misprints)
+        if (not row_errors and row.category == "potency" and row.result_unit and row.result_unit.startswith("%")
+                and out.basis is not None and out.basis.kind != "percent"):
+            # "Total Omega-3 | 90% | 93.3%" in a mg-per-softgel table: a share of the oil, not a mass.
+            out.area_pct[analyte] = {"spec_mg": None, "spec_pct": row.spec_value if (row.spec_unit or "").startswith("%") else None,
+                                     "result_mg": None, "result_pct": row.result_value, "basis": None}
+            out.warnings.append(f"{label} reported as % in a '{out.basis.text}' table: kept as area %, not as mg")
+            continue
         if row_errors:
             errors.append(f"{label}: " + "; ".join(row_errors))
         elif analyte in out.rows:

@@ -383,3 +383,21 @@ def test_queue_runs_in_bound_order_and_skips_cached(cfg, conn, seeded, site):
     from omega3.rank import FLAVORED, rank_products
     [p] = rank_products(load_products(conn), cfg, dt.date(2026, 11, 17)).of(FLAVORED)       # the label says lemon flavor
     assert p.oil_source == "label" and p.score == pytest.approx(8.6 * 600 / 499, abs=0.01)
+
+
+# --- in-session opening moves ------------------------------------------------------------------
+def test_explore_spends_budgeted_calls_and_digest_is_short(cfg, conn, seeded, site):
+    from omega3.agent.explore import digest, explore, normalize_site
+    assert normalize_site("brand.example/") == "https://brand.example/" and normalize_site("http://x.example") == "http://x.example"
+    assert normalize_site(None) is None and normalize_site("see our site") is None
+    site.pages["https://brand.example"] = BRAND_PAGE.replace(b'href="/about"', b'href="/products/joy-fish-oil-concentrate"')
+    site.pages["https://brand.example/products/joy-fish-oil-concentrate"] = BRAND_PAGE
+    out = explore(cfg, conn, site, "BEBI0001")
+    assert out["errors"] == [] and len(out["pages"]) == 2 and out["calls_left"] == 6        # two ordinary tool calls
+    first = out["pages"][0]
+    assert any("re-esterified triglyceride (rTG) form" in s for s in first["form"])
+    assert any("Fish oil concentrate 1,200 mg" in s for s in first["oil"]) and any("tocopherols" in s for s in first["extras"])
+    assert sum(len(s) for part in ("form", "oil", "extras") for s in first[part]) < 2500 < first["chars"]
+    trace = json.loads(trace_path(cfg, "BEBI0001").read_text())
+    assert [c["tool"] for c in trace["calls"]] == ["fetch_page", "fetch_page"] and trace["mode"] == "in-session"
+    assert digest({"url": "u", "full_text": "Nothing relevant here."})["form"] == []

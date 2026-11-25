@@ -16,7 +16,8 @@ ANALYTES: dict[str, tuple[str, list[str]]] = {
     "epa_dha": ("potency", ["EPA + DHA", "EPA+DHA", "EPA +DHA", "EPA+ DHA", "EPA & DHA", "EPA and DHA", "DHA + EPA", "DHA+EPA",
                             "EPA/DHA", "EPA + DAH", "Total EPA + DHA", "Total EPA+DHA"]),
     "total_omega3": ("potency", ["Total Omega 3", "Total Omega-3", "Total Omega3", "Total n-3", "Total Omega 3s",
-                                 "Total Omega-3s", "Total Omega-3 Fatty Acids", "Total Omega 3 Fatty Acids"]),
+                                 "Total Omega-3s", "Total Omega-3 Fatty Acids", "Total Omega 3 Fatty Acids",
+                                 "Omega 3", "Omega-3", "Omega3"]),   # bare "Omega 3" as a potency row is the total
     "pcbs": ("purity", ["PCBs", "PCB", "Total PCBs", "Total PCB"]),
     "dioxins_furans": ("purity", ["Dioxins and Furans", "Dioxins & Furans", "Dioxin and Furans", "Dioxins/Furans", "PCDD/F", "PCDD/Fs"]),
     "dioxin_like_pcbs": ("purity", ["Dioxin-Like PCBs", "Dioxin Like PCBs", "Dioxin-Like PCB", "DL-PCBs", "DL PCBs"]),

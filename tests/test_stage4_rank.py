@@ -230,15 +230,25 @@ def test_missing_oil_weight_is_excluded_not_guessed(cfg):
     assert absurd.list_name == OIL_UNAVAILABLE and "outside the plausible range" in absurd.reason
 
 
-def test_oil_weight_estimated_from_ifos_area_percent(cfg):
+def test_oil_weight_from_area_percent_is_off_by_default(cfg):
+    area = {"epa": {"result_pct": 40.0}, "dha": {"result_pct": 20.0}}
+    assert cfg["oil_weight"]["sources"] == ["label"]                             # the spec's rule: label only
+    assert placed(cfg, label=None, batches=[batch(area_pct=area)]).list_name == OIL_UNAVAILABLE
+    pct = batch(basis_text="%", basis_kind="percent", epa_mg_cap=None, dha_mg_cap=None, total_omega3_mg_cap=None, epa_mg_g=400, dha_mg_g=200)
+    p = placed(cfg, label=None, batches=[pct])
+    assert p.list_name == OIL_UNAVAILABLE and "only as area %" in p.reason
+    cfg["oil_weight"]["sources"] = ["label", "ifos_area_pct"]
+    assert placed(cfg, label=None, batches=[pct]).list_name == RANKED
+
+
+def test_oil_weight_estimated_from_ifos_area_percent_when_enabled(cfg):
+    cfg["oil_weight"]["sources"] = ["label", "ifos_area_pct"]
     area = {"epa": {"result_pct": 40.0}, "dha": {"result_pct": 20.0}}
     p = placed(cfg, label=None, batches=[batch(area_pct=area)])
     assert p.list_name == RANKED and p.oil_source == "ifos_area_pct" and p.oil_mg_per_capsule == 1000
     assert "oil weight estimated from IFOS area %" in p.flags
     labelled = placed(cfg, batches=[batch(area_pct=area)], label=LabelFacts(status="verified", oil_mg_per_capsule=1100))
     assert labelled.oil_source == "label" and labelled.oil_mg_per_capsule == 1100       # label wins
-    cfg["oil_weight"]["sources"] = ["label"]
-    assert placed(cfg, label=None, batches=[batch(area_pct=area)]).list_name == OIL_UNAVAILABLE
 
 
 def test_missing_epa_or_dha_is_null_and_labelled(cfg):
@@ -441,3 +451,23 @@ def test_misprinted_limit_or_number_falls_back_to_ifos_verdict(cfg):
 def test_product_with_no_epa_or_dha_is_incomplete(cfg):
     p = placed(cfg, batches=[batch(epa_mg_cap=None, dha_mg_cap=None, total_omega3_mg_cap=None)])
     assert (p.list_name, p.reason) == (INCOMPLETE, "no EPA or DHA result")
+
+
+def test_contaminant_units_are_converted_before_comparing():
+    mgkg = Contaminant("arsenic", "Inorganic Arsenic", "0.130 mg/kg", 0.130, "<= 0.1 ppm", 0.1, "<=", "yes", result_unit="mg/kg", limit_unit="ppm")
+    assert mgkg.passes() is False                                        # mg/kg is ppm: 0.13 is over 0.1
+    ppt_vs_ppb = Contaminant("pcbs", "PCBs", "40 ppt", 40.0, "<= 45 ppb", 45.0, "<=", "yes", result_unit="ppt", limit_unit="ppb")
+    assert ppt_vs_ppb.comparable() == (pytest.approx(0.04), 45.0) and ppt_vs_ppb.passes() is True
+    teq = Contaminant("dioxins_furans", "Dioxins and Furans", "0.3 ppt WHO-TEQ", 0.3, "<= 1 ppt", 1.0, "<=", "yes", result_unit="ppt WHO-TEQ", limit_unit="ppt")
+    assert teq.passes() is True
+    odd = Contaminant("lead", "Lead", "0.2 widgets", 0.2, "<= 0.05 ppm", 0.05, "<=", "yes", result_unit="widgets", limit_unit="ppm")
+    assert odd.comparable() is None and odd.passes() is True            # cannot convert: IFOS's verdict decides
+
+
+def test_detection_limit_above_ifos_limit_uses_the_verdict_and_is_flagged(cfg):
+    lead = Contaminant("lead", "Lead", "<0.1 ppm", 0.1, "<= 0.05 ppm", 0.05, "<=", "yes", result_op="<", result_unit="ppm", limit_unit="ppm")
+    assert lead.censored_above_limit() and lead.passes() is True
+    p = placed(cfg, batches=[batch(contaminants=[lead])])
+    assert p.list_name == RANKED and any("detection limit" in f and "Lead" in f for f in p.flags)
+    measured = Contaminant("lead", "Lead", "0.067 ppm", 0.067, "<= 0.05 ppm", 0.05, "<=", "yes", result_unit="ppm", limit_unit="ppm")
+    assert placed(cfg, batches=[batch(contaminants=[measured])]).list_name == EXCLUDED   # a measured value over the limit fails

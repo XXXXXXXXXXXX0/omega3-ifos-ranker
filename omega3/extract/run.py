@@ -8,7 +8,7 @@ from collections import Counter
 from .. import db
 from . import llm
 from .derive import derive
-from .parser import Parsed, parse_report
+from .parser import PARSER_VERSION, Parsed, parse_report
 from .pdftext import PdfDoc
 
 MEASUREMENT_COLS = ("category", "analyte", "label_raw", "spec_text", "spec_op", "spec_value", "spec_unit",
@@ -25,9 +25,9 @@ def pending_extractions(conn) -> list:
         """
         SELECT r.filename, r.sha256 FROM reports r
         LEFT JOIN extractions e ON e.filename = r.filename AND e.sha256 = r.sha256
-        WHERE r.status = 'ok' AND (e.filename IS NULL OR e.status = 'failed')
+        WHERE r.status = 'ok' AND (e.filename IS NULL OR e.status = 'failed' OR e.parser_version IS NOT ?)
         ORDER BY r.filename
-        """
+        """, (PARSER_VERSION,)
     ).fetchall()
 
 
@@ -39,7 +39,8 @@ def _listing_context(conn, filename: str) -> tuple[str | None, dt.date | None]:
 
 
 def store(conn, filename: str, sha: str, parsed: Parsed, derived: dict, method: str, model: str | None) -> None:
-    row = {"filename": filename, "sha256": sha, "method": method, "model": model, "extracted_at": db.now_iso(), **derived}
+    row = {"filename": filename, "sha256": sha, "method": method, "model": model, "parser_version": PARSER_VERSION,
+           "extracted_at": db.now_iso(), **derived}
     conn.execute("DELETE FROM extractions WHERE filename=?", (filename,))
     conn.execute("DELETE FROM measurements WHERE filename=?", (filename,))
     conn.execute("DELETE FROM unrecognized_labels WHERE filename=?", (filename,))

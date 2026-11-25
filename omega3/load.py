@@ -35,7 +35,8 @@ def load_products(conn) -> list[Product]:
     for r in conn.execute(f"SELECT * FROM measurements WHERE analyte IN ({marks})", CONTAMINANTS):
         contaminants.setdefault(r["filename"], []).append(Contaminant(
             analyte=r["analyte"], label=r["label_raw"], result_text=r["result_text"], result_value=r["result_value"],
-            limit_text=r["spec_text"], limit_value=r["spec_value"], limit_op=r["spec_op"], compliance=r["compliance"]))
+            limit_text=r["spec_text"], limit_value=r["spec_value"], limit_op=r["spec_op"], compliance=r["compliance"],
+            result_op=r["result_op"], result_unit=r["result_unit"], limit_unit=r["spec_unit"]))
 
     batches: dict[str, list[Batch]] = {}
     rows = conn.execute(
@@ -52,7 +53,7 @@ def load_products(conn) -> list[Product]:
         batches.setdefault(r["product_num"], []).append(Batch(
             lot=r["lot"], expiry_date=_date(r["expiry_date"]), report_filename=r["report_filename"],
             report_date=_date(r["report_date"]), status=r["status"], method=r["method"],
-            basis_text=r["basis_text"], basis_kind=r["basis_kind"], basis_count=r["basis_count"],
+            basis_text=r["basis_text"], basis_kind=r["basis_kind"], basis_count=r["basis_count"], basis_expressed_as=r["basis_expressed_as"],
             epa_mg_cap=r["epa_mg_cap"], dha_mg_cap=r["dha_mg_cap"], total_omega3_mg_cap=r["total_omega3_mg_cap"],
             epa_mg_g=r["epa_mg_g"], dha_mg_g=r["dha_mg_g"], total_omega3_mg_g=r["total_omega3_mg_g"],
             epa_dha_mg_cap=r["epa_dha_mg_cap"], epa_dha_mg_g=r["epa_dha_mg_g"],

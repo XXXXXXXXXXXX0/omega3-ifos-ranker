@@ -99,6 +99,31 @@ def cmd_agent_tool(cfg, conn, args) -> dict:
     return {"product": args.product, "calls_used": session.calls_used, "calls_left": session.calls_left}
 
 
+def cmd_agent_explore(cfg, conn, args) -> dict:
+    """In-session: standard first fetches for one or more products (comma-separated), with a short digest."""
+    import json as _json
+    from .agent.explore import explore
+    http = _agent_http(cfg)
+    for product in args.product.split(","):
+        print(_json.dumps(explore(cfg, conn, http, product.strip()), ensure_ascii=False, indent=1))
+    return {"http_requests": http.request_count}
+
+
+def cmd_agent_fetch(cfg, conn, args) -> dict:
+    """In-session: fetch one page for a product and print the digest (one budgeted tool call)."""
+    import json as _json
+    from .agent import tools
+    from .agent.explore import digest
+    from .agent.session import Session
+    session = Session(cfg, conn, args.product, model="in-session", mode="in-session", http=_agent_http(cfg), resume=True)
+    try:
+        session.call("fetch_page", {"url": args.args})
+        print(_json.dumps(digest(session.trace["calls"][-1]["page"], limit=2400), ensure_ascii=False, indent=1))
+    except tools.ToolError as exc:
+        print(str(exc))
+    return {"product": args.product, "calls_left": session.calls_left}
+
+
 def cmd_agent_record(cfg, conn, args) -> dict:
     """In-session: validate and store decisions (a JSON object keyed by product number)."""
     import json as _json
@@ -143,6 +168,7 @@ def cmd_top(cfg, conn, args) -> dict:
 COMMANDS = {"crawl": cmd_crawl, "fetch": cmd_fetch, "extract": cmd_extract, "rank": cmd_rank, "run": cmd_run, "top": cmd_top,
             "llm-queue": cmd_llm_queue, "llm-record": cmd_llm_record,
             "agent-queue": cmd_agent_queue, "agent-start": cmd_agent_start, "agent-tool": cmd_agent_tool,
+            "agent-explore": cmd_agent_explore, "agent-fetch": cmd_agent_fetch,
             "agent-record": cmd_agent_record, "agent-run": cmd_agent_run}
 
 

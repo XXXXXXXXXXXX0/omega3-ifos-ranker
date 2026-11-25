@@ -115,7 +115,8 @@ class Session:
             self.save()
         row = conn.execute("SELECT name, brand FROM products WHERE product_num = ?", (product_num,)).fetchone()
         text = f"{row['name']} {row['brand'] or ''}".lower() if row else ""
-        self.product_words = {w for w in re.findall(r"[a-z0-9]{4,}", text) if w not in {"omega", "fish", "with", "plus"}}
+        common = {"omega", "fish", "oil", "with", "plus", "the", "and", "for", "mg", "ultra", "pure", "high", "softgels", "softgel", "capsules"}
+        self.product_words = {w for w in re.findall(r"[a-z0-9]{3,}", text) if w not in common}
 
     # --- budget ---------------------------------------------------------------
     @property
@@ -162,7 +163,7 @@ class Session:
                 page = tools.fetch_page(self.cfg, self.http, args["url"], self.product_words)
                 shown = {k: page[k] for k in ("url", "final_url", "title", "text", "links")}
                 output = tools.UNTRUSTED_NOTE + "\n" + json.dumps(shown, ensure_ascii=False)
-                return self._log(tool, args, output, {"page": {"url": page["final_url"], "requested_url": page["url"],
+                return self._log(tool, args, output, {"page": {"url": page["final_url"], "requested_url": page["url"], "title": page["title"],
                                                                "sha256": page["sha256"], "full_text": page["full_text"]}})
             if tool == "read_report":
                 return self._log(tool, args, tools.read_report(self.cfg, self.conn, args.get("product_num") or self.product_num, args.get("lot")))
