@@ -471,3 +471,11 @@ def test_detection_limit_above_ifos_limit_uses_the_verdict_and_is_flagged(cfg):
     assert p.list_name == RANKED and any("detection limit" in f and "Lead" in f for f in p.flags)
     measured = Contaminant("lead", "Lead", "0.067 ppm", 0.067, "<= 0.05 ppm", 0.05, "<=", "yes", result_unit="ppm", limit_unit="ppm")
     assert placed(cfg, batches=[batch(contaminants=[measured])]).list_name == EXCLUDED   # a measured value over the limit fails
+
+
+def test_algal_and_combination_products_are_flagged_not_excluded(cfg):
+    p = placed(cfg, name="rTG Algal Omega-3 Vegan")
+    assert p.list_name == RANKED and any(f.startswith("algal oil, not fish oil") for f in p.flags)
+    p = placed(cfg, name="rTG Prenatal Omega with Vitamin D3")
+    assert p.list_name == RANKED and any(f.startswith("multi-ingredient product") for f in p.flags)
+    assert not any(f.startswith(("algal", "multi")) for f in placed(cfg).flags)

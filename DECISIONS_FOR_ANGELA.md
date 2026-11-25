@@ -256,3 +256,90 @@ during long crawls so it stays quiet.
 **H-4. NOTE: the ntfy topic is hard-coded in both alerting files.** Anyone
 with repo read access can publish to or subscribe to that topic. Fine for a
 private repo; rotate it if the repo ever goes public.
+
+---
+
+## Stages 1-4: what the full dataset changed (2026-11-17 to 2026-11-25)
+
+**D-13. ADOPTED: duplicate lots on a product page.** 122 dropdown entries
+repeat a lot already listed: the same report under two expiry dates, or an
+RTCP radiation certificate filed in the IFOS dropdown (89 lots). One entry is
+kept per lot, preferring the IFOS report over an RTCP certificate.
+
+**D-14. ADOPTED: the report's "EFA tested as ..." comment counts as form
+evidence; the "mg per softgel as TG" unit does not.** 213 reports carry a
+comment such as "EFA tested as re-esterified triglyceride (rTG) form" and 167
+express potency "as TG". Where a product's IFOS listing also states its form,
+the comment agreed on the family in all 99 such reports, and it tells EE, TG
+and rTG apart, so I treat it as the testing lab's explicit statement. "as TG"
+in a unit can be just how a lab expresses amounts, so it is parsed (it is
+still per softgel) and recorded in `basis_expressed_as`, but it is **not**
+used as evidence of form. See P-7.
+
+**D-15. ADOPTED: a detection limit above IFOS's limit.** 12 products have a
+metal reported like "<0.1 ppm" against a 0.05 ppm limit. The number cannot
+show a pass or a fail, so IFOS's own verdict is used and the product is
+flagged "compliance taken from IFOS's verdict only". Strictly evaluating at
+the bound (P-4) would exclude products IFOS certifies; I judged that the
+wrong reading of "must pass IFOS's stated limit". Tell me if you want them
+excluded instead.
+
+**D-16. ADOPTED: a printed number over the printed limit fails, even when
+IFOS marks it compliant.** Seen in 8 reports (mercury 0.840 ppm against 0.1,
+lead 0.067 against 0.05, dioxin-like PCBs 2.36 against 1.5, arsenic 0.130
+mg/kg against 0.1 ppm). Some are probably IFOS typos, but your rule is the
+stated limit, so the number governs. All 8 are older lots, so in this run
+they set the "inconsistent batches" flag rather than excluding a product.
+
+**D-17. ADOPTED: contaminant units are converted before comparing** (mg/kg =
+ppm, ug/kg = ppb, ng/kg = ppt; "WHO-TEQ" ignored). A printed limit of 0 is a
+misprint (nine reports print "<= 0 ppt" for dioxins), so the verdict is used.
+
+**D-18. ADOPTED: EPA + DHA may exceed total omega-3 by up to 5%** (config
+`validation.epa_dha_over_total_tolerance`). Labs measure the total separately,
+and a 3.5% overshoot (1148 vs 1109) is method noise, not a parse error. Gross
+cases (2121 vs 397) are still rejected.
+
+**D-19. ADOPTED: misprinted numbers are kept as text and never read.**
+"<00016 ppm" (lost decimal point) or "0. 30 meq/kg" is not turned into a
+value by the parser. Contaminants fall back to IFOS's verdict; oxidation
+values go to the LLM fallback.
+
+**D-20. NOTE: the LLM fallback, done in-session (O-1).** The parser read
+4,041 of 4,054 reports (99.7%), plus 2 raw-material certificates. Nine went
+to the fallback, which I transcribed cell by cell into the same payload the
+Haiku path produces (`data/cache/llm/<sha256>.json`, `model: "in-session"`);
+the pipeline then applied its own parsing and range checks. 7 now pass. 2 stay
+failed on purpose: an EPA misprint (1989 mg against a spec of 180 and a total
+of 397), and a report whose potency unit is printed "N/A". Every judgment made
+while transcribing is in that payload's `notes` and becomes a warning on the
+record, e.g. reading "0. 30" as 0.30 because the report's own TOTOX only
+works with 0.30, and refusing to relabel a "Total Omega-3" row that is
+probably DHA.
+
+**D-21. ADOPTED: algal oils and multi-ingredient products are flagged, not
+excluded.** Your goal says fish oil, but source is not among the locked
+filters. 8 products look algal and 64 are multi-ingredient (prenatal, lutein,
+CoQ10). Display flags only. OPEN: should algal oils be a separate list?
+
+**D-22. ADOPTED: re-run mechanics.** Extractions carry a parser version and
+are redone when it changes (about 5 seconds for all 4,054). A crawl inside the
+24-hour refresh window makes no requests; failed downloads are retried after
+the window, not on every run.
+
+**D-23. NOTE: resilience.** The container restarted three times during the
+build. Everything is resumable from the database, the raw cache and the last
+commit; downloads commit every 10 files.
+
+### Locked-criteria proposals from the full data (not applied)
+
+**P-6. PROPOSAL: estimate oil weight from IFOS area-% figures.** Some reports
+print EPA or DHA as both mg per capsule and % of fatty acids, which gives
+oil weight = mg / %. Your rule says the oil weight comes from the label, and
+area % is a share of fatty acids, not of oil weight (about 5% off for a
+triglyceride), so this is **off**. Turning it on would give a score to 8 more
+products without a label lookup: `oil_weight.sources: [label, ifos_area_pct]`.
+
+**P-7. PROPOSAL: treat "mg per softgel as TG" as form evidence.** It would
+settle the form of only 4 current candidates (all WHC), so I left it off
+(D-14).

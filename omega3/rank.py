@@ -495,6 +495,14 @@ def place(product: Product, cfg, today: dt.date) -> Placement:
         elif p.score is not None:
             p.optimistic_score = p.score
 
+    listing_text = f"{product.name} {product.summary}"
+    algal = _word(listing_text, cfg["filters"]["algal_words"])
+    if algal:
+        p.flags.append(f"algal oil, not fish oil ('{algal}' in IFOS listing)")
+    combo = _word(listing_text, cfg["filters"]["combination_words"])
+    if combo:
+        p.flags.append(f"multi-ingredient product ('{combo}' in IFOS listing)")
+
     p.flavored, flavor_evidence = detect_flavored(product, cfg)
     if p.flavored:
         p.flags.append(f"flavored ({flavor_evidence}): anisidine test may read high")

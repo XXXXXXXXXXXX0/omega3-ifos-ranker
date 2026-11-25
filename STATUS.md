@@ -1,27 +1,66 @@
 # Status
 
-Last updated: 2026-11-17 01:15 UTC, end of Stage 1. Branch: `claude/keen-ptolemy-j47bf2`.
+Last updated: 2026-11-25, end of Stage 4. Branch: `claude/keen-ptolemy-j47bf2`.
 
 ## Resume here
 
-Next: **Stage 2 (report fetcher)**: run `python -m omega3 fetch` (resumable;
-it skips every report already in the manifest). Code for stages 2 and 3 is
-already written and tested; stage 4 (`omega3/rank.py`) is written, tests
-pending. Nothing is blocked. To resume in a new session: read SPEC.md, PLAN.md and
-DECISIONS_FOR_ANGELA.md, then start the next stage listed here.
+Next: **Stage 5, label verification**, done in-session (O-1). List the queue
+with `python -m omega3 agent-queue`; for each product run
+`agent-explore --product X`, then `agent-fetch` and `agent-tool` as needed,
+and save the decision with `agent-record --file decisions.json`. Results live
+in `data/cache/agent/` and `data/traces/agent/`. Then `python -m omega3 rank`
+writes the report. Nothing is blocked.
 
 ## Stages
 
 | Stage | State | Tests |
 |---|---|---|
-| 0 Investigate, review, plan | done | n/a (no build code yet) |
-| 1 Foundation and listing scraper | done | 137 passed (all stages so far) |
-| 2 Report fetcher and raw cache | running: full download | code tests pass |
-| 3 Extractor | | |
-| 4 Filters, scoring, ranking | | |
-| 5 Label verification agent | | |
-| 6 Reports, changelog, re-runs | | |
+| 0 Investigate, review, plan | done | n/a |
+| 1 Foundation and listing scraper | done | pass |
+| 2 Report fetcher and raw cache | done | pass |
+| 3 Extractor | done | pass |
+| 4 Filters, scoring, ranking | done | pass |
+| 5 Label verification agent | next (code done and tested) | pass |
+| 6 Reports, changelog, re-runs | code done and tested | pass |
 | 7 README, final run, PR | | |
+
+`python -m pytest -q` -> `277 passed` (2026-11-25).
+
+## Stage 4 evidence
+
+Ranking run on the full database (as of 2026-11-25), before any label
+verification: 0 ranked, 214 form unverified, 90 oil weight unavailable,
+6 monoglyceride, 11 incomplete data, 15 pet, 496 excluded (314 on the
+oxidation cutoffs, 114 not capsules, 40 with no unexpired batch, 18
+chewables, 5 ethyl ester, 3 phospholipid/krill, others). 304 products pass
+every check that can be made without the label and wait for it.
+
+Six random exclusions checked against their numbers, e.g. IGLT0005 lot 1035
+TOTOX 10.68 (not below 10), UGAN0004 lot 2612807 PV 3.24 (above 3), VTRM0001
+lot UC260112 TOTOX 17.65 and AV 13.23: all correct.
+
+## Stage 3 evidence
+
+`python -m omega3 extract`: 4,041 parser ok, 9 LLM fallback (in-session;
+7 ok, 2 failed on purpose), 2 raw-material certificates. Templates: T1 3,574,
+T1-2024 478, RM 2. TOTOX reported 4,035, computed 1.
+
+Five random rows against their PDFs (values identical in every case):
+
+| Report | Extracted | PDF line |
+|---|---|---|
+| U.G.A. Nutraceuticals 2606101 | mg per 2 softgels, EPA 71 DHA 269 -> 35.5/134.5 per cap, PV 0.41 AV 4.99 TOTOX 5.81 acid 0.1 | `EPA 45 71 Yes`, `Peroxide <= 5 meq/kg 0.41 meq/kg Yes`, `TOTOX <= 19.5 5.81 Yes` |
+| Vivo Brands 25090SZ011 | mg per softgel, EPA 721 DHA 201, PV 0.14 AV 3.53 TOTOX 3.81 acid 0.05 | `EPA 665 721 Yes`, `Anisidine <= 20 3.53 Yes` |
+| 18 12 1000mg L.70123 | mg / 3 capsules, EPA 567 DHA 390 -> 189/130 per cap, PV 2.5 AV 6.2 TOTOX 11.2 acid 0.64 | `EPA 540 567 Yes`, `TOTOX <= 19.5 11.2 Yes` |
+| GNC Hong Kong 1069DJ2521 | mg per 2 softgels, EPA 724 DHA 577 -> 362/288.5, PV 0.23 AV 10.06 TOTOX 10.52 | `DHA 480 577 Yes`, `Anisidine <= 20 10.06 Yes` |
+| Igennus 1045 | mg per cap, EPA 731 DHA 382, PV 0.2 AV 4.8 TOTOX 5.2 acid 0.41 | `EPA 670 731 Yes`, `Peroxide <= 5 meq/kg 0.20 meq/kg Yes` |
+
+## Stage 2 evidence
+
+4,069 report files listed for capsule products; 4,054 downloaded, 15 dead
+links (HTTP 404 on andi.nutrasource.ca). 1.12 GB of PDFs in the gitignored
+local cache; text layers and tables committed (17 MB, `data/raw/text/`).
+A second fetch requests nothing (tested).
 
 ## Stage 1 evidence (2026-11-17)
 
@@ -66,6 +105,8 @@ different files). Both have regression tests.
 ## Usage so far
 
 Token usage is not readable from inside the session (see D-11). Measurable:
+Stage 2 made 4,069 requests to andi.nutrasource.ca (1.12 GB) at 1 request
+per second. Stages 3 and 4 made none.
 about 130 HTTP requests in Phase 0 and about 870 in Stage 1 (listing plus 832
 product pages), all at 1 request/second or slower. Effort: Phase 0 high,
 Stage 1 medium.
@@ -73,7 +114,7 @@ Stage 1 medium.
 ## Notifications
 
 - "Omega-3 build started." sent, ntfy returned HTTP 200.
-- Stage 0 and Stage 1 notifications sent, HTTP 200.
+- Stage 0, 1, 2 and 3 notifications sent, HTTP 200.
 
 ## Session override in force
 

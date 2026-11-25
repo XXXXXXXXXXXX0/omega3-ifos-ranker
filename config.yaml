@@ -53,6 +53,9 @@ filters:
                  flavor, flavour, flavored, flavoured, flavors, flavours]
   unflavored_words: [unflavored, unflavoured, "flavor free", "flavour free", flavorless, flavourless, "no flavor", "no flavour",
                      "non flavored", "non flavoured", "natural taste", unscented]
+  # Display flags only (DECISIONS D-21): not fish oil, or a multi-ingredient product. Never excluded or scored.
+  algal_words: [algae, algal, "algal oil", "algae oil", schizochytrium, microalgae, "plant-based omega", vegan]
+  combination_words: [prenatal, multivitamin, "multi vitamin", lutein, coq10, "co-q10", "vitamin d3", "vitamin k2", folate, astaxanthin, krill]
   oxidation:                  # LOCKED
     totox_max_exclusive: 10   # TOTOX < 10
     pv_max: 3                 # PV <= 3
