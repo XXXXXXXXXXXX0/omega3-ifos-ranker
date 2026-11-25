@@ -5,7 +5,7 @@ Source of truth: this file lives in the repo root as SPEC.md. If it's missing, c
 ENVIRONMENT
 [OVERRIDE O-1] OMEGA3_ANTHROPIC_API_KEY is intentionally not set and that is not a blocker. The LLM extraction fallback and form verification are done by the Claude Code session itself, writing to the same cache, SQLite and trace formats. The API code paths are built but off behind config flag llm.api_enabled (default false). When enabled later: Anthropic API key for the pipeline's own LLM calls is in env var OMEGA3_ANTHROPIC_API_KEY. Never read or set ANTHROPIC_API_KEY (that would switch Claude Code's own billing). Code reads OMEGA3_ANTHROPIC_API_KEY from the environment, falling back to a gitignored .env file for future local runs.
 Push notification topic is in env var NTFY_TOPIC.
-Do not modify .claude/settings.json or .github/workflows/watchdog.yml; they are my alerting setup.
+Do not modify .claude/settings.json; it is my alerting setup. Owner change (2026-11-25, O-2): Claude may edit .github/workflows/watchdog.yml when I ask, and its schedule is now off.
 NOTIFICATIONS (send with: curl -s -d "<message>" "ntfy.sh/$NTFY_TOPIC")
 On start of Phase 0: "Omega-3 build started."
 At the end of every stage: "Stage <n> done: <name>. Tests passing. Next: <next stage>."

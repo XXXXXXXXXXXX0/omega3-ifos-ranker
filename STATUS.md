@@ -28,6 +28,11 @@ what is waiting; with an API key, `llm.api_enabled: true` and
 
 `python -m pytest -q` -> `312 passed` (2026-11-25).
 
+## On hold (2026-11-25)
+
+Nothing runs until the owner reviews DECISIONS_FOR_ANGELA.md (O-3). The
+watchdog schedule is off (O-2).
+
 ## Post-PR changes (2026-11-25)
 
 Per-capsule score (D-35) and both form-note wordings (D-33, parser v6). The

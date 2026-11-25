@@ -511,3 +511,17 @@ review site says UnoCardio 1000 is "r-triglyceride" with "a pleasant orange
 flavor". That is not the label. If it is right, the product belongs in the
 flavored list, not the top 10. The quickest way to settle any of the 21 is a
 photo of the bottle or an email to the brand, recorded with `agent-record`.
+
+**O-2. OWNER CHANGE: watchdog turned off.** You lifted the "do not modify
+watchdog.yml" rule and asked me to turn the watchdog off once the build was
+done. Its schedule was removed, in commit 41c221e on `main`, since a schedule
+only runs from `main`. It can still be run by hand from the Actions tab. To
+turn it back on, restore the two commented lines in the file. The
+`.claude/settings.json` rule still stands. The Stop hook in
+`claude/.claude/settings.json` stays where it is, and inactive, until you
+plan another unattended run.
+
+**O-3. ON HOLD: no further runs until you have reviewed this file.** No
+pipeline runs, label checks or unattended sessions until you have been
+through the adopted, proposed and open items here. The 21 unverified
+contenders (D-36) are part of that review.
