@@ -547,7 +547,7 @@
 {
 "IsIfos": true,
 "ProductImage1": "BOWL0007_1.jpg",
-"ProductName": "Biowell FISH OIL PLUS (97%)",
+"ProductName": "Biowell Fish Oil Plus (96%)",
 "ProductNum": "BOWL0007"
 },
 {
@@ -800,6 +800,20 @@
 "ProductImage1": "CPRV0001_1.jpg",
 "ProductName": "Omega-Pro High EPA",
 "ProductNum": "CPRV0001"
+},
+{
+"CatOmegaFAs": true,
+"IsIfos": true,
+"ProductImage1": "CPRV0002_1.jpg",
+"ProductName": "Omega-Pro Balance",
+"ProductNum": "CPRV0002"
+},
+{
+"CatOmegaFAs": true,
+"IsIfos": true,
+"ProductImage1": "CPRV0003_1.jpg",
+"ProductName": "Omega-Pro High DHA",
+"ProductNum": "CPRV0003"
 },
 {
 "IsIfos": true,
@@ -1187,6 +1201,13 @@
 {
 "CatOmegaFAs": true,
 "IsIfos": true,
+"ProductImage1": "CYTO0004_1.jpg",
+"ProductName": "Omega DHA Liquid Forte",
+"ProductNum": "CYTO0004"
+},
+{
+"CatOmegaFAs": true,
+"IsIfos": true,
 "ProductImage1": "CYTO0005_1.jpg",
 "ProductName": "Omega EPA Liquid Forte",
 "ProductNum": "CYTO0005"
@@ -1277,6 +1298,12 @@
 "ProductImage1": "DFNG0001_1.jpg",
 "ProductName": "East Buy Fish Oil Gel Candy",
 "ProductNum": "DFNG0001"
+},
+{
+"IsIfos": true,
+"ProductImage1": "DFNG0008_1.png",
+"ProductName": "East Buy Fish Oil",
+"ProductNum": "DFNG0008"
 },
 {
 "CatOmegaFAs": true,
@@ -2506,7 +2533,7 @@
 {
 "IsIfos": true,
 "ProductImage1": "KZUF0003_1.png",
-"ProductName": "OMEGA-3 FISH OILDIETARY SUPPLEMENT",
+"ProductName": "OMEGA-3 FISH OIL DIETARY SUPPLEMENT",
 "ProductNum": "KZUF0003"
 },
 {
@@ -4861,15 +4888,15 @@
 {
 "CatOmegaFAs": true,
 "IsIfos": true,
-"ProductImage1": "THPT0001_1.jpg",
-"ProductName": "Real rTG Omega-3",
+"ProductImage1": "THPT0001_1.png",
+"ProductName": "Real rTG Omega-3 2.0",
 "ProductNum": "THPT0001"
 },
 {
 "CatOmegaFAs": true,
 "IsIfos": true,
-"ProductImage1": "THPT0002_1.jpg",
-"ProductName": "Real rTG Omega-3 Plus",
+"ProductImage1": "THPT0002_1.png",
+"ProductName": "Real rTG Omega-3  Plus 2.0",
 "ProductNum": "THPT0002"
 },
 {
@@ -5367,6 +5394,13 @@
 {
 "CatOmegaFAs": true,
 "IsIfos": true,
+"ProductImage1": "VITW0002_1.jpg",
+"ProductName": "Omega 3 Vitamin Way Sport",
+"ProductNum": "VITW0002"
+},
+{
+"CatOmegaFAs": true,
+"IsIfos": true,
 "ProductImage1": "VIVN0008_1.jpg",
 "ProductName": "Triple Strength Omega-3 Fish Oil",
 "ProductNum": "VIVN0008"
@@ -5439,6 +5473,13 @@
 "ProductImage1": "VTBX0001_1.jpg",
 "ProductName": "85% Omega-3 rTG Fish Oil",
 "ProductNum": "VTBX0001"
+},
+{
+"CatOmegaFAs": true,
+"IsIfos": true,
+"ProductImage1": "VTNN0001_1.png",
+"ProductName": "OMEGA 3 SALMON OIL",
+"ProductNum": "VTNN0001"
 },
 {
 "CatOmegaFAs": true,
@@ -5647,6 +5688,7 @@
 {
 "CatOmegaFAs": true,
 "IsIfos": true,
+"IsRtcp": true,
 "ProductImage1": "WHCC0002_1.jpg",
 "ProductName": "UNOCARDIO X2",
 "ProductNum": "WHCC0002"
@@ -5660,6 +5702,7 @@
 {
 "CatOmegaFAs": true,
 "IsIfos": true,
+"IsRtcp": true,
 "ProductImage1": "WHCC0004_1.jpg",
 "ProductName": "QuattrO3+PS",
 "ProductNum": "WHCC0004"

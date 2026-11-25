@@ -140,11 +140,6 @@
 "Name": "Bayer Healthcare Limited"
 },
 {
-"BrandId": "BBHC",
-"HasIfos": true,
-"Name": "Bill Beauty & Health Products Ltd & CanPrev Natural Health Products Ltd"
-},
-{
 "BrandId": "BEBI",
 "CompanyLogo": "BEBI_Logo.jpg",
 "HasIfos": true,
@@ -1422,6 +1417,12 @@
 "Name": "Our Nutri"
 },
 {
+"BrandId": "ORNT",
+"CompanyLogo": "ORNT_Logo.jpg",
+"HasIfos": true,
+"Name": "Orange Naturals"
+},
+{
 "BrandId": "ORZK",
 "CompanyLogo": "ORZK_Logo.jpg",
 "HasIfos": true,
@@ -2050,6 +2051,12 @@
 "CompanyLogo": "VTBX_Logo.jpg",
 "HasIfos": true,
 "Name": "Devotion International Co., Ltd. (VITABOX®)"
+},
+{
+"BrandId": "VTNN",
+"CompanyLogo": "VTNN_Logo.jpeg",
+"HasIfos": true,
+"Name": "Vitanna"
 },
 {
 "BrandId": "VTPL",
