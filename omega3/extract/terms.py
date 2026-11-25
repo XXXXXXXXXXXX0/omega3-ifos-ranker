@@ -62,6 +62,17 @@ FORM_TERMS: dict[str, list[str]] = {
     "PL": ["Phospholipid", "Phospholipids", "PL", "Krill", "Krill Oil"],
     "MAG": ["Monoglyceride", "Monoglycerides", "Monoacylglycerol", "Monoacylglycerols", "MAG"],
 }
+# Translations of the spec's terms, for brand labels outside the English-speaking
+# market (DECISIONS D-24). Matching rules are the same as for the English terms.
+FORM_TERMS["rTG"] += ["triglicéridos reesterificados", "triglicéridos re-esterificados", "triglicerídeos reesterificados",
+                      "trigliceridi riesterificati", "re-veresterte Triglyceride", "triglycérides réestérifiés",
+                      "yeniden esterleştirilmiş trigliserit", "재에스테르화 트리글리세라이드", "알티지", "再酯化甘油三酯", "再酯化三酸甘油酯"]
+FORM_TERMS["TG"] += ["triglicéridos", "triglicérido", "triglicerídeos", "triglicerídeo", "trigliceridi", "trigliceride",
+                     "Triglyceride-Form", "triglycérides", "triglycéride", "trigliserit", "trigliserid", "트리글리세라이드",
+                     "甘油三酯", "三酸甘油酯", "三酸甘油脂"]
+FORM_TERMS["EE"] += ["éster etílico", "ésteres etílicos", "ester etílico", "ésteres etílicos", "estere etilico", "esteri etilici",
+                     "Ethylester", "Ethylestern", "ester éthylique", "esters éthyliques", "etil ester", "에틸에스테르", "乙酯"]
+FORM_TERMS["PL"] += ["fosfolípidos", "fosfolipídios", "fosfolipidi", "Phospholipide", "phospholipides", "fosfolipit", "인지질", "磷脂", "aceite de krill", "óleo de krill", "olio di krill", "Krillöl"]
 TG_FAMILY = {"TG", "rTG"}
 
 
@@ -75,7 +86,8 @@ _FORM_RES = {form: [(t, _term_re(t)) for t in sorted(terms, key=len, reverse=Tru
 _NOT_FORM = re.compile(
     r"(serum|blood|plasma|lower(?:s|ing)?|reduc\w*|healthy|normal|elevated)\s+(?:\w+\s+)?"
     r"(triglycerides?|triacylglycerols?)(?:\s*/\s*(?:triglycerides?|triacylglycerols?))?(?!\s+form)"
-    r"|(triglycerides?|triacylglycerols?)\s+levels?",
+    r"|(triglycerides?|triacylglycerols?)\s+levels?"
+    r"|(niveles?\s+de|reduc\w*|baja\w*|níveis\s+de)\s+(?:los\s+|os\s+)?(triglic\w+)",
     re.I,
 )
 
@@ -130,3 +142,45 @@ def classify_form(text: str) -> tuple[str | None, str]:
     if len(families) == 1:
         return next(iter(families)), evidence
     return None, f"conflicting form terms ({evidence})"
+
+
+# --- oil weight stated in brand-written listing text ------------------------------------
+_NUM = r"(\d{1,2}(?:[.,]\d{3})+|\d+(?:\.\d+)?)"
+_UNIT = r"\s*(mg|g)\b"
+_CAP = r"(?:mini[\s-]?)?(?:soft\s*gels?|softgels?|capsules?|gel\s*caps?|gelcaps?|mini[\s-]?gels?|pearls?)"
+_COUNTS = {"one": 1, "two": 2, "three": 3, "four": 4, "1": 1, "2": 2, "3": 3, "4": 4}
+_OIL_PATTERNS = [
+    # "Each 1000mg capsule contains a minimum 70% omega-3" (IFOS's own template: % of this weight)
+    (re.compile(rf"\beach\s+{_NUM}{_UNIT}\s+{_CAP}\b", re.I), None),
+    # "Each softgel capsule contains 2000 mg fish oil", "one mini-gel provides 625 mg of Fish Oil"
+    (re.compile(rf"\b(?:each|one|every|a single)\s+{_CAP}(?:\s+capsules?)?\s+(?:contains|provides|delivers|has|gives)\s+{_NUM}{_UNIT}\s+(?:of\s+)?"
+                rf"(?:\w+\s+){{0,2}}?(?:fish|marine|anchovy|salmon|cod)\s+oil(?:\s+concentrate)?", re.I), None),
+    # "Each softgel provides 1250mg of fish oil concentrate"
+    (re.compile(rf"\b(?:each|one)\s+{_CAP}\s+(?:contains|provides|delivers)\s+{_NUM}{_UNIT}\s+of\s+fish\s+oil\s+concentrate", re.I), None),
+    # "480 mg EPA + 320 mg DHA per 1000 mg softgel"
+    (re.compile(rf"\bper\s+{_NUM}{_UNIT}\s+{_CAP}\b", re.I), None),
+    # "Each daily dose of 2 capsules provides 3,000 mg of fish oil"
+    (re.compile(rf"\bdose\s+of\s+(one|two|three|four|[1-4])\s+{_CAP}\s+(?:contains|provides|delivers)\s+{_NUM}{_UNIT}\s+of\s+(?:\w+\s+)?(?:fish|marine)\s+oil", re.I), "count"),
+]
+
+
+def listing_oil_weight(text: str) -> tuple[float, str] | None:
+    """(mg of oil per capsule, the exact phrase) when brand-written listing text
+    states it outright. Numbers in product names alone ("Omega 3 1400mg") are
+    ambiguous, often the omega-3 content, and are never used. DECISIONS D-25."""
+    found: list[tuple[float, str]] = []
+    for pattern, kind in _OIL_PATTERNS:
+        for m in pattern.finditer(text or ""):
+            groups = m.groups()
+            count = 1
+            if kind == "count":
+                count, groups = _COUNTS[groups[0].lower()], groups[1:]
+            number, unit = groups[0], groups[1].lower()
+            value = float(number.replace(",", "")) if re.fullmatch(r"\d{1,2}(?:[.,]\d{3})+", number) is None or "," in number \
+                else float(number.replace(".", ""))
+            mg = value * (1000 if unit == "g" else 1) / count
+            found.append((round(mg, 1), m.group(0).strip()))
+    if not found:
+        return None
+    values = {mg for mg, _ in found}
+    return found[0] if len(values) == 1 else None          # disagreeing statements: use neither

@@ -1,0 +1,31 @@
+{
+ "product_num": "LTUM0001",
+ "status": "verified",
+ "form": "TG",
+ "form_source_url": "https://www.littleumbrella.co.nz/products/little-umbrella-enhanced-version-dha-for-students-6-years",
+ "form_evidence": "Concentrated Fish Omega-3 Triglycerides Oil 800 mg",
+ "oil_mg_per_capsule": 400.0,
+ "oil_source_url": "https://www.littleumbrella.co.nz/products/little-umbrella-enhanced-version-dha-for-students-6-years",
+ "oil_evidence": "Each 2 Capsules Contain Concentrated Fish Omega-3 Triglycerides Oil 800 mg",
+ "serving_capsules": 2.0,
+ "servings_per_bottle": null,
+ "flavored": true,
+ "flavor_evidence": "Lemon Oil Distilled",
+ "antioxidants": [],
+ "packaging": [],
+ "reasoning": "Brand product page: 800 mg concentrated fish omega-3 triglycerides oil per 2-capsule serving (400 mg per capsule), DHA 640 mg per 2 capsules, consistent with IFOS (348 mg DHA per capsule). Lemon oil is an ingredient, so flavored.",
+ "sources_checked": [
+  "https://littleumbrella.co.nz/",
+  "https://www.littleumbrella.co.nz/products/little-umbrella-organic-algae-dha-for-kids-15-days",
+  "https://www.littleumbrella.co.nz/products/little-umbrella-enhanced-version-dha-for-students-6-years"
+ ],
+ "page_hashes": {
+  "https://www.littleumbrella.co.nz/": "e490e42e91490a7fe3734e45789bdc0d8b307fe5adaa078d61d3fced34c4fa2c",
+  "https://www.littleumbrella.co.nz/products/little-umbrella-organic-algae-dha-for-kids-15-days": "76f0f6c989bc38c9485bc0f2c7f1058ac139f42d7fc14174a0af9f85e2e80c3b",
+  "https://www.littleumbrella.co.nz/products/little-umbrella-enhanced-version-dha-for-students-6-years": "42007a085a3e3f77cab4f6694aca2d3d47cd96108f30580b369455246ff67529"
+ },
+ "model": "in-session",
+ "tool_calls": 3,
+ "cost_usd": 0.0,
+ "verified_at": "2026-11-25T01:52:22+00:00"
+}

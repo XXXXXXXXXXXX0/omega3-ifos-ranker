@@ -1,0 +1,27 @@
+{
+ "product_num": "BIOH0003",
+ "status": "unverified",
+ "form": null,
+ "form_source_url": null,
+ "form_evidence": null,
+ "oil_mg_per_capsule": null,
+ "oil_source_url": null,
+ "oil_evidence": null,
+ "serving_capsules": null,
+ "servings_per_bottle": null,
+ "flavored": null,
+ "flavor_evidence": null,
+ "antioxidants": [],
+ "packaging": [],
+ "reasoning": "Brand page '97%--80%EPAver.(rTG) Omega-3 Fish Oil Extract' gives no capsule or oil weight.",
+ "sources_checked": [
+  "https://en.naturalbalancenz.com/products_details/76.html"
+ ],
+ "page_hashes": {
+  "https://en.naturalbalancenz.com/products_details/76.html": "c8a75412a3adc38941fd3389bf46f757d9bbdef625c7b0fed4339b4e12236d3e"
+ },
+ "model": "in-session",
+ "tool_calls": 1,
+ "cost_usd": 0.0,
+ "verified_at": "2026-11-25T01:52:22+00:00"
+}

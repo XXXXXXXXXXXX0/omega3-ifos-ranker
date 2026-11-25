@@ -10,7 +10,7 @@ import re
 from collections import Counter
 from dataclasses import dataclass, field
 
-from .extract.terms import CONTAMINANTS, TG_FAMILY, classify_form
+from .extract.terms import CONTAMINANTS, TG_FAMILY, classify_form, listing_oil_weight
 from .extract.units import mass_fraction
 from .scrape.listing import decide_format
 
@@ -264,7 +264,7 @@ def detect_flavored(product: Product, cfg) -> tuple[bool | None, str | None]:
 
 
 def detect_pet(product: Product, cfg) -> str | None:
-    return _word(f"{product.name} {product.rda or ''}", cfg["filters"]["pet_words"])
+    return _word(f"{product.name} {product.brand or ''} {product.rda or ''}", cfg["filters"]["pet_words"])
 
 
 def resolve_form(product: Product, batches: list[Batch]) -> tuple[str | None, str | None, str]:
@@ -333,6 +333,8 @@ def resolve_concentration(product: Product, batch: Batch, cfg) -> dict:
     if out["mg_g"] is not None:                         # report already per gram of oil
         if label_oil and "label" in sources:
             out.update(oil_mg=label_oil, oil_source="label", mg_cap=round(out["mg_g"] * label_oil / 1000, 1))
+        elif "ifos_listing" in sources and (stated := listing_oil_weight(f"{product.name}. {product.summary}")):
+            out.update(oil_mg=stated[0], oil_source="ifos_listing", mg_cap=round(out["mg_g"] * stated[0] / 1000, 1))
         return out
     if out["mg_cap"] is None:
         return out
@@ -340,6 +342,10 @@ def resolve_concentration(product: Product, batch: Batch, cfg) -> dict:
     candidates: list[tuple[float, str]] = []
     if label_oil and "label" in sources:
         candidates.append((label_oil, "label"))
+    stated = listing_oil_weight(f"{product.name}. {product.summary}") if "ifos_listing" in sources else None
+    if stated:
+        candidates.append((stated[0], "ifos_listing"))
+        out["listing_evidence"] = stated[1]
     if "ifos_area_pct" in sources:
         pct = [batch.area_pct.get(k, {}).get("result_pct") for k, v in (("epa", batch.epa_mg_cap), ("dha", batch.dha_mg_cap)) if v is not None]
         if present and pct and all(p for p in pct) and 0 < sum(pct) <= 100:
@@ -354,6 +360,8 @@ def resolve_concentration(product: Product, batch: Batch, cfg) -> dict:
             out.update(oil_mg=oil_mg, oil_source=source, mg_g=round(out["mg_cap"] / oil_mg * 1000, 1), problem=None)
             if source == "ifos_area_pct":
                 out["flags"].append("oil weight estimated from IFOS area %")
+            if source == "ifos_listing":
+                out["flags"].append(f"oil weight from IFOS listing text: \"{out['listing_evidence']}\"")
             break
     return out
 

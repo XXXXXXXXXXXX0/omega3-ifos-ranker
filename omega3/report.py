@@ -47,6 +47,8 @@ def reasoning(row: dict, neighbours: dict[int, list[dict]], cfg) -> str:
     parts.append(f"Form {row['form']} per {row['form_source']}: \"{(row['form_evidence'] or '').strip()[:160]}\".")
     if row["oil_source"] == "label":
         parts.append(f"Oil weight {row['oil_mg_per_capsule']:g} mg per capsule from the label.")
+    elif row["oil_source"] == "ifos_listing":
+        parts.append(f"Oil weight {row['oil_mg_per_capsule']:g} mg per capsule as stated in the brand's IFOS listing text.")
     elif row["oil_source"] == "ifos_area_pct":
         parts.append(f"Oil weight {row['oil_mg_per_capsule']:g} mg per capsule is an estimate from the area-% figures in the IFOS report, not a label value.")
     else:

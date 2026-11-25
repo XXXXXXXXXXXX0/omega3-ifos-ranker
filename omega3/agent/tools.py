@@ -94,6 +94,39 @@ def page_text(html: bytes | str) -> tuple[str, str, list[tuple[str, str]]]:
     return title, re.sub(r"\s+", " ", text).strip(), links
 
 
+def json_text(content: bytes) -> str:
+    """Flatten JSON into 'path: value' lines so label facts can be quoted verbatim."""
+    try:
+        data = json.loads(content.decode("utf-8", "replace"))
+    except ValueError as exc:
+        raise ToolError(f"invalid JSON: {exc}") from exc
+    lines: list[str] = []
+
+    def walk(node, path):
+        if len(lines) > 4000:
+            return
+        if isinstance(node, dict):
+            for key, value in node.items():
+                walk(value, f"{path}.{key}" if path else str(key))
+        elif isinstance(node, list):
+            for i, value in enumerate(node):
+                walk(value, f"{path}[{i}]")
+        elif node not in (None, "", []):
+            lines.append(f"{path}: {node}")
+    walk(data, "")
+    return " | ".join(lines)
+
+
+def pdf_text(content: bytes) -> str:
+    import io
+    import pdfplumber
+    try:
+        with pdfplumber.open(io.BytesIO(content)) as pdf:
+            return re.sub(r"\s+", " ", " ".join((page.extract_text() or "") for page in pdf.pages[:6])).strip()
+    except Exception as exc:  # malformed PDF
+        raise ToolError(f"PDF could not be read: {type(exc).__name__}") from exc
+
+
 def keyword_windows(text: str, keywords: list[str], window: int, limit: int) -> str:
     """The stretches of text around keyword hits, merged, capped at `limit` chars."""
     pattern = re.compile("|".join(rf"(?<![A-Za-z]){re.escape(k)}(?![A-Za-z])" for k in sorted(keywords, key=len, reverse=True)), re.I)
@@ -177,10 +210,17 @@ def fetch_page(cfg, session, url: str, product_words: set[str] | None = None, re
     final_url = getattr(resp, "url", url) or url
     check_url(final_url, resolve)                      # a redirect must not land on an internal host
     ctype = (resp.headers.get("Content-Type") or "").split(";")[0].strip().lower()
-    if ctype and ctype not in ("text/html", "application/xhtml+xml", "text/plain"):
-        raise ToolError(f"refused: content type '{ctype}' is not a web page")
     content = resp.content[: agent_cfg["fetch_max_bytes"]]
-    title, text, links = page_text(content)
+    if ctype in ("application/json", "text/json") or (not ctype and content[:1] in (b"{", b"[")):
+        # Structured label data (e.g. the NIH Dietary Supplement Label Database API).
+        title, text, links = "", json_text(content), []
+    elif ctype == "application/pdf" or content.startswith(b"%PDF"):
+        # A label PDF: read its text layer only. Never executed, never rendered.
+        title, text, links = "", pdf_text(content), []
+    elif ctype and ctype not in ("text/html", "application/xhtml+xml", "text/plain"):
+        raise ToolError(f"refused: content type '{ctype}' is not a web page, JSON or PDF")
+    else:
+        title, text, links = page_text(content)
     return {
         "url": url, "final_url": final_url, "title": title,
         "sha256": hashlib.sha256(text.encode("utf-8")).hexdigest(),

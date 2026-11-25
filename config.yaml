@@ -70,7 +70,8 @@ batches:
 oil_weight:
   # Where grams of oil per capsule may come from, best first. The spec says the label (LOCKED unit rule).
   # Adding ifos_area_pct estimates it from area-% figures on the IFOS report (DECISIONS P-6: proposal, off).
-  sources: [label]
+  # ifos_listing: an explicit statement in the brand-written IFOS summary, e.g. "each softgel contains 2000 mg fish oil" (D-25).
+  sources: [label, ifos_listing]
   min_ratio_to_total_omega3: 0.98   # oil weight below total omega-3 per capsule is impossible
 
 scoring:                      # LOCKED

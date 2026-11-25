@@ -542,3 +542,42 @@ def test_more_live_report_variants(cfg):
     assert d["status"] == "ok" and any("method noise" in w for w in d["warnings"])
     gross = [["EPA", "180", "1989", "Yes"], ["DHA", "120", "132", "Yes"], ["Total Omega-3", "325", "397", "Yes"]]
     assert derive(parse_report(_doc(gross, GOOD_STABILITY)), cfg)["status"] == "failed"
+
+
+@pytest.mark.parametrize("text,form", [
+    ("Aceite de pescado en forma de triglicéridos", "TG"), ("Óleo de peixe na forma de triglicerídeos", "TG"),
+    ("omega-3 in forma di trigliceridi riesterificati", "rTG"), ("Omega-3 als Ethylester", "EE"),
+    ("aceite de pescado en forma de ésteres etílicos", "EE"), ("rTG 알티지 오메가3", "rTG"), ("深海鱼油 甘油三酯型", "TG"),
+])
+def test_form_terms_in_other_languages(text, form):
+    assert classify_form(text)[0] == form
+
+
+def test_foreign_blood_lipid_phrases_are_not_form_statements():
+    assert classify_form("ayuda a mantener niveles de triglicéridos normales")[0] is None
+
+
+from omega3.extract.terms import listing_oil_weight
+
+
+@pytest.mark.parametrize("text,mg", [
+    ("Each softgel capsule contains 2000 mg fish oil, 1600 mg omega 3", 2000),
+    ("Each daily dose of 2 capsules provides 3,000 mg of fish oil, including 1,200 mg EPA", 1500),
+    ("Each 1700 mg capsule contains a minimum 60% omega-3 concentration", 1700),
+    ("Each softgel provides 1250mg of fish oil concentrate with 97% purity", 1250),
+    ("Each softgel contains 1 g fish oil, which gives 530 mg EPA", 1000),
+    ("Just one mini-gel provides 625 mg of Fish Oil and 520 mg of Omega-3", 625),
+    ("80% EPA+DHA (480 mg EPA + 320 mg DHA per 1000 mg softgel)", 1000),
+    ("Each softgel delivers 1,200 mg of fish oil and 960 mg of omega-3", 1200),
+])
+def test_listing_oil_weight(text, mg):
+    assert listing_oil_weight(text)[0] == mg
+
+
+@pytest.mark.parametrize("text", [
+    "Pharma NEW ZEALAND OMEGA 3 1400mg is a clean and highly concentrated omega-3 fish oil product",   # name number: ambiguous
+    "contains 1,350 mg per serving", "providing 1000 mg combined EPA + DHA per serving (2 softgels)",
+    "1410mg Fish Oil per dose", "Each 1000mg capsule contains ... Each 1200 mg capsule contains",    # disagreeing statements
+])
+def test_listing_oil_weight_refuses_ambiguous_text(text):
+    assert listing_oil_weight(text) is None

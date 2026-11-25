@@ -232,7 +232,7 @@ def test_missing_oil_weight_is_excluded_not_guessed(cfg):
 
 def test_oil_weight_from_area_percent_is_off_by_default(cfg):
     area = {"epa": {"result_pct": 40.0}, "dha": {"result_pct": 20.0}}
-    assert cfg["oil_weight"]["sources"] == ["label"]                             # the spec's rule: label only
+    assert "ifos_area_pct" not in cfg["oil_weight"]["sources"]                   # estimate is opt-in
     assert placed(cfg, label=None, batches=[batch(area_pct=area)]).list_name == OIL_UNAVAILABLE
     pct = batch(basis_text="%", basis_kind="percent", epa_mg_cap=None, dha_mg_cap=None, total_omega3_mg_cap=None, epa_mg_g=400, dha_mg_g=200)
     p = placed(cfg, label=None, batches=[pct])
@@ -333,6 +333,9 @@ def test_pet_products_have_their_own_list(cfg):
     assert p.list_name == PET and "'pet'" in p.reason
     assert placed(cfg, name="rTG Omega", rda="Dogs under 10 kg: 1 capsule").list_name == PET
     assert placed(cfg, name="rTG Catalyst Petite Omega").list_name == RANKED          # whole words only
+    pet_brand = product(name="Real rTG Omega-3")
+    pet_brand.brand = "Think Pets"
+    assert place(pet_brand, cfg, TODAY).list_name == PET                               # brand name counts too
     cfg["filters"]["exclude_pet_products"] = False
     assert placed(cfg, name="rTG anchovy pet fish oil for cat").list_name == RANKED
 
@@ -479,3 +482,13 @@ def test_algal_and_combination_products_are_flagged_not_excluded(cfg):
     p = placed(cfg, name="rTG Prenatal Omega with Vitamin D3")
     assert p.list_name == RANKED and any(f.startswith("multi-ingredient product") for f in p.flags)
     assert not any(f.startswith(("algal", "multi")) for f in placed(cfg).flags)
+
+
+def test_oil_weight_from_ifos_listing_text(cfg):
+    p = placed(cfg, label=None, summary="Each softgel capsule contains 1000 mg fish oil, 700 mg omega 3.")
+    assert p.list_name == RANKED and p.oil_source == "ifos_listing" and p.score == pytest.approx(10.0)
+    assert any(f.startswith("oil weight from IFOS listing text") for f in p.flags)
+    labelled = placed(cfg, summary="Each softgel capsule contains 1200 mg fish oil.")      # the label wins
+    assert labelled.oil_source == "label" and labelled.oil_mg_per_capsule == 1000
+    cfg["oil_weight"]["sources"] = ["label"]
+    assert placed(cfg, label=None, summary="Each softgel capsule contains 1000 mg fish oil.").list_name == OIL_UNAVAILABLE

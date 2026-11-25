@@ -82,7 +82,7 @@ def test_fetch_refuses_internal_addresses(address):
 
 
 def test_fetch_refuses_unresolvable_binary_robots_and_redirects_to_internal(cfg, site, fake_response_cls, monkeypatch):
-    with pytest.raises(tools.ToolError, match="content type 'application/pdf'"):
+    with pytest.raises(tools.ToolError, match="PDF could not be read"):          # a broken PDF is refused
         tools.fetch_page(cfg, site, "https://brand.example/label.pdf")
     site.pages["https://brand.example/private/x"] = BRAND_PAGE
     with pytest.raises(tools.ToolError, match="robots.txt disallows"):
@@ -401,3 +401,24 @@ def test_explore_spends_budgeted_calls_and_digest_is_short(cfg, conn, seeded, si
     trace = json.loads(trace_path(cfg, "BEBI0001").read_text())
     assert [c["tool"] for c in trace["calls"]] == ["fetch_page", "fetch_page"] and trace["mode"] == "in-session"
     assert digest({"url": "u", "full_text": "Nothing relevant here."})["form"] == []
+
+
+def test_fetch_reads_json_label_data_and_pdf_text(cfg, site, fixtures, fake_response_cls):
+    site.pages["https://api.example/label"] = json.dumps({"fullName": "Fish Oil", "ingredientRows": [
+        {"name": "Fish Oil Concentrate", "quantity": [{"quantity": 1000, "unit": "mg"}]}]}).encode()
+    original = site.handler
+    def handler(url, params):
+        if url == "https://api.example/label":
+            return fake_response_cls(content=site.pages[url], headers={"Content-Type": "application/json"})
+        if url == "https://brand.example/ifos.pdf":
+            return fake_response_cls(content=(fixtures / "pdf" / "PLLF0001_per_cap.pdf").read_bytes(), headers={"Content-Type": "application/pdf"})
+        if url == "https://brand.example/app.zip":
+            return fake_response_cls(content=b"PK...", headers={"Content-Type": "application/zip"})
+        return original(url, params)
+    site.handler = handler
+    cfg["agent"]["respect_robots_txt"] = False
+    page = tools.fetch_page(cfg, site, "https://api.example/label")
+    assert "ingredientRows[0].name: Fish Oil Concentrate" in page["full_text"] and "ingredientRows[0].quantity[0].quantity: 1000" in page["full_text"]
+    assert "TOTOX <= 19.5 13.63 Yes" in tools.fetch_page(cfg, site, "https://brand.example/ifos.pdf")["full_text"]
+    with pytest.raises(tools.ToolError, match="not a web page, JSON or PDF"):
+        tools.fetch_page(cfg, site, "https://brand.example/app.zip")

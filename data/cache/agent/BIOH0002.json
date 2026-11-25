@@ -1,0 +1,33 @@
+{
+ "product_num": "BIOH0002",
+ "status": "unverified",
+ "form": null,
+ "form_source_url": null,
+ "form_evidence": null,
+ "oil_mg_per_capsule": null,
+ "oil_source_url": null,
+ "oil_evidence": null,
+ "serving_capsules": null,
+ "servings_per_bottle": null,
+ "flavored": null,
+ "flavor_evidence": null,
+ "antioxidants": [],
+ "packaging": [],
+ "reasoning": "The brand's 97% (rTG) product page gives no weights. The 1,500 mg capsule on the brand site belongs to its 95% TG product (1,425 mg omega-3), not to this 97% rTG product (1,470 mg omega-3 per IFOS), so it is not used.",
+ "sources_checked": [
+  "http://en.naturalbalancenz.com/",
+  "https://en.naturalbalancenz.com/products_details/20.html",
+  "https://en.naturalbalancenz.com/products_details/16.html",
+  "https://en.naturalbalancenz.com/Case_detail/93.html"
+ ],
+ "page_hashes": {
+  "https://en.naturalbalancenz.com/": "50cff055c1f3fd3ce6f6763b1c51ed849ef5c9151313ad33e1c099cb2394e0e9",
+  "https://en.naturalbalancenz.com/products_details/20.html": "23d6d1827f91682bbcc5c03f0b66eccb7ae290c165e830d35778e58bfad2e623",
+  "https://en.naturalbalancenz.com/products_details/16.html": "71971e8dee6f231c00a1d878483b5a01019878cb3590817495b49d08cf52c5d0",
+  "https://en.naturalbalancenz.com/Case_detail/93.html": "0d8ca78b99e83c9dd047769282440c06e2111aa14c40b1f0937c248e5cb58040"
+ },
+ "model": "in-session",
+ "tool_calls": 4,
+ "cost_usd": 0.0,
+ "verified_at": "2026-11-25T01:52:22+00:00"
+}
