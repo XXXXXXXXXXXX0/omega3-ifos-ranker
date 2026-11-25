@@ -1,15 +1,18 @@
 # Status
 
-Last updated: 2026-11-25, end of Stage 4. Branch: `claude/keen-ptolemy-j47bf2`.
+Last updated: 2026-11-25. Branch: `claude/keen-ptolemy-j47bf2`.
 
 ## Resume here
 
-Next: **Stage 5, label verification**, done in-session (O-1). List the queue
-with `python -m omega3 agent-queue`; for each product run
-`agent-explore --product X`, then `agent-fetch` and `agent-tool` as needed,
-and save the decision with `agent-record --file decisions.json`. Results live
-in `data/cache/agent/` and `data/traces/agent/`. Then `python -m omega3 rank`
-writes the report. Nothing is blocked.
+Stages 0-6 are done. Stage 7 (README, final run, pull request) is in
+progress: a full incremental `python -m omega3 run` against the live site
+was started to exercise re-runs and produce a real changelog. If this session
+ended before it finished, run it again (it resumes from the cache), then
+commit, update the README results summary, and open the pull request.
+
+To continue label verification later: `python -m omega3 agent-queue` lists
+what is waiting; with an API key, `llm.api_enabled: true` and
+`python -m omega3 agent-run` does it automatically.
 
 ## Stages
 
@@ -20,11 +23,30 @@ writes the report. Nothing is blocked.
 | 2 Report fetcher and raw cache | done | pass |
 | 3 Extractor | done | pass |
 | 4 Filters, scoring, ranking | done | pass |
-| 5 Label verification agent | next (code done and tested) | pass |
-| 6 Reports, changelog, re-runs | code done and tested | pass |
-| 7 README, final run, PR | | |
+| 5 Label verification agent | done (in-session; top 10 provisional) | pass |
+| 6 Reports, changelog, re-runs | done | pass |
+| 7 README, final run, PR | in progress | pass |
 
-`python -m pytest -q` -> `277 passed` (2026-11-25).
+`python -m pytest -q` -> `305 passed` (2026-11-25).
+
+## Stage 6 evidence
+
+`python -m omega3 rank` wrote `reports/2026-11-25/report.md` and `.html`,
+`reports/changelogs/<run>.md` and `data/exports/*.csv`. Every top-10 value
+(TOTOX, PV, AV, acid value, EPA, DHA) was found in the text of its source
+PDF, which is committed in `data/raw/pdf_kept/` (15 PDFs, one per ranked or
+flavored batch). Re-run behaviour is tested: a second run inside the refresh
+window makes zero HTTP requests and yields an identical ranking and an empty
+changelog; a later run reports new, expired and moved entries.
+
+## Stage 5 evidence
+
+82 product sessions, in best-possible-score order, done in-session (O-1).
+None used more than the 8-call cap (37 used 1, 33 used 2). Every stored form
+and oil weight has a verbatim quote found on a page fetched in that product's
+session (`data/traces/agent/<product>.json`). Result: 12 ranked, 3 flavored.
+Stopping threshold 10.21; 261 candidates could still reach the top 10 (198
+not yet checked, 63 checked without the label giving both facts). See D-30.
 
 ## Stage 4 evidence
 
@@ -106,7 +128,8 @@ different files). Both have regression tests.
 
 Token usage is not readable from inside the session (see D-11). Measurable:
 Stage 2 made 4,069 requests to andi.nutrasource.ca (1.12 GB) at 1 request
-per second. Stages 3 and 4 made none.
+per second. Stages 3 and 4 made none. Stage 5 made about 160 requests to brand
+sites and the NIH label database, plus 7 hosted web searches.
 about 130 HTTP requests in Phase 0 and about 870 in Stage 1 (listing plus 832
 product pages), all at 1 request/second or slower. Effort: Phase 0 high,
 Stage 1 medium.
@@ -114,7 +137,7 @@ Stage 1 medium.
 ## Notifications
 
 - "Omega-3 build started." sent, ntfy returned HTTP 200.
-- Stage 0, 1, 2 and 3 notifications sent, HTTP 200.
+- Stage 0 to 5 notifications sent, HTTP 200.
 
 ## Session override in force
 
